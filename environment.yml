@@ -1,0 +1,12 @@
+dependencies:
+ - python=3.5
+ - numpy
+ - scipy
+ - scikit-learn
+ - jupyter
+ - requests
+ - click
+ - openpyxl
+ - pip:
+   - watermark
+   - pytest
