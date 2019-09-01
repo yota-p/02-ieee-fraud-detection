@@ -18,6 +18,10 @@ DATA_RAW = data/raw/sample_submission.csv \
 
 .PHONY: all clean test jupyter data lint requirements help
 
+## Install Python Dependencies
+requirements: test_environment
+	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+
 ## Clean
 clean:
 	rm -f data/raw/*
