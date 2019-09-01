@@ -30,6 +30,8 @@ clean:
 ## Start Jupyter-Notebook
 jupyter:
 	nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebooks/jupyter.log 2>&1 &
+	echo 'gcloud compute ssh HOST -- -N -L 8888:localhost:8888'
+	sleep 3s
 	tail -n 2 notebooks/jupyter.log
 
 ## Download Dataset
