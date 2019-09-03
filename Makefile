@@ -39,10 +39,12 @@ jupyter:
 	tail -n 2 notebooks/jupyter.log
 
 ## Download raw data
-rawdata: $(DATA_RAW)
+$(DATA_RAW):
 	kaggle competitions download -c $(COMPETITION_NAME) -p data/raw/
 	unzip 'data/raw/*.zip' -d data/raw
 	rm -f data/raw/*.zip
+
+rawdata: $(DATA_RAW)
 
 #data: requirements
 #	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
