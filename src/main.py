@@ -3,11 +3,11 @@ import pandas as pd
 import os
 
 import matplotlib.pyplot as plt
-#%matplotlib inline
-#from tqdm import tqdm_notebook
-from sklearn.preprocessing import StandardScaler
-from sklearn.svm import NuSVR, SVR
-from sklearn.metrics import mean_absolute_error
+# %matplotlib inline
+# from tqdm import tqdm_notebook
+# from sklearn.preprocessing import StandardScaler
+# from sklearn.svm import NuSVR, SVR
+# from sklearn.metrics import mean_absolute_error
 pd.options.display.precision = 15
 
 import lightgbm as lgb
@@ -16,7 +16,8 @@ import time
 import datetime
 from catboost import CatBoostRegressor
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import StratifiedKFold, KFold, RepeatedKFold, GroupKFold, GridSearchCV, train_test_split, TimeSeriesSplit
+from sklearn.model_selection import StratifiedKFold, KFold, RepeatedKFold, \
+    GroupKFold, GridSearchCV, train_test_split, TimeSeriesSplit
 from sklearn import metrics
 from sklearn import linear_model
 import gc
@@ -31,12 +32,10 @@ import json
 import altair as alt
 
 import networkx as nx
-import matplotlib.pyplot as plt
-#%matplotlib inline
 
-#alt.renderers.enable('notebook')
+# alt.renderers.enable('notebook')
 
-#%env JOBLIB_TEMP_FOLDER=/tmp
+# %env JOBLIB_TEMP_FOLDER=/tmp
 
 from visualization import altairhelper
 
