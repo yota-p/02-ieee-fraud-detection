@@ -1,5 +1,4 @@
-from src.data import read_raw_data, preprocess_data, get_featues, get_label
-
+import src.data
 
 def test_raw_shape():
     dframe = read_raw_data()

@@ -25,7 +25,8 @@ requirements: test_environment
 ## Clean
 clean:
 	rm -f data/raw/*
-	rm -f data/processed/*.pickle
+	rm -f data/interim/*
+	rm -f data/processed/*
 	rm -f models/*.model
 	find . -type f -name "*~" -delete
 	find . -type f -name "*.py[co]" -delete

@@ -9,6 +9,7 @@ Project Organization
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
+    ├── config             <- Configurations for each experiments
     ├── data
     │   ├── external       <- Data from third party sources.
     │   ├── interim        <- Intermediate data that has been transformed.
@@ -16,6 +17,8 @@ Project Organization
     │   └── raw            <- The original, immutable data dump.
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+    │
+    ├── log                <- Store logs
     │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
