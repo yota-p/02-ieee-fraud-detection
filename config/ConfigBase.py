@@ -1,4 +1,4 @@
-class Config:
+class ConfigBase:
     def __init__(self, **args):
         self.resource = ResourceConfig()
         self.model = ModelConfig()
