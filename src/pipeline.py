@@ -27,7 +27,7 @@ class TaskGetRawData(luigi.Task):
         return luigi.LocalTarget("TaskGetRawData.txt")
 
     def run(self):
-        getrawdata.download()
+        getrawdata.run()
 
 
 @requires(TaskGetRawData)
