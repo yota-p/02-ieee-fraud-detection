@@ -2,29 +2,22 @@ import luigi
 from luigi.util import requires
 from save_log import stop_watch
 from data import getrawdata
+from data import preprocess
+from models import train
+import project
 
 
 class Pipeline:
 
     @stop_watch('Pipeline.run()')
     def run(self):
-        luigi.run(['TaskGoal', '--workers', '1', '--local-scheduler'])
+        luigi.run(['TaskPreprocess', '--workers', '1', '--local-scheduler'])
 
 
-class TaskStart(luigi.Task):
-
-    def output(self):
-        return None
-
-    def run(self):
-        return None
-
-
-@requires(TaskStart)
 class TaskGetRawData(luigi.Task):
 
     def output(self):
-        return luigi.LocalTarget("TaskGetRawData.txt")
+        return luigi.LocalTarget(getrawdata.output())
 
     def run(self):
         getrawdata.run()
@@ -34,27 +27,27 @@ class TaskGetRawData(luigi.Task):
 class TaskPreprocess(luigi.Task):
 
     def output(self):
-        return luigi.LocalTarget("TaskPreprocess.txt")
+        return luigi.LocalTarget(preprocess.output())
 
     def run(self):
-        return None
+        return preprocess.run()
 
 
 @requires(TaskPreprocess)
-class TaskLearn(luigi.Task):
+class TaskTrain(luigi.Task):
 
     def output(self):
-        return luigi.LocalTarget("TaskLearn.txt")
+        return luigi.LocalTarget("data/TaskLearn.txt")
 
     def run(self):
-        return None
+        return train.run()
 
 
-@requires(TaskLearn)
+@requires(TaskTrain)
 class TaskPredict(luigi.Task):
 
     def output(self):
-        return luigi.LocalTarget("TaskPredict.txt")
+        return luigi.LocalTarget("data/TaskPredict.txt")
 
     def run(self):
         return None
@@ -64,7 +57,10 @@ class TaskPredict(luigi.Task):
 class TaskSubmit(luigi.Task):
 
     def output(self):
-        return luigi.LocalTarget("TaskSubmit.txt")
+        #dependencies = ["data/TaskSubmit.txt", "data/test.txt"]
+        #for filename in dependencies:
+        #    yield luigi.LocalTarget(filename)
+        return None
 
     def run(self):
         return None

@@ -1,6 +1,3 @@
-import ConfigBase
-
-
 class Config:
     def __init__(self, **args):
         self.resource = ResourceConfig()
