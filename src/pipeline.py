@@ -1,38 +1,28 @@
 import luigi
 from luigi.util import requires
 from save_log import stop_watch
-from data import getrawdata
-from data import preprocess
 from models import train
-import project
+from tasks.GetRawDataImpl import GetRawDataImpl
+from tasks.PreprocessImpl import PreprocessImpl
 
 
 class Pipeline:
 
     @stop_watch('Pipeline.run()')
     def run(self):
-        luigi.run(['TaskPreprocess', '--workers', '1', '--local-scheduler'])
+        luigi.run(['GetRawData', '--workers', '1', '--local-scheduler'])
 
 
-class TaskGetRawData(luigi.Task):
-
-    def output(self):
-        return luigi.LocalTarget(getrawdata.output())
-
-    def run(self):
-        getrawdata.run()
+class GetRawData(GetRawDataImpl):
+    pass
 
 
-@requires(TaskGetRawData)
-class TaskPreprocess(luigi.Task):
-
-    def output(self):
-        return luigi.LocalTarget(preprocess.output())
-
-    def run(self):
-        return preprocess.run()
+@requires(GetRawData)
+class Preprocess(PreprocessImpl):
+    pass
 
 
+'''
 @requires(TaskPreprocess)
 class TaskTrain(luigi.Task):
 
@@ -57,8 +47,8 @@ class TaskPredict(luigi.Task):
 class TaskSubmit(luigi.Task):
 
     def output(self):
-        #dependencies = ["data/TaskSubmit.txt", "data/test.txt"]
-        #for filename in dependencies:
+        # dependencies = ["data/TaskSubmit.txt", "data/test.txt"]
+        # for filename in dependencies:
         #    yield luigi.LocalTarget(filename)
         return None
 
@@ -74,7 +64,7 @@ class TaskGoal(luigi.Task):
 
     def run(self):
         return None
-
+'''
 
 if __name__ == '__main__':
     Pipeline().run()

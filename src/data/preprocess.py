@@ -2,42 +2,58 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import gc
-from data import pickleWrapper as pw
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../config/'))
-import project
+from utils import pickleWrapper as pw
+from config import project
+import luigi
+from luigi.util import requires
+
+
+class TaskPickleRawData(luigi.Task):
+
+    def output(self):
+        return luigi.run(['TaskPreprocess', '--workers', '1', '--local-scheduler'])
 
 
 def output():
-    raw_path = project.rootdir + 'data/raw/'
+    dir = project.rootdir + 'data/raw/'
     out_files = ['train_identity.pickle',
                  'train_transaction.pickle',
                  'test_identity.pickle',
                  'train_transaction.pickle',
                  'train_identity.pickle']
     for file in out_files:
-        out_data = raw_path + file
+        out_data = dir + file
     return out_data
+
+
+def pickle_raw_data():
+    dir = project.rootdir + 'data/raw/'
+
+    train_identity = pd.read_csv(f'{dir}train_identity.csv')
+    train_transaction = pd.read_csv(f'{dir}train_transaction.csv')
+    test_identity = pd.read_csv(f'{dir}test_identity.csv')
+    test_transaction = pd.read_csv(f'{dir}test_transaction.csv')
+    sample_submission = pd.read_csv(f'{dir}sample_submission.csv')
+
+    pw.dump(train_identity,    f'{dir}train_identity.pickle',    'wb')
+    pw.dump(train_transaction, f'{dir}train_transaction.pickle', 'wb')
+    pw.dump(test_identity,     f'{dir}test_identity.pickle',     'wb')
+    pw.dump(test_transaction,  f'{dir}test_transaction.pickle',  'wb')
+    pw.dump(sample_submission, f'{dir}sample_submission.pickle',    'wb')
 
 
 def run():
 
-    # pickle raw data
-    raw_path = project.rootdir + 'data/raw/'
+    pickle_raw_data()
 
-    train_identity = pd.read_csv(f'{raw_path}train_identity.csv')
-    train_transaction = pd.read_csv(f'{raw_path}train_transaction.csv')
-    test_identity = pd.read_csv(f'{raw_path}test_identity.csv')
-    test_transaction = pd.read_csv(f'{raw_path}test_transaction.csv')
-    sample_submission = pd.read_csv(f'{raw_path}sample_submission.csv')
+    # load raw data
+    dir = project.rootdir + 'data/raw/'
+    train_identity = pw.load(f'{dir}train_identity.pickle', 'wb')
+    train_transaction = pw.load(f'{dir}train_transaction.pickle', 'wb')
+    test_identity = pw.load(f'{dir}test_identity.pickle', 'wb')
+    test_transaction = pw.load(f'{dir}test_transaction.pickle', 'wb')
 
-    pw.dump(train_identity,    f'{raw_path}train_identity.pickle',    'wb')
-    pw.dump(train_transaction, f'{raw_path}train_transaction.pickle', 'wb')
-    pw.dump(test_identity,     f'{raw_path}test_identity.pickle',     'wb')
-    pw.dump(train_transaction, f'{raw_path}train_transaction.pickle', 'wb')
-    pw.dump(sample_submission, f'{raw_path}train_identity.pickle',    'wb')
-
+    '''
     # let's combine the data and work with the whole dataset
     train = pd.merge(train_transaction, train_identity, on='TransactionID', how='left')
     test = pd.merge(test_transaction, test_identity, on='TransactionID', how='left')
@@ -149,6 +165,7 @@ def run():
     return X, X_test
 
     gc.collect()
+    '''
 
 
 if __name__ == '__main__':

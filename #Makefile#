@@ -50,7 +50,7 @@ $(DATA_RAW):
 rawdata: $(DATA_RAW)
 
 init:
-	export PYTHONPATH="/home/yh/git/kaggle/02-ieee-fraud-detection/src:$PYTHONPATH"
+	export PYTHONPATH=$(PROJECT_DIR)/src:$PYTHONPATH
 
 #data: requirements
 #	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed

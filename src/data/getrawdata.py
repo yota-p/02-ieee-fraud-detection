@@ -1,16 +1,14 @@
 from kaggle.api.kaggle_api_extended import KaggleApi
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../config'))
-import project
+from config import project
 
 
 def output():
-    dataset = ['sample_submission.csv.zip',
-               'test_identity.csv.zip',
-               'test_transaction.csv.zip',
-               'train_identity.csv.zip',
-               'train_transaction.csv.zip']
+    dataset = ['sample_submission.csv',
+               'test_identity.csv',
+               'test_transaction.csv',
+               'train_identity.csv',
+               'train_transaction.csv']
+    dataset = [project.rootdir + 'data/raw/' + file for file in dataset]
     return dataset
 
 
