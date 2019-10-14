@@ -1,9 +1,9 @@
 import luigi
-from tasks import AbstractTask
+from tasks.AbstractTask import AbstractTask
 from data import preprocess
 
 
-class TaskPreprocessImpl(AbstractTask):
+class PreprocessImpl(AbstractTask):
 
     def output(self):
         return luigi.LocalTarget(preprocess.output())

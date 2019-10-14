@@ -1,9 +1,9 @@
 import luigi
-from tasks import AbstractTask
+from tasks.AbstractTask import AbstractTask
 from data import getrawdata
 
 
-class TaskGetRawDataImpl(AbstractTask.AbstractTask):
+class GetRawDataImpl(AbstractTask):
 
     def output(self):
         return luigi.LocalTarget(getrawdata.output())

@@ -4,17 +4,16 @@ from datetime import datetime
 from logging import getLogger
 from get_option import get_option
 from save_log import create_main_logger, create_train_logger, get_version, send_message, stop_watch
-# from processor_factory import ProcessorFactory
 from exceptions import DuplicateVersionException, IrregularArgumentException, IrregularCalcBackException
 warnings.filterwarnings('ignore')
-from manager import Manager
+from pipeline import Pipeline
 
 
 @stop_watch('main()')
 def main(args):
     send_message(":thinking_face: ============= {} ============= :thinking_face:".format(str(datetime.now())))
-    manager = Manager()
-    manager.run()
+    pipeline = Pipeline(version)
+    pipeline.run()
 
 
 if __name__ == "__main__":

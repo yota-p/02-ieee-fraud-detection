@@ -1,81 +1,247 @@
+from numba import jit
+import time
 import numpy as np
 import pandas as pd
-import gc
 import lightgbm as lgb
+import xgboost as xgb
+from catboost import CatBoostRegressor, CatBoostClassifier
 from sklearn import metrics
-from sklearn.model_selection import GroupKFold
-import os
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), 'config'))
-from config.tempconfig import LOCAL_TEST, TARGET, SEED
+from sklearn.model_selection import KFold, GroupKFold, TimeSeriesSplit
+from config import project
+from utils import pickleWrapper as pw
 
 
-# TODO: move to config
-lgb_params = {
-                    'objective': 'binary',
-                    'boosting_type': 'gbdt',
-                    'metric': 'auc',
-                    'n_jobs': -1,
-                    'learning_rate': 0.01,
-                    'num_leaves': 2**8,
-                    'max_depth': -1,
-                    'tree_learner': 'serial',
-                    'colsample_bytree': 0.5,
-                    'subsample_freq': 1,
-                    'subsample': 0.7,
-                    'n_estimators': 800,
-                    'max_bin': 255,
-                    'verbose': -1,
-                    'seed': SEED,
-                    'early_stopping_rounds': 100,
-                }
+def train():
+    n_fold = 5
+    folds = TimeSeriesSplit(n_splits=n_fold)
+    folds = KFold(n_splits=5)
+
+    params = {'num_leaves': 256,
+              'min_child_samples': 79,
+              'objective': 'binary',
+              'max_depth': 13,
+              'learning_rate': 0.03,
+              "boosting_type": "gbdt",
+              "subsample_freq": 3,
+              "subsample": 0.9,
+              "bagging_seed": 11,
+              "metric": 'auc',
+              "verbosity": -1,
+              'reg_alpha': 0.3,
+              'reg_lambda': 0.3,
+              'colsample_bytree': 0.9,
+              # 'categorical_feature': cat_cols
+              }
+
+    dir = project.rootdir + 'data/processed/'
+    X = pw.load(f'{dir}X.pickle', 'rb')
+    X_test = pw.load(f'{dir}X_test.pickle', 'rb')
+    y = pw.load(f'{dir}y.pickle', 'rb')
+
+    result_dict_lgb = train_model_classification(X=X,
+                                                 X_test=X_test,
+                                                 y=y,
+                                                 params=params,
+                                                 folds=folds,
+                                                 model_type='lgb',
+                                                 eval_metric='auc',
+                                                 plot_feature_importance=True,
+                                                 verbose=500,
+                                                 early_stopping_rounds=10,  # 200
+                                                 n_estimators=5000,
+                                                 averaging='usual',
+                                                 n_jobs=-1)
+    pd.DataFrame(result_dict_lgb['oof']).to_csv('lgb_oof.csv', index=False)
+
+    folder_path = project.rootdir + 'data/raw/'
+    sub = pd.read_csv(f'{folder_path}sample_submission.csv')
+    sub['isFraud'] = result_dict_lgb['prediction']
+    dir = project.rootdir + 'data/processed/'
+    sub.to_csv(f'{dir}submission.csv', index=False)
 
 
-def make_predictions(tr_df, tt_df, features_columns, target, lgb_params, NFOLDS=2):
+@jit
+def fast_auc(y_true, y_prob):
+    """
+    fast roc_auc computation: https://www.kaggle.com/c/microsoft-malware-prediction/discussion/76013
+    """
+    y_true = np.asarray(y_true)
+    y_true = y_true[np.argsort(y_prob)]
+    nfalse = 0
+    auc = 0
+    n = len(y_true)
+    for i in range(n):
+        y_i = y_true[i]
+        nfalse += (1 - y_i)
+        auc += y_i * nfalse
+    auc /= (nfalse * (n - nfalse))
+    return auc
 
-    folds = GroupKFold(n_splits=NFOLDS)
 
-    X, y = tr_df[features_columns], tr_df[target]
-    P, P_y = tt_df[features_columns], tt_df[target]
-    split_groups = tr_df['DT_M']
+def eval_auc(y_true, y_pred):
+    """
+    Fast auc eval function for lgb.
+    """
+    return 'auc', fast_auc(y_true, y_pred), True
 
-    tt_df = tt_df[['TransactionID', target]]
-    predictions = np.zeros(len(tt_df))
-    oof = np.zeros(len(tr_df))
 
-    for fold_, (trn_idx, val_idx) in enumerate(folds.split(X, y, groups=split_groups)):
-        print('Fold:', fold_)
-        tr_x, tr_y = X.iloc[trn_idx, :], y[trn_idx]
-        vl_x, vl_y = X.iloc[val_idx, :], y[val_idx]
+def train_model_classification(X, X_test, y,
+                               params, folds,
+                               model_type='lgb',
+                               eval_metric='auc',
+                               columns=None,
+                               plot_feature_importance=False,
+                               model=None,
+                               verbose=10000,
+                               early_stopping_rounds=200,
+                               n_estimators=50000,
+                               splits=None,
+                               n_folds=3,
+                               averaging='usual',
+                               n_jobs=-1):
+    """
+    A function to train a variety of classification models.
+    Returns dictionary with oof predictions, test predictions, scores and, if necessary, feature importances.
 
-        print(len(tr_x), len(vl_x))
-        tr_data = lgb.Dataset(tr_x, label=tr_y)
-        vl_data = lgb.Dataset(vl_x, label=vl_y)
+    :params: X - training data, can be pd.DataFrame or np.ndarray (after normalizing)
+    :params: X_test - test data, can be pd.DataFrame or np.ndarray (after normalizing)
+    :params: y - target
+    :params: folds - folds to split data
+    :params: model_type - type of model to use
+    :params: eval_metric - metric to use
+    :params: columns - columns to use. If None - use all columns
+    :params: plot_feature_importance - whether to plot feature importance of LGB
+    :params: model - sklearn model, works only for "sklearn" model type
 
-        estimator = lgb.train(
-            lgb_params,
-            tr_data,
-            valid_sets=[tr_data, vl_data],
-            verbose_eval=200,
-        )
+    """
+    columns = X.columns if columns is None else columns
+    n_splits = folds.n_splits if splits is None else n_folds
+    X_test = X_test[columns]
 
-        pp_p = estimator.predict(P)
-        predictions += pp_p/NFOLDS
+    # to set up scoring parameters
+    metrics_dict = {'auc': {'lgb_metric_name': eval_auc,
+                            'catboost_metric_name': 'AUC',
+                            'sklearn_scoring_function': metrics.roc_auc_score},
+                    }
 
-        oof_preds = estimator.predict(vl_x)
-        oof[val_idx] = (oof_preds - oof_preds.min())/(oof_preds.max() - oof_preds.min())
+    result_dict = {}
+    if averaging == 'usual':
+        # out-of-fold predictions on train data
+        oof = np.zeros((len(X), 1))
 
-        if LOCAL_TEST:
-            feature_imp = pd.DataFrame(sorted(zip(estimator.feature_importance(), X.columns)),
-                                       columns=['Value', 'Feature'])
-            print(feature_imp)
+        # averaged predictions on train data
+        prediction = np.zeros((len(X_test), 1))
 
-        del tr_x, tr_y, vl_x, vl_y, tr_data, vl_data
-        gc.collect()
+    elif averaging == 'rank':
+        # out-of-fold predictions on train data
+        oof = np.zeros((len(X), 1))
 
-    tt_df['prediction'] = predictions
-    print('OOF AUC:', metrics.roc_auc_score(y, oof))
-    if LOCAL_TEST:
-        print('Holdout AUC:', metrics.roc_auc_score(tt_df[TARGET], tt_df['prediction']))
+        # averaged predictions on train data
+        prediction = np.zeros((len(X_test), 1))
 
-    return tt_df
+    # list of scores on folds
+    scores = []
+    feature_importance = pd.DataFrame()
+
+    # split and train on folds
+    for fold_n, (train_index, valid_index) in enumerate(folds.split(X)):
+        print(f'Fold {fold_n + 1} started at {time.ctime()}')
+        if type(X) == np.ndarray:
+            X_train, X_valid = X[columns][train_index], X[columns][valid_index]
+            y_train, y_valid = y[train_index], y[valid_index]
+        else:
+            X_train, X_valid = X[columns].iloc[train_index], X[columns].iloc[valid_index]
+            y_train, y_valid = y.iloc[train_index], y.iloc[valid_index]
+
+        if model_type == 'lgb':
+            model = lgb.LGBMClassifier(**params, n_estimators=n_estimators, n_jobs=n_jobs)
+            model.fit(X_train, y_train,
+                      eval_set=[(X_train, y_train), (X_valid, y_valid)
+                                ], eval_metric=metrics_dict[eval_metric]['lgb_metric_name'],
+                      verbose=verbose, early_stopping_rounds=early_stopping_rounds)
+
+            y_pred_valid = model.predict_proba(X_valid)[:, 1]
+            y_pred = model.predict_proba(X_test, num_iteration=model.best_iteration_)[:, 1]
+
+        if model_type == 'xgb':
+            train_data = xgb.DMatrix(data=X_train, label=y_train, feature_names=X.columns)
+            valid_data = xgb.DMatrix(data=X_valid, label=y_valid, feature_names=X.columns)
+
+            watchlist = [(train_data, 'train'), (valid_data, 'valid_data')]
+            model = xgb.train(dtrain=train_data, num_boost_round=n_estimators, evals=watchlist,
+                              early_stopping_rounds=early_stopping_rounds, verbose_eval=verbose, params=params)
+            y_pred_valid = model.predict(xgb.DMatrix(X_valid, feature_names=X.columns),
+                                         ntree_limit=model.best_ntree_limit)
+            y_pred = model.predict(xgb.DMatrix(X_test, feature_names=X.columns), ntree_limit=model.best_ntree_limit)
+
+        if model_type == 'sklearn':
+            model = model
+            model.fit(X_train, y_train)
+
+            y_pred_valid = model.predict(X_valid).reshape(-1,)
+            score = metrics_dict[eval_metric]['sklearn_scoring_function'](y_valid, y_pred_valid)
+            print(f'Fold {fold_n}. {eval_metric}: {score:.4f}.')
+            print('')
+
+            y_pred = model.predict_proba(X_test)
+
+        if model_type == 'cat':
+            model = CatBoostClassifier(iterations=n_estimators,
+                                       eval_metric=metrics_dict[eval_metric]['catboost_metric_name'],
+                                       **params,
+                                       loss_function='Logloss')
+            model.fit(X_train, y_train, eval_set=(X_valid, y_valid),
+                      cat_features=[], use_best_model=True, verbose=False)
+
+            y_pred_valid = model.predict(X_valid)
+            y_pred = model.predict(X_test)
+
+        if averaging == 'usual':
+
+            oof[valid_index] = y_pred_valid.reshape(-1, 1)
+            scores.append(metrics_dict[eval_metric]['sklearn_scoring_function'](y_valid, y_pred_valid))
+
+            prediction += y_pred.reshape(-1, 1)
+
+        elif averaging == 'rank':
+
+            oof[valid_index] = y_pred_valid.reshape(-1, 1)
+            scores.append(metrics_dict[eval_metric]['sklearn_scoring_function'](y_valid, y_pred_valid))
+
+            prediction += pd.Series(y_pred).rank().values.reshape(-1, 1)
+
+        if model_type == 'lgb' and plot_feature_importance:
+            # feature importance
+            fold_importance = pd.DataFrame()
+            fold_importance["feature"] = columns
+            fold_importance["importance"] = model.feature_importances_
+            fold_importance["fold"] = fold_n + 1
+            feature_importance = pd.concat([feature_importance, fold_importance], axis=0)
+
+    prediction /= n_splits
+
+    print('CV mean score: {0:.4f}, std: {1:.4f}.'.format(np.mean(scores), np.std(scores)))
+
+    result_dict['oof'] = oof
+    result_dict['prediction'] = prediction
+    result_dict['scores'] = scores
+
+    if model_type == 'lgb':
+        if plot_feature_importance:
+            feature_importance["importance"] /= n_splits
+            cols = feature_importance[["feature", "importance"]].groupby("feature").mean().sort_values(
+                by="importance", ascending=False)[:50].index
+
+            # best_features = feature_importance.loc[feature_importance.feature.isin(cols)]
+            # plt.figure(figsize=(16, 12))
+            # sns.barplot(x="importance", y="feature", data=best_features.sort_values(by="importance", ascending=False))
+            # plt.title('LGB Features (avg over folds)')
+
+            result_dict['feature_importance'] = feature_importance
+            result_dict['top_columns'] = cols
+
+    return result_dict
+
+
+if __name__ == '__main__':
+    train()

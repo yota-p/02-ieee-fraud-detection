@@ -5,13 +5,6 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PYTHON_INTERPRETER = python3
 
-COMPETITION_NAME = ieee-fraud-detection
-DATA_RAW = data/raw/sample_submission.csv \
-	   data/raw/test_identity.csv \
-	   data/raw/test_transaction.csv \
-	   data/raw/train_identity.csv \
-	   data/raw/train_transaction.csv
-
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
@@ -28,7 +21,14 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
-eliminate: clean
+## Delete processed & interim files
+distclean: clean
+	rm -f data/raw/*.pickle
+	rm -f data/interim/*
+	rm -f data/processed/*
+
+## Delete final outputs
+eliminate: distclean
 	rm -f data/raw/*
 	rm -f data/interim/*
 	rm -f data/processed/*
@@ -41,16 +41,6 @@ jupyter:
 	sleep 3s
 	tail -n 2 notebooks/jupyter.log
 
-## Download raw data
-$(DATA_RAW):
-	kaggle competitions download -c $(COMPETITION_NAME) -p data/raw/
-	unzip 'data/raw/*.zip' -d data/raw
-	rm -f data/raw/*.zip
-
-rawdata: $(DATA_RAW)
-
-init:
-	export PYTHONPATH="/home/yh/git/kaggle/02-ieee-fraud-detection/src:$PYTHONPATH"
 
 #data: requirements
 #	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
