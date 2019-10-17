@@ -11,11 +11,11 @@ PYTHON_INTERPRETER = python3
 
 .PHONY: all clean test jupyter data lint requirements help
 
-## Install Python Dependencies
-requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+## Install Python Dependencies #this may destroy environment!
+#requirements: test_environment
+#	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-## Clean
+## Delete cache files
 clean:
 	find . -type f -name "*~" -delete
 	find . -type f -name "*.py[co]" -delete
@@ -25,12 +25,10 @@ clean:
 distclean: clean
 	rm -f data/raw/*.pickle
 	rm -f data/interim/*
-	rm -f data/processed/*
 
 ## Delete final outputs
 eliminate: distclean
 	rm -f data/raw/*
-	rm -f data/interim/*
 	rm -f data/processed/*
 	rm -f models/*.model
 
@@ -54,19 +52,19 @@ data/processed/processed.pickle: $(DATA_RAW)
 #	$(PYTHON_INTERPRETER) src/visualization/exploratory.py $< $@
 
 ## Train model
-models/random_forest.model: data/processed/processed.pickle
-	$(PYTHON_INTERPRETER) src/models/train_model.py $< $@
+#models/random_forest.model: data/processed/processed.pickle
+#	$(PYTHON_INTERPRETER) src/models/train_model.py $< $@
 
 ## All
-all: data/raw/iris.csv data/processed/processed.pickle reports/figures/exploratory.png models/random_forest.model
+#all: data/raw/iris.csv data/processed/processed.pickle reports/figures/exploratory.png models/random_forest.model
 
 ## Test
 test: all
 	pytest
 
 ## Lint using flake8
-lint:
-	flake8 src
+#lint:
+#	flake8 src
 
 ## Test python environment is setup correctly
 test_environment:
