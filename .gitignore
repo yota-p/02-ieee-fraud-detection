@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
 # C extensions
 *.so
@@ -19,9 +20,11 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -42,6 +45,8 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+.hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
@@ -49,6 +54,15 @@ coverage.xml
 
 # Django stuff:
 *.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
 
 # Sphinx documentation
 docs/_build/
@@ -72,30 +86,58 @@ target/
 # Spyder
 .spyproject/
 
-# Jupyter NB Checkpoints
-.ipynb_checkpoints/
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+
+# vi cache
+*.swp
+*.swo
+
+# Emacs cache
+*.~
+
+# MacOS Specific
+.DS_Store
+
+# Jupyter notebook log (includes token)
+jupyter.log
+
+# Slack
+.slack_token
 
 # exclude data from source control by default
 data/external/*
 data/interim/*
 data/processed/*
 data/raw/*
-
-# Mac OS-specific storage files
-.DS_Store
-
-# vim
-*.swp
-*.swo
-
-# Mypy cache
-.mypy_cache/
-
-# Emacs cache
-*.~
-
-# Jupyter notebook log (includes token)
-notebooks/jupyter.log
-
-# Pytest cache
-.pytest_cache/
