@@ -39,6 +39,12 @@ jupyter:
 	sleep 3s
 	tail -n 2 notebooks/jupyter.log
 
+## Create directory
+dir:
+	mkdir -p data/raw
+	mkdir -p data/interim
+	mkdir -p data/processed
+	mkdir -p data/external
 
 #data: requirements
 #	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
