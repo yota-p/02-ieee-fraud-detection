@@ -9,8 +9,13 @@ from sklearn import metrics
 from sklearn.model_selection import KFold, GroupKFold, TimeSeriesSplit
 from config import project
 from utils import pickleWrapper as pw
+from logging import getLogger
+from save_log import get_version, get_training_logger, stop_watch
+logger = getLogger(get_version())
+logger_train = get_training_logger(get_version())
 
 
+@stop_watch('train()')
 def train():
     n_fold = 5
     folds = TimeSeriesSplit(n_splits=n_fold)
@@ -51,13 +56,11 @@ def train():
                                                  n_estimators=5000,
                                                  averaging='usual',
                                                  n_jobs=-1)
-    pd.DataFrame(result_dict_lgb['oof']).to_csv('lgb_oof.csv', index=False)
+    # pd.DataFrame(result_dict_lgb['oof']).to_csv('lgb_oof.csv', index=False)
 
-    folder_path = project.rootdir + 'data/raw/'
-    sub = pd.read_csv(f'{folder_path}sample_submission.csv')
+    sub = pd.read_csv(f'{project.rootdir}data/raw/sample_submission.csv')
     sub['isFraud'] = result_dict_lgb['prediction']
-    dir = project.rootdir + 'data/processed/'
-    sub.to_csv(f'{dir}submission.csv', index=False)
+    sub.to_csv(f'{project.rootdir}data/processed/submission.csv', index=False)
 
 
 @jit
@@ -86,7 +89,8 @@ def eval_auc(y_true, y_pred):
 
 
 def train_model_classification(X, X_test, y,
-                               params, folds,
+                               params,
+                               folds,
                                model_type='lgb',
                                eval_metric='auc',
                                columns=None,
@@ -143,9 +147,12 @@ def train_model_classification(X, X_test, y,
     scores = []
     feature_importance = pd.DataFrame()
 
+    # set log label
+    logger_train.debug('fold \t iteration \t training\'s auc \t valid1\'s auc')
+
     # split and train on folds
     for fold_n, (train_index, valid_index) in enumerate(folds.split(X)):
-        print(f'Fold {fold_n + 1} started at {time.ctime()}')
+        logger.info(f'Fold {fold_n + 1} started at {time.ctime()}')
         if type(X) == np.ndarray:
             X_train, X_valid = X[columns][train_index], X[columns][valid_index]
             y_train, y_valid = y[train_index], y[valid_index]
@@ -154,14 +161,25 @@ def train_model_classification(X, X_test, y,
             y_train, y_valid = y.iloc[train_index], y.iloc[valid_index]
 
         if model_type == 'lgb':
+            evals_result = {}
             model = lgb.LGBMClassifier(**params, n_estimators=n_estimators, n_jobs=n_jobs)
             model.fit(X_train, y_train,
-                      eval_set=[(X_train, y_train), (X_valid, y_valid)
-                                ], eval_metric=metrics_dict[eval_metric]['lgb_metric_name'],
-                      verbose=verbose, early_stopping_rounds=early_stopping_rounds)
+                      eval_set=[(X_train, y_train), (X_valid, y_valid)],
+                      eval_metric=metrics_dict[eval_metric]['lgb_metric_name'],
+                      verbose=verbose,
+                      early_stopping_rounds=early_stopping_rounds,
+                      callbacks=[lgb.callback.record_evaluation(evals_result)],
+                      )
 
             y_pred_valid = model.predict_proba(X_valid)[:, 1]
             y_pred = model.predict_proba(X_test, num_iteration=model.best_iteration_)[:, 1]
+
+            train_metric = evals_result['training']['auc']  # train's auc as list
+            valid1_metric = evals_result['valid_1']['auc']  # valid1's auc as list
+
+            # for train_auc, valid1_auc in zip(train_metric, valid1_metric):
+            for i, (train_auc, valid1_auc) in enumerate(zip(train_metric, valid1_metric)):
+                logger_train.debug(f'{fold_n} \t {i} \t {train_auc:.6f} \t {valid1_auc:.6f}')
 
         if model_type == 'xgb':
             train_data = xgb.DMatrix(data=X_train, label=y_train, feature_names=X.columns)
@@ -180,8 +198,7 @@ def train_model_classification(X, X_test, y,
 
             y_pred_valid = model.predict(X_valid).reshape(-1,)
             score = metrics_dict[eval_metric]['sklearn_scoring_function'](y_valid, y_pred_valid)
-            print(f'Fold {fold_n}. {eval_metric}: {score:.4f}.')
-            print('')
+            logger.info(f'Fold {fold_n}. {eval_metric}: {score:.4f}.')
 
             y_pred = model.predict_proba(X_test)
 
@@ -220,7 +237,7 @@ def train_model_classification(X, X_test, y,
 
     prediction /= n_splits
 
-    print('CV mean score: {0:.4f}, std: {1:.4f}.'.format(np.mean(scores), np.std(scores)))
+    logger.info(f'CV mean score: {np.mean(scores):.6f}, std: {np.std(scores):.6f}.')
 
     result_dict['oof'] = oof
     result_dict['prediction'] = prediction
