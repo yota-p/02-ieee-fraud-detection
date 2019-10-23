@@ -1,7 +1,9 @@
 import os
 from config import project
+from save_log import stop_watch
 
 
+@stop_watch('get_raw_data()')
 def get_raw_data():
 
     os.system('kaggle competitions download -c ' + project.id + ' -p ' + project.rootdir + 'data/raw/')
