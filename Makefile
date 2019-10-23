@@ -2,7 +2,6 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PYTHON_INTERPRETER = python3
 
 #################################################################################
@@ -12,8 +11,8 @@ PYTHON_INTERPRETER = python3
 .PHONY: all clean test jupyter data lint requirements help
 
 ## Install Python Dependencies #this may destroy environment!
-#requirements: test_environment
-#	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+requirements: test_environment
+	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Delete cache files
 clean:
@@ -46,27 +45,13 @@ dir:
 	mkdir -p data/processed
 	mkdir -p data/external
 
-#data: requirements
-#	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
-
-## Preprocessing
-data/processed/processed.pickle: $(DATA_RAW)
-	$(PYTHON_INTERPRETER) src/data/preprocess.py $< $@
-
-## Export report
-#reports/figures/exploratory.png: data/processed/processed.pickle
-#	$(PYTHON_INTERPRETER) src/visualization/exploratory.py $< $@
-
-## Train model
-#models/random_forest.model: data/processed/processed.pickle
-#	$(PYTHON_INTERPRETER) src/models/train_model.py $< $@
-
-## All
-#all: data/raw/iris.csv data/processed/processed.pickle reports/figures/exploratory.png models/random_forest.model
-
 ## Test
 test: all
 	pytest
+
+## Run specified version
+run: dir
+	$(PYTHON_INTERPRETER) src/main.py ${ver}
 
 ## Lint using flake8
 #lint:
