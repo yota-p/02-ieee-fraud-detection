@@ -1,4 +1,3 @@
-# Log modules
 from functools import wraps
 from get_option import get_option
 import time
@@ -7,46 +6,7 @@ import slack
 from slack_path import SlackAuth
 from logging import getLogger, Formatter, FileHandler, StreamHandler
 from logging import INFO, DEBUG
-
-
-def get_version():
-    return get_option().version
-
-
-def need_prediction():
-    return get_option().Predict
-
-
-def only_prediction():
-    return get_option().OnlyPredict
-
-
-def get_back_training():
-    return get_option().GetBackTraining
-
-
-def train_one_round():
-    return get_option().TrainOneRound
-
-
-def not_send_message():
-    return get_option().NotSendMessage
-
-
-def dask_mode():
-    return get_option().DaskMode
-
-
-def get_recalcFeature():
-    recalc_list = None
-    if get_option().reCalculation is not None:
-        with Path(get_option().reCalculation).open() as f:
-            recalc_list = f.readline().rstrip("\r\n").split(",")
-    return recalc_list
-
-
-def get_njobs():
-    return get_option().nJobs
+from configure import Configger
 
 
 def create_main_logger(version, params=None):
@@ -102,11 +62,10 @@ def stop_watch(*dargs, **dkargs):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kargs):
-            version = get_version()
             method_name = dargs[0]
             start = time.time()
             log = "[START]  {}".format(method_name)
-            getLogger(version).info(log)
+            getLogger(Configger.get_config().VERSION).info(log)
             send_message(log)
 
             result = func(*args, **kargs)
@@ -115,7 +74,7 @@ def stop_watch(*dargs, **dkargs):
             hour, minits = divmod(minits, 60)
 
             log = "[FINISH] {}: [elapsed_time] >> {:0>2}:{:0>2}:{:0>2}".format(method_name, hour, minits, sec)
-            getLogger(version).info(log)
+            getLogger(Configger.get_config().VERSION).info(log)
             send_message(log)
             return result
         return wrapper
@@ -123,13 +82,13 @@ def stop_watch(*dargs, **dkargs):
 
 
 def send_message(text):
-    if not_send_message():
+    if get_option().NoSendMessage:
         return
     token = read_token(SlackAuth.TOKEN_PATH)
     if token is None:
         return
     client = slack.WebClient(token)
-    text = "[{}]: {}".format(get_version(), text)
+    text = "[{}]: {}".format(Configger.get_config().VERSION, text)
     client.chat_postMessage(
         channel=SlackAuth.CHANNEL,
         text=text

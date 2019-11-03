@@ -26,7 +26,7 @@ def get_option():
     argparser.add_argument('-to', '--TrainOneRound',
                            action='store_true',
                            help='Training ONLY one round')
-    argparser.add_argument('-ns', '--NotSendMessage',
+    argparser.add_argument('-ns', '--NoSendMessage',
                            action='store_true',
                            help='Not sending message')
     argparser.add_argument('-d', '--DaskMode',
