@@ -65,7 +65,7 @@ def stop_watch(*dargs, **dkargs):
             method_name = dargs[0]
             start = time.time()
             log = "[START]  {}".format(method_name)
-            getLogger(Configger.get_config().VERSION).info(log)
+            getLogger(Configger.get_config().runtime.VERSION).info(log)
             send_message(log)
 
             result = func(*args, **kargs)
@@ -74,7 +74,7 @@ def stop_watch(*dargs, **dkargs):
             hour, minits = divmod(minits, 60)
 
             log = "[FINISH] {}: [elapsed_time] >> {:0>2}:{:0>2}:{:0>2}".format(method_name, hour, minits, sec)
-            getLogger(Configger.get_config().VERSION).info(log)
+            getLogger(Configger.get_config().runtime.VERSION).info(log)
             send_message(log)
             return result
         return wrapper
@@ -88,7 +88,7 @@ def send_message(text):
     if token is None:
         return
     client = slack.WebClient(token)
-    text = "[{}]: {}".format(Configger.get_config().VERSION, text)
+    text = "[{}]: {}".format(Configger.get_config().runtime.VERSION, text)
     client.chat_postMessage(
         channel=SlackAuth.CHANNEL,
         text=text

@@ -3,7 +3,6 @@ import warnings
 from datetime import datetime
 from save_log import create_main_logger, create_train_logger, send_message, stop_watch
 warnings.filterwarnings('ignore')
-# from pipeline import Pipeline
 from experiment import Experiment
 from configure import Configger
 
@@ -19,6 +18,6 @@ def main(config):
 if __name__ == "__main__":
     gc.enable()
     config = Configger.get_config()
-    create_main_logger(config.VERSION)
-    create_train_logger(config.VERSION)
+    create_main_logger(config.runtime.VERSION)
+    create_train_logger(config.runtime.VERSION)
     main(config)

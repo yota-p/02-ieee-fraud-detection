@@ -11,5 +11,5 @@ class Configger:
         configpath = pathlib.Path('src/config').resolve()
         sys.path.append(str(configpath))
         print(str(configpath))
-        mod = import_module(get_option().version)
-        return mod.Config
+        mod = import_module('config_' + get_option().version)
+        return mod.Config()
