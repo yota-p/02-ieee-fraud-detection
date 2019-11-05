@@ -1,62 +1,75 @@
-from get_option import get_option
 import pathlib
 import sys
-
-
-class Config:
-    def __init__(self):
-        self.environment = EnvironmentConfig()
-        self.runtime = RuntimeConfig()
-        self.log = LogConfig()
-        self.dataset = DatasetConfig()
-        self.experiment = ExperimentConfig()
+from src.utils import seeder
+from get_option import get_option
 
 
 class EnvironmentConfig:
+    SEED = 42
+
     def __init__(self):
+        # Add PATH
         srcpath = pathlib.Path(__file__).parents[1].resolve()
+        # Random seed
         sys.path.append(str(srcpath))
-        self.root = pathlib.Path(__file__).parents[2].resolve()
+        seeder.seed_everything(self.SEED)
+
+
+class ProjectConfig:
+    ROOT = pathlib.Path(__file__).parents[2].resolve()
+    NO = '02'
+    ID = 'ieee-fraud-detection'
 
 
 class RuntimeConfig:
-    def __init__(self):
-        self.VERSION = get_option().version
-        self.DEBUG = True
+    VERSION = get_option().version
+    DEBUG = True
+
+
+class SlackAuth:
+    CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
+    TOKEN_FILE = ".slack_token"
+    TOKEN_PATH = ProjectConfig().ROOT / TOKEN_FILE
 
 
 class LogConfig:
-    def __init__(self):
-        pass
+    slackauth = SlackAuth()
 
 
 class DatasetConfig:
-    def __init__(self):
-        pass
-
-
-class ExperimentConfig():
-    def __init__(self):
-        self.transformer = TransformerConfig()
-        self.trainer = TrainerConfig()
-        self.modelapi = ModelAPIConfig()
+    RAW = ['sample_submission.csv.zip',
+           'test_identity.csv.zip',
+           'test_transaction.csv.zip',
+           'train_identity.csv.zip',
+           'train_transaction.csv.zip']
 
 
 class TransformerConfig:
-    def __init__(self):
-        pass
-
-
-class TrainerConfig:
-    def __init__(self):
-        self.model = ModelConfig()
-
-
-class ModelAPIConfig:
-    def __init__(self):
-        self.model = ModelConfig()
+    pass
 
 
 class ModelConfig:
-    def __init__(self):
-        pass
+    pass
+
+
+class TrainerConfig:
+    MODEL = 'lgbm'
+
+
+class ModelAPIConfig:
+    MODEL = 'lgbm'
+
+
+class ExperimentConfig:
+    transformer = TransformerConfig()
+    trainer = TrainerConfig()
+    modelapi = ModelAPIConfig()
+
+
+class Config:
+    environment = EnvironmentConfig()
+    project = ProjectConfig()
+    runtime = RuntimeConfig()
+    log = LogConfig()
+    dataset = DatasetConfig()
+    experiment = ExperimentConfig()

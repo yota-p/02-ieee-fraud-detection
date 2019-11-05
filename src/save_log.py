@@ -3,10 +3,9 @@ from get_option import get_option
 import time
 from pathlib import Path
 import slack
-from slack_path import SlackAuth
 from logging import getLogger, Formatter, FileHandler, StreamHandler
 from logging import INFO, DEBUG
-from configure import Configger
+from configurator import config as c
 
 
 def create_main_logger(version, params=None):
@@ -65,7 +64,7 @@ def stop_watch(*dargs, **dkargs):
             method_name = dargs[0]
             start = time.time()
             log = "[START]  {}".format(method_name)
-            getLogger(Configger.get_config().runtime.VERSION).info(log)
+            getLogger(c.runtime.VERSION).info(log)
             send_message(log)
 
             result = func(*args, **kargs)
@@ -74,7 +73,7 @@ def stop_watch(*dargs, **dkargs):
             hour, minits = divmod(minits, 60)
 
             log = "[FINISH] {}: [elapsed_time] >> {:0>2}:{:0>2}:{:0>2}".format(method_name, hour, minits, sec)
-            getLogger(Configger.get_config().runtime.VERSION).info(log)
+            getLogger(c.runtime.VERSION).info(log)
             send_message(log)
             return result
         return wrapper
@@ -84,13 +83,13 @@ def stop_watch(*dargs, **dkargs):
 def send_message(text):
     if get_option().NoSendMessage:
         return
-    token = read_token(SlackAuth.TOKEN_PATH)
+    token = read_token(c.log.slackauth.TOKEN_PATH)
     if token is None:
         return
     client = slack.WebClient(token)
-    text = "[{}]: {}".format(Configger.get_config().runtime.VERSION, text)
+    text = "[{}]: {}".format(c.runtime.VERSION, text)
     client.chat_postMessage(
-        channel=SlackAuth.CHANNEL,
+        channel=c.log.slackauth.CHANNEL,
         text=text
     )
     del client
