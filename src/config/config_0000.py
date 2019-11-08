@@ -5,34 +5,36 @@ from get_option import get_option
 
 
 class EnvironmentConfig:
-    SEED = 42
+    SRCPATH = pathlib.Path(__file__).parents[1].resolve()
+    ROOTPATH = pathlib.Path(__file__).parents[2].resolve()
 
     def __init__(self):
         # Add PATH
-        srcpath = pathlib.Path(__file__).parents[1].resolve()
-        # Random seed
-        sys.path.append(str(srcpath))
-        seeder.seed_everything(self.SEED)
-
-
-class ProjectConfig:
-    ROOT = pathlib.Path(__file__).parents[2].resolve()
-    NO = '02'
-    ID = 'ieee-fraud-detection'
+        sys.path.append(str(self.SRCPATH))
 
 
 class RuntimeConfig:
     VERSION = get_option().version
     DEBUG = True
+    SEED = 42
+    NO_SEND_MESSAGE = get_option().NoSendMessage
+
+    def __init__(self):
+        # Random seed
+        seeder.seed_everything(self.SEED)
 
 
-class SlackAuth:
-    CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
-    TOKEN_FILE = ".slack_token"
-    TOKEN_PATH = ProjectConfig().ROOT / TOKEN_FILE
+class ProjectConfig:
+    NO = '02'
+    ID = 'ieee-fraud-detection'
 
 
 class LogConfig:
+    class SlackAuth:
+        CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
+        TOKEN_FILE = ".slack_token"
+        TOKEN_PATH = EnvironmentConfig().ROOTPATH / TOKEN_FILE
+
     slackauth = SlackAuth()
 
 
@@ -49,27 +51,25 @@ class TransformerConfig:
 
 
 class ModelConfig:
-    pass
+    # Corresponds to directory name in src/models
+    TYPE = 'lightgbm'
 
 
 class TrainerConfig:
-    MODEL = 'lgbm'
+    pass
 
 
 class ModelAPIConfig:
-    MODEL = 'lgbm'
-
-
-class ExperimentConfig:
-    transformer = TransformerConfig()
-    trainer = TrainerConfig()
-    modelapi = ModelAPIConfig()
+    pass
 
 
 class Config:
     environment = EnvironmentConfig()
-    project = ProjectConfig()
     runtime = RuntimeConfig()
+    project = ProjectConfig()
     log = LogConfig()
     dataset = DatasetConfig()
-    experiment = ExperimentConfig()
+    transformer = TransformerConfig()
+    trainer = TrainerConfig()
+    modelapi = ModelAPIConfig()
+    model = ModelConfig()

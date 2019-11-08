@@ -7,15 +7,19 @@ import xgboost as xgb
 from catboost import CatBoostRegressor, CatBoostClassifier
 from sklearn import metrics
 from sklearn.model_selection import KFold, GroupKFold, TimeSeriesSplit
-from config import project
-from utils import pickleWrapper as pw
+from configurator import config as c
+from utils import picklewrapper as pw
 from logging import getLogger
-from save_log import get_version, get_training_logger, stop_watch
-logger = getLogger(get_version())
-logger_train = get_training_logger(get_version())
+from save_log import get_training_logger, stop_watch
+logger = getLogger(c.runtime.VERSION)
+logger_train = get_training_logger(c.runtime.VERSION)
 
 
-@stop_watch('train()')
+class Model:
+    pass
+
+
+@stop_watch
 def train():
     n_fold = 5
     folds = TimeSeriesSplit(n_splits=n_fold)
@@ -38,7 +42,7 @@ def train():
               # 'categorical_feature': cat_cols
               }
 
-    dir = project.rootdir + 'data/processed/'
+    dir = c.environment.ROOTDIR + 'data/processed/'
     X = pw.load(f'{dir}X.pickle', 'rb')
     X_test = pw.load(f'{dir}X_test.pickle', 'rb')
     y = pw.load(f'{dir}y.pickle', 'rb')
@@ -58,9 +62,9 @@ def train():
                                                  n_jobs=-1)
     # pd.DataFrame(result_dict_lgb['oof']).to_csv('lgb_oof.csv', index=False)
 
-    sub = pd.read_csv(f'{project.rootdir}data/raw/sample_submission.csv')
+    sub = pd.read_csv(f'{c.environment.ROOTDIR}data/raw/sample_submission.csv')
     sub['isFraud'] = result_dict_lgb['prediction']
-    sub.to_csv(f'{project.rootdir}data/processed/submission.csv', index=False)
+    sub.to_csv(f'{c.environment.ROOTDIR}data/processed/submission.csv', index=False)
 
 
 @jit
@@ -88,6 +92,7 @@ def eval_auc(y_true, y_pred):
     return 'auc', fast_auc(y_true, y_pred), True
 
 
+@stop_watch
 def train_model_classification(X, X_test, y,
                                params,
                                folds,

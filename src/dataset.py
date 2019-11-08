@@ -1,15 +1,17 @@
 import os
 from configurator import config as c
+from save_log import stop_watch
 
 
-class raw:
-    def __init__():
-        os.system(f'kaggle competitions download -c {c.project.id} -p {c.project.rootdir}data/raw/')
-        os.system(f'unzip "{c.project.rootdir}data/raw/*.zip" -d {c.project.rootdir}data/raw')
-        os.system(f'rm -f {c.project.rootdir}data/raw/*.zip')
+# Define datas as value object
+class Raw:
 
-    def load(dataname):
+    @stop_watch
+    def __init__(self):
+        os.system(f'kaggle competitions download -c {c.project.ID} -p {c.environment.ROOTPATH}data/raw/')
+        os.system(f'unzip "{c.environment.ROOTPATH}data/raw/*.zip" -d {c.environment.ROOTPATH}data/raw')
+        os.system(f'rm -f {c.environment.ROOTPATH}data/raw/*.zip')
+
+    @stop_watch
+    def load(self, dataname):
         return None
-
-    def done():
-        return False
