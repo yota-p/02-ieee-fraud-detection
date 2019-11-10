@@ -1,17 +1,25 @@
+# Not used
 import os
 from configurator import config as c
-from save_log import stop_watch
+from save_log import timer
+from abc import ABCMeta, abstractmethod
+import pandas as pd
 
 
-# Define datas as value object
-class Raw:
-
-    @stop_watch
+class Dataset(metaclass=ABCMeta):
     def __init__(self):
-        os.system(f'kaggle competitions download -c {c.project.ID} -p {c.environment.ROOTPATH}data/raw/')
-        os.system(f'unzip "{c.environment.ROOTPATH}data/raw/*.zip" -d {c.environment.ROOTPATH}data/raw')
-        os.system(f'rm -f {c.environment.ROOTPATH}data/raw/*.zip')
+        # Get file from storage?
+        pass
 
-    @stop_watch
-    def load(self, dataname):
-        return None
+    @abstractmethod
+    def load(self, label):
+        df = pd.DataFrame()
+        return df
+
+    def isLatest(self):
+        '''
+        Check input, output, source and compare timestamps.
+        If timestamp of output > input > source, return True.
+        Else, return False.
+        '''
+        return False

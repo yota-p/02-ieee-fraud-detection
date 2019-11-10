@@ -1,8 +1,8 @@
-from save_log import stop_watch
+from save_log import timer
 
 
 class Trainer:
 
-    @stop_watch
+    @timer
     def train(self):
         return None

@@ -5,23 +5,32 @@ from get_option import get_option
 
 
 class EnvironmentConfig:
-    SRCPATH = pathlib.Path(__file__).parents[1].resolve()
     ROOTPATH = pathlib.Path(__file__).parents[2].resolve()
+    SRCPATH = ROOTPATH / 'src'
+    DATAPATH = ROOTPATH / 'data'
+    LOGPATH = ROOTPATH / 'log'
+    SEED = 42
 
     def __init__(self):
         # Add PATH
         sys.path.append(str(self.SRCPATH))
+        # Random seed
+        seeder.seed_everything(self.SEED)
 
 
 class RuntimeConfig:
-    VERSION = get_option().version
-    DEBUG = True
-    SEED = 42
-    NO_SEND_MESSAGE = get_option().NoSendMessage
-
-    def __init__(self):
-        # Random seed
-        seeder.seed_everything(self.SEED)
+    '''
+    Get option from command line arguments
+    '''
+    args = get_option()
+    VERSION = args.version
+    NO_SEND_MESSAGE = args.nomsg
+    DEBUG = args.dbg
+    PREDICT = args.pred
+    PREDICT_ONLY = args.predOnly
+    TRAIN_ONE_ROUND = args.trainOneRound
+    DASK_MODE = args.dask
+    N_JOBS = args.nJobs
 
 
 class ProjectConfig:

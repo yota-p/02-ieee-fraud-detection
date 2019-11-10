@@ -1,14 +1,14 @@
 import gc
 import warnings
 from datetime import datetime
-from save_log import create_main_logger, create_train_logger, send_message, stop_watch, get_main_logger
+from save_log import create_main_logger, create_train_logger, send_message, get_main_logger, timer
 warnings.filterwarnings('ignore')
 from experiment import Experiment
 from configurator import config as c
 import traceback
 
 
-@stop_watch
+@timer
 def main():
     Experiment().run()
 

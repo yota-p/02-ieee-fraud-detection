@@ -10,7 +10,7 @@ from sklearn.model_selection import KFold, GroupKFold, TimeSeriesSplit
 from configurator import config as c
 from utils import picklewrapper as pw
 from logging import getLogger
-from save_log import get_training_logger, stop_watch
+from save_log import get_training_logger, timer
 logger = getLogger(c.runtime.VERSION)
 logger_train = get_training_logger(c.runtime.VERSION)
 
@@ -19,7 +19,7 @@ class Model:
     pass
 
 
-@stop_watch
+@timer
 def train():
     n_fold = 5
     folds = TimeSeriesSplit(n_splits=n_fold)
@@ -92,7 +92,7 @@ def eval_auc(y_true, y_pred):
     return 'auc', fast_auc(y_true, y_pred), True
 
 
-@stop_watch
+@timer
 def train_model_classification(X, X_test, y,
                                params,
                                folds,

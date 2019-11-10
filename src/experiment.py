@@ -1,8 +1,8 @@
-from dataset import Raw
 from transformer import Transformer
-from save_log import stop_watch
+from save_log import timer
 from configurator import config as c
 # dynamical import of models
+from features.raw import Raw
 from importlib import import_module
 type = c.model.TYPE
 Model = getattr(import_module(f'models.{type}.model'), 'Model')
@@ -12,11 +12,11 @@ ModelAPI = getattr(import_module(f'models.{type}.modelapi'), 'ModelAPI')
 
 class Experiment:
 
-    @stop_watch
+    @timer
     def run(self):
-        raw = Raw()
-        df_train = raw.load('train')
-        df_test = raw.load('test')
+        # get_raw_data()
+
+        df_train, df_test = Raw().run().get_train_test()
 
         transformer = Transformer()
         df_train, df_test = transformer.transform(df_train, df_test)

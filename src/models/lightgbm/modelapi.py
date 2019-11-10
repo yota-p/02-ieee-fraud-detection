@@ -1,8 +1,8 @@
-from save_log import stop_watch
+from save_log import timer
 
 
 class ModelAPI:
 
-    @stop_watch
+    @timer
     def predict(self, df_test):
         pass

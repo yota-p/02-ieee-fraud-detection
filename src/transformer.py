@@ -1,8 +1,8 @@
-from save_log import stop_watch
+from save_log import timer
 
 
 class Transformer:
 
-    @stop_watch
+    @timer
     def transform(self, df_train, df_test):
         return df_train, df_test

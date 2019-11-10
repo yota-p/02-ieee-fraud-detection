@@ -1,7 +1,7 @@
 import glob
 import luigi
 from luigi.util import requires
-from save_log import stop_watch
+from save_log import timer
 from config import project
 from exceptions import DuplicateVersionException
 from AbstractTask import AbstractTask
@@ -17,7 +17,7 @@ class Pipeline:
         self.version = version
         self.__check_config(self.version)
 
-    @stop_watch('Pipeline.run()')
+    @timer('Pipeline.run()')
     def run(self):
         luigi.run(['TaskTrain', '--workers', '1', '--local-scheduler'])
 

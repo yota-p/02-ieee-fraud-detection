@@ -20,7 +20,7 @@ def create_train_logger(version, params=None):
 
 
 def __create_logger(post_fix, version, formatter, extension, params):
-    log_path = Path(__file__).parents[1] / 'log' / post_fix
+    log_path = c.environment.LOGPATH / post_fix
     Path.mkdir(log_path, exist_ok=True, parents=True)
 
     log_file = Path(log_path / (version + extension)).resolve()
@@ -60,7 +60,7 @@ def __init_logfile(params, log_file):
             pass
 
 
-def stop_watch(func):
+def timer(func):
     @wraps(func)
     def wrapper(*args, **kargs):
         logger = getLogger(c.runtime.VERSION)
