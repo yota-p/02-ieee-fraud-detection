@@ -56,6 +56,11 @@ class DatasetConfig:
 
 
 class TransformerConfig:
+    # Feature processor in order of execution
+    # {'module':'Class'}
+    PIPE = [{'altgor': 'Altgor'},
+            {'raw': 'Raw'}
+            ]
     pass
 
 

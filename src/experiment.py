@@ -14,12 +14,10 @@ class Experiment:
 
     @timer
     def run(self):
-        # get_raw_data()
-
         df_train, df_test = Raw().run().get_train_test()
 
         transformer = Transformer()
-        df_train, df_test = transformer.transform(df_train, df_test)
+        X_train, y_train, X_test = transformer.transform(df_train, df_test)
 
         trainer = Trainer()
         trainer.train()

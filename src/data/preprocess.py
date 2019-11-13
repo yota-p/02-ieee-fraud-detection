@@ -9,7 +9,6 @@ import luigi
 from save_log import stop_watch
 
 
-@stop_watch('preprocess()')
 def preprocess():
 
     # load raw data
