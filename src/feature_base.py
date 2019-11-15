@@ -30,7 +30,6 @@ class Feature(metaclass=ABCMeta):
         self.train_path = Path(self.dir) / f'{self.name}_train.pkl'
         self.test_path = Path(self.dir) / f'{self.name}_test.pkl'
 
-    @timer
     @abstractmethod
     def create_features(self):
         raise NotImplementedError
@@ -82,7 +81,6 @@ def get_arguments(description):
     return parser.parse_args()
 
 
-'''
 def get_features(namespace):
     for k, v in ({k: v for k, v in namespace.items()}).items():
         if inspect.isclass(v) and issubclass(v, Feature) and not inspect.isabstract(v):
@@ -95,4 +93,3 @@ def generate_features(namespace, overwrite):
             print(f.name, 'was skipped')
         else:
             f.run().save()
-'''

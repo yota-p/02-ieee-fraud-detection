@@ -24,7 +24,7 @@ class RuntimeConfig:
     '''
     args = get_option()
     VERSION = args.version
-    NO_SEND_MESSAGE = args.nomsg
+    NO_SEND_MESSAGE = True  # args.nomsg
     DEBUG = args.dbg
     PREDICT = args.pred
     PREDICT_ONLY = args.predOnly

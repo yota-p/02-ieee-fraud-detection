@@ -3,15 +3,17 @@ from feature_base import Feature, get_arguments, generate_features
 import numpy as np
 import pandas as pd
 from configurator import config as c
+from save_log import timer
 
 
 class Altgor(Feature):
 
+    @timer
     def create_features(self):
-        train_path = c.DATAPATH / 'processed' / 'raw_train.pkl'
-        test_path = c.DATAPATH / 'processed' / 'raw_test.pkl'
-        train = pd.from_pickle(train_path)
-        test = pd.from_pickle(test_path)
+        train_path = c.environment.DATAPATH / 'processed' / 'raw_train.pkl'
+        test_path = c.environment.DATAPATH / 'processed' / 'raw_test.pkl'
+        train = pd.read_pickle(train_path)
+        test = pd.read_pickle(test_path)
 
         # Feature engineering
         train['TransactionAmt_to_mean_card1'] = train['TransactionAmt'] / \
@@ -114,6 +116,9 @@ class Altgor(Feature):
 
         train = train.sort_values('TransactionDT')
         test = test.sort_values('TransactionDT')
+
+        self.train = train
+        self.test = test
 
 
 if __name__ == '__main__':

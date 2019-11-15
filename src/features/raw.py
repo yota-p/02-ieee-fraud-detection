@@ -11,7 +11,7 @@ class Raw(Feature):
     def create_features(self):
         raw_dir = c.environment.DATAPATH / 'raw'
 
-        os.system(f'kaggle competitions download -c {c.project.ID} -p {raw_dir} -f')
+        os.system(f'kaggle competitions download -c {c.project.ID} -p {raw_dir}')
         os.system(f'unzip "{raw_dir}/*.zip" -d {raw_dir}')
         os.system(f'rm -f {raw_dir}/*.zip')
 
@@ -23,6 +23,10 @@ class Raw(Feature):
         # join train_transaction and identity
         self.train = pd.merge(train_transaction, train_identity, on='TransactionID', how='left')
         self.test = pd.merge(test_transaction, test_identity, on='TransactionID', how='left')
+
+        # FOR DEBUG: less data
+        self.train = self.train.sample(frac=0.01, random_state=0)
+        self.test = self.test.sample(frac=0.01, random_state=0)
 
         # no longer needed
         del train_identity, train_transaction, test_identity, test_transaction

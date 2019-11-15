@@ -1,4 +1,3 @@
-# Arguments
 from argparse import ArgumentParser
 
 

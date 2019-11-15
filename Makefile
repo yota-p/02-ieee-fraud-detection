@@ -45,13 +45,13 @@ dir:
 	mkdir -p data/processed
 	mkdir -p data/external
 
-## Test
-test: all
-	pytest
-
 ## Run specified version
 run: dir
 	$(PYTHON_INTERPRETER) src/main.py ${ver}
+
+## Test
+test: all
+	pytest
 
 ## Lint using flake8
 #lint:
