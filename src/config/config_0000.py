@@ -1,36 +1,4 @@
 import pathlib
-import sys
-from src.utils import seeder
-from get_option import get_option
-
-
-class EnvironmentConfig:
-    ROOTPATH = pathlib.Path(__file__).parents[2].resolve()
-    SRCPATH = ROOTPATH / 'src'
-    DATAPATH = ROOTPATH / 'data'
-    LOGPATH = ROOTPATH / 'log'
-    SEED = 42
-
-    def __init__(self):
-        # Add PATH
-        sys.path.append(str(self.SRCPATH))
-        # Random seed
-        seeder.seed_everything(self.SEED)
-
-
-class RuntimeConfig:
-    '''
-    Get option from command line arguments
-    '''
-    args = get_option()
-    VERSION = args.version
-    NO_SEND_MESSAGE = True  # args.nomsg
-    DEBUG = args.dbg
-    PREDICT = args.pred
-    PREDICT_ONLY = args.predOnly
-    TRAIN_ONE_ROUND = args.trainOneRound
-    DASK_MODE = args.dask
-    N_JOBS = args.nJobs
 
 
 class ProjectConfig:
@@ -38,21 +6,48 @@ class ProjectConfig:
     ID = 'ieee-fraud-detection'
 
 
-class LogConfig:
-    class SlackAuth:
-        CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
-        TOKEN_FILE = ".slack_token"
-        TOKEN_PATH = EnvironmentConfig().ROOTPATH / TOKEN_FILE
+class RuntimeConfig:
+    VERSION = '0000'
+    NO_SEND_MESSAGE = True  # args.nomsg
+    DEBUG = False
+    N_JOBS = -1
+    RANDOM_SEED = 42
 
-    slackauth = SlackAuth()
 
+class StorageConfig:
+    '''
+    Specify by pathlib.Path() object
+    '''
+    # Directory
+    ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
+    SRCDIR = ROOTDIR / 'src'
+    DATADIR = ROOTDIR / 'data'
+    LOGDIR = ROOTDIR / 'log'
 
-class DatasetConfig:
+    # Files
     RAW = ['sample_submission.csv.zip',
            'test_identity.csv.zip',
            'test_transaction.csv.zip',
            'train_identity.csv.zip',
            'train_transaction.csv.zip']
+
+
+class LogConfig:
+    class SlackAuth:
+        CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
+        TOKEN_FILE = ".slack_token"
+        TOKEN_PATH = StorageConfig().ROOTDIR / TOKEN_FILE
+        SEND_MSG = True
+
+    slackauth = SlackAuth()
+
+
+class ExperimentConfig:
+    '''
+    Default model is Train only
+    '''
+    RUN_TRAIN = True
+    RUN_PRED = False
 
 
 class TransformerConfig:
@@ -61,7 +56,6 @@ class TransformerConfig:
     PIPE = [{'altgor': 'Altgor'},
             {'raw': 'Raw'}
             ]
-    pass
 
 
 class ModelConfig:
@@ -78,12 +72,12 @@ class ModelAPIConfig:
 
 
 class Config:
-    environment = EnvironmentConfig()
-    runtime = RuntimeConfig()
     project = ProjectConfig()
+    runtime = RuntimeConfig()
+    storage = StorageConfig()
     log = LogConfig()
-    dataset = DatasetConfig()
+    experiment = ExperimentConfig()
     transformer = TransformerConfig()
+    model = ModelConfig()
     trainer = TrainerConfig()
     modelapi = ModelAPIConfig()
-    model = ModelConfig()

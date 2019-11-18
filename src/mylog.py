@@ -4,32 +4,38 @@ from pathlib import Path
 import slack
 from logging import getLogger, Formatter, FileHandler, StreamHandler
 from logging import INFO, DEBUG
-from configurator import config as c
+from configurator import Config
+c = Config()
 
 
-def create_main_logger(version, params=None):
-    main_formatter = Formatter('[%(levelname)s] %(asctime)s >>\t%(message)s')
-    main_extension = '.log'
-    __create_logger('main', version, main_formatter, main_extension, params)
+def get_logger(type):
+    return getLogger(type)
 
 
-def create_train_logger(version, params=None):
-    train_formatter = Formatter()
-    train_extension = '.tsv'
-    __create_logger('train', version, train_formatter, train_extension, params)
+def create_main_logger(version, dir):
+    formatter = Formatter('[%(levelname)s] %(asctime)s >>\t%(message)s')
+    extension = '.log'
+    __create_logger('main', version, dir, formatter, extension)
 
 
-def __create_logger(post_fix, version, formatter, extension, params):
-    log_path = c.environment.LOGPATH / post_fix
-    Path.mkdir(log_path, exist_ok=True, parents=True)
+def create_train_logger(version, dir):
+    formatter = Formatter()
+    extension = '.tsv'
+    __create_logger('train', version, dir, formatter, extension)
 
-    log_file = Path(log_path / (version + extension)).resolve()
-    __init_logfile(params, log_file)
+
+def __create_logger(post_fix, version, dir, formatter, extension):
+    Path.mkdir(dir, exist_ok=True, parents=True)
+
+    log_file = Path(dir / (version + extension)).resolve()
 
     if post_fix == 'train':
-        logger_ = get_training_logger(version)
+        logger_ = getLogger('train')
+    elif post_fix == 'main':
+        logger_ = getLogger('main')
     else:
-        logger_ = getLogger(version)
+        raise Exception
+
     logger_.setLevel(DEBUG)
 
     file_handler = FileHandler(log_file)
@@ -42,22 +48,6 @@ def __create_logger(post_fix, version, formatter, extension, params):
 
     logger_.addHandler(file_handler)
     logger_.addHandler(stream_handler)
-
-
-def get_main_logger(version):
-    return getLogger(version)
-
-
-def get_training_logger(version):
-    return getLogger(version + 'train')
-
-
-def __init_logfile(params, log_file):
-    with open(log_file, 'w') as f:
-        if params is not None:
-            f.write(params)
-        else:
-            pass
 
 
 def timer(func):
@@ -85,7 +75,7 @@ def timer(func):
 def send_message(text):
     if c.runtime.NO_SEND_MESSAGE:
         return
-    token = read_token(c.log.slackauth.TOKEN_PATH)
+    token = __read_token(c.log.slackauth.TOKEN_PATH)
     if token is None:
         return
     client = slack.WebClient(token)
@@ -97,7 +87,7 @@ def send_message(text):
     del client
 
 
-def read_token(token_path):
+def __read_token(token_path):
     token = ''
     if not token_path.exists():
         return None
