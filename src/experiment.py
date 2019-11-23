@@ -1,28 +1,25 @@
+from mylog import timer
 from transformer import Transformer
-from save_log import timer
-from configurator import config as c
-# dynamical import of models
-from features.raw import Raw
-from importlib import import_module
-type = c.model.TYPE
-Model = getattr(import_module(f'models.{type}.model'), 'Model')
-Trainer = getattr(import_module(f'models.{type}.trainer'), 'Trainer')
-ModelAPI = getattr(import_module(f'models.{type}.modelapi'), 'ModelAPI')
+from trainer_factory import TrainerFactory
+from modelapi_factory import ModelAPIFactory
 
 
 class Experiment:
 
+    def __init__(self, config):
+        self.c = config
+
     @timer
     def run(self):
-        df_train, df_test = Raw().run().get_train_test()
+        transformer = Transformer(self.c.transformer)
+        X_train, y_train, X_test = transformer.run()
 
-        transformer = Transformer()
-        X_train, y_train, X_test = transformer.transform(df_train, df_test)
+        if self.c.experiment.RUN_TRAIN:
+            trainer = TrainerFactory().create(self.c.trainer)
+            trainer.train(X_train, y_train)
+            trained_model = trainer.get_model()
 
-        trainer = Trainer()
-        trainer.train()
-
-        modelapi = ModelAPI()
-        pred = modelapi.predict(df_test)
-
-        return
+        if self.c.experiment.RUN_PRED:
+            modelapi = ModelAPIFactory().create(self.c.modelapi)
+            modelapi.set_model(trained_model)
+            y_test = modelapi.predict(X_test)

@@ -1,22 +1,29 @@
-from save_log import timer
+from mylog import timer
 import gc
-from features.altgor import Altgor
-from importlib import import_module
-from configurator import config as c
-#for mod, cls in c.transformer.PIPE:
-#    import_module(f'features.{mod}')
+from feature_factory import FeatureFactory
 
 
 class Transformer:
+    '''
+    Input: None
+    Output: X_train, y_train, X_test
+    '''
+
+    def __init__(self, config):
+        self.c = config
 
     @timer
-    def transform(self, train, test):
-        #for mod, cls in c.transformer.PIPE:
-        #    train, test = mod.cls().run().get_train_test()
-        # TODO: choose method dynamically
-        train, test = Altgor().run().get_train_test()
+    def run(self):
+        train, test = None, None
+        factory = FeatureFactory()
 
-        # Split data into feature and target
+        # create features
+        for namespace in self.c.features:
+            feature = factory.create(namespace)
+            feature.create_feature()
+            train, test = feature.get_train_test()
+
+        # split data into feature and target
         X_train = train.drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
         y_train = train['isFraud']
         X_test = test.drop(['TransactionDT', 'TransactionID'], axis=1)

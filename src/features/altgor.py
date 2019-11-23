@@ -2,16 +2,16 @@ from sklearn.preprocessing import LabelEncoder
 from feature_base import Feature, get_arguments, generate_features
 import numpy as np
 import pandas as pd
-from configurator import config as c
-from save_log import timer
+from configure import Config as c
+from mylog import timer
 
 
 class Altgor(Feature):
 
     @timer
-    def create_features(self):
-        train_path = c.environment.DATAPATH / 'processed' / 'raw_train.pkl'
-        test_path = c.environment.DATAPATH / 'processed' / 'raw_test.pkl'
+    def _calculate(self):
+        train_path = c.storage.DATADIR / 'processed' / 'raw_train.pkl'
+        test_path = c.storage.DATADIR / 'processed' / 'raw_test.pkl'
         train = pd.read_pickle(train_path)
         test = pd.read_pickle(test_path)
 

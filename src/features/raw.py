@@ -1,15 +1,16 @@
 import pandas as pd
 from feature_base import Feature
-from save_log import timer
-from configurator import config as c
+from mylog import timer
+from configure import Config as c
 import os
 
 
 class Raw(Feature):
 
     @timer
-    def create_features(self):
-        raw_dir = c.environment.DATAPATH / 'raw'
+    def _calculate(self):
+        DATAPATH = '/home/yh/git/02-ieee-fraud-detection/data/'
+        raw_dir = DATAPATH + 'raw'
 
         os.system(f'kaggle competitions download -c {c.project.ID} -p {raw_dir}')
         os.system(f'unzip "{raw_dir}/*.zip" -d {raw_dir}')

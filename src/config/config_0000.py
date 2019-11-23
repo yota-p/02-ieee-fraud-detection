@@ -1,4 +1,5 @@
 import pathlib
+from logging import DEBUG, INFO
 
 
 class ProjectConfig:
@@ -8,7 +9,6 @@ class ProjectConfig:
 
 class RuntimeConfig:
     VERSION = '0000'
-    NO_SEND_MESSAGE = True  # args.nomsg
     DEBUG = False
     N_JOBS = -1
     RANDOM_SEED = 42
@@ -22,7 +22,6 @@ class StorageConfig:
     ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
     SRCDIR = ROOTDIR / 'src'
     DATADIR = ROOTDIR / 'data'
-    LOGDIR = ROOTDIR / 'log'
 
     # Files
     RAW = ['sample_submission.csv.zip',
@@ -32,14 +31,22 @@ class StorageConfig:
            'train_transaction.csv.zip']
 
 
-class LogConfig:
-    class SlackAuth:
-        CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
-        TOKEN_FILE = ".slack_token"
-        TOKEN_PATH = StorageConfig().ROOTDIR / TOKEN_FILE
-        SEND_MSG = True
+class SlackAuth:
+    HOST = 'slack.com'
+    URL = '/api/chat.postMessage'
+    CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
+    TOKEN_FILE = ".slack_token"
+    TOKEN_PATH = StorageConfig().ROOTDIR / TOKEN_FILE
+    NO_SEND_MESSAGE = False
 
+
+class LogConfig:
     slackauth = SlackAuth()
+    FILE_HANDLER_LEVEL = DEBUG
+    STREAM_HANDLER_LEVEL = DEBUG
+    SLACK_HANDLER_LEVEL = INFO
+    FILENAME = RuntimeConfig().VERSION
+    LOGDIR = StorageConfig().ROOTDIR / 'log'
 
 
 class ExperimentConfig:
@@ -51,24 +58,20 @@ class ExperimentConfig:
 
 
 class TransformerConfig:
-    # Feature processor in order of execution
-    # {'module':'Class'}
-    PIPE = [{'altgor': 'Altgor'},
-            {'raw': 'Raw'}
-            ]
+    features = ['raw',
+                'altgor']
 
 
 class ModelConfig:
-    # Corresponds to directory name in src/models
     TYPE = 'lightgbm'
 
 
 class TrainerConfig:
-    pass
+    model = ModelConfig()
 
 
 class ModelAPIConfig:
-    pass
+    model = ModelConfig()
 
 
 class Config:
@@ -78,6 +81,5 @@ class Config:
     log = LogConfig()
     experiment = ExperimentConfig()
     transformer = TransformerConfig()
-    model = ModelConfig()
     trainer = TrainerConfig()
     modelapi = ModelAPIConfig()

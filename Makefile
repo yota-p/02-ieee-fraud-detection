@@ -8,35 +8,28 @@ PYTHON_INTERPRETER = python3
 # COMMANDS                                                                      #
 #################################################################################
 
-.PHONY: all clean test jupyter data lint requirements help
+.PHONY: all clean test jupyter requirements help
 
 ## Install Python Dependencies #this may destroy environment!
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-## Delete cache files
+## Delete data/interim/*, cache
 clean:
 	find . -type f -name "*~" -delete
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-
-## Delete processed & interim files
-distclean: clean
-	rm -f data/raw/*.pickle
 	rm -f data/interim/*
 
-## Delete final outputs
-eliminate: distclean
+## Delete data/*/*
+cleanall: clean
+	rm -f data/external/*
 	rm -f data/raw/*
-	rm -f data/processed/*
-	rm -f models/*.model
 
-## Start Jupyter-Notebook
-jupyter:
-	nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebooks/jupyter.log 2>&1 &
-	echo 'gcloud compute ssh HOST -- -N -L 8888:localhost:8888'
-	sleep 3s
-	tail -n 2 notebooks/jupyter.log
+## Delete data/*, models/*
+eliminate: cleanall
+	rm -f data/processed/*
+	rm -f models/*
 
 ## Create directory
 dir:
@@ -49,22 +42,25 @@ dir:
 run: dir
 	$(PYTHON_INTERPRETER) src/main.py ${ver}
 
+## Run specified version without notification
+srun: dir
+	$(PYTHON_INTERPRETER) src/main.py ${ver} --nomsg
+
+## Start Jupyter-Notebook
+jupyter:
+	nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebooks/jupyter.log 2>&1 &
+	echo 'gcloud compute ssh HOST -- -N -L 8888:localhost:8888'
+	sleep 3s
+	tail -n 2 notebooks/jupyter.log
+
+
 ## Test
 test: all
 	pytest
 
-## Lint using flake8
-#lint:
-#	flake8 src
-
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
-
-#################################################################################
-# PROJECT RULES                                                                 #
-#################################################################################
-
 
 
 #################################################################################
