@@ -8,35 +8,28 @@ PYTHON_INTERPRETER = python3
 # COMMANDS                                                                      #
 #################################################################################
 
-.PHONY: all clean test jupyter data lint requirements help
+.PHONY: all clean test jupyter requirements help
 
 ## Install Python Dependencies #this may destroy environment!
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-## Delete cache files
+## Delete data/interim/, pycache
 clean:
 	find . -type f -name "*~" -delete
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-
-## Delete processed & interim files
-distclean: clean
-	rm -f data/raw/*.pickle
 	rm -f data/interim/*
 
-## Delete final outputs
-eliminate: distclean
-	rm -f data/raw/*
+## Delete data/external/, processed/
+cleanall: clean
+	rm -f data/external/*
 	rm -f data/processed/*
-	rm -f models/*.model
 
-## Start Jupyter-Notebook
-jupyter:
-	nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebooks/jupyter.log 2>&1 &
-	echo 'gcloud compute ssh HOST -- -N -L 8888:localhost:8888'
-	sleep 3s
-	tail -n 2 notebooks/jupyter.log
+## Delete data/*, models/*
+eliminate: cleanall
+	rm -f models/*
+	rm -f data/raw/*
 
 ## Create directory
 dir:
@@ -45,26 +38,33 @@ dir:
 	mkdir -p data/processed
 	mkdir -p data/external
 
+## Run specified version: production
+run: dir
+	$(PYTHON_INTERPRETER) src/main.py ${ver}
+
+## Run specified version with: nomessage
+runs: dir
+	$(PYTHON_INTERPRETER) src/main.py ${ver} --nomsg
+
+## Run specified version with: nomessage, debug
+runsd: dir
+	$(PYTHON_INTERPRETER) src/main.py ${ver} --nomsg --debug
+
+## Start Jupyter-Notebook
+jupyter:
+	nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebooks/jupyter.log 2>&1 &
+	echo 'gcloud compute ssh HOST -- -N -L 8888:localhost:8888'
+	sleep 3s
+	tail -n 2 notebooks/jupyter.log
+
+
 ## Test
 test: all
 	pytest
 
-## Run specified version
-run: dir
-	$(PYTHON_INTERPRETER) src/main.py ${ver}
-
-## Lint using flake8
-#lint:
-#	flake8 src
-
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
-
-#################################################################################
-# PROJECT RULES                                                                 #
-#################################################################################
-
 
 
 #################################################################################

@@ -1,37 +1,35 @@
 import gc
 import warnings
 from datetime import datetime
-from logging import getLogger
-from get_option import get_option
-from save_log import create_main_logger, create_train_logger, get_version, send_message, stop_watch
-from exceptions import DuplicateVersionException, IrregularArgumentException, IrregularCalcBackException
 warnings.filterwarnings('ignore')
-from pipeline import Pipeline
+import traceback
+import pathlib
+from src.utils import seeder
+from logging import getLogger
+
+from configure import Config
+from mylog import timer, create_logger
+from experiment import Experiment
 
 
-@stop_watch('main()')
-def main(args):
-    send_message(":thinking_face: ============= {} ============= :thinking_face:".format(str(datetime.now())))
-    pipeline = Pipeline(version)
-    pipeline.run()
+@timer
+def main(config):
+    experiment = Experiment(config)
+    experiment.run()
 
 
 if __name__ == "__main__":
+    c = Config()
+    c.set_parameter(config_dir=pathlib.Path('src/config'), use_option=True)
     gc.enable()
-    version = get_version()
-    create_main_logger(version)
-    create_train_logger(version)
+    seeder.seed_everything(c.runtime.RANDOM_SEED)
+    create_logger('main', c.log)
+    create_logger('train', c.log)
+    logger = getLogger('main')
+    logger.info(f':thinking_face: ============ {datetime.now():%Y-%m-%d %H:%M:%S} ============ :thinking_face:')
     try:
-        main(get_option())
-    except DuplicateVersionException:
-        send_message(":stop: Duplicate Version Exception Occurred.")
-        getLogger(version).exception("Duplicate Version Exception Occurred.")
-    except IrregularArgumentException:
-        send_message(":stop: Irregular Argument for Feature Extraction.")
-        getLogger(version).exception("Irregular Argument for Feature Extraction.")
-    except IrregularCalcBackException:
-        send_message(":stop: Irregular Dataframe back.")
-        getLogger(version).exception("Irregular Dataframe back.")
+        main(c)
+        logger.info(f':sunglasses: ============ {datetime.now():%Y-%m-%d %H:%M:%S} ============ :sunglasses:')
     except Exception:
-        send_message(":stop: Unexpected Exception Occurred.")
-        getLogger(version).exception("Unexpected Exception Occurred.")
+        logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')
+        logger.critical(f':skull: ============ {datetime.now():%Y-%m-%d %H:%M:%S} ============ :skull:')
