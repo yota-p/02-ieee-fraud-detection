@@ -1,5 +1,6 @@
+# Reference: https://www.kaggle.com/artgor/eda-and-models
 from sklearn.preprocessing import LabelEncoder
-from feature_base import Feature, get_arguments, generate_features
+from feature_base import Feature
 import numpy as np
 import pandas as pd
 from configure import Config as c
@@ -114,17 +115,5 @@ class Altgor(Feature):
         train = train.replace([np.inf, -np.inf], np.nan)
         test = test.replace([np.inf, -np.inf], np.nan)
 
-        train = train.sort_values('TransactionDT')
-        test = test.sort_values('TransactionDT')
-
         self.train = train
         self.test = test
-
-
-if __name__ == '__main__':
-    args = get_arguments()
-
-    # train = pd.read_csv('input/train.csv')
-    # test = pd.read_csv('input/test.csv')
-
-    # generate_features(globals(), args.force)

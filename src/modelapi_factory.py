@@ -1,5 +1,6 @@
 from mylog import timer
-from models.lightgbm.modelapi import ModelAPI
+from models import lightgbm
+from models import lightgbm2
 
 
 class ModelAPIFactory:
@@ -7,6 +8,8 @@ class ModelAPIFactory:
     @timer
     def create(self, modelapi_config):
         if modelapi_config.model.TYPE == 'lightgbm':
-            return ModelAPI(modelapi_config)
+            return lightgbm.modelapi.ModelAPI(modelapi_config)
+        if modelapi_config.model.TYPE == 'lightgbm2':
+            return lightgbm2.modelapi.ModelAPI(modelapi_config)
         else:
             return None

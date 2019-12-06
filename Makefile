@@ -14,22 +14,22 @@ PYTHON_INTERPRETER = python3
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-## Delete data/interim/*, cache
+## Delete data/interim/, pycache
 clean:
 	find . -type f -name "*~" -delete
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 	rm -f data/interim/*
 
-## Delete data/*/*
+## Delete data/external/, processed/
 cleanall: clean
 	rm -f data/external/*
-	rm -f data/raw/*
+	rm -f data/processed/*
 
 ## Delete data/*, models/*
 eliminate: cleanall
-	rm -f data/processed/*
 	rm -f models/*
+	rm -f data/raw/*
 
 ## Create directory
 dir:
@@ -38,13 +38,17 @@ dir:
 	mkdir -p data/processed
 	mkdir -p data/external
 
-## Run specified version
+## Run specified version: production
 run: dir
 	$(PYTHON_INTERPRETER) src/main.py ${ver}
 
-## Run specified version without notification
-srun: dir
+## Run specified version with: nomessage
+runs: dir
 	$(PYTHON_INTERPRETER) src/main.py ${ver} --nomsg
+
+## Run specified version with: nomessage, debug
+runsd: dir
+	$(PYTHON_INTERPRETER) src/main.py ${ver} --nomsg --debug
 
 ## Start Jupyter-Notebook
 jupyter:

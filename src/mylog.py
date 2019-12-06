@@ -39,13 +39,13 @@ def create_logger(type, config):
     '''
     c = config
     if type == 'main':
-        formatter = Formatter('[%(asctime)s] %(levelname)-8s >> %(message)s', datefmt='%Y-%d-%m %H:%M:%S')
+        formatter = Formatter('[%(asctime)s] %(levelname)-8s >> %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
         logger_ = getLogger(type)
-        log_file = Path(c.LOGDIR / 'main' / (c.FILENAME + '.log')).resolve()
+        log_file = Path(c.LOGDIR / 'main' / (c.LOGFILE + '.log')).resolve()
     elif type == 'train':
         formatter = Formatter()
         logger_ = getLogger(type)
-        log_file = Path(c.LOGDIR / 'train' / (c.FILENAME + '.tsv')).resolve()
+        log_file = Path(c.LOGDIR / 'train' / (c.LOGFILE + '.tsv')).resolve()
     else:
         raise Exception
 

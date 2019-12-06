@@ -102,6 +102,7 @@ class Config:
     @classmethod
     def _override_config(cls, option):
         cls.runtime.VERSION = option.version
+        cls.log.LOGFILE = option.version
         cls.log.slackauth.NO_SEND_MESSAGE = option.nomsg
         cls.runtime.DEBUG = option.debug
         if option.pred:

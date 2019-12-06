@@ -1,5 +1,6 @@
 from features.raw import Raw
 from features.altgor import Altgor
+from features.nroman import Nroman
 from mylog import timer
 
 
@@ -11,5 +12,7 @@ class FeatureFactory:
             return Raw()
         elif featurename == 'altgor':
             return Altgor()
+        elif featurename == 'nroman':
+            return Nroman()
         else:
-            return None
+            raise ValueError('{featurename} does not exist in factory menu')
