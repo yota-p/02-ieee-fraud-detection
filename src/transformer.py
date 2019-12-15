@@ -3,10 +3,9 @@ import gc
 from pathlib import Path
 import sys
 from feature_factory import FeatureFactory
-from mylog import timer
+from utils.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
-from reduce_mem_usage import reduce_mem_usage
 
 ROOTDIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOTDIR / 'src'))

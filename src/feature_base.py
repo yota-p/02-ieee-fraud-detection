@@ -8,7 +8,7 @@ from pathlib import Path
 ROOTDIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOTDIR / 'src'))
 
-from mylog import timer
+from utils.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
 

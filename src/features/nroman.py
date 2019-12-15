@@ -8,8 +8,9 @@ from sklearn.preprocessing import LabelEncoder
 
 ROOTDIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOTDIR / 'src'))
+
 from feature_base import Feature
-from mylog import timer
+from utils.mylog import timer
 
 FEATURE_DIR = ROOTDIR / 'data/processed'
 

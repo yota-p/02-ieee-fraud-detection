@@ -4,7 +4,7 @@ from feature_base import Feature
 import numpy as np
 import pandas as pd
 from configure import Config as c
-from mylog import timer
+from utils.mylog import timer
 
 
 class Altgor(Feature):

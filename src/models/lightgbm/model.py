@@ -7,7 +7,7 @@ import lightgbm as lgb
 # from catboost import CatBoostRegressor, CatBoostClassifier
 from sklearn import metrics
 from logging import getLogger
-from mylog import timer
+from utils.mylog import timer
 logger_main = getLogger('main')
 logger_train = getLogger('train')
 

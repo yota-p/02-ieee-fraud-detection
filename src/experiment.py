@@ -1,5 +1,6 @@
 import pandas as pd
-from mylog import timer
+
+from utils.mylog import timer
 from transformer import Transformer
 from trainer_factory import TrainerFactory
 from modelapi_factory import ModelAPIFactory

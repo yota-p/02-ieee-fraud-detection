@@ -1,5 +1,5 @@
 import numpy as np
-from mylog import timer
+from utils.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
 

@@ -10,8 +10,8 @@ ROOTDIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOTDIR / 'src'))
 
 from feature_base import Feature
-from mylog import timer
-from reduce_mem_usage import reduce_mem_usage
+from utils.mylog import timer
+from utils.reduce_mem_usage import reduce_mem_usage
 
 RAW_DIR = ROOTDIR / 'data/raw'
 DEBUG = True  # for small size data

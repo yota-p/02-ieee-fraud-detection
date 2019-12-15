@@ -4,12 +4,14 @@ from datetime import datetime
 warnings.filterwarnings('ignore')
 import traceback
 import pathlib
-from src.utils import seeder
 from logging import getLogger
+import sys
 
-from configure import Config
-from mylog import timer, create_logger
+sys.path.append('./src')
 from experiment import Experiment
+from configure import Config
+from utils.seeder import seed_everything
+from utils.mylog import timer, create_logger
 
 
 @timer
@@ -22,7 +24,7 @@ if __name__ == "__main__":
     c = Config()
     c.set_parameter(config_dir=pathlib.Path('src/config'), use_option=True)
     gc.enable()
-    seeder.seed_everything(c.runtime.RANDOM_SEED)
+    seed_everything(c.runtime.RANDOM_SEED)
     create_logger('main', c.log)
     create_logger('train', c.log)
     logger = getLogger('main')

@@ -1,4 +1,4 @@
-from mylog import timer
+from utils.mylog import timer
 from models import lightgbm
 from models import lightgbm2
 
