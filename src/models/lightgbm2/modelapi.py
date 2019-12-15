@@ -1,5 +1,5 @@
 # lightgbm2
-from mylog import timer
+from utils.mylog import timer
 
 
 class ModelAPI:

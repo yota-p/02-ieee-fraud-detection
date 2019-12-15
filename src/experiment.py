@@ -1,8 +1,12 @@
 import pandas as pd
-from mylog import timer
+from pathlib import Path
+
+from utils.mylog import timer
 from transformer import Transformer
 from trainer_factory import TrainerFactory
 from modelapi_factory import ModelAPIFactory
+
+ROOTDIR = Path(__file__).resolve().parents[1]
 
 
 class Experiment:
@@ -27,5 +31,5 @@ class Experiment:
             sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
             sub['TransactionID'] = pks['TransactionID']
             sub['isFraud'] = modelapi.predict(X_test)
-            sub.to_csv(self.c.storage.DATADIR / 'processed' / '0001_submission.csv', index=False)
+            sub.to_csv(ROOTDIR / 'data/processed/submission.csv', index=False)
             del modelapi

@@ -12,9 +12,7 @@ class Config:
     To initialize: call set_parameter()
     To read: from configure import Config as c
     '''
-    project = None
     runtime = None
-    storage = None
     log = None
     experiment = None
     transformer = None
@@ -52,9 +50,7 @@ class Config:
         '''
         Copy each sub-config attributes from file to Config() object.
         '''
-        cls.project = c.project
         cls.runtime = c.runtime
-        cls.storage = c.storage
         cls.log = c.log
         cls.experiment = c.experiment
         cls.transformer = c.transformer

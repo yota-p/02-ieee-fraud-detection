@@ -1,11 +1,19 @@
 # Reference: https://www.kaggle.com/nroman/lgb-single-model-lb-0-9419
-from feature_base import Feature
+from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
 from logging import getLogger
 from sklearn.preprocessing import LabelEncoder
 
-from mylog import timer
+ROOTDIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOTDIR / 'src'))
+
+from features.feature_base import Feature
+from utils.mylog import timer
+
+FEATURE_DIR = ROOTDIR / 'data/processed'
+
 logger = getLogger('main')
 
 
@@ -13,10 +21,9 @@ class Nroman(Feature):
 
     @timer
     def _calculate(self):
-        DATAPATH = '/home/yh/git/02-ieee-fraud-detection/data/'
-        train = pd.read_pickle(DATAPATH + 'processed/' + 'raw_train.pkl')
-        test = pd.read_pickle(DATAPATH + 'processed/' + 'raw_test.pkl')
-        logger.debug(f'input: raw_train.shape: {test.shape}, raw_test.shape: {test.shape}')
+        train = pd.read_pickle(FEATURE_DIR / 'raw_train.pkl')
+        test = pd.read_pickle(FEATURE_DIR / 'raw_test.pkl')
+        logger.debug(f'input: raw_train.shape: {train.shape}, raw_test.shape: {test.shape}')
 
         useful_features = ['TransactionAmt', 'ProductCD', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'addr1', 'addr2', 'dist1',
                            'P_emaildomain', 'R_emaildomain', 'C1', 'C2', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13',
@@ -43,6 +50,12 @@ class Nroman(Feature):
         cols_to_drop.remove('isFraud')
         cols_to_drop.remove('TransactionID')
         cols_to_drop.remove('TransactionDT')
+
+        '''
+        for col in cols_to_drop:
+            if col not in train.columns:
+                logger.warning(f'')
+        '''
 
         logger.debug('{} features are going to be dropped for being useless'.format(len(cols_to_drop)))
         train = train.drop(cols_to_drop, axis=1)
@@ -108,3 +121,8 @@ class Nroman(Feature):
         self.test = test
 
         del train, test
+
+
+if __name__ == "__main__":
+    f = Nroman()
+    f.create_feature()

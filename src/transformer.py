@@ -1,11 +1,14 @@
 import pandas as pd
 import gc
 from pathlib import Path
+import sys
 from feature_factory import FeatureFactory
-from mylog import timer
+from utils.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
-from reduce_mem_usage import reduce_mem_usage
+
+ROOTDIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOTDIR / 'src'))
 
 
 class Transformer:
@@ -58,9 +61,8 @@ class Transformer:
         test = test.sort_values(by=['TransactionDT'])
 
         # save processed data
-        dir = '/home/yh/git/02-ieee-fraud-detection/data/processed'
-        train_path = Path(dir) / f'features_train.pkl'
-        test_path = Path(dir) / f'features_test.pkl'
+        train_path = ROOTDIR / 'data/processed' / f'features_train.pkl'
+        test_path = ROOTDIR / 'data/processed' / f'features_test.pkl'
         train.to_pickle(str(train_path))
         test.to_pickle(str(test_path))
 

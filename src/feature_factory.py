@@ -1,7 +1,7 @@
 from features.raw import Raw
 from features.altgor import Altgor
 from features.nroman import Nroman
-from mylog import timer
+from utils.mylog import timer
 
 
 class FeatureFactory:

@@ -6,7 +6,7 @@ import lightgbm as lgb
 # from catboost import CatBoostRegressor, CatBoostClassifier
 from sklearn.model_selection import TimeSeriesSplit
 from logging import getLogger
-from mylog import timer
+from utils.mylog import timer
 logger_train = getLogger('train')
 
 

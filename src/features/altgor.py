@@ -1,18 +1,23 @@
 # Reference: https://www.kaggle.com/artgor/eda-and-models
+from pathlib import Path
+import sys
 from sklearn.preprocessing import LabelEncoder
-from feature_base import Feature
 import numpy as np
 import pandas as pd
-from configure import Config as c
-from mylog import timer
+
+
+ROOTDIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOTDIR / 'src'))
+from features.feature_base import Feature
+from utils.mylog import timer
 
 
 class Altgor(Feature):
 
     @timer
     def _calculate(self):
-        train_path = c.storage.DATADIR / 'processed' / 'raw_train.pkl'
-        test_path = c.storage.DATADIR / 'processed' / 'raw_test.pkl'
+        train_path = ROOTDIR / 'data/processed/raw_train.pkl'
+        test_path = ROOTDIR / 'data/processed/raw_test.pkl'
         train = pd.read_pickle(train_path)
         test = pd.read_pickle(test_path)
 

@@ -2,7 +2,7 @@ from numba import jit
 import numpy as np
 from sklearn.model_selection import KFold, GroupKFold, TimeSeriesSplit
 
-from mylog import timer
+from utils.mylog import timer
 from .model import Model
 
 
