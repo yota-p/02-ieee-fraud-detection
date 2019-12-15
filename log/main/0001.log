@@ -1,0 +1,50 @@
+[2019-12-15 10:35:02] INFO     >> :thinking_face: ============ 2019-12-15 10:35:02 ============ :thinking_face:
+[2019-12-15 10:35:02] INFO     >> [Start] main
+[2019-12-15 10:35:02] INFO     >> [Start] Experiment.run
+[2019-12-15 10:35:02] INFO     >> [Start] Transformer.run
+[2019-12-15 10:35:02] INFO     >> [Start] FeatureFactory.create
+[2019-12-15 10:35:03] INFO     >> [End]   FeatureFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:03] INFO     >> [Start] Feature.create_feature
+[2019-12-15 10:35:03] INFO     >> [Start] Feature._is_latest
+[2019-12-15 10:35:03] INFO     >> [End]   Feature._is_latest: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:04] DEBUG    >> Skip calculating Raw
+[2019-12-15 10:35:04] INFO     >> [Start] Feature._load
+[2019-12-15 10:35:06] INFO     >> [End]   Feature._load: [elapsed_time] >> 00:00:02
+[2019-12-15 10:35:06] DEBUG    >> raw_train.shape: (5905, 434)
+[2019-12-15 10:35:06] DEBUG    >> raw_test.shape : (5067, 433)
+[2019-12-15 10:35:06] INFO     >> [End]   Feature.create_feature: [elapsed_time] >> 00:00:03
+[2019-12-15 10:35:06] INFO     >> [Start] FeatureFactory.create
+[2019-12-15 10:35:07] INFO     >> [End]   FeatureFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:07] INFO     >> [Start] Feature.create_feature
+[2019-12-15 10:35:07] INFO     >> [Start] Feature._is_latest
+[2019-12-15 10:35:07] INFO     >> [End]   Feature._is_latest: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:07] DEBUG    >> Skip calculating Nroman
+[2019-12-15 10:35:07] INFO     >> [Start] Feature._load
+[2019-12-15 10:35:08] INFO     >> [End]   Feature._load: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:08] DEBUG    >> nroman_train.shape: (5905, 301)
+[2019-12-15 10:35:08] DEBUG    >> nroman_test.shape : (5067, 300)
+[2019-12-15 10:35:08] INFO     >> [End]   Feature.create_feature: [elapsed_time] >> 00:00:01
+[2019-12-15 10:35:08] DEBUG    >> Merging created feature nroman to transformed datas
+[2019-12-15 10:35:08] DEBUG    >> Merge in1: train (5905, 1), in2: train_feature to merge: (5905, 301)
+[2019-12-15 10:35:08] DEBUG    >> Merge out: train (5905, 301)
+[2019-12-15 10:35:08] DEBUG    >> Merge in2: test (5067, 1), in2: test_feature to merge: (5067, 300)
+[2019-12-15 10:35:08] DEBUG    >> Merge out: train (5067, 300)
+[2019-12-15 10:35:08] DEBUG    >> X_train.shape: (5905, 298)
+[2019-12-15 10:35:08] DEBUG    >> y_train.shape: (5905, 1)
+[2019-12-15 10:35:08] DEBUG    >> X_test.shape:  (5067, 298)
+[2019-12-15 10:35:08] INFO     >> [End]   Transformer.run: [elapsed_time] >> 00:00:06
+[2019-12-15 10:35:09] INFO     >> [Start] TrainerFactory.create
+[2019-12-15 10:35:09] INFO     >> [End]   TrainerFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:09] INFO     >> [Start] Trainer.train
+[2019-12-15 10:35:09] INFO     >> [Start] Model.train
+[2019-12-15 10:35:22] INFO     >> [End]   Model.train: [elapsed_time] >> 00:00:12
+[2019-12-15 10:35:23] INFO     >> [End]   Trainer.train: [elapsed_time] >> 00:00:13
+[2019-12-15 10:35:23] INFO     >> [Start] ModelAPIFactory.create
+[2019-12-15 10:35:23] INFO     >> [End]   ModelAPIFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:23] INFO     >> [Start] ModelAPI.set_model
+[2019-12-15 10:35:24] INFO     >> [End]   ModelAPI.set_model: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:24] INFO     >> [Start] ModelAPI.predict
+[2019-12-15 10:35:24] INFO     >> [End]   ModelAPI.predict: [elapsed_time] >> 00:00:00
+[2019-12-15 10:35:24] INFO     >> [End]   Experiment.run: [elapsed_time] >> 00:00:22
+[2019-12-15 10:35:25] INFO     >> [End]   main: [elapsed_time] >> 00:00:22
+[2019-12-15 10:35:25] INFO     >> :sunglasses: ============ 2019-12-15 10:35:25 ============ :sunglasses:

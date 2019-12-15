@@ -1,8 +1,13 @@
 # Reference: https://github.com/amaotone/spica/blob/master/spica/features/base.py
 import re
 from abc import ABCMeta, abstractmethod
-from pathlib import Path
 import pandas as pd
+
+import sys
+from pathlib import Path
+ROOTDIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOTDIR / 'src'))
+
 from mylog import timer
 from logging import getLogger
 logger = getLogger('main')
@@ -17,7 +22,6 @@ class Feature(metaclass=ABCMeta):
     '''
     prefix = ''
     suffix = ''
-    dir = '/home/yh/git/02-ieee-fraud-detection/data/processed'
 
     def __init__(self):
         if self.__class__.__name__.isupper():
@@ -26,8 +30,8 @@ class Feature(metaclass=ABCMeta):
             self.name = re.sub("([A-Z])", lambda x: "_" + x.group(1).lower(), self.__class__.__name__).lstrip('_')
         self.train = pd.DataFrame()
         self.test = pd.DataFrame()
-        self.train_path = Path(self.dir) / f'{self.name}_train.pkl'
-        self.test_path = Path(self.dir) / f'{self.name}_test.pkl'
+        self.train_path = ROOTDIR / f'data/processed/{self.name}_train.pkl'
+        self.test_path = ROOTDIR / f'data/processed/{self.name}_test.pkl'
 
     @timer
     def create_feature(self):

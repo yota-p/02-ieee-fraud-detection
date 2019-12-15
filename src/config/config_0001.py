@@ -3,7 +3,6 @@ from logging import DEBUG, INFO
 
 
 class ProjectConfig:
-    NO = '02'
     ID = 'ieee-fraud-detection'
 
 
@@ -18,14 +17,7 @@ class StorageConfig:
     # dirs
     ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
     DATADIR = ROOTDIR / 'data'
-    SRCDIR = ROOTDIR / 'src'
-
-    # files
-    RAW_PATHS = [DATADIR / 'sample_submission.csv.zip',
-                 DATADIR / 'test_identity.csv.zip',
-                 DATADIR / 'test_transaction.csv.zip',
-                 DATADIR / 'train_identity.csv.zip',
-                 DATADIR / 'train_transaction.csv.zip']
+    # SRCDIR = ROOTDIR / 'src'
 
 
 class LogConfig:
@@ -50,7 +42,7 @@ class SlackAuth:
     ROOTDIR = pathlib.Path()
     HOST = 'slack.com'
     URL = '/api/chat.postMessage'
-    CHANNEL = f'{ProjectConfig.NO}-{ProjectConfig.ID}'
+    CHANNEL = ProjectConfig.ID
     NO_SEND_MESSAGE = False
     TOKEN_PATH = ROOTDIR / '.slack_token'
 
