@@ -1,68 +1,68 @@
-[2019-12-15 11:01:43] INFO     >> :thinking_face: ============ 2019-12-15 11:01:43 ============ :thinking_face:
-[2019-12-15 11:01:43] INFO     >> [Start] main
-[2019-12-15 11:01:44] INFO     >> [Start] Experiment.run
-[2019-12-15 11:01:44] INFO     >> [Start] Transformer.run
-[2019-12-15 11:01:44] INFO     >> [Start] FeatureFactory.create
-[2019-12-15 11:01:44] INFO     >> [End]   FeatureFactory.create: [elapsed_time] >> 00:00:00
-[2019-12-15 11:01:45] INFO     >> [Start] Feature.create_feature
-[2019-12-15 11:01:45] INFO     >> [Start] Feature._is_latest
-[2019-12-15 11:01:45] INFO     >> [End]   Feature._is_latest: [elapsed_time] >> 00:00:00
-[2019-12-15 11:01:45] INFO     >> [Start] Raw._calculate
-[2019-12-15 11:01:45] INFO     >> [Start] Raw.is_downloaded
-[2019-12-15 11:01:46] INFO     >> [End]   Raw.is_downloaded: [elapsed_time] >> 00:00:00
-[2019-12-15 11:01:46] DEBUG    >> Downloading & unarchiving raw data
-[2019-12-15 11:01:58] DEBUG    >> Loading raw data
-[2019-12-15 11:03:01] DEBUG    >> Merging raw data
-[2019-12-15 11:03:27] DEBUG    >> Merged into train.shape: (590540, 434)
-[2019-12-15 11:03:27] DEBUG    >> Merged into test.shape : (506691, 433)
-[2019-12-15 11:03:27] INFO     >> Debug mode. Using 1% of raw data
-[2019-12-15 11:03:37] INFO     >> [Start] reduce_mem_usage
-[2019-12-15 11:03:40] INFO     >> [End]   reduce_mem_usage: [elapsed_time] >> 00:00:02
-[2019-12-15 11:03:40] INFO     >> [Start] reduce_mem_usage
-[2019-12-15 11:03:42] INFO     >> [End]   reduce_mem_usage: [elapsed_time] >> 00:00:01
-[2019-12-15 11:03:42] INFO     >> [End]   Raw._calculate: [elapsed_time] >> 00:01:56
-[2019-12-15 11:03:42] INFO     >> [Start] Feature._save
-[2019-12-15 11:03:45] INFO     >> [End]   Feature._save: [elapsed_time] >> 00:00:02
-[2019-12-15 11:03:45] DEBUG    >> Created raw_train.shape: (5905, 434)
-[2019-12-15 11:03:45] DEBUG    >> Created raw_test.shape : (5067, 433)
-[2019-12-15 11:03:45] INFO     >> [End]   Feature.create_feature: [elapsed_time] >> 00:02:00
-[2019-12-15 11:03:45] INFO     >> [Start] FeatureFactory.create
-[2019-12-15 11:03:45] INFO     >> [End]   FeatureFactory.create: [elapsed_time] >> 00:00:00
-[2019-12-15 11:03:46] INFO     >> [Start] Feature.create_feature
-[2019-12-15 11:03:46] INFO     >> [Start] Feature._is_latest
-[2019-12-15 11:03:46] INFO     >> [End]   Feature._is_latest: [elapsed_time] >> 00:00:00
-[2019-12-15 11:03:46] INFO     >> [Start] Nroman._calculate
-[2019-12-15 11:03:47] DEBUG    >> input: raw_train.shape: (5905, 434), raw_test.shape: (5067, 433)
-[2019-12-15 11:03:47] DEBUG    >> 152 features are going to be dropped for being useless
-[2019-12-15 11:03:48] DEBUG    >> output: train.shape: (5905, 301)
-[2019-12-15 11:03:48] DEBUG    >> output: test.shape:  (5067, 300)
-[2019-12-15 11:03:48] INFO     >> [End]   Nroman._calculate: [elapsed_time] >> 00:00:01
-[2019-12-15 11:03:48] INFO     >> [Start] Feature._save
-[2019-12-15 11:03:48] INFO     >> [End]   Feature._save: [elapsed_time] >> 00:00:00
-[2019-12-15 11:03:49] DEBUG    >> Created nroman_train.shape: (5905, 301)
-[2019-12-15 11:03:49] DEBUG    >> Created nroman_test.shape : (5067, 300)
-[2019-12-15 11:03:49] INFO     >> [End]   Feature.create_feature: [elapsed_time] >> 00:00:02
-[2019-12-15 11:03:49] DEBUG    >> Merging created feature nroman to transformed datas
-[2019-12-15 11:03:49] DEBUG    >> Merge in1: train (5905, 1), in2: train_feature to merge: (5905, 301)
-[2019-12-15 11:03:49] DEBUG    >> Merge out: train (5905, 301)
-[2019-12-15 11:03:49] DEBUG    >> Merge in2: test (5067, 1), in2: test_feature to merge: (5067, 300)
-[2019-12-15 11:03:49] DEBUG    >> Merge out: train (5067, 300)
-[2019-12-15 11:03:49] DEBUG    >> X_train.shape: (5905, 298)
-[2019-12-15 11:03:49] DEBUG    >> y_train.shape: (5905, 1)
-[2019-12-15 11:03:49] DEBUG    >> X_test.shape:  (5067, 298)
-[2019-12-15 11:03:49] INFO     >> [End]   Transformer.run: [elapsed_time] >> 00:02:05
-[2019-12-15 11:03:49] INFO     >> [Start] TrainerFactory.create
-[2019-12-15 11:03:50] INFO     >> [End]   TrainerFactory.create: [elapsed_time] >> 00:00:00
-[2019-12-15 11:03:50] INFO     >> [Start] Trainer.train
-[2019-12-15 11:03:50] INFO     >> [Start] Model.train
-[2019-12-15 11:04:04] INFO     >> [End]   Model.train: [elapsed_time] >> 00:00:13
-[2019-12-15 11:04:04] INFO     >> [End]   Trainer.train: [elapsed_time] >> 00:00:13
-[2019-12-15 11:04:04] INFO     >> [Start] ModelAPIFactory.create
-[2019-12-15 11:04:04] INFO     >> [End]   ModelAPIFactory.create: [elapsed_time] >> 00:00:00
-[2019-12-15 11:04:05] INFO     >> [Start] ModelAPI.set_model
-[2019-12-15 11:04:05] INFO     >> [End]   ModelAPI.set_model: [elapsed_time] >> 00:00:00
-[2019-12-15 11:04:05] INFO     >> [Start] ModelAPI.predict
-[2019-12-15 11:04:05] INFO     >> [End]   ModelAPI.predict: [elapsed_time] >> 00:00:00
-[2019-12-15 11:04:06] INFO     >> [End]   Experiment.run: [elapsed_time] >> 00:02:21
-[2019-12-15 11:04:06] INFO     >> [End]   main: [elapsed_time] >> 00:02:22
-[2019-12-15 11:04:06] INFO     >> :sunglasses: ============ 2019-12-15 11:04:06 ============ :sunglasses:
+[2019-12-15 11:33:30] INFO     >> :thinking_face: ============ 2019-12-15 11:33:30 ============ :thinking_face:
+[2019-12-15 11:33:30] INFO     >> [Start] main
+[2019-12-15 11:33:30] INFO     >> [Start] Experiment.run
+[2019-12-15 11:33:31] INFO     >> [Start] Transformer.run
+[2019-12-15 11:33:31] INFO     >> [Start] FeatureFactory.create
+[2019-12-15 11:33:31] INFO     >> [End]   FeatureFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 11:33:31] INFO     >> [Start] Feature.create_feature
+[2019-12-15 11:33:32] INFO     >> [Start] Feature._is_latest
+[2019-12-15 11:33:32] INFO     >> [End]   Feature._is_latest: [elapsed_time] >> 00:00:00
+[2019-12-15 11:33:32] INFO     >> [Start] Raw._calculate
+[2019-12-15 11:33:32] INFO     >> [Start] Raw.is_downloaded
+[2019-12-15 11:33:32] INFO     >> [End]   Raw.is_downloaded: [elapsed_time] >> 00:00:00
+[2019-12-15 11:33:33] DEBUG    >> Downloading & unarchiving raw data
+[2019-12-15 11:33:46] DEBUG    >> Loading raw data
+[2019-12-15 11:34:47] DEBUG    >> Merging raw data
+[2019-12-15 11:35:12] DEBUG    >> Merged into train.shape: (590540, 434)
+[2019-12-15 11:35:12] DEBUG    >> Merged into test.shape : (506691, 433)
+[2019-12-15 11:35:12] INFO     >> Debug mode. Using 1% of raw data
+[2019-12-15 11:35:20] INFO     >> [Start] reduce_mem_usage
+[2019-12-15 11:35:22] INFO     >> [End]   reduce_mem_usage: [elapsed_time] >> 00:00:01
+[2019-12-15 11:35:22] INFO     >> [Start] reduce_mem_usage
+[2019-12-15 11:35:24] INFO     >> [End]   reduce_mem_usage: [elapsed_time] >> 00:00:01
+[2019-12-15 11:35:24] INFO     >> [End]   Raw._calculate: [elapsed_time] >> 00:01:52
+[2019-12-15 11:35:25] INFO     >> [Start] Feature._save
+[2019-12-15 11:35:27] INFO     >> [End]   Feature._save: [elapsed_time] >> 00:00:02
+[2019-12-15 11:35:27] DEBUG    >> Created raw_train.shape: (5905, 434)
+[2019-12-15 11:35:27] DEBUG    >> Created raw_test.shape : (5067, 433)
+[2019-12-15 11:35:27] INFO     >> [End]   Feature.create_feature: [elapsed_time] >> 00:01:55
+[2019-12-15 11:35:28] INFO     >> [Start] FeatureFactory.create
+[2019-12-15 11:35:28] INFO     >> [End]   FeatureFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:28] INFO     >> [Start] Feature.create_feature
+[2019-12-15 11:35:28] INFO     >> [Start] Feature._is_latest
+[2019-12-15 11:35:28] INFO     >> [End]   Feature._is_latest: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:29] INFO     >> [Start] Nroman._calculate
+[2019-12-15 11:35:29] DEBUG    >> input: raw_train.shape: (5905, 434), raw_test.shape: (5067, 433)
+[2019-12-15 11:35:29] DEBUG    >> 152 features are going to be dropped for being useless
+[2019-12-15 11:35:30] DEBUG    >> output: train.shape: (5905, 301)
+[2019-12-15 11:35:30] DEBUG    >> output: test.shape:  (5067, 300)
+[2019-12-15 11:35:30] INFO     >> [End]   Nroman._calculate: [elapsed_time] >> 00:00:01
+[2019-12-15 11:35:30] INFO     >> [Start] Feature._save
+[2019-12-15 11:35:31] INFO     >> [End]   Feature._save: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:31] DEBUG    >> Created nroman_train.shape: (5905, 301)
+[2019-12-15 11:35:31] DEBUG    >> Created nroman_test.shape : (5067, 300)
+[2019-12-15 11:35:31] INFO     >> [End]   Feature.create_feature: [elapsed_time] >> 00:00:02
+[2019-12-15 11:35:31] DEBUG    >> Merging created feature nroman to transformed datas
+[2019-12-15 11:35:31] DEBUG    >> Merge in1: train (5905, 1), in2: train_feature to merge: (5905, 301)
+[2019-12-15 11:35:31] DEBUG    >> Merge out: train (5905, 301)
+[2019-12-15 11:35:31] DEBUG    >> Merge in2: test (5067, 1), in2: test_feature to merge: (5067, 300)
+[2019-12-15 11:35:31] DEBUG    >> Merge out: train (5067, 300)
+[2019-12-15 11:35:31] DEBUG    >> X_train.shape: (5905, 298)
+[2019-12-15 11:35:31] DEBUG    >> y_train.shape: (5905, 1)
+[2019-12-15 11:35:31] DEBUG    >> X_test.shape:  (5067, 298)
+[2019-12-15 11:35:32] INFO     >> [End]   Transformer.run: [elapsed_time] >> 00:02:00
+[2019-12-15 11:35:32] INFO     >> [Start] TrainerFactory.create
+[2019-12-15 11:35:32] INFO     >> [End]   TrainerFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:32] INFO     >> [Start] Trainer.train
+[2019-12-15 11:35:32] INFO     >> [Start] Model.train
+[2019-12-15 11:35:46] INFO     >> [End]   Model.train: [elapsed_time] >> 00:00:13
+[2019-12-15 11:35:46] INFO     >> [End]   Trainer.train: [elapsed_time] >> 00:00:13
+[2019-12-15 11:35:46] INFO     >> [Start] ModelAPIFactory.create
+[2019-12-15 11:35:46] INFO     >> [End]   ModelAPIFactory.create: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:47] INFO     >> [Start] ModelAPI.set_model
+[2019-12-15 11:35:47] INFO     >> [End]   ModelAPI.set_model: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:47] INFO     >> [Start] ModelAPI.predict
+[2019-12-15 11:35:47] INFO     >> [End]   ModelAPI.predict: [elapsed_time] >> 00:00:00
+[2019-12-15 11:35:48] INFO     >> [End]   Experiment.run: [elapsed_time] >> 00:02:17
+[2019-12-15 11:35:48] INFO     >> [End]   main: [elapsed_time] >> 00:02:17
+[2019-12-15 11:35:48] INFO     >> :sunglasses: ============ 2019-12-15 11:35:48 ============ :sunglasses:

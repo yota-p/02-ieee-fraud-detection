@@ -5,9 +5,7 @@ warnings.filterwarnings('ignore')
 import traceback
 import pathlib
 from logging import getLogger
-import sys
 
-sys.path.append('./src')
 from experiment import Experiment
 from configure import Config
 from utils.seeder import seed_everything

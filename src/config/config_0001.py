@@ -1,9 +1,7 @@
 import pathlib
 from logging import DEBUG, INFO
 
-
-class ProjectConfig:
-    ID = 'ieee-fraud-detection'
+ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
 
 
 class RuntimeConfig:
@@ -11,13 +9,6 @@ class RuntimeConfig:
     DEBUG = False
     N_JOBS = -1
     RANDOM_SEED = 42
-
-
-class StorageConfig:
-    # dirs
-    ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
-    DATADIR = ROOTDIR / 'data'
-    # SRCDIR = ROOTDIR / 'src'
 
 
 class LogConfig:
@@ -42,7 +33,7 @@ class SlackAuth:
     ROOTDIR = pathlib.Path()
     HOST = 'slack.com'
     URL = '/api/chat.postMessage'
-    CHANNEL = ProjectConfig.ID
+    CHANNEL = 'ieee-fraud-detection'
     NO_SEND_MESSAGE = False
     TOKEN_PATH = ROOTDIR / '.slack_token'
 
@@ -102,13 +93,11 @@ class ModelAPIConfig:
 
 
 class Config:
-    project = ProjectConfig()
     runtime = RuntimeConfig()
-    storage = StorageConfig()
-    SlackAuth().set_params(ROOTDIR=storage.ROOTDIR)
+    SlackAuth().set_params(ROOTDIR=ROOTDIR)
     _slackauth = SlackAuth()
     LogConfig().set_params(VERSION=runtime.VERSION,
-                           ROOTDIR=storage.ROOTDIR,
+                           ROOTDIR=ROOTDIR,
                            slackauth=_slackauth)
     log = LogConfig()
     experiment = ExperimentConfig()
