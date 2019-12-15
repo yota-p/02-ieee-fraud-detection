@@ -14,7 +14,7 @@ from utils.mylog import timer
 from utils.reduce_mem_usage import reduce_mem_usage
 
 RAW_DIR = ROOTDIR / 'data/raw'
-DEBUG = True  # for small size data
+DEBUG = False  # for small size data
 PROJECTID = 'ieee-fraud-detection'
 
 
