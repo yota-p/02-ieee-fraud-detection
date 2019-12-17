@@ -1,8 +1,9 @@
+import argparse
 import pandas as pd
 import os
 from pathlib import Path
 import sys
-from logging import getLogger
+from logging import getLogger, Formatter, StreamHandler, DEBUG
 
 logger = getLogger('main')
 
@@ -14,7 +15,7 @@ from utils.mylog import timer
 from utils.reduce_mem_usage import reduce_mem_usage
 
 RAW_DIR = ROOTDIR / 'data/raw'
-DEBUG = False  # for small size data
+DEBUG_MODE = False  # for small size data
 PROJECTID = 'ieee-fraud-detection'
 
 
@@ -29,7 +30,7 @@ class Raw(Feature):
             os.system(f'unzip "{RAW_DIR}/*.zip" -d {RAW_DIR}')
             os.system(f'rm -f {RAW_DIR}/*.zip')
 
-        logger.debug('Loading raw data')
+        logger.debug('Loading raw csv')
         train_identity = pd.read_csv(f'{RAW_DIR}/train_identity.csv')
         test_identity = pd.read_csv(f'{RAW_DIR}/test_identity.csv')
         train_transaction = pd.read_csv(f'{RAW_DIR}/train_transaction.csv')
@@ -50,7 +51,7 @@ class Raw(Feature):
         logger.debug(f'Merged into test.shape : {self.test.shape}')
 
         # FOR DEBUG: less data
-        if DEBUG:
+        if DEBUG_MODE:
             logger.info('Debug mode. Using 1% of raw data')
             self.train = self.train.sample(frac=0.01, random_state=42)
             self.test = self.test.sample(frac=0.01, random_state=42)
@@ -75,6 +76,23 @@ class Raw(Feature):
 
 
 if __name__ == "__main__":
-    logger = getLogger()
+    formatter = Formatter('[%(asctime)s] %(levelname)-8s >> %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+    logger = getLogger('main')
+    logger.setLevel(DEBUG)
+    stream_handler = StreamHandler()
+    stream_handler.setLevel(DEBUG)
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('-f', '--force',
+                           action='store_true',
+                           help='Force re-calculation')
+    argparser.add_argument('-d', '--debug',
+                           action='store_true',
+                           help='Force re-calculation')
+    option = argparser.parse_args()
+    DEBUG_MODE = option.debug
+
     f = Raw()
-    f.create_feature()
+    f.create_feature(force_calculate=option.force)

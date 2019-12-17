@@ -5,7 +5,7 @@ import pandas as pd
 
 import sys
 from pathlib import Path
-ROOTDIR = Path(__file__).resolve().parents[2]
+ROOTDIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOTDIR / 'src'))
 
 from utils.mylog import timer
