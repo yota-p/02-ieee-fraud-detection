@@ -22,6 +22,7 @@ DEBUG_MODE = False
 
 
 # FREQUENCY ENCODING FOR TWO DFs
+@timer
 def encode_FE(df1, df2, cols, verbose=False):
     for col in cols:
         df = pd.concat([df1[col], df2[col]])
@@ -37,6 +38,7 @@ def encode_FE(df1, df2, cols, verbose=False):
 
 
 # LABEL ENCODING FOR TWO DFs
+@timer
 def encode_LE(col, train, test, verbose=False):
     df_comb = pd.concat([train[col], test[col]], axis=0)
     df_comb, _ = df_comb.factorize(sort=True)
@@ -55,7 +57,8 @@ def encode_LE(col, train, test, verbose=False):
 
 # GROUP AGGREGATION MEAN AND STD
 # https://www.kaggle.com/kyakovlev/ieee-fe-with-some-eda
-def encode_AG(main_columns, uids, train_df, test_df, aggregations=['mean'],
+@timer
+def encode_AG(main_columns, uids, aggregations, train_df, test_df,
               fillna=True, usena=False, verbose=False):
     # AGGREGATION OF MAIN WITH UID FOR GIVEN STATISTICS
     for main_column in main_columns:
@@ -65,8 +68,8 @@ def encode_AG(main_columns, uids, train_df, test_df, aggregations=['mean'],
                 temp_df = pd.concat([train_df[[col, main_column]], test_df[[col, main_column]]])
                 if usena:
                     temp_df.loc[temp_df[main_column] == -1, main_column] = np.nan
-                temp_df = temp_df.groupby([col])[main_column].agg([agg_type]).reset_index().rename(
-                                                        columns={agg_type: new_col_name})
+                temp_df = temp_df.groupby([col])[main_column].agg(
+                    [agg_type]).reset_index().rename(columns={agg_type: new_col_name})
 
                 temp_df.index = list(temp_df[col])
                 temp_df = temp_df[new_col_name].to_dict()
@@ -83,6 +86,7 @@ def encode_AG(main_columns, uids, train_df, test_df, aggregations=['mean'],
 
 
 # COMBINE FEATURES
+@timer
 def encode_CB(col1, col2, df1, df2, verbose=False):
     nm = col1+'_'+col2
     df1[nm] = df1[col1].astype(str)+'_'+df1[col2].astype(str)
@@ -93,6 +97,7 @@ def encode_CB(col1, col2, df1, df2, verbose=False):
 
 
 # GROUP AGGREGATION NUNIQUE
+@timer
 def encode_AG2(main_columns, uids, train_df, test_df, verbose=False):
     for main_column in main_columns:
         for col in uids:
@@ -108,6 +113,9 @@ class Magic(Feature):
 
     @timer
     def _calculate(self):
+        '''
+        Load useful features
+        '''
         # COLUMNS WITH STRINGS
         str_type = ['ProductCD', 'card4', 'card6', 'P_emaildomain', 'R_emaildomain', 'M1', 'M2', 'M3', 'M4', 'M5',
                     'M6', 'M7', 'M8', 'M9', 'id_12', 'id_15', 'id_16', 'id_23', 'id_27', 'id_28', 'id_29', 'id_30',
@@ -157,15 +165,12 @@ class Magic(Feature):
         for c in str_type:
             dtypes[c] = 'category'
 
-        '''
-        train = pd.read_pickle(FEATURE_DIR / 'raw_train.pkl')
-        test = pd.read_pickle(FEATURE_DIR / 'raw_test.pkl')
-        train = train.astype(dtypes)[cols]
-        test = test.astype(dtypes)[cols]
-        logger.debug(f'input: raw_train.shape: {train.shape}, raw_test.shape: {test.shape}')
-        '''
+        # train = pd.read_pickle(FEATURE_DIR / 'raw_train.pkl')
+        # test = pd.read_pickle(FEATURE_DIR / 'raw_test.pkl')
+        # train = train.astype(dtypes)[cols]
+        # test = test.astype(dtypes)[cols]
+        # logger.debug(f'input: raw_train.shape: {train.shape}, raw_test.shape: {test.shape}')
 
-        # LOAD TRAIN
         train = pd.read_csv(RAW_DIR / 'train_transaction.csv',
                             index_col='TransactionID', dtype=dtypes, usecols=cols+['isFraud'])
         train_id = pd.read_csv(RAW_DIR / 'train_identity.csv',
@@ -177,8 +182,8 @@ class Magic(Feature):
         test_id = pd.read_csv(RAW_DIR / 'test_identity.csv',
                               index_col='TransactionID', dtype=dtypes)
         test = test.merge(test_id, how='left', left_index=True, right_index=True)
-        # TARGET
-        # y_train = X_train['isFraud'].copy()
+        del train_id, test_id
+
         # Fix the mismatch of column names between train and test
         columns = {}
         for i in range(1, 39):
@@ -195,17 +200,38 @@ class Magic(Feature):
         # train = reduce_mem_usage(train)
         # test = reduce_mem_usage(test)
 
-        del train_id, test_id
-        gc.collect()
+        logger.debug('Loaded & merged train, test from raw csv')
         logger.debug(f'train.shape: {train.shape}')
         logger.debug(f'test.shape : {test.shape}')
 
+        '''
+        Preprocessing
+        '''
         # Normalize D columns
         for i in range(1, 16):
             if i in [1, 2, 3, 5, 9]:
                 continue
             train['D'+str(i)] = train['D'+str(i)] - train.TransactionDT/np.float32(24*60*60)
             test['D'+str(i)] = test['D'+str(i)] - test.TransactionDT/np.float32(24*60*60)
+
+        # LABEL ENCODE AND MEMORY REDUCE
+        cols_to_label_encode = train.columns.drop('isFraud')
+        for i, f in enumerate(cols_to_label_encode):
+            # FACTORIZE CATEGORICAL VARIABLES
+            if (np.str(train[f].dtype) == 'category') | (train[f].dtype == 'object'):
+                df_comb = pd.concat([train[f], test[f]], axis=0)
+                df_comb, _ = df_comb.factorize(sort=True)
+                if df_comb.max() > 32000:
+                    print(f, 'needs int32')
+                train[f] = df_comb[:len(train)].astype('int16')
+                test[f] = df_comb[len(train):].astype('int16')
+            # SHIFT ALL NUMERICS POSITIVE. SET NAN to -1
+            elif f not in ['TransactionAmt', 'TransactionDT']:
+                mn = np.min((train[f].min(), test[f].min()))
+                train[f] -= np.float32(mn)
+                test[f] -= np.float32(mn)
+                train[f].fillna(-1, inplace=True)
+                test[f].fillna(-1, inplace=True)
 
         '''
         Feature Engineering
@@ -227,36 +253,8 @@ class Magic(Feature):
         encode_FE(train, test, ['card1_addr1', 'card1_addr1_P_emaildomain'])
         # GROUP AGGREGATE
         encode_AG(['TransactionAmt', 'D9', 'D11'],
-                  ['card1', 'card1_addr1', 'card1_addr1_P_emaildomain'],
-                  train_df=train, test_df=test, aggregations=['mean', 'std'], usena=True)
-
-        '''
-        Feature Selection - Time Consistency
-        We added 28 new feature above. We have already removed 219 V Columns from correlation analysis done here.
-        So we currently have 242 features now. We will now check each of our 242 for "time consistency".
-        We will build 242 models. Each model will be trained on the first month of the training data and
-        will only use one feature. We will then predict the last month of the training data. We want both
-        training AUC and validation AUC to be above AUC = 0.5. It turns out that 19 features fail this test
-        so we will remove them. Additionally we will remove 7 D columns that are mostly NAN. More techniques
-        for feature selection are listed here
-        '''
-        '''
-        cols = list(train.columns)
-        # cols.remove('TransactionDT')
-        for c in ['D6', 'D7', 'D8', 'D9', 'D12', 'D13', 'D14']:
-            cols.remove(c)
-
-        # These features FAILED TIME CONSISTENCY TEST
-        for c in ['C3', 'M5', 'id_08', 'id_33']:
-            cols.remove(c)
-        for c in ['card4', 'id_07', 'id_14', 'id_21', 'id_30', 'id_32', 'id_34']:
-            cols.remove(c)
-        for c in ['id_'+str(x) for x in range(22, 28)]:
-            cols.remove(c)
-        '''
-
-        logger.debug(f'train.shape: {train.shape}')
-        logger.debug(f'test.shape : {test.shape}')
+                  ['card1', 'card1_addr1', 'card1_addr1_P_emaildomain'], ['mean', 'std'],
+                  train_df=train, test_df=test, usena=True)
 
         # CELL In[14]:
         START_DATE = datetime.datetime.strptime('2017-11-30', '%Y-%m-%d')
@@ -289,18 +287,18 @@ class Magic(Feature):
         # FREQUENCY ENCODE UID
         encode_FE(train, test, ['uid'])
         # AGGREGATE
-        encode_AG(['TransactionAmt', 'D4', 'D9', 'D10', 'D15'], ['uid'],
-                  train, test, ['mean', 'std'], fillna=True, usena=True)
+        encode_AG(['TransactionAmt', 'D4', 'D9', 'D10', 'D15'], ['uid'], ['mean', 'std'],
+                  train, test, fillna=True, usena=True)
         # AGGREGATE
-        encode_AG(['C'+str(x) for x in range(1, 15) if x != 3], ['uid'],
-                  train, test, ['mean'], fillna=True, usena=True)
+        encode_AG(['C'+str(x) for x in range(1, 15) if x != 3], ['uid'], ['mean'],
+                  train, test, fillna=True, usena=True)
         # AGGREGATE # TODO: FIX this! Doesn't work because it's not numeric
-        # encode_AG(['M'+str(x) for x in range(1, 10)], ['uid'],
-        #           train, test, ['mean'], fillna=True, usena=True)
+        encode_AG(['M'+str(x) for x in range(1, 10)], ['uid'], ['mean'],
+                  train, test, fillna=True, usena=True)
         # AGGREGATE
         encode_AG2(['P_emaildomain', 'dist1', 'DT_M', 'id_02', 'cents'], ['uid'], train, test)
         # AGGREGATE
-        encode_AG(['C14'], ['uid'], train, test, ['std'], fillna=True, usena=True)
+        encode_AG(['C14'], ['uid'], ['std'], train, test, fillna=True, usena=True)
         # AGGREGATE
         encode_AG2(['C13', 'V314'], ['uid'], train, test)
         # AGGREATE
@@ -308,16 +306,37 @@ class Magic(Feature):
         # NEW FEATURE
         train['outsider15'] = (np.abs(train.D1-train.D15) > 3).astype('int8')
         test['outsider15'] = (np.abs(test.D1-test.D15) > 3).astype('int8')
-        logger.debug('outsider15')
-        cols = list(train.columns)
-        logger.debug(f'NOW USING THE FOLLOWING {len(cols)} FEATURES.')
-        logger.info(str(np.array(cols)))
 
-        train = train[cols]
-        cols.remove('isFraud')
-        test = test[cols]
+        logger.debug('Feature engineering finished')
+        logger.debug(f'train.shape: {train.shape}')
+        logger.debug(f'test.shape : {test.shape}')
 
-        # Copy values to instance variable (for saving)
+        '''
+        Feature Selection - Time Consistency
+        We added 28 new feature above. We have already removed 219 V Columns from correlation analysis done here.
+        So we currently have 242 features now. We will now check each of our 242 for "time consistency".
+        We will build 242 models. Each model will be trained on the first month of the training data and
+        will only use one feature. We will then predict the last month of the training data. We want both
+        training AUC and validation AUC to be above AUC = 0.5. It turns out that 19 features fail this test
+        so we will remove them. Additionally we will remove 7 D columns that are mostly NAN. More techniques
+        for feature selection are listed here
+        '''
+        cols_to_drop = []
+        # Why drop these???
+        cols_to_drop += ['D6', 'D7', 'D8', 'D9', 'D12', 'D13', 'D14']
+        cols_to_drop += ['TransactionDT', 'DT_M', 'day', 'uid']
+        # These features FAILED TIME CONSISTENCY TEST
+        cols_to_drop += ['C3', 'M5', 'id_08', 'id_33']
+        cols_to_drop += ['card4', 'id_07', 'id_14', 'id_21', 'id_30', 'id_32', 'id_34']
+        cols_to_drop += ['id_'+str(x) for x in range(22, 28)]
+
+        # Select needed features only
+        train = train.drop(cols_to_drop, axis=1)
+        test = test.drop(cols_to_drop, axis=1)
+
+        logger.debug(f'Now using the following {len(train.columns)} features')
+        logger.info(str(np.array(train.columns)))
+
         self.train = train
         self.test = test
         del train, test
