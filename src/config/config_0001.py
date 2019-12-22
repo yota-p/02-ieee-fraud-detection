@@ -55,9 +55,9 @@ class TransformerConfig:
 
 
 class ModelConfig:
-    TYPE = 'lightgbm2'
+    TYPE = 'lgb'
 
-    if TYPE == 'lightgbm2':
+    if TYPE == 'lightgbm':
         params = {'num_leaves': 491,
                   'min_child_weight': 0.03454472573214212,
                   'feature_fraction': 0.3797454081646243,

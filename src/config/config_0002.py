@@ -52,9 +52,9 @@ class TransformerConfig:
 
 
 class ModelConfig:
-    TYPE = 'xgb'
+    TYPE = 'lgb'
 
-    if TYPE == 'lightgbm2':
+    if TYPE == 'lgb':
         params = {'num_leaves': 491,
                   'min_child_weight': 0.03454472573214212,
                   'feature_fraction': 0.3797454081646243,
@@ -71,6 +71,7 @@ class ModelConfig:
                   'reg_lambda': 0.6485237330340494,
                   'random_state': 47
                   }
+
     elif TYPE == 'xgb':
         params = {'n_estimators': 2000,
                   'max_depth': 12,
@@ -89,7 +90,8 @@ class ModelConfig:
 
 class TrainerConfig:
     model = None
-    early_stopping_rounds = 100
+    # early_stopping_rounds = 100
+    early_stopping_rounds = 1
 
     @classmethod
     def set_params(cls, model):

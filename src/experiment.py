@@ -10,6 +10,10 @@ ROOTDIR = Path(__file__).resolve().parents[1]
 
 
 class Experiment:
+    '''
+    Pass datas on memory as possible.
+    If not passed on memory, each class searches & loads persistenced datas.
+    '''
 
     def __init__(self, config):
         self.c = config
@@ -22,7 +26,7 @@ class Experiment:
 
         if self.c.experiment.RUN_TRAIN:
             trainer = TrainerFactory().create(self.c.trainer)
-            trained_model = trainer.train(train)
+            trained_model = trainer.run(train)
             del train, trainer
 
         if self.c.experiment.RUN_PRED:
@@ -32,6 +36,10 @@ class Experiment:
             sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
             sub['TransactionID'] = test['TransactionID']
 
-            sub['isFraud'] = modelapi.predict(test)
-            sub.to_csv(ROOTDIR / 'data/processed/submission.csv', index=False)  # TODO: set VERSION!
+            sub['isFraud'] = modelapi.run(test)
+            sub.to_csv(ROOTDIR / 'data/submission/submission.csv', index=False)  # TODO: set VERSION!
             del modelapi
+
+    @timer
+    def save_submission(df_pred):
+        pass

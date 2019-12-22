@@ -63,7 +63,7 @@ class TransformerConfig:
 
 
 class ModelConfig:
-    TYPE = 'lightgbm'
+    TYPE = 'lgb'
 
 
 class TrainerConfig:
