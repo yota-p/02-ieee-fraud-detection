@@ -1,6 +1,7 @@
 from utils.mylog import timer
 from models import lightgbm
 from models import lightgbm2
+from models import xgb
 
 
 class TrainerFactory:
@@ -11,5 +12,7 @@ class TrainerFactory:
             return lightgbm.trainer.Trainer(trainer_config)
         elif trainer_config.model.TYPE == 'lightgbm2':
             return lightgbm2.trainer.Trainer(trainer_config)
+        elif trainer_config.model.TYPE == 'xgb':
+            return xgb.trainer.Trainer(trainer_config)
         else:
             raise ValueError('{trainer_config.model.TYPE} does not exist in factory menu')

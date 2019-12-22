@@ -1,0 +1,49 @@
+2019-12-22 05:36:37 - INFO  >> :thinking_face: ============ 2019-12-22 05:36:37 ============ :thinking_face:
+2019-12-22 05:36:37 - INFO  >> Start main
+2019-12-22 05:36:37 - INFO  >> Start Experiment.run
+2019-12-22 05:36:37 - INFO  >> Start Transformer.run
+2019-12-22 05:36:38 - INFO  >> Start FeatureFactory.create
+2019-12-22 05:36:38 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
+2019-12-22 05:36:38 - INFO  >> Start Feature.create_feature
+2019-12-22 05:36:38 - INFO  >> Start Feature._is_latest
+2019-12-22 05:36:39 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
+2019-12-22 05:36:39 - DEBUG >> Skip calculating Raw
+2019-12-22 05:36:39 - INFO  >> Start Feature._load
+2019-12-22 05:36:48 - INFO  >> End   Feature._load: [elapsed] >> 00:00:09
+2019-12-22 05:36:49 - DEBUG >> raw_train.shape: (590540, 434)
+2019-12-22 05:36:49 - DEBUG >> raw_test.shape : (506691, 433)
+2019-12-22 05:36:49 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:10
+2019-12-22 05:36:53 - INFO  >> Start FeatureFactory.create
+2019-12-22 05:36:53 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
+2019-12-22 05:36:54 - INFO  >> Start Feature.create_feature
+2019-12-22 05:36:54 - INFO  >> Start Feature._is_latest
+2019-12-22 05:36:54 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
+2019-12-22 05:36:54 - DEBUG >> Skip calculating Magic
+2019-12-22 05:36:54 - INFO  >> Start Feature._load
+2019-12-22 05:36:58 - INFO  >> End   Feature._load: [elapsed] >> 00:00:03
+2019-12-22 05:36:58 - DEBUG >> magic_train.shape: (590540, 265)
+2019-12-22 05:36:58 - DEBUG >> magic_test.shape : (506691, 264)
+2019-12-22 05:36:58 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:04
+2019-12-22 05:36:58 - DEBUG >> Merging created feature magic to transformed datas
+2019-12-22 05:36:58 - DEBUG >> Merge in1: train (590540, 1), in2: train_feature to merge: (590540, 265)
+2019-12-22 05:37:05 - DEBUG >> Merge out: train (590540, 266)
+2019-12-22 05:37:05 - DEBUG >> Merge in2: test (506691, 1), in2: test_feature to merge: (506691, 264)
+2019-12-22 05:37:09 - DEBUG >> Merge out: train (506691, 265)
+2019-12-22 05:37:24 - DEBUG >> train.shape: (590540, 266)
+2019-12-22 05:37:24 - DEBUG >> test.shape:  (506691, 265)
+2019-12-22 05:37:24 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:46
+2019-12-22 05:37:24 - INFO  >> Start TrainerFactory.create
+2019-12-22 05:37:24 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
+2019-12-22 05:37:24 - INFO  >> Start Trainer.train
+2019-12-22 05:37:26 - INFO  >> Start Model.train
+2019-12-22 05:47:15 - INFO  >> End   Model.train: [elapsed] >> 00:09:49
+2019-12-22 05:47:16 - INFO  >> End   Trainer.train: [elapsed] >> 00:09:51
+2019-12-22 05:47:16 - INFO  >> Start ModelAPIFactory.create
+2019-12-22 05:47:16 - INFO  >> End   ModelAPIFactory.create: [elapsed] >> 00:00:00
+2019-12-22 05:47:16 - INFO  >> Start ModelAPI.set_model
+2019-12-22 05:47:17 - INFO  >> End   ModelAPI.set_model: [elapsed] >> 00:00:00
+2019-12-22 05:47:17 - INFO  >> Start ModelAPI.predict
+2019-12-22 05:48:02 - INFO  >> End   ModelAPI.predict: [elapsed] >> 00:00:44
+2019-12-22 05:48:05 - INFO  >> End   Experiment.run: [elapsed] >> 00:11:27
+2019-12-22 05:48:05 - INFO  >> End   main: [elapsed] >> 00:11:28
+2019-12-22 05:48:06 - INFO  >> :sunglasses: ============ 2019-12-22 05:48:06 ============ :sunglasses:

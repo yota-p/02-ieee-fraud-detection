@@ -39,7 +39,7 @@ def create_logger(type, config):
     '''
     c = config
     if type == 'main':
-        formatter = Formatter('[%(asctime)s] %(levelname)-8s >> %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        formatter = Formatter('%(asctime)s - %(levelname)-5s >> %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
         logger_ = getLogger(type)
         log_file = Path(c.LOGDIR / 'main' / (c.LOGFILE + '.log')).resolve()
     elif type == 'train':
@@ -96,7 +96,7 @@ def timer(func):
         logger = getLogger('main')
         method_name = func.__qualname__
         start = time.time()
-        text = f'[Start] {method_name}'
+        text = f'Start {method_name}'
         logger.info(text)
 
         result = func(*args, **kargs)
@@ -104,7 +104,8 @@ def timer(func):
         minutes, sec = divmod(elapsed_time, 60)
         hour, minutes = divmod(minutes, 60)
 
-        log = f'[End]   {method_name}: [elapsed_time] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
+        # log = f'[End]   {method_name}: [elapsed_time] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
+        log = f'End   {method_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
         logger.info(log)
 
         return result

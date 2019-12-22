@@ -324,7 +324,7 @@ class Magic(Feature):
         cols_to_drop = []
         # Why drop these???
         cols_to_drop += ['D6', 'D7', 'D8', 'D9', 'D12', 'D13', 'D14']
-        cols_to_drop += ['TransactionDT', 'DT_M', 'day', 'uid']
+        cols_to_drop += ['DT_M', 'day', 'uid']  # leave 'TransactionDT'
         # These features FAILED TIME CONSISTENCY TEST
         cols_to_drop += ['C3', 'M5', 'id_08', 'id_33']
         cols_to_drop += ['card4', 'id_07', 'id_14', 'id_21', 'id_30', 'id_32', 'id_34']
