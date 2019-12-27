@@ -1,9 +1,19 @@
 # https://www.kaggle.com/nroman/lgb-single-model-lb-0-9419
 import lightgbm as lgb
-from logging import getLogger
+from lightgbm.callback import _format_eval_result
+from logging import getLogger, DEBUG
 from utils.mylog import timer
 
 logger_train = getLogger('train')
+
+
+def log_evaluation(logger, period=1, show_stdv=True, level=DEBUG):
+    def _callback(env):
+        if period > 0 and env.evaluation_result_list and (env.iteration + 1) % period == 0:
+            result = '\t'.join([_format_eval_result(x, show_stdv) for x in env.evaluation_result_list])
+            logger.log(level, '[{}]\t{}'.format(env.iteration+1, result))
+    _callback.order = 10
+    return _callback
 
 
 class LGB_Model:
@@ -21,10 +31,14 @@ class LGB_Model:
                      verbose_eval=1000,
                      early_stopping_rounds=early_stopping_rounds)
         '''
+        callbacks = [log_evaluation(logger_train, period=10)]
         trn_data = lgb.Dataset(X_train, label=y_train)
         val_data = lgb.Dataset(X_val, label=y_val)
-        clf = lgb.train(self.c.params, trn_data, num_boost_round=10000, valid_sets=[
-                            trn_data, val_data], verbose_eval=1000, early_stopping_rounds=500)
+        clf = lgb.train(self.c.params, trn_data, num_boost_round=10000,
+                        valid_sets=[trn_data, val_data],
+                        verbose_eval=1000,
+                        early_stopping_rounds=500,
+                        callbacks=callbacks)
         self.clf = clf
 
     @timer
