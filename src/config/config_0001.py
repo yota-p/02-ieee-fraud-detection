@@ -30,12 +30,11 @@ class LogConfig:
 
 
 class SlackAuth:
-    ROOTDIR = pathlib.Path()
     HOST = 'slack.com'
     URL = '/api/chat.postMessage'
     CHANNEL = 'ieee-fraud-detection'
     NO_SEND_MESSAGE = False
-    TOKEN_PATH = ROOTDIR / '.slack_token'
+    TOKEN_PATH = pathlib.Path().home() / '.slack_token'
 
     @classmethod
     def set_params(cls, ROOTDIR):
@@ -43,9 +42,6 @@ class SlackAuth:
 
 
 class ExperimentConfig:
-    '''
-    Default model is Train only
-    '''
     RUN_TRAIN = True
     RUN_PRED = True
 
@@ -57,7 +53,7 @@ class TransformerConfig:
 class ModelConfig:
     TYPE = 'lgb'
 
-    if TYPE == 'lightgbm':
+    if TYPE == 'lgb':
         params = {'num_leaves': 491,
                   'min_child_weight': 0.03454472573214212,
                   'feature_fraction': 0.3797454081646243,
@@ -74,10 +70,13 @@ class ModelConfig:
                   'reg_lambda': 0.6485237330340494,
                   'random_state': 47
                   }
+    else:
+        raise Exception(f'Model config for {TYPE} is not defined')
 
 
 class TrainerConfig:
     model = None
+    early_stopping_rounds = 500
 
     @classmethod
     def set_params(cls, model):

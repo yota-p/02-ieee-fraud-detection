@@ -11,8 +11,7 @@ ROOTDIR = Path(__file__).resolve().parents[1]
 
 class Experiment:
     '''
-    Pass datas on memory as possible.
-    If not passed on memory, each class searches & loads persistenced datas.
+    Pass data on memory as long as possible.
     '''
 
     def __init__(self, config):
@@ -36,10 +35,6 @@ class Experiment:
             sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
             sub['TransactionID'] = test['TransactionID']
 
-            sub['isFraud'] = modelapi.run(test)
+            sub['isFraud'] = modelapi.run(test)  # returns y
             sub.to_csv(ROOTDIR / 'data/submission/submission.csv', index=False)  # TODO: set VERSION!
             del modelapi
-
-    @timer
-    def save_submission(df_pred):
-        pass

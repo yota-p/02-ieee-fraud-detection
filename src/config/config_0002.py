@@ -30,7 +30,6 @@ class LogConfig:
 
 
 class SlackAuth:
-    # ROOTDIR = pathlib.Path()
     HOST = 'slack.com'
     URL = '/api/chat.postMessage'
     CHANNEL = 'ieee-fraud-detection'
@@ -49,11 +48,14 @@ class ExperimentConfig:
 
 class TransformerConfig:
     features = ['magic']
+    # features = ['nroman']
 
 
 class ModelConfig:
-    TYPE = 'lgb'
+    TYPE = 'xgb'
+    params = None
 
+    '''
     if TYPE == 'lgb':
         params = {'num_leaves': 491,
                   'min_child_weight': 0.03454472573214212,
@@ -69,10 +71,11 @@ class ModelConfig:
                   'verbosity': -1,
                   'reg_alpha': 0.3899927210061127,
                   'reg_lambda': 0.6485237330340494,
-                  'random_state': 47
+                  'random_state': 47,
                   }
+    '''
 
-    elif TYPE == 'xgb':
+    if TYPE == 'xgb':
         params = {'n_estimators': 2000,
                   'max_depth': 12,
                   'learning_rate': 0.02,
@@ -84,14 +87,14 @@ class ModelConfig:
                   'tree_method': 'hist'
                   # 'tree_method': 'gpu_hist'
                   }
-    else:
-        raise Exception(f'Model config for {TYPE} is not defined')
+
+    if TYPE is None:
+        raise Exception(f'ModelConfig.params for {TYPE} is not defined')
 
 
 class TrainerConfig:
     model = None
-    # early_stopping_rounds = 100
-    early_stopping_rounds = 1
+    early_stopping_rounds = 100
 
     @classmethod
     def set_params(cls, model):

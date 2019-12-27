@@ -1,60 +1,58 @@
-2019-12-22 09:59:15 - INFO  >> :thinking_face: ============ 2019-12-22 09:59:15 ============ :thinking_face:
-2019-12-22 09:59:15 - INFO  >> Start main
-2019-12-22 09:59:15 - INFO  >> Start Experiment.run
-2019-12-22 09:59:16 - INFO  >> Start Transformer.run
-2019-12-22 09:59:16 - INFO  >> Start FeatureFactory.create
-2019-12-22 09:59:16 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
-2019-12-22 09:59:16 - INFO  >> Start Feature.create_feature
-2019-12-22 09:59:16 - INFO  >> Start Feature._is_latest
-2019-12-22 09:59:17 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
-2019-12-22 09:59:17 - DEBUG >> Skip calculating Raw
-2019-12-22 09:59:17 - INFO  >> Start Feature._load
-2019-12-22 09:59:24 - INFO  >> End   Feature._load: [elapsed] >> 00:00:07
-2019-12-22 09:59:24 - DEBUG >> raw_train.shape: (590540, 434)
-2019-12-22 09:59:24 - DEBUG >> raw_test.shape : (506691, 433)
-2019-12-22 09:59:24 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:08
-2019-12-22 09:59:27 - INFO  >> Start FeatureFactory.create
-2019-12-22 09:59:27 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
-2019-12-22 09:59:27 - INFO  >> Start Feature.create_feature
-2019-12-22 09:59:28 - INFO  >> Start Feature._is_latest
-2019-12-22 09:59:28 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
-2019-12-22 09:59:28 - DEBUG >> Skip calculating Magic
-2019-12-22 09:59:28 - INFO  >> Start Feature._load
-2019-12-22 09:59:30 - INFO  >> End   Feature._load: [elapsed] >> 00:00:01
-2019-12-22 09:59:30 - DEBUG >> magic_train.shape: (590540, 265)
-2019-12-22 09:59:30 - DEBUG >> magic_test.shape : (506691, 264)
-2019-12-22 09:59:30 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:02
-2019-12-22 09:59:30 - DEBUG >> Merging created feature magic to transformed datas
-2019-12-22 09:59:30 - DEBUG >> Merge in1: train (590540, 1), in2: train_feature to merge: (590540, 265)
-2019-12-22 09:59:36 - DEBUG >> Merge out: train (590540, 266)
-2019-12-22 09:59:36 - DEBUG >> Merge in2: test (506691, 1), in2: test_feature to merge: (506691, 264)
-2019-12-22 09:59:39 - DEBUG >> Merge out: train (506691, 265)
-2019-12-22 09:59:50 - DEBUG >> train.shape: (590540, 266)
-2019-12-22 09:59:50 - DEBUG >> test.shape:  (506691, 265)
-2019-12-22 09:59:50 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:34
-2019-12-22 09:59:51 - INFO  >> Start TrainerFactory.create
-2019-12-22 09:59:51 - INFO  >> Start XGB_Trainer.set_model
-2019-12-22 09:59:51 - INFO  >> End   XGB_Trainer.set_model: [elapsed] >> 00:00:00
-2019-12-22 09:59:51 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
-2019-12-22 09:59:52 - INFO  >> Start BaseTrainer.run
-2019-12-22 09:59:52 - INFO  >> Start BaseTrainer._is_latest
-2019-12-22 09:59:52 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
-2019-12-22 09:59:53 - INFO  >> Start XGB_Trainer.train
-2019-12-22 09:59:54 - INFO  >> Start XGB_Model.train
-2019-12-22 10:09:44 - INFO  >> End   XGB_Model.train: [elapsed] >> 00:09:49
-2019-12-22 10:09:44 - INFO  >> End   XGB_Trainer.train: [elapsed] >> 00:09:51
-2019-12-22 10:09:44 - INFO  >> Start BaseTrainer._save
-2019-12-22 10:09:44 - INFO  >> End   BaseTrainer._save: [elapsed] >> 00:00:00
-2019-12-22 10:09:45 - DEBUG >> Saved xgb_model
-2019-12-22 10:09:45 - INFO  >> End   BaseTrainer.run: [elapsed] >> 00:09:53
-2019-12-22 10:09:45 - INFO  >> Start ModelAPIFactory.create
-2019-12-22 10:09:45 - INFO  >> End   ModelAPIFactory.create: [elapsed] >> 00:00:00
-2019-12-22 10:09:45 - INFO  >> Start XGB_ModelAPI.set_model
-2019-12-22 10:09:46 - INFO  >> End   XGB_ModelAPI.set_model: [elapsed] >> 00:00:00
-2019-12-22 10:09:46 - INFO  >> Start BaseModelAPI.run
-2019-12-22 10:09:46 - INFO  >> Start XGB_ModelAPI.predict
-2019-12-22 10:10:31 - INFO  >> End   XGB_ModelAPI.predict: [elapsed] >> 00:00:44
-2019-12-22 10:10:31 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:00:45
-2019-12-22 10:10:34 - INFO  >> End   Experiment.run: [elapsed] >> 00:11:18
-2019-12-22 10:10:34 - INFO  >> End   main: [elapsed] >> 00:11:19
-2019-12-22 10:10:35 - INFO  >> :sunglasses: ============ 2019-12-22 10:10:35 ============ :sunglasses:
+2019-12-26 14:23:18 - INFO  >> :thinking_face: ============ 2019-12-26 14:23:18 ============ :thinking_face:
+2019-12-26 14:23:19 - INFO  >> Start main
+2019-12-26 14:23:19 - INFO  >> Start Experiment.run
+2019-12-26 14:23:19 - INFO  >> Start Transformer.run
+2019-12-26 14:23:20 - INFO  >> Start FeatureFactory.create
+2019-12-26 14:23:20 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
+2019-12-26 14:23:20 - INFO  >> Start Feature.create_feature
+2019-12-26 14:23:20 - INFO  >> Start Feature._is_latest
+2019-12-26 14:23:21 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
+2019-12-26 14:23:21 - DEBUG >> Skip calculating Raw
+2019-12-26 14:23:21 - INFO  >> Start Feature._load
+2019-12-26 14:23:29 - INFO  >> End   Feature._load: [elapsed] >> 00:00:07
+2019-12-26 14:23:29 - DEBUG >> raw_train.shape: (590540, 434)
+2019-12-26 14:23:29 - DEBUG >> raw_test.shape : (506691, 433)
+2019-12-26 14:23:29 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:08
+2019-12-26 14:23:33 - INFO  >> Start FeatureFactory.create
+2019-12-26 14:23:33 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
+2019-12-26 14:23:33 - INFO  >> Start Feature.create_feature
+2019-12-26 14:23:33 - INFO  >> Start Feature._is_latest
+2019-12-26 14:23:34 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
+2019-12-26 14:23:34 - DEBUG >> Skip calculating Magic
+2019-12-26 14:23:34 - INFO  >> Start Feature._load
+2019-12-26 14:23:37 - INFO  >> End   Feature._load: [elapsed] >> 00:00:03
+2019-12-26 14:23:38 - DEBUG >> magic_train.shape: (590540, 265)
+2019-12-26 14:23:38 - DEBUG >> magic_test.shape : (506691, 264)
+2019-12-26 14:23:38 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:04
+2019-12-26 14:23:38 - DEBUG >> Merging created feature magic to transformed datas
+2019-12-26 14:23:38 - DEBUG >> Merge in1: train (590540, 1), in2: train_feature to merge: (590540, 265)
+2019-12-26 14:23:43 - DEBUG >> Merge out: train (590540, 266)
+2019-12-26 14:23:43 - DEBUG >> Merge in2: test (506691, 1), in2: test_feature to merge: (506691, 264)
+2019-12-26 14:23:47 - DEBUG >> Merge out: train (506691, 265)
+2019-12-26 14:23:58 - DEBUG >> train.shape: (590540, 266)
+2019-12-26 14:23:58 - DEBUG >> test.shape:  (506691, 265)
+2019-12-26 14:23:58 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:38
+2019-12-26 14:23:58 - INFO  >> Start TrainerFactory.create
+2019-12-26 14:23:58 - INFO  >> Start XGB_Trainer.set_model
+2019-12-26 14:23:59 - INFO  >> End   XGB_Trainer.set_model: [elapsed] >> 00:00:00
+2019-12-26 14:23:59 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
+2019-12-26 14:23:59 - INFO  >> Start BaseTrainer.run
+2019-12-26 14:23:59 - INFO  >> Start BaseTrainer._is_latest
+2019-12-26 14:24:00 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
+2019-12-26 14:24:00 - DEBUG >> Skip training xgb
+2019-12-26 14:24:00 - INFO  >> Start BaseTrainer._load
+2019-12-26 14:24:00 - INFO  >> End   BaseTrainer._load: [elapsed] >> 00:00:00
+2019-12-26 14:24:01 - INFO  >> End   BaseTrainer.run: [elapsed] >> 00:00:01
+2019-12-26 14:24:01 - INFO  >> Start ModelAPIFactory.create
+2019-12-26 14:24:01 - INFO  >> End   ModelAPIFactory.create: [elapsed] >> 00:00:00
+2019-12-26 14:24:02 - INFO  >> Start BaseModelAPI.set_model
+2019-12-26 14:24:02 - INFO  >> End   BaseModelAPI.set_model: [elapsed] >> 00:00:00
+2019-12-26 14:24:02 - INFO  >> Start BaseModelAPI.run
+2019-12-26 14:24:02 - INFO  >> Start XGB_ModelAPI.predict
+2019-12-26 14:24:03 - INFO  >> Start XGB_Model.predict
+2019-12-26 14:24:34 - INFO  >> End   XGB_Model.predict: [elapsed] >> 00:00:31
+2019-12-26 14:24:34 - INFO  >> End   XGB_ModelAPI.predict: [elapsed] >> 00:00:31
+2019-12-26 14:24:35 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:00:32
+2019-12-26 14:24:38 - INFO  >> End   Experiment.run: [elapsed] >> 00:01:18
+2019-12-26 14:24:38 - INFO  >> End   main: [elapsed] >> 00:01:19
+2019-12-26 14:24:38 - INFO  >> :sunglasses: ============ 2019-12-26 14:24:38 ============ :sunglasses:

@@ -14,14 +14,10 @@ logger = getLogger('main')
 class BaseModelAPI(metaclass=ABCMeta):
     '''
     Abstract base class for modelapi.
-    Every concrete modelapi class must inherit this class and
-    implement predict() method.
-    Call precit() to predict by given model, returns prediction.
     '''
     name = ''
     model = None
     model_path = None
-    prediction = None
 
     def __init__(self):
         self.name = self.model.TYPE.lower()
@@ -34,17 +30,18 @@ class BaseModelAPI(metaclass=ABCMeta):
         if not force_calculate and self._is_latest():
             logger.debug(f'Skip predicting {self.name}')
             self._load()
-            return self.prediction
+            return prediction
         '''
-
-        self.predict(test)
-        # self._save()
-        # logger.debug(f'Saved {self.name}_prediction')
-        return self.prediction
+        prediction = self.predict(test)
+        return prediction
 
     @abstractmethod
     def predict(self, test):
         raise NotImplementedError
+
+    @timer
+    def set_model(self, model):
+        self.model = model
 
     '''
     @timer
