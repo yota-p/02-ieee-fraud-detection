@@ -66,16 +66,15 @@ class Transformer:
         train.to_pickle(str(train_path))
         test.to_pickle(str(test_path))
 
+        '''
         # split data into feature and target
         X_train = train.drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
         y_train = train[['isFraud']]
         X_test = test.drop(['TransactionDT', 'TransactionID'], axis=1)
         pks = test[["TransactionDT", 'TransactionID']]  # TODO: remove this variable
-        logger.debug(f'X_train.shape: {X_train.shape}')
-        logger.debug(f'y_train.shape: {y_train.shape}')
-        logger.debug(f'X_test.shape:  {X_test.shape}')
+        '''
+        logger.debug(f'train.shape: {train.shape}')
+        logger.debug(f'test.shape:  {test.shape}')
 
-        del train, test
-        gc.collect()
-
-        return X_train, y_train, X_test, pks
+        # return X_train, y_train, X_test, pks
+        return train, test

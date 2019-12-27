@@ -34,12 +34,12 @@ class Feature(metaclass=ABCMeta):
         self.test_path = ROOTDIR / f'data/processed/{self.name}_test.pkl'
 
     @timer
-    def create_feature(self):
+    def create_feature(self, force_calculate=False):
         '''
         Calculate features from given raw data.
         '''
-        # Skip if output is 'latest'
-        if self._is_latest():
+        # Skip calculate & load if output is 'latest'
+        if not force_calculate and self._is_latest():
             logger.debug(f'Skip calculating {self.__class__.__name__}')
             self._load()
             logger.debug(f'{self.name}_train.shape: {self.train.shape}')

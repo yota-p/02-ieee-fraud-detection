@@ -23,10 +23,12 @@ if __name__ == "__main__":
     c.set_parameter(config_dir=pathlib.Path('src/config'), use_option=True)
     gc.enable()
     seed_everything(c.runtime.RANDOM_SEED)
+
     create_logger('main', c.log)
     create_logger('train', c.log)
     logger = getLogger('main')
     logger.info(f':thinking_face: ============ {datetime.now():%Y-%m-%d %H:%M:%S} ============ :thinking_face:')
+
     try:
         main(c)
         logger.info(f':sunglasses: ============ {datetime.now():%Y-%m-%d %H:%M:%S} ============ :sunglasses:')

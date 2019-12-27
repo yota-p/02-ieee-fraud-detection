@@ -1,0 +1,92 @@
+2019-12-27 14:25:51 - INFO  >> :thinking_face: ============ 2019-12-27 14:25:51 ============ :thinking_face:
+2019-12-27 14:25:52 - INFO  >> Start main
+2019-12-27 14:25:52 - INFO  >> Start Experiment.run
+2019-12-27 14:25:52 - INFO  >> Start Transformer.run
+2019-12-27 14:25:52 - INFO  >> Start FeatureFactory.create
+2019-12-27 14:25:53 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
+2019-12-27 14:25:53 - INFO  >> Start Feature.create_feature
+2019-12-27 14:25:53 - INFO  >> Start Feature._is_latest
+2019-12-27 14:25:53 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
+2019-12-27 14:25:54 - DEBUG >> Skip calculating Raw
+2019-12-27 14:25:54 - INFO  >> Start Feature._load
+2019-12-27 14:26:00 - INFO  >> End   Feature._load: [elapsed] >> 00:00:06
+2019-12-27 14:26:01 - DEBUG >> raw_train.shape: (590540, 434)
+2019-12-27 14:26:01 - DEBUG >> raw_test.shape : (506691, 433)
+2019-12-27 14:26:01 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:07
+2019-12-27 14:26:03 - INFO  >> Start FeatureFactory.create
+2019-12-27 14:26:03 - INFO  >> End   FeatureFactory.create: [elapsed] >> 00:00:00
+2019-12-27 14:26:04 - INFO  >> Start Feature.create_feature
+2019-12-27 14:26:04 - INFO  >> Start Feature._is_latest
+2019-12-27 14:26:04 - INFO  >> End   Feature._is_latest: [elapsed] >> 00:00:00
+2019-12-27 14:26:04 - DEBUG >> Skip calculating Magic
+2019-12-27 14:26:04 - INFO  >> Start Feature._load
+2019-12-27 14:26:06 - INFO  >> End   Feature._load: [elapsed] >> 00:00:01
+2019-12-27 14:26:06 - DEBUG >> magic_train.shape: (590540, 265)
+2019-12-27 14:26:06 - DEBUG >> magic_test.shape : (506691, 264)
+2019-12-27 14:26:06 - INFO  >> End   Feature.create_feature: [elapsed] >> 00:00:02
+2019-12-27 14:26:07 - DEBUG >> Merging created feature magic to transformed datas
+2019-12-27 14:26:07 - DEBUG >> Merge in1: train (590540, 1), in2: train_feature to merge: (590540, 265)
+2019-12-27 14:26:12 - DEBUG >> Merge out: train (590540, 266)
+2019-12-27 14:26:12 - DEBUG >> Merge in2: test (506691, 1), in2: test_feature to merge: (506691, 264)
+2019-12-27 14:26:16 - DEBUG >> Merge out: train (506691, 265)
+2019-12-27 14:26:29 - DEBUG >> train.shape: (590540, 266)
+2019-12-27 14:26:29 - DEBUG >> test.shape:  (506691, 265)
+2019-12-27 14:26:29 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:36
+2019-12-27 14:26:30 - INFO  >> Start TrainerFactory.create
+2019-12-27 14:26:30 - INFO  >> Start LGB_Trainer.set_model
+2019-12-27 14:26:30 - INFO  >> End   LGB_Trainer.set_model: [elapsed] >> 00:00:00
+2019-12-27 14:26:31 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
+2019-12-27 14:26:31 - INFO  >> Start BaseTrainer.run
+2019-12-27 14:26:31 - INFO  >> Start BaseTrainer._is_latest
+2019-12-27 14:26:31 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
+2019-12-27 14:26:32 - INFO  >> Start LGB_Trainer.train
+2019-12-27 14:26:32 - INFO  >> Start LGB_Model.train
+2019-12-27 14:28:52 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:02:19
+2019-12-27 14:28:52 - INFO  >> Start LGB_Model.get_feature_importances_
+2019-12-27 14:28:53 - INFO  >> End   LGB_Model.get_feature_importances_: [elapsed] >> 00:00:00
+2019-12-27 14:28:53 - INFO  >> Start LGB_Model.get_best_score_
+2019-12-27 14:28:53 - INFO  >> End   LGB_Model.get_best_score_: [elapsed] >> 00:00:00
+2019-12-27 14:28:54 - INFO  >> Start LGB_Model.train
+2019-12-27 14:34:56 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:06:01
+2019-12-27 14:34:56 - INFO  >> Start LGB_Model.get_feature_importances_
+2019-12-27 14:34:56 - INFO  >> End   LGB_Model.get_feature_importances_: [elapsed] >> 00:00:00
+2019-12-27 14:34:56 - INFO  >> Start LGB_Model.get_best_score_
+2019-12-27 14:34:57 - INFO  >> End   LGB_Model.get_best_score_: [elapsed] >> 00:00:00
+2019-12-27 14:34:57 - INFO  >> Start LGB_Model.train
+2019-12-27 14:43:47 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:08:49
+2019-12-27 14:43:47 - INFO  >> Start LGB_Model.get_feature_importances_
+2019-12-27 14:43:48 - INFO  >> End   LGB_Model.get_feature_importances_: [elapsed] >> 00:00:00
+2019-12-27 14:43:48 - INFO  >> Start LGB_Model.get_best_score_
+2019-12-27 14:43:48 - INFO  >> End   LGB_Model.get_best_score_: [elapsed] >> 00:00:00
+2019-12-27 14:43:49 - INFO  >> Start LGB_Model.train
+2019-12-27 15:02:59 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:19:10
+2019-12-27 15:03:00 - INFO  >> Start LGB_Model.get_feature_importances_
+2019-12-27 15:03:00 - INFO  >> End   LGB_Model.get_feature_importances_: [elapsed] >> 00:00:00
+2019-12-27 15:03:00 - INFO  >> Start LGB_Model.get_best_score_
+2019-12-27 15:03:00 - INFO  >> End   LGB_Model.get_best_score_: [elapsed] >> 00:00:00
+2019-12-27 15:03:01 - INFO  >> Start LGB_Model.train
+2019-12-27 15:25:09 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:22:07
+2019-12-27 15:25:10 - INFO  >> Start LGB_Model.get_feature_importances_
+2019-12-27 15:25:10 - INFO  >> End   LGB_Model.get_feature_importances_: [elapsed] >> 00:00:00
+2019-12-27 15:25:10 - INFO  >> Start LGB_Model.get_best_score_
+2019-12-27 15:25:11 - INFO  >> End   LGB_Model.get_best_score_: [elapsed] >> 00:00:00
+2019-12-27 15:25:11 - INFO  >> Start LGB_Model.get_best_iteration_
+2019-12-27 15:25:11 - INFO  >> End   LGB_Model.get_best_iteration_: [elapsed] >> 00:00:00
+2019-12-27 15:44:30 - INFO  >> End   LGB_Trainer.train: [elapsed] >> 01:17:58
+2019-12-27 15:44:30 - INFO  >> Start BaseTrainer._save
+2019-12-27 15:44:34 - INFO  >> End   BaseTrainer._save: [elapsed] >> 00:00:03
+2019-12-27 15:44:34 - DEBUG >> Saved lgb_model
+2019-12-27 15:44:34 - INFO  >> End   BaseTrainer.run: [elapsed] >> 01:18:03
+2019-12-27 15:44:34 - INFO  >> Start ModelAPIFactory.create
+2019-12-27 15:44:35 - INFO  >> End   ModelAPIFactory.create: [elapsed] >> 00:00:00
+2019-12-27 15:44:35 - INFO  >> Start BaseModelAPI.set_model
+2019-12-27 15:44:35 - INFO  >> End   BaseModelAPI.set_model: [elapsed] >> 00:00:00
+2019-12-27 15:44:36 - INFO  >> Start BaseModelAPI.run
+2019-12-27 15:44:36 - INFO  >> Start LGB_ModelAPI.predict
+2019-12-27 15:44:37 - INFO  >> Start LGB_Model.predict
+2019-12-27 15:47:11 - INFO  >> End   LGB_Model.predict: [elapsed] >> 00:02:34
+2019-12-27 15:47:11 - INFO  >> End   LGB_ModelAPI.predict: [elapsed] >> 00:02:35
+2019-12-27 15:47:12 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:02:35
+2019-12-27 15:47:15 - INFO  >> End   Experiment.run: [elapsed] >> 01:21:23
+2019-12-27 15:47:15 - INFO  >> End   main: [elapsed] >> 01:21:23
+2019-12-27 15:47:16 - INFO  >> :sunglasses: ============ 2019-12-27 15:47:16 ============ :sunglasses:

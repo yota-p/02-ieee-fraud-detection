@@ -140,3 +140,5 @@ data/external/*
 data/interim/*
 data/processed/*
 data/raw/*
+data/submission/*
+models/*

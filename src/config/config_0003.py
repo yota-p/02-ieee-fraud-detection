@@ -47,11 +47,13 @@ class ExperimentConfig:
 
 
 class TransformerConfig:
-    features = ['nroman']
+    features = ['magic']
+    # features = ['nroman']
 
 
 class ModelConfig:
     TYPE = 'lgb'
+    params = None
 
     if TYPE == 'lgb':
         params = {'num_leaves': 491,
@@ -62,21 +64,37 @@ class ModelConfig:
                   'objective': 'binary',
                   'max_depth': -1,
                   'learning_rate': 0.006883242363721497,
-                  "boosting_type": "gbdt",
-                  "bagging_seed": 11,
-                  "metric": 'auc',
-                  "verbosity": -1,
+                  'boosting_type': 'gbdt',
+                  'bagging_seed': 11,
+                  'metric': 'auc',
+                  'verbosity': -1,
                   'reg_alpha': 0.3899927210061127,
                   'reg_lambda': 0.6485237330340494,
-                  'random_state': 47
+                  'random_state': 47,
                   }
-    else:
-        raise Exception(f'Model config for {TYPE} is not defined')
+
+    '''
+    if TYPE == 'xgb':
+        params = {'n_estimators': 2000,
+                  'max_depth': 12,
+                  'learning_rate': 0.02,
+                  'subsample': 0.8,
+                  'colsample_bytree': 0.4,
+                  'missing': -1,
+                  'eval_metric': 'auc',
+                  'nthread': 4,
+                  'tree_method': 'hist'
+                  # 'tree_method': 'gpu_hist'
+                  }
+    '''
+
+    if TYPE is None:
+        raise Exception(f'ModelConfig.params for {TYPE} is not defined')
 
 
 class TrainerConfig:
     model = None
-    early_stopping_rounds = 500
+    early_stopping_rounds = 100
 
     @classmethod
     def set_params(cls, model):
