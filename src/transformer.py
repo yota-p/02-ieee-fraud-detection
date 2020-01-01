@@ -1,5 +1,4 @@
 import pandas as pd
-import gc
 from pathlib import Path
 import sys
 from feature_factory import FeatureFactory
@@ -26,6 +25,22 @@ class Transformer:
         Input: None
         Return: X_train, y_train, X_test
         '''
+
+        # define output
+        train_path = ROOTDIR / 'data/processed' / f'train_{self.c.VERSION}.pkl'
+        test_path = ROOTDIR / 'data/processed' / f'test_{self.c.VERSION}.pkl'
+
+        # check if output exists
+        if isLatest([train_path, test_path]):
+            train = pd.read_pickle(str(train_path))
+            test = pd.read_pickle(str(test_path))
+            if self.c.DEBUG_SMALL_DATA:
+                train = train.sample(frac=0.01, random_state=42)
+                test = test.sample(frac=0.01, random_state=42)
+            logger.debug(f'Loaded train.shape: {train.shape}')
+            logger.debug(f'Loaded test.shape:  {test.shape}')
+            return train, test
+
         # Get key columns
         # TODO: refactor this into read_raw
         factory = FeatureFactory()
@@ -61,8 +76,6 @@ class Transformer:
         test = test.sort_values(by=['TransactionDT'])
 
         # save processed data
-        train_path = ROOTDIR / 'data/processed' / f'features_train.pkl'
-        test_path = ROOTDIR / 'data/processed' / f'features_test.pkl'
         train.to_pickle(str(train_path))
         test.to_pickle(str(test_path))
 
@@ -76,5 +89,16 @@ class Transformer:
         logger.debug(f'train.shape: {train.shape}')
         logger.debug(f'test.shape:  {test.shape}')
 
-        # return X_train, y_train, X_test, pks
         return train, test
+
+
+@timer
+def isLatest(pathlist):
+    for path in pathlist:
+        if not path.exists():
+            logger.debug(f'{path} does not exist')
+            return False
+        else:
+            logger.debug(f'{path} exists')
+    logger.debug('All files existed. Skip transforming.')
+    return True
