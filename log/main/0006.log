@@ -1,0 +1,30 @@
+2020-01-02 14:35:04 - INFO  >> :thinking_face: Starting experiment 0006_nroman_lgb
+2020-01-02 14:35:04 - INFO  >> Start Experiment.run
+2020-01-02 14:35:04 - INFO  >> Start Transformer.run
+2020-01-02 14:35:04 - INFO  >> Start isLatest
+2020-01-02 14:35:05 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0006.pkl exists
+2020-01-02 14:35:05 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0006.pkl exists
+2020-01-02 14:35:05 - DEBUG >> All files existed. Skip transforming.
+2020-01-02 14:35:05 - INFO  >> End   isLatest: [elapsed] >> 00:00:00
+2020-01-02 14:35:09 - DEBUG >> Loaded train.shape: (5905, 301)
+2020-01-02 14:35:09 - DEBUG >> Loaded test.shape:  (5067, 300)
+2020-01-02 14:35:09 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:04
+2020-01-02 14:35:09 - INFO  >> Start LGB_Trainer.set_model
+2020-01-02 14:35:09 - INFO  >> End   LGB_Trainer.set_model: [elapsed] >> 00:00:00
+2020-01-02 14:35:09 - INFO  >> Start BaseTrainer.run
+2020-01-02 14:35:10 - INFO  >> Start BaseTrainer._is_latest
+2020-01-02 14:35:10 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
+2020-01-02 14:35:10 - DEBUG >> Skip training lgb
+2020-01-02 14:35:10 - INFO  >> Start BaseTrainer._load
+2020-01-02 14:35:10 - INFO  >> End   BaseTrainer._load: [elapsed] >> 00:00:00
+2020-01-02 14:35:11 - INFO  >> End   BaseTrainer.run: [elapsed] >> 00:00:01
+2020-01-02 14:35:11 - INFO  >> Start BaseModelAPI.set_model
+2020-01-02 14:35:11 - INFO  >> End   BaseModelAPI.set_model: [elapsed] >> 00:00:00
+2020-01-02 14:35:11 - INFO  >> Start BaseModelAPI.run
+2020-01-02 14:35:12 - INFO  >> Start LGB_ModelAPI.predict
+2020-01-02 14:35:12 - INFO  >> Start LGB_Model.predict
+2020-01-02 14:35:13 - INFO  >> End   LGB_Model.predict: [elapsed] >> 00:00:01
+2020-01-02 14:35:13 - INFO  >> End   LGB_ModelAPI.predict: [elapsed] >> 00:00:01
+2020-01-02 14:35:14 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:00:02
+2020-01-02 14:35:14 - INFO  >> End   Experiment.run: [elapsed] >> 00:00:09
+2020-01-02 14:35:14 - INFO  >> :sunglasses: Finished experiment 0006_nroman_lgb

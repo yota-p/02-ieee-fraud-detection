@@ -92,21 +92,27 @@ def __read_token(token_path):
 
 def timer(func):
     @wraps(func)
-    def wrapper(*args, **kargs):
+    def wrapper(*args, **kwargs):
         logger = getLogger('main')
         method_name = func.__qualname__
         start = time.time()
         text = f'Start {method_name}'
         logger.info(text)
 
-        result = func(*args, **kargs)
+        '''
+        text = f'{method_name} args: \n {args[:]}'
+        logger.debug(text)
+
+        text = f'{method_name} kwargs: \n kwargs: \n {kwargs.items()}'
+        logger.debug(text)
+        '''
+
+        result = func(*args, **kwargs)
         elapsed_time = int(time.time() - start)
         minutes, sec = divmod(elapsed_time, 60)
         hour, minutes = divmod(minutes, 60)
-
-        # log = f'[End]   {method_name}: [elapsed_time] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
-        log = f'End   {method_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
-        logger.info(log)
+        text = f'End   {method_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
+        logger.info(text)
 
         return result
     return wrapper
