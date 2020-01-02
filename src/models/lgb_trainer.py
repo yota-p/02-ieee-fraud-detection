@@ -16,15 +16,12 @@ class LGB_Trainer(BaseTrainer):
 
     @timer
     def train(self, train):
-
         # split train into X, y
         train.reset_index(inplace=True)
         train.set_index('TransactionID', drop=False, inplace=True)
         cols = train.columns.drop(['isFraud', 'TransactionDT', 'TransactionID'])
         X = train[cols]
         y = train['isFraud']
-
-        folds = TimeSeriesSplit(n_splits=self.c.n_splits)
 
         aucs = list()
         feature_importances = pd.DataFrame()
@@ -34,6 +31,7 @@ class LGB_Trainer(BaseTrainer):
         logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'eval_auc'))
 
         # split data into train, validation
+        folds = TimeSeriesSplit(n_splits=self.c.n_splits)
         for fold, (idx_train, idx_val) in enumerate(folds.split(X, y)):
             logger.info(f'Training on fold {fold + 1}')
 
@@ -56,11 +54,12 @@ class LGB_Trainer(BaseTrainer):
         del best_params['early_stopping_rounds']
 
         best_iteration = self.model.clf.best_iteration_
-        # use best iteration found if converged
         if best_iteration is not None:
             best_params['n_estimators'] = best_iteration
         else:
-            logger.warn('Training did not converge. Try increasing n_estimators')
+            logger.warn('Training did not converge. Try larger n_estimators.')
+
+        # TODO: save feature importance
 
         self.model.clf = lgb.LGBMClassifier(**best_params)
         self.model.clf.fit(X, y)

@@ -1,42 +1,36 @@
-2020-01-01 08:15:43 - INFO  >> :thinking_face: ============ 2020-01-01 08:15:43 ============ :thinking_face:
-2020-01-01 08:15:43 - INFO  >> Start main
-2020-01-01 08:15:43 - INFO  >> Start Experiment.run
-2020-01-01 08:15:44 - INFO  >> Start Transformer.run
-2020-01-01 08:15:44 - INFO  >> Start isLatest
-2020-01-01 08:15:44 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0004.pkl exists
-2020-01-01 08:15:44 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0004.pkl exists
-2020-01-01 08:15:44 - DEBUG >> All files existed. Skip transforming.
-2020-01-01 08:15:44 - INFO  >> End   isLatest: [elapsed] >> 00:00:00
-2020-01-01 08:15:47 - DEBUG >> Loaded train.shape: (590540, 301)
-2020-01-01 08:15:47 - DEBUG >> Loaded test.shape:  (506691, 300)
-2020-01-01 08:15:47 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:03
-2020-01-01 08:15:48 - INFO  >> Start TrainerFactory.create
-2020-01-01 08:15:48 - INFO  >> Start LGB_Trainer.set_model
-2020-01-01 08:15:48 - INFO  >> End   LGB_Trainer.set_model: [elapsed] >> 00:00:00
-2020-01-01 08:15:49 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
-2020-01-01 08:15:49 - INFO  >> Start BaseTrainer.run
-2020-01-01 08:15:49 - INFO  >> Start BaseTrainer._is_latest
-2020-01-01 08:15:50 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
-2020-01-01 08:15:50 - INFO  >> Start LGB_Trainer.train
-2020-01-01 08:15:51 - DEBUG >> Training on fold 1
-2020-01-01 08:15:52 - INFO  >> Start LGB_Model.train
-2020-01-01 08:18:40 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:02:48
-2020-01-01 08:18:40 - DEBUG >> Fold 1 finished
-2020-01-01 08:18:40 - DEBUG >> Training on fold 2
-2020-01-01 08:18:41 - INFO  >> Start LGB_Model.train
-2020-01-01 08:22:48 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:04:07
-2020-01-01 08:22:48 - DEBUG >> Fold 2 finished
-2020-01-01 08:22:48 - DEBUG >> Training on fold 3
-2020-01-01 08:22:48 - INFO  >> Start LGB_Model.train
-2020-01-01 08:29:39 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:06:50
-2020-01-01 08:29:39 - DEBUG >> Fold 3 finished
-2020-01-01 08:29:39 - DEBUG >> Training on fold 4
-2020-01-01 08:29:40 - INFO  >> Start LGB_Model.train
-2020-01-01 08:40:18 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:10:38
-2020-01-01 08:40:18 - DEBUG >> Fold 4 finished
-2020-01-01 08:40:18 - DEBUG >> Training on fold 5
-2020-01-01 08:40:19 - INFO  >> Start LGB_Model.train
-2020-01-01 08:55:15 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:14:55
-2020-01-01 08:55:15 - DEBUG >> Fold 5 finished
-2020-01-01 08:55:15 - DEBUG >> Training has finished.
-2020-01-01 08:55:15 - DEBUG >> Mean AUC: 0.9243341624306524
+2020-01-01 16:43:56 - INFO  >> :thinking_face: ============ 2020-01-01 16:43:56 ============ :thinking_face:
+2020-01-01 16:43:57 - INFO  >> Start main
+2020-01-01 16:43:57 - INFO  >> Start Experiment.run
+2020-01-01 16:43:57 - INFO  >> Start Transformer.run
+2020-01-01 16:43:58 - INFO  >> Start isLatest
+2020-01-01 16:43:58 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0004.pkl exists
+2020-01-01 16:43:58 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0004.pkl exists
+2020-01-01 16:43:58 - DEBUG >> All files existed. Skip transforming.
+2020-01-01 16:43:58 - INFO  >> End   isLatest: [elapsed] >> 00:00:00
+2020-01-01 16:44:03 - DEBUG >> Loaded train.shape: (590540, 301)
+2020-01-01 16:44:03 - DEBUG >> Loaded test.shape:  (506691, 300)
+2020-01-01 16:44:03 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:05
+2020-01-01 16:44:04 - INFO  >> Start TrainerFactory.create
+2020-01-01 16:44:04 - INFO  >> Start LGB_Trainer.set_model
+2020-01-01 16:44:04 - INFO  >> End   LGB_Trainer.set_model: [elapsed] >> 00:00:00
+2020-01-01 16:44:04 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
+2020-01-01 16:44:05 - INFO  >> Start BaseTrainer.run
+2020-01-01 16:44:05 - INFO  >> Start BaseTrainer._is_latest
+2020-01-01 16:44:05 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
+2020-01-01 16:44:05 - DEBUG >> Skip training lgb
+2020-01-01 16:44:05 - INFO  >> Start BaseTrainer._load
+2020-01-01 16:44:09 - INFO  >> End   BaseTrainer._load: [elapsed] >> 00:00:03
+2020-01-01 16:44:10 - INFO  >> End   BaseTrainer.run: [elapsed] >> 00:00:04
+2020-01-01 16:44:10 - INFO  >> Start ModelAPIFactory.create
+2020-01-01 16:44:10 - INFO  >> End   ModelAPIFactory.create: [elapsed] >> 00:00:00
+2020-01-01 16:44:10 - INFO  >> Start BaseModelAPI.set_model
+2020-01-01 16:44:11 - INFO  >> End   BaseModelAPI.set_model: [elapsed] >> 00:00:00
+2020-01-01 16:44:11 - INFO  >> Start BaseModelAPI.run
+2020-01-01 16:44:11 - INFO  >> Start LGB_ModelAPI.predict
+2020-01-01 16:44:12 - INFO  >> Start LGB_Model.predict
+2020-01-01 17:01:01 - INFO  >> End   LGB_Model.predict: [elapsed] >> 00:16:48
+2020-01-01 17:01:02 - INFO  >> End   LGB_ModelAPI.predict: [elapsed] >> 00:16:50
+2020-01-01 17:01:02 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:16:50
+2020-01-01 17:01:05 - INFO  >> End   Experiment.run: [elapsed] >> 00:17:08
+2020-01-01 17:01:05 - INFO  >> End   main: [elapsed] >> 00:17:08
+2020-01-01 17:01:06 - INFO  >> :sunglasses: ============ 2020-01-01 17:01:06 ============ :sunglasses:

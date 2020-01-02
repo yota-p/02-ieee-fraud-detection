@@ -1,9 +1,11 @@
 from logging import getLogger
-logger = getLogger('main')
 
 from utils.mylog import timer
 from models.base_trainer import BaseTrainer
 from models.xgb_model import XGB_Model
+
+logger = getLogger('main')
+logger_train = getLogger('train')
 
 
 class XGB_Trainer(BaseTrainer):
@@ -26,6 +28,8 @@ class XGB_Trainer(BaseTrainer):
         X_val = train.loc[idx_val, cols]
         y_val = train.loc[idx_val, 'isFraud']
 
-        self.model.train(X_train, y_train, X_val, y_val,
-                         early_stopping_rounds=self.c.early_stopping_rounds)
+        # log header
+        logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'eval_auc'))
+
+        self.model.train(X_train, y_train, X_val, y_val, fold=1)
         return self.model

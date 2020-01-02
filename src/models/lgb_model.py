@@ -29,17 +29,6 @@ class LGB_Model:
                      eval_set=[(X_train, y_train), (X_val, y_val)],
                      verbose=1000,
                      callbacks=callbacks)
-        '''
-        trn_data = lgb.Dataset(X_train, label=y_train)
-        val_data = lgb.Dataset(X_val, label=y_val)
-        clf = lgb.train(self.c.params, trn_data,
-                        num_boost_round=10000,
-                        valid_sets=[trn_data, val_data],
-                        verbose_eval=1000,
-                        early_stopping_rounds=500,
-                        callbacks=callbacks)
-        self.clf = clf
-        '''
 
     @timer
     def predict(self, X_test):
