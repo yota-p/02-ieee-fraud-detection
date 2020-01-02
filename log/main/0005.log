@@ -1,0 +1,40 @@
+2020-01-02 02:42:11 - INFO  >> :thinking_face: ============ 2020-01-02 02:42:11 ============ :thinking_face:
+2020-01-02 02:42:11 - INFO  >> Start main
+2020-01-02 02:42:11 - INFO  >> Start Experiment.run
+2020-01-02 02:42:12 - INFO  >> Start Transformer.run
+2020-01-02 02:42:12 - INFO  >> Start isLatest
+2020-01-02 02:42:12 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0005.pkl exists
+2020-01-02 02:42:12 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0005.pkl exists
+2020-01-02 02:42:12 - DEBUG >> All files existed. Skip transforming.
+2020-01-02 02:42:12 - INFO  >> End   isLatest: [elapsed] >> 00:00:00
+2020-01-02 02:42:24 - DEBUG >> Loaded train.shape: (590540, 301)
+2020-01-02 02:42:24 - DEBUG >> Loaded test.shape:  (506691, 300)
+2020-01-02 02:42:24 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:12
+2020-01-02 02:42:25 - INFO  >> Start TrainerFactory.create
+2020-01-02 02:42:25 - INFO  >> Start XGB_Trainer.set_model
+2020-01-02 02:42:25 - INFO  >> End   XGB_Trainer.set_model: [elapsed] >> 00:00:00
+2020-01-02 02:42:25 - INFO  >> End   TrainerFactory.create: [elapsed] >> 00:00:00
+2020-01-02 02:42:26 - INFO  >> Start BaseTrainer.run
+2020-01-02 02:42:27 - INFO  >> Start BaseTrainer._is_latest
+2020-01-02 02:42:27 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
+2020-01-02 02:42:28 - INFO  >> Start XGB_Trainer.train
+2020-01-02 02:42:31 - INFO  >> Start XGB_Model.train
+2020-01-02 02:53:06 - INFO  >> End   XGB_Model.train: [elapsed] >> 00:10:34
+2020-01-02 02:53:06 - INFO  >> End   XGB_Trainer.train: [elapsed] >> 00:10:38
+2020-01-02 02:53:06 - INFO  >> Start BaseTrainer._save
+2020-01-02 02:53:07 - INFO  >> End   BaseTrainer._save: [elapsed] >> 00:00:00
+2020-01-02 02:53:07 - DEBUG >> Saved xgb_model
+2020-01-02 02:53:07 - INFO  >> End   BaseTrainer.run: [elapsed] >> 00:10:41
+2020-01-02 02:53:07 - INFO  >> Start ModelAPIFactory.create
+2020-01-02 02:53:07 - INFO  >> End   ModelAPIFactory.create: [elapsed] >> 00:00:00
+2020-01-02 02:53:08 - INFO  >> Start BaseModelAPI.set_model
+2020-01-02 02:53:08 - INFO  >> End   BaseModelAPI.set_model: [elapsed] >> 00:00:00
+2020-01-02 02:53:08 - INFO  >> Start BaseModelAPI.run
+2020-01-02 02:53:09 - INFO  >> Start XGB_ModelAPI.predict
+2020-01-02 02:53:10 - INFO  >> Start XGB_Model.predict
+2020-01-02 02:53:45 - INFO  >> End   XGB_Model.predict: [elapsed] >> 00:00:35
+2020-01-02 02:53:45 - INFO  >> End   XGB_ModelAPI.predict: [elapsed] >> 00:00:36
+2020-01-02 02:53:46 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:00:37
+2020-01-02 02:53:49 - INFO  >> End   Experiment.run: [elapsed] >> 00:11:37
+2020-01-02 02:53:49 - INFO  >> End   main: [elapsed] >> 00:11:37
+2020-01-02 02:53:49 - INFO  >> :sunglasses: ============ 2020-01-02 02:53:49 ============ :sunglasses:

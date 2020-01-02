@@ -2,19 +2,20 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import TimeSeriesSplit
 from logging import getLogger
-logger_train = getLogger('train')
 import lightgbm as lgb
 
 from utils.mylog import timer
 from models.base_trainer import BaseTrainer
 from models.lgb_model import LGB_Model
 
+logger = getLogger('main')
+logger_train = getLogger('train')
+
 
 class LGB_Trainer(BaseTrainer):
 
     @timer
     def train(self, train):
-
         # split train into X, y
         train.reset_index(inplace=True)
         train.set_index('TransactionID', drop=False, inplace=True)
@@ -22,15 +23,17 @@ class LGB_Trainer(BaseTrainer):
         X = train[cols]
         y = train['isFraud']
 
-        folds = TimeSeriesSplit(n_splits=5)
-
         aucs = list()
         feature_importances = pd.DataFrame()
         feature_importances['feature'] = X.columns
 
+        # log header
+        logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'eval_auc'))
+
         # split data into train, validation
+        folds = TimeSeriesSplit(n_splits=self.c.n_splits)
         for fold, (idx_train, idx_val) in enumerate(folds.split(X, y)):
-            logger_train.debug(f'Training on fold {fold + 1}')
+            logger.info(f'Training on fold {fold + 1}')
 
             X_train = X.iloc[idx_train]
             y_train = y.iloc[idx_train]
@@ -38,19 +41,27 @@ class LGB_Trainer(BaseTrainer):
             y_val = y.iloc[idx_val]
 
             # train
-            self.model.train(X_train, y_train, X_val, y_val,
-                             self.c.early_stopping_rounds)
+            self.model.train(X_train, y_train, X_val, y_val, fold+1)
 
-            feature_importances[f'fold_{fold + 1}'] = self.model.get_feature_importances_()
-            aucs.append(self.model.get_best_score_()['valid_1']['auc'])
-            logger_train.debug(f'Fold {fold + 1} finished')
+            feature_importances[f'fold_{fold + 1}'] = self.model.clf.feature_importances_
+            aucs.append(self.model.clf.best_score_['valid_1']['auc'])
+            logger.debug(f'Fold {fold + 1} finished')
 
-        logger_train.debug('Training has finished.')
-        logger_train.debug(f'Mean AUC: {np.mean(aucs)}')
+        logger.info('Training has finished.')
+        logger.debug(f'Mean AUC: {np.mean(aucs)}')
 
-        best_iter = self.model.get_best_iteration_()
+        best_params = self.c.model.params
+        del best_params['early_stopping_rounds']
 
-        self.model.clf = lgb.LGBMClassifier(**self.c.model.params, num_boost_round=best_iter)
+        best_iteration = self.model.clf.best_iteration_
+        if best_iteration is not None:
+            best_params['n_estimators'] = best_iteration
+        else:
+            logger.warn('Training did not converge. Try larger n_estimators.')
+
+        # TODO: save feature importance
+
+        self.model.clf = lgb.LGBMClassifier(**best_params)
         self.model.clf.fit(X, y)
 
         return self.model
