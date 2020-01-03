@@ -12,7 +12,7 @@ from models.lgb_trainer import LGB_Trainer
 from models.lgb_modelapi import LGB_ModelAPI
 
 warnings.filterwarnings('ignore')
-config_mod = 'config.cfg_0006_nroman_lgb'
+config_mod = 'config.config_0006_nroman_lgb'
 
 
 class Experiment:

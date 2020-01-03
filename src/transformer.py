@@ -56,16 +56,8 @@ class Transformer:
             if not len(test.index) == len(test_feature.index):
                 raise TypeError(f'Unable to merge: length of test and feature_test does not match.')
 
-            # Merge created feature to all
-            logger.debug(f'Merging created feature {namespace} to transformed datas')
-
-            logger.debug(f'Merge in1: train {train.shape}, in2: train_feature to merge: {train_feature.shape}')
             train = pd.merge(train, train_feature, how='left', on='TransactionID')
-            logger.debug(f'Merge out: train {train.shape}')
-
-            logger.debug(f'Merge in2: test {test.shape}, in2: test_feature to merge: {test_feature.shape}')
             test = pd.merge(test, test_feature, how='left', on='TransactionID')
-            logger.debug(f'Merge out: train {test.shape}')
             del feature, train_feature, test_feature
 
         train = train.sort_values(by=['TransactionDT'])

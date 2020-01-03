@@ -40,24 +40,6 @@ class BaseModelAPI(metaclass=ABCMeta):
         raise NotImplementedError
 
     @timer
-    def set_model(self, model):
-        self.model = model
-
-    '''
-    @timer
-    def _is_latest(self):
-        if self.model_path.exists():
-            return True
-        return False
-    '''
-
-    '''
-    @timer
-    def _save(self):
-        self.model.to_pickle(str(self.model_path))
-    '''
-
-    @timer
     def _load(self):
         with open(str(self.model_path), mode='rb') as f:
             self.model = pickle.load(f)
