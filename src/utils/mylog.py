@@ -30,6 +30,7 @@ class SlackHandler(HTTPHandler):
 
 
 def create_logger(type,
+                  VERSION,
                   LOGDIR,
                   main_log_path,
                   train_log_path,
@@ -47,7 +48,7 @@ def create_logger(type,
         logger_fizz = getLogger('fizz')
     '''
     if type == 'main':
-        formatter = Formatter('%(asctime)s - %(levelname)-5s >> %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        formatter = Formatter(f'[{VERSION}] %(asctime)s %(levelname)-5s > %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
         logger_ = getLogger(type)
         log_file = main_log_path
     elif type == 'train':

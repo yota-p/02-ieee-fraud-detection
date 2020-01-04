@@ -1,0 +1,46 @@
+[0008] 2020-01-04 21:05:36 INFO  > :thinking_face: Starting experiment 0008_nroman_xgb
+[0008] 2020-01-04 21:05:36 INFO  > Start main
+[0008] 2020-01-04 21:05:36 INFO  > Start Preprocess
+[0008] 2020-01-04 21:05:36 INFO  > Start Transformer.run
+[0008] 2020-01-04 21:05:37 INFO  > Start isLatest
+[0008] 2020-01-04 21:05:37 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0008.pkl exists
+[0008] 2020-01-04 21:05:37 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0008.pkl exists
+[0008] 2020-01-04 21:05:37 DEBUG > All files existed. Skip transforming.
+[0008] 2020-01-04 21:05:37 INFO  > End   isLatest: [elapsed] >> 00:00:00
+[0008] 2020-01-04 21:05:41 DEBUG > Loaded train.shape: (5905, 301)
+[0008] 2020-01-04 21:05:41 DEBUG > Loaded test.shape:  (5067, 300)
+[0008] 2020-01-04 21:05:41 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
+[0008] 2020-01-04 21:05:42 INFO  > End   Preprocess: [elapsed] >> 00:00:05
+[0008] 2020-01-04 21:05:42 INFO  > Start Train
+[0008] 2020-01-04 21:05:42 INFO  > Start BaseTrainer.run
+[0008] 2020-01-04 21:05:43 INFO  > Start BaseTrainer.is_latest
+[0008] 2020-01-04 21:05:43 INFO  > End   BaseTrainer.is_latest: [elapsed] >> 00:00:00
+[0008] 2020-01-04 21:05:43 INFO  > Start LGB_Trainer.train
+[0008] 2020-01-04 21:05:43 INFO  > Start Training on fold 1
+[0008] 2020-01-04 21:05:45 INFO  > End   Training on fold 1: [elapsed] >> 00:00:01
+[0008] 2020-01-04 21:05:45 INFO  > Start Training on fold 2
+[0008] 2020-01-04 21:05:48 INFO  > End   Training on fold 2: [elapsed] >> 00:00:02
+[0008] 2020-01-04 21:05:48 INFO  > Start Training on fold 3
+[0008] 2020-01-04 21:05:53 INFO  > End   Training on fold 3: [elapsed] >> 00:00:04
+[0008] 2020-01-04 21:05:53 INFO  > Start Training on fold 4
+[0008] 2020-01-04 21:05:58 INFO  > End   Training on fold 4: [elapsed] >> 00:00:04
+[0008] 2020-01-04 21:05:58 INFO  > Start Training on fold 5
+[0008] 2020-01-04 21:06:08 INFO  > End   Training on fold 5: [elapsed] >> 00:00:09
+[0008] 2020-01-04 21:06:08 INFO  > Training has finished.
+[0008] 2020-01-04 21:06:08 DEBUG > Mean AUC: 0.8495435114327592
+[0008] 2020-01-04 21:06:08 INFO  > Start Re-train with best parameter
+[0008] 2020-01-04 21:06:09 WARNING > Training did not converge. Try larger n_estimators.
+[0008] 2020-01-04 21:06:36 INFO  > End   Re-train with best parameter: [elapsed] >> 00:00:27
+[0008] 2020-01-04 21:06:36 INFO  > End   LGB_Trainer.train: [elapsed] >> 00:00:53
+[0008] 2020-01-04 21:06:36 INFO  > Start BaseTrainer.save
+[0008] 2020-01-04 21:06:37 INFO  > End   BaseTrainer.save: [elapsed] >> 00:00:00
+[0008] 2020-01-04 21:06:38 DEBUG > Saved lgb_model
+[0008] 2020-01-04 21:06:38 INFO  > End   BaseTrainer.run: [elapsed] >> 00:00:55
+[0008] 2020-01-04 21:06:38 INFO  > Start BaseTrainer.get_model
+[0008] 2020-01-04 21:06:38 INFO  > End   BaseTrainer.get_model: [elapsed] >> 00:00:00
+[0008] 2020-01-04 21:06:38 INFO  > End   Train: [elapsed] >> 00:00:56
+[0008] 2020-01-04 21:06:39 INFO  > Start Predict
+[0008] 2020-01-04 21:06:40 INFO  > Saved /home/yh/git/kaggle_ieee-fraud-detection/data/submission/0008_submission.csv
+[0008] 2020-01-04 21:06:40 INFO  > End   Predict: [elapsed] >> 00:00:01
+[0008] 2020-01-04 21:06:41 INFO  > End   main: [elapsed] >> 00:01:04
+[0008] 2020-01-04 21:06:41 INFO  > :sunglasses: Finished experiment 0008_nroman_xgb

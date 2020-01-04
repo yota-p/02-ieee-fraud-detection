@@ -28,9 +28,9 @@ class BaseTrainer(metaclass=ABCMeta):
     @timer
     def run(self, X_train, y_train):
         # Skip training & load if output is 'latest'
-        if self._is_latest():
+        if self.is_latest():
             logger.debug(f'Skip training {self.name}')
-            self._load()
+            self.load()
             return self.model
 
         self.train(X_train, y_train)
@@ -42,7 +42,7 @@ class BaseTrainer(metaclass=ABCMeta):
         raise NotImplementedError
 
     @timer
-    def _is_latest(self):
+    def is_latest(self):
         if self.model_path.exists():
             return True
         return False
