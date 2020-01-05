@@ -1,5 +1,6 @@
 import pathlib
 from logging import DEBUG, INFO
+import numpy as np
 
 ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
 VERSION = '0008'
@@ -8,7 +9,7 @@ runtime = {
     'ROOTDIR': ROOTDIR,
     'VERSION': VERSION,
     'RANDOM_SEED': 42,
-    'DESCRIPTION': 'nroman_xgb',
+    'DESCRIPTION': 'magic_xgb',
     'RUN_TRAIN': True,
     'RUN_PRED': True,
     'out_sub_path': ROOTDIR / 'data/submission' / f'{VERSION}_submission.csv'
@@ -18,7 +19,7 @@ runtime = {
 transformer = {
     'ROOTDIR': ROOTDIR,
     'VERSION': VERSION,
-    'features': ['nroman'],
+    'features': ['magic'],
     'DEBUG_SMALL_DATA': True,
     'out_train_path': ROOTDIR / 'data/processed' / f'train_{VERSION}.pkl',
     'out_test_path': ROOTDIR / 'data/processed' / f'test_{VERSION}.pkl'
@@ -26,32 +27,25 @@ transformer = {
 
 
 model = {
-    'TYPE': 'lgb',
-    'params': {'boosting_type': 'gbdt',
-               'num_leaves': 491,
-               'max_depth': -1,
-               'learning_rate': 0.006883242363721497,
-               'n_estimators': 10000,
-               'objective': 'binary',
-               'min_child_weight': 0.03454472573214212,
-               'reg_alpha': 0.3899927210061127,
-               'reg_lambda': 0.6485237330340494,
-               'random_state': 47,
-               'feature_fraction': 0.3797454081646243,
-               'bagging_fraction': 0.4181193142567742,
-               'min_data_in_leaf': 106,
-               'bagging_seed': 11,
-               'metric': 'auc',
-               'verbosity': -1,
-               'max_bin': 255,
-               'early_stopping_rounds': 500
-               }
+    'TYPE': 'xgb',
+    'params': {'n_estimators': 10000,
+               'max_depth': 5,
+               'learning_rate': 0.01,
+               'subsample': 0.9,
+               'colsample_bytree': 0.9,
+               'missing': np.nan,
+               'eval_metric': 'auc',
+               'nthread': 4,
+               'tree_method': 'hist',
+               # 'tree_method': 'gpu_hist'
+               'early_stopping_rounds': 10
+               },
     }
 
 
 trainer = {
     'model': model,
-    'n_splits': 5
+    'n_splits': 2
     }
 
 
