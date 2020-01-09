@@ -11,30 +11,26 @@ sys.path.insert(0, str(ROOTDIR / 'src'))
 
 
 class Transformer:
-    '''
-    Create indicated features on config.features.
-    '''
 
-    def __init__(self, config):
-        self.c = config
-
+    @classmethod
     @timer
-    def run(self):
+    def run(cls,
+            VERSION,
+            features,
+            DEBUG_SMALL_DATA,  # use 1% of data if True
+            ROOTDIR,
+            out_train_path,
+            out_test_path,
+            **kwargs
+            ):
         '''
         Create features and return datas for training
-        Input: None
-        Return: X_train, y_train, X_test
         '''
-
-        # define output
-        train_path = ROOTDIR / 'data/processed' / f'train_{self.c.VERSION}.pkl'
-        test_path = ROOTDIR / 'data/processed' / f'test_{self.c.VERSION}.pkl'
-
         # check if output exists
-        if isLatest([train_path, test_path]):
-            train = pd.read_pickle(str(train_path))
-            test = pd.read_pickle(str(test_path))
-            if self.c.DEBUG_SMALL_DATA:
+        if isLatest([out_train_path, out_test_path]):
+            train = pd.read_pickle(str(out_train_path))
+            test = pd.read_pickle(str(out_test_path))
+            if DEBUG_SMALL_DATA:
                 train = train.sample(frac=0.01, random_state=42)
                 test = test.sample(frac=0.01, random_state=42)
             logger.debug(f'Loaded train.shape: {train.shape}')
@@ -50,7 +46,7 @@ class Transformer:
         test = test_raw[['TransactionID']]
 
         # For column: create features
-        for namespace in self.c.features:
+        for namespace in features:
             feature = factory.create(namespace)
             train_feature, test_feature = feature.create_feature()
 
@@ -60,32 +56,17 @@ class Transformer:
             if not len(test.index) == len(test_feature.index):
                 raise TypeError(f'Unable to merge: length of test and feature_test does not match.')
 
-            # Merge created feature to all
-            logger.debug(f'Merging created feature {namespace} to transformed datas')
-
-            logger.debug(f'Merge in1: train {train.shape}, in2: train_feature to merge: {train_feature.shape}')
             train = pd.merge(train, train_feature, how='left', on='TransactionID')
-            logger.debug(f'Merge out: train {train.shape}')
-
-            logger.debug(f'Merge in2: test {test.shape}, in2: test_feature to merge: {test_feature.shape}')
             test = pd.merge(test, test_feature, how='left', on='TransactionID')
-            logger.debug(f'Merge out: train {test.shape}')
             del feature, train_feature, test_feature
 
         train = train.sort_values(by=['TransactionDT'])
         test = test.sort_values(by=['TransactionDT'])
 
         # save processed data
-        train.to_pickle(str(train_path))
-        test.to_pickle(str(test_path))
+        train.to_pickle(str(out_train_path))
+        test.to_pickle(str(out_test_path))
 
-        '''
-        # split data into feature and target
-        X_train = train.drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
-        y_train = train[['isFraud']]
-        X_test = test.drop(['TransactionDT', 'TransactionID'], axis=1)
-        pks = test[["TransactionDT", 'TransactionID']]  # TODO: remove this variable
-        '''
         logger.debug(f'train.shape: {train.shape}')
         logger.debug(f'test.shape:  {test.shape}')
 

@@ -1,0 +1,55 @@
+2020-01-02 17:15:50 - INFO  >> :thinking_face: Starting experiment 0006_nroman_lgb
+2020-01-02 17:15:51 - INFO  >> Start Experiment.run
+2020-01-02 17:15:51 - INFO  >> Start Transformer.run
+2020-01-02 17:15:51 - INFO  >> Start isLatest
+2020-01-02 17:15:52 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0006.pkl exists
+2020-01-02 17:15:52 - DEBUG >> /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0006.pkl exists
+2020-01-02 17:15:52 - DEBUG >> All files existed. Skip transforming.
+2020-01-02 17:15:52 - INFO  >> End   isLatest: [elapsed] >> 00:00:00
+2020-01-02 17:16:01 - DEBUG >> Loaded train.shape: (590540, 301)
+2020-01-02 17:16:01 - DEBUG >> Loaded test.shape:  (506691, 300)
+2020-01-02 17:16:01 - INFO  >> End   Transformer.run: [elapsed] >> 00:00:09
+2020-01-02 17:16:01 - INFO  >> Start LGB_Trainer.set_model
+2020-01-02 17:16:01 - INFO  >> End   LGB_Trainer.set_model: [elapsed] >> 00:00:00
+2020-01-02 17:16:02 - INFO  >> Start BaseTrainer.run
+2020-01-02 17:16:02 - INFO  >> Start BaseTrainer._is_latest
+2020-01-02 17:16:03 - INFO  >> End   BaseTrainer._is_latest: [elapsed] >> 00:00:00
+2020-01-02 17:16:03 - INFO  >> Start LGB_Trainer.train
+2020-01-02 17:16:06 - INFO  >> Training on fold 1
+2020-01-02 17:16:06 - INFO  >> Start LGB_Model.train
+2020-01-02 17:19:12 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:03:05
+2020-01-02 17:19:12 - DEBUG >> Fold 1 finished
+2020-01-02 17:19:12 - INFO  >> Training on fold 2
+2020-01-02 17:19:13 - INFO  >> Start LGB_Model.train
+2020-01-02 17:24:08 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:04:55
+2020-01-02 17:24:08 - DEBUG >> Fold 2 finished
+2020-01-02 17:24:08 - INFO  >> Training on fold 3
+2020-01-02 17:24:09 - INFO  >> Start LGB_Model.train
+2020-01-02 17:32:19 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:08:09
+2020-01-02 17:32:19 - DEBUG >> Fold 3 finished
+2020-01-02 17:32:19 - INFO  >> Training on fold 4
+2020-01-02 17:32:20 - INFO  >> Start LGB_Model.train
+2020-01-02 17:44:59 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:12:38
+2020-01-02 17:44:59 - DEBUG >> Fold 4 finished
+2020-01-02 17:44:59 - INFO  >> Training on fold 5
+2020-01-02 17:45:01 - INFO  >> Start LGB_Model.train
+2020-01-02 18:02:37 - INFO  >> End   LGB_Model.train: [elapsed] >> 00:17:36
+2020-01-02 18:02:37 - DEBUG >> Fold 5 finished
+2020-01-02 18:02:37 - INFO  >> Training has finished.
+2020-01-02 18:02:38 - DEBUG >> Mean AUC: 0.9243341624306524
+2020-01-02 18:02:38 - WARNING >> Training did not converge. Try larger n_estimators.
+2020-01-02 19:14:14 - INFO  >> End   LGB_Trainer.train: [elapsed] >> 01:58:11
+2020-01-02 19:14:14 - INFO  >> Start BaseTrainer._save
+2020-01-02 19:14:32 - INFO  >> End   BaseTrainer._save: [elapsed] >> 00:00:17
+2020-01-02 19:14:32 - DEBUG >> Saved lgb_model
+2020-01-02 19:14:32 - INFO  >> End   BaseTrainer.run: [elapsed] >> 01:58:30
+2020-01-02 19:14:32 - INFO  >> Start BaseModelAPI.set_model
+2020-01-02 19:14:33 - INFO  >> End   BaseModelAPI.set_model: [elapsed] >> 00:00:00
+2020-01-02 19:14:33 - INFO  >> Start BaseModelAPI.run
+2020-01-02 19:14:33 - INFO  >> Start LGB_ModelAPI.predict
+2020-01-02 19:14:35 - INFO  >> Start LGB_Model.predict
+2020-01-02 19:34:52 - INFO  >> End   LGB_Model.predict: [elapsed] >> 00:20:16
+2020-01-02 19:34:52 - INFO  >> End   LGB_ModelAPI.predict: [elapsed] >> 00:20:19
+2020-01-02 19:34:53 - INFO  >> End   BaseModelAPI.run: [elapsed] >> 00:20:19
+2020-01-02 19:34:56 - INFO  >> End   Experiment.run: [elapsed] >> 02:19:05
+2020-01-02 19:34:56 - INFO  >> :sunglasses: Finished experiment 0006_nroman_lgb
