@@ -56,6 +56,7 @@ trainer = {
 
 
 log = {
+    'VERSION': VERSION,
     'LOGDIR': ROOTDIR / 'log',
     'main_log_path': ROOTDIR / 'log/main' / f'{VERSION}.log',
     'train_log_path': ROOTDIR / 'log/train' / f'{VERSION}.tsv',
