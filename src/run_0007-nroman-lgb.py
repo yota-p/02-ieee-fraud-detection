@@ -10,7 +10,7 @@ import lightgbm as lgb
 from utils.configure import Config
 from utils.seeder import seed_everything
 from utils.mylog import create_logger, timer, blocktimer
-from transformer import Transformer
+from utils.transformer import Transformer
 from models.base_trainer import BaseTrainer
 
 

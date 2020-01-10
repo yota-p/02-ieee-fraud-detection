@@ -7,7 +7,7 @@ from logging import getLogger
 from utils.configure import Config
 from utils.seeder import seed_everything
 from utils.mylog import timer, create_logger
-from transformer import Transformer
+from utils.transformer import Transformer
 from models.lgb_trainer import LGB_Trainer
 from models.lgb_modelapi import LGB_ModelAPI
 

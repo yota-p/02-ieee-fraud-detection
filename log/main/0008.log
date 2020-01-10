@@ -1,26 +1,45 @@
-[0008] 2020-01-05 17:53:48 INFO  > :thinking_face: Starting experiment 0008_magic_xgb
-[0008] 2020-01-05 17:53:49 INFO  > Start main
-[0008] 2020-01-05 17:53:49 INFO  > Start Preprocess
-[0008] 2020-01-05 17:53:49 INFO  > Start Transformer.run
-[0008] 2020-01-05 17:53:49 INFO  > Start isLatest
-[0008] 2020-01-05 17:53:49 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0008.pkl exists
-[0008] 2020-01-05 17:53:49 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0008.pkl exists
-[0008] 2020-01-05 17:53:49 DEBUG > All files existed. Skip transforming.
-[0008] 2020-01-05 17:53:49 INFO  > End   isLatest: [elapsed] >> 00:00:00
-[0008] 2020-01-05 17:53:53 DEBUG > Loaded train.shape: (5905, 301)
-[0008] 2020-01-05 17:53:53 DEBUG > Loaded test.shape:  (5067, 300)
-[0008] 2020-01-05 17:53:53 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
-[0008] 2020-01-05 17:53:53 INFO  > Start split_X_y
-[0008] 2020-01-05 17:53:54 DEBUG > input train.shape: (5905, 301)
-[0008] 2020-01-05 17:53:54 DEBUG > input test.shape : (5067, 300)
-[0008] 2020-01-05 17:53:54 DEBUG > output X_train.shape: (5905, 299)
-[0008] 2020-01-05 17:53:54 DEBUG > output y_train.shape: (5905,)
-[0008] 2020-01-05 17:53:54 DEBUG > output X_test.shape : (5067, 299)
-[0008] 2020-01-05 17:53:54 INFO  > End   split_X_y: [elapsed] >> 00:00:00
-[0008] 2020-01-05 17:53:54 INFO  > End   Preprocess: [elapsed] >> 00:00:05
-[0008] 2020-01-05 17:53:54 INFO  > Start Train
-[0008] 2020-01-05 17:53:54 INFO  > Start BaseTrainer.run
-[0008] 2020-01-05 17:53:55 INFO  > Start BaseTrainer.is_latest
-[0008] 2020-01-05 17:53:55 INFO  > End   BaseTrainer.is_latest: [elapsed] >> 00:00:00
-[0008] 2020-01-05 17:53:55 INFO  > Start XGB_Trainer.train
-[0008] 2020-01-05 17:53:55 INFO  > Start Training on fold 1
+[0008] 2020-01-11 00:33:03 INFO  > :thinking_face: Starting experiment 0008_magic_xgb
+[0008] 2020-01-11 00:33:04 INFO  > Start main
+[0008] 2020-01-11 00:33:04 INFO  > Start Preprocess
+[0008] 2020-01-11 00:33:04 INFO  > Start Transformer.run
+[0008] 2020-01-11 00:33:05 INFO  > Start isLatest
+[0008] 2020-01-11 00:33:05 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0008.pkl exists
+[0008] 2020-01-11 00:33:05 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0008.pkl exists
+[0008] 2020-01-11 00:33:05 DEBUG > All files existed. Skip transforming.
+[0008] 2020-01-11 00:33:05 INFO  > End   isLatest: [elapsed] >> 00:00:00
+[0008] 2020-01-11 00:33:09 DEBUG > Loaded train.shape: (5905, 266)
+[0008] 2020-01-11 00:33:09 DEBUG > Loaded test.shape:  (5067, 265)
+[0008] 2020-01-11 00:33:09 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
+[0008] 2020-01-11 00:33:09 INFO  > Start split_X_y
+[0008] 2020-01-11 00:33:09 DEBUG > input train.shape: (5905, 266)
+[0008] 2020-01-11 00:33:09 DEBUG > input test.shape : (5067, 265)
+[0008] 2020-01-11 00:33:09 DEBUG > output X_train.shape: (5905, 264)
+[0008] 2020-01-11 00:33:09 DEBUG > output y_train.shape: (5905,)
+[0008] 2020-01-11 00:33:09 DEBUG > output X_test.shape : (5067, 264)
+[0008] 2020-01-11 00:33:09 INFO  > End   split_X_y: [elapsed] >> 00:00:00
+[0008] 2020-01-11 00:33:10 INFO  > End   Preprocess: [elapsed] >> 00:00:05
+[0008] 2020-01-11 00:33:10 INFO  > Start Train
+[0008] 2020-01-11 00:33:10 INFO  > Start BaseTrainer.run
+[0008] 2020-01-11 00:33:11 INFO  > Start BaseTrainer.is_latest
+[0008] 2020-01-11 00:33:11 INFO  > End   BaseTrainer.is_latest: [elapsed] >> 00:00:00
+[0008] 2020-01-11 00:33:11 INFO  > Start XGB_Trainer.train
+[0008] 2020-01-11 00:33:12 INFO  > Start Training on fold 1
+[0008] 2020-01-11 00:34:19 CRITICAL > :smiling_imp: Exception occured 
+ Traceback (most recent call last):
+  File "run_0008-magic-xgb.py", line 172, in <module>
+    c_log=c.log
+  File "/home/yh/git/kaggle_ieee-fraud-detection/src/utils/mylog.py", line 112, in _wrapper
+    result = f(*args, **kwargs)
+  File "run_0008-magic-xgb.py", line 32, in main
+    trainer.run(X_train, y_train)
+  File "/home/yh/git/kaggle_ieee-fraud-detection/src/utils/mylog.py", line 112, in _wrapper
+    result = f(*args, **kwargs)
+  File "/home/yh/git/kaggle_ieee-fraud-detection/src/models/base_trainer.py", line 36, in run
+    self.train(X_train, y_train)
+  File "/home/yh/git/kaggle_ieee-fraud-detection/src/utils/mylog.py", line 112, in _wrapper
+    result = f(*args, **kwargs)
+  File "run_0008-magic-xgb.py", line 108, in train
+    aucs.append(clf.best_score_['valid_1']['auc'])
+AttributeError: 'XGBClassifier' object has no attribute 'best_score_'
+
+[0008] 2020-01-11 00:34:19 CRITICAL > :skull: Stopped experiment 0008_magic_xgb

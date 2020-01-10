@@ -1,12 +1,12 @@
 import pandas as pd
 from pathlib import Path
 import sys
-from feature_factory import FeatureFactory
+from features.feature_factory import FeatureFactory
 from utils.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
 
-ROOTDIR = Path(__file__).resolve().parents[1]
+ROOTDIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOTDIR / 'src'))
 
 

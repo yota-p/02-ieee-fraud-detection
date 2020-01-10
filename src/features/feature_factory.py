@@ -1,8 +1,14 @@
+from pathlib import Path
+import sys
+
 from features.raw import Raw
 from features.altgor import Altgor
 from features.nroman import Nroman
 from features.magic import Magic
 from utils.mylog import timer
+
+ROOTDIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOTDIR / 'src'))
 
 
 class FeatureFactory:
