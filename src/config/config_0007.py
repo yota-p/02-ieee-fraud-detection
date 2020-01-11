@@ -58,8 +58,8 @@ trainer = {
 log = {
     'VERSION': VERSION,
     'LOGDIR': ROOTDIR / 'log',
-    'main_log_path': ROOTDIR / 'log/main' / f'{VERSION}.log',
-    'train_log_path': ROOTDIR / 'log/train' / f'{VERSION}.tsv',
+    'main_log_path': ROOTDIR / 'log' / f'main_{VERSION}.log',
+    'train_log_path': ROOTDIR / 'log' / f'train_{VERSION}.tsv',
     'FILE_HANDLER_LEVEL': DEBUG,
     'STREAM_HANDLER_LEVEL': DEBUG,
     'SLACK_HANDLER_LEVEL': INFO,
