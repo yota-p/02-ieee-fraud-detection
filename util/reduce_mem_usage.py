@@ -1,6 +1,6 @@
 import numpy as np
-from utils.mylog import timer
 from logging import getLogger
+from util.mylog import timer
 logger = getLogger('main')
 
 

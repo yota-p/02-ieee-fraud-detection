@@ -6,12 +6,12 @@ from logging import getLogger
 import sys
 from pathlib import Path
 
-ROOTDIR = Path(__file__).resolve().parents[2]
+ROOTDIR = Path(__file__).resolve().parents[1]
 FEATURE_DIR = ROOTDIR / 'data/feature'
 logger = getLogger('main')
 
-sys.path.insert(0, str(ROOTDIR / 'src'))
-from utils.mylog import timer
+sys.path.insert(0, str(ROOTDIR))
+from util.mylog import timer
 
 
 class Feature(metaclass=ABCMeta):

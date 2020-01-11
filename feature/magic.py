@@ -9,13 +9,13 @@ import gc
 import datetime
 
 logger = getLogger('main')
-ROOTDIR = Path(__file__).resolve().parents[2]
+ROOTDIR = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOTDIR / 'data/raw'
 DEBUG_MODE = False
 
-sys.path.insert(0, str(ROOTDIR / 'src'))
-from features.feature_base import Feature
-from utils.mylog import timer
+sys.path.insert(0, str(ROOTDIR))
+from feature.feature_base import Feature
+from util.mylog import timer
 
 
 # FREQUENCY ENCODING FOR TWO DFs
@@ -325,7 +325,7 @@ class Magic(Feature):
         train = train.drop(cols_to_drop, axis=1)
         test = test.drop(cols_to_drop, axis=1)
 
-        logger.debug(f'Now using the following {len(train.columns)} features')
+        logger.debug(f'Now using the following {len(train.columns)} feature')
         logger.info(str(np.array(train.columns)))
 
         self.train = train

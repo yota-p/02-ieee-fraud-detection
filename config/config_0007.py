@@ -1,8 +1,8 @@
 import pathlib
 from logging import DEBUG, INFO
 
-ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
-VERSION = '0006'
+ROOTDIR = pathlib.Path(__file__).parents[1].resolve()
+VERSION = '0007'
 
 runtime = {
     'ROOTDIR': ROOTDIR,
@@ -10,7 +10,8 @@ runtime = {
     'RANDOM_SEED': 42,
     'DESCRIPTION': 'nroman_lgb',
     'RUN_TRAIN': True,
-    'RUN_PRED': True
+    'RUN_PRED': True,
+    'out_sub_path': ROOTDIR / 'data/submission' / f'{VERSION}_submission.csv'
     }
 
 
@@ -54,26 +55,19 @@ trainer = {
     }
 
 
-modelapi = {}
-
-
-slackauth = {
-    'ROOTDIR': ROOTDIR,
-    'HOST': 'slack.com',
-    'URL': '/api/chat.postMessage',
-    'CHANNEL': 'ieee-fraud-detection',
-    'NO_SEND_MESSAGE': False,
-    'TOKEN_PATH': pathlib.Path().home().resolve() / '.slack_token'
-    }
-
-
 log = {
-    'ROOTDIR': ROOTDIR,
     'VERSION': VERSION,
-    'slackauth': slackauth,
+    'LOGDIR': ROOTDIR / 'log',
+    'main_log_path': ROOTDIR / 'log' / f'main_{VERSION}.log',
+    'train_log_path': ROOTDIR / 'log' / f'train_{VERSION}.tsv',
     'FILE_HANDLER_LEVEL': DEBUG,
     'STREAM_HANDLER_LEVEL': DEBUG,
     'SLACK_HANDLER_LEVEL': INFO,
-    'LOGFILE': VERSION,
-    'LOGDIR': ROOTDIR / 'log'
+    'slackauth': {
+        'HOST': 'slack.com',
+        'URL': '/api/chat.postMessage',
+        'CHANNEL': 'ieee-fraud-detection',
+        'NO_SEND_MESSAGE': False,
+        'TOKEN_PATH': pathlib.Path().home().resolve() / '.slack_token'
+        }
     }

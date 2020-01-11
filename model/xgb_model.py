@@ -1,6 +1,6 @@
 import xgboost as xgb
 from logging import getLogger, DEBUG
-from utils.mylog import timer
+from util.mylog import timer
 
 logger_train = getLogger('train')
 

@@ -1,7 +1,7 @@
 import pathlib
 from logging import DEBUG, INFO
 
-ROOTDIR = pathlib.Path(__file__).parents[2].resolve()
+ROOTDIR = pathlib.Path(__file__).parents[1].resolve()
 
 
 class RuntimeConfig:

@@ -1,5 +1,5 @@
-from utils.mylog import timer
-from models.base_modelapi import BaseModelAPI
+from util.mylog import timer
+from model.base_modelapi import BaseModelAPI
 
 
 class XGB_ModelAPI(BaseModelAPI):

@@ -1,8 +1,8 @@
 from logging import getLogger
 
-from utils.mylog import timer
-from models.base_trainer import BaseTrainer
-from models.xgb_model import XGB_Model
+from util.mylog import timer
+from model.base_trainer import BaseTrainer
+from model.xgb_model import XGB_Model
 
 logger = getLogger('main')
 logger_train = getLogger('train')

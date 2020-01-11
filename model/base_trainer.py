@@ -1,15 +1,15 @@
 from abc import ABCMeta, abstractmethod
 import pickle
-
 import sys
 from pathlib import Path
-ROOTDIR = Path(__file__).resolve().parents[2]
-MODELDIR = ROOTDIR / 'data/model/'
-sys.path.insert(0, str(ROOTDIR / 'src'))
-
-from utils.mylog import timer
 from logging import getLogger
+
 logger = getLogger('main')
+ROOTDIR = Path(__file__).resolve().parents[1]
+MODELDIR = ROOTDIR / 'data/model/'
+
+sys.path.insert(0, str(ROOTDIR))
+from util.mylog import timer
 
 
 class BaseTrainer(metaclass=ABCMeta):

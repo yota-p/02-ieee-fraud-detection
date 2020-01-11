@@ -1,13 +1,9 @@
 import pandas as pd
 from pathlib import Path
-import sys
-from features.feature_factory import FeatureFactory
-from utils.mylog import timer
+from feature.feature_factory import FeatureFactory
+from util.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
-
-ROOTDIR = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOTDIR / 'src'))
 
 
 class Transformer:

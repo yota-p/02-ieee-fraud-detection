@@ -5,11 +5,11 @@ from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import pandas as pd
 
+ROOTDIR = Path(__file__).resolve().parents[1]
 
-ROOTDIR = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOTDIR / 'src'))
-from features.feature_base import Feature
-from utils.mylog import timer
+sys.path.insert(0, str(ROOTDIR))
+from feature.feature_base import Feature
+from util.mylog import timer
 
 
 class Altgor(Feature):
