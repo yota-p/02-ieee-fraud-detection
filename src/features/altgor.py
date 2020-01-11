@@ -16,8 +16,8 @@ class Altgor(Feature):
 
     @timer
     def _calculate(self):
-        train_path = ROOTDIR / 'data/processed/raw_train.pkl'
-        test_path = ROOTDIR / 'data/processed/raw_test.pkl'
+        train_path = ROOTDIR / 'data/feature/raw_train.pkl'
+        test_path = ROOTDIR / 'data/feature/raw_test.pkl'
         train = pd.read_pickle(train_path)
         test = pd.read_pickle(test_path)
 

@@ -10,15 +10,12 @@ import datetime
 
 logger = getLogger('main')
 ROOTDIR = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOTDIR / 'src'))
-
-from features.feature_base import Feature
-from utils.mylog import timer
-from utils.reduce_mem_usage import reduce_mem_usage
-
-FEATURE_DIR = ROOTDIR / 'data/processed'
 RAW_DIR = ROOTDIR / 'data/raw'
 DEBUG_MODE = False
+
+sys.path.insert(0, str(ROOTDIR / 'src'))
+from features.feature_base import Feature
+from utils.mylog import timer
 
 
 # FREQUENCY ENCODING FOR TWO DFs
@@ -164,12 +161,6 @@ class Magic(Feature):
             dtypes[c] = 'float32'
         for c in str_type:
             dtypes[c] = 'category'
-
-        # train = pd.read_pickle(FEATURE_DIR / 'raw_train.pkl')
-        # test = pd.read_pickle(FEATURE_DIR / 'raw_test.pkl')
-        # train = train.astype(dtypes)[cols]
-        # test = test.astype(dtypes)[cols]
-        # logger.debug(f'input: raw_train.shape: {train.shape}, raw_test.shape: {test.shape}')
 
         train = pd.read_csv(RAW_DIR / 'train_transaction.csv',
                             index_col='TransactionID', dtype=dtypes, usecols=cols+['isFraud'])

@@ -6,15 +6,13 @@ import pandas as pd
 from logging import getLogger
 from sklearn.preprocessing import LabelEncoder
 
+logger = getLogger('main')
 ROOTDIR = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOTDIR / 'src'))
+FEATURE_DIR = ROOTDIR / 'data/feature'
 
+sys.path.insert(0, str(ROOTDIR / 'src'))
 from features.feature_base import Feature
 from utils.mylog import timer
-
-FEATURE_DIR = ROOTDIR / 'data/processed'
-
-logger = getLogger('main')
 
 
 class Nroman(Feature):

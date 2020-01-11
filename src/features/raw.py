@@ -6,17 +6,15 @@ import sys
 from logging import getLogger, Formatter, StreamHandler, DEBUG
 
 logger = getLogger('main')
-
 ROOTDIR = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOTDIR / 'src'))
-
-from features.feature_base import Feature
-from utils.mylog import timer
-from utils.reduce_mem_usage import reduce_mem_usage
-
 RAW_DIR = ROOTDIR / 'data/raw'
 DEBUG_MODE = False  # for small size data
 PROJECTID = 'ieee-fraud-detection'
+
+sys.path.insert(0, str(ROOTDIR / 'src'))
+from features.feature_base import Feature
+from utils.mylog import timer
+from utils.reduce_mem_usage import reduce_mem_usage
 
 
 class Raw(Feature):

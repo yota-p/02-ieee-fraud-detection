@@ -2,15 +2,16 @@
 import re
 from abc import ABCMeta, abstractmethod
 import pandas as pd
-
+from logging import getLogger
 import sys
 from pathlib import Path
-ROOTDIR = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOTDIR / 'src'))
 
-from utils.mylog import timer
-from logging import getLogger
+ROOTDIR = Path(__file__).resolve().parents[2]
+FEATURE_DIR = ROOTDIR / 'data/feature'
 logger = getLogger('main')
+
+sys.path.insert(0, str(ROOTDIR / 'src'))
+from utils.mylog import timer
 
 
 class Feature(metaclass=ABCMeta):
@@ -30,8 +31,8 @@ class Feature(metaclass=ABCMeta):
             self.name = re.sub("([A-Z])", lambda x: "_" + x.group(1).lower(), self.__class__.__name__).lstrip('_')
         self.train = pd.DataFrame()
         self.test = pd.DataFrame()
-        self.train_path = ROOTDIR / f'data/processed/{self.name}_train.pkl'
-        self.test_path = ROOTDIR / f'data/processed/{self.name}_test.pkl'
+        self.train_path = FEATURE_DIR / f'{self.name}_train.pkl'
+        self.test_path = FEATURE_DIR / f'{self.name}_test.pkl'
 
     @timer
     def create_feature(self, force_calculate=False):

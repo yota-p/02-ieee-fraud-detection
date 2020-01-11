@@ -21,8 +21,8 @@ transformer = {
     'VERSION': VERSION,
     'features': ['magic'],
     'DEBUG_SMALL_DATA': True,
-    'out_train_path': ROOTDIR / 'data/processed' / f'train_{VERSION}.pkl',
-    'out_test_path': ROOTDIR / 'data/processed' / f'test_{VERSION}.pkl'
+    'out_train_path': ROOTDIR / 'data/feature' / f'train_{VERSION}.pkl',
+    'out_test_path': ROOTDIR / 'data/feature' / f'test_{VERSION}.pkl'
     }
 
 

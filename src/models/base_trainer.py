@@ -4,6 +4,7 @@ import pickle
 import sys
 from pathlib import Path
 ROOTDIR = Path(__file__).resolve().parents[2]
+MODELDIR = ROOTDIR / 'data/model/'
 sys.path.insert(0, str(ROOTDIR / 'src'))
 
 from utils.mylog import timer
@@ -23,7 +24,7 @@ class BaseTrainer(metaclass=ABCMeta):
     def __init__(self, config):
         self.c = config
         self.name = self.c.model.TYPE.lower()
-        self.model_path = ROOTDIR / f'models/{self.name}_model.pkl'
+        self.model_path = MODELDIR / f'{self.name}_model.pkl'
 
     @timer
     def run(self, X_train, y_train):
