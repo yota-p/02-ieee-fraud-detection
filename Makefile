@@ -10,37 +10,19 @@ PYTHON_INTERPRETER = python3
 
 .PHONY: all clean test jupyter requirements help
 
-## Install Python Dependencies #this may destroy environment!
-requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-
-## Delete data/interim/, pycache
+## Delete caches
 clean:
 	find . -type f -name "*~" -delete
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-	rm -f data/interim/*
 
-## Delete data/external/, processed/
-cleanall: clean
-	rm -f data/external/*
-	rm -f data/processed/*
-
-## Delete data/*, models/*
-eliminate: cleanall
-	rm -f models/*
-	rm -f data/raw/*
-
-## Create directory
-dir:
-	mkdir -p data/raw
-	mkdir -p data/interim
-	mkdir -p data/processed
-	mkdir -p data/external
+## Delete cache, data/*/*
+eliminate: clean
+	rm -vi data/*/*
 
 ## Run specified version: production
-run: dir
-	$(PYTHON_INTERPRETER) src/main.py ${ver}
+run:
+	$(PYTHON_INTERPRETER) src/exp_${ver}*.py
 
 ## Run specified version with: nomessage
 runs: dir

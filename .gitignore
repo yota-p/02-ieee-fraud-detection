@@ -136,9 +136,5 @@ jupyter.log
 .slack_token
 
 # exclude data from source control by default
-data/external/*
-data/interim/*
-data/processed/*
-data/raw/*
-data/submission/*
-models/*
+*.pkl
+data/*/*
