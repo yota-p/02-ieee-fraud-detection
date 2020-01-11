@@ -15,7 +15,7 @@ from util.mylog import timer
 class Altgor(Feature):
 
     @timer
-    def _calculate(self):
+    def calculate(self):
         train_path = ROOTDIR / 'data/feature/raw_train.pkl'
         test_path = ROOTDIR / 'data/feature/raw_test.pkl'
         train = pd.read_pickle(train_path)

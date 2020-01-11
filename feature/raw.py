@@ -20,7 +20,7 @@ from util.reduce_mem_usage import reduce_mem_usage
 class Raw(Feature):
 
     @timer
-    def _calculate(self):
+    def calculate(self):
 
         if not self.is_downloaded():
             logger.debug('Downloading & unarchiving raw data')

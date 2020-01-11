@@ -18,7 +18,7 @@ class Feature(metaclass=ABCMeta):
     '''
     Abstract base class for feature processor.
     Every concrete feature class must inherit this class and
-    implement _calculate() method.
+    implement calculate() method.
     Call create_feature() to calc, save, return feature as train, test.
     '''
     prefix = ''
@@ -48,7 +48,7 @@ class Feature(metaclass=ABCMeta):
             return self.train, self.test
 
         # Calculate & save feature
-        self._calculate()
+        self.calcu()
         prefix = self.prefix + '_' if self.prefix else ''
         suffix = '_' + self.suffix if self.suffix else ''
         self.train.columns = prefix + self.train.columns + suffix
@@ -59,7 +59,7 @@ class Feature(metaclass=ABCMeta):
         return self.train, self.test
 
     @abstractmethod
-    def _calculate(self, train_raw, test_raw):
+    def calculate(self, train_raw, test_raw):
         raise NotImplementedError
 
     @timer

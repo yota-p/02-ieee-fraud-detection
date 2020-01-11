@@ -18,7 +18,7 @@ from util.mylog import timer
 class Nroman(Feature):
 
     @timer
-    def _calculate(self):
+    def calculate(self):
         train = pd.read_pickle(FEATURE_DIR / 'raw_train.pkl')
         test = pd.read_pickle(FEATURE_DIR / 'raw_test.pkl')
         logger.debug(f'input: raw_train.shape: {train.shape}, raw_test.shape: {test.shape}')
