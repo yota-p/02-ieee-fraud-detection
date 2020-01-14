@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-import pandas as pd
+import pickle
 
 from util.mylog import timer
 
@@ -24,9 +24,13 @@ class BaseModel(metaclass=ABCMeta):
         raise NotImplementedError
 
     @timer
-    def save(self, path_to_save):
-        self.core.to_pickle(path_to_save)
+    def save(self, path):
+        with open(path, 'wb') as f:
+            pickle.dump(self.core, f)
+        return self
 
     @timer
-    def load(self, path_to_load):
-        self.core = pd.read_pickle(path_to_load)
+    def load(self, path):
+        with open(path, 'rb') as f:
+            self.core = pickle.load(f)
+        return self

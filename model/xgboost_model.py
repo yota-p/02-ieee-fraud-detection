@@ -15,6 +15,7 @@ class XGBoost(BaseModel):
     def __init__(self, config):
         self.config = config
 
+    @timer
     def train(self, X_train, y_train):
         dtrain = xgb.DMatrix(X_train, label=y_train)
 
@@ -45,10 +46,15 @@ class XGBoost(BaseModel):
 
     @property
     def feature_importance(self):
-        return self.core.feature_importances_
+        return self.core.feature_importances_()
 
     @property
-    def validation_auc(self):
+    def train_auc(self):
+        print(self.core.best_score)
+        return self.core.best_score['training']['auc']
+
+    @property
+    def val_auc(self):
         return self.core.best_score_['valid_1']['auc']
 
     @property

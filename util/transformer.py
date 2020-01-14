@@ -10,13 +10,12 @@ class Transformer:
     @classmethod
     @timer
     def run(cls,
+            ROOTDIR,
             VERSION,
             features,
             USE_SMALL_DATA,  # use 1% of data if True
-            ROOTDIR,
             out_train_path,
             out_test_path,
-            **kwargs
             ):
         '''
         Create features and return datas for training

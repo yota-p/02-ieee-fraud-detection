@@ -5,38 +5,51 @@ from logging import getLogger
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import TimeSeriesSplit
-# import lightgbm as lgb
 
+from util.easydict import EasyDict
 from util.option import parse_option
 from util.seeder import seed_everything
 from util.mylog import create_logger, timer, blocktimer
 from util.transformer import Transformer
 from model.model_factory import ModelFactory
-# from model.base_trainer import BaseTrainer
 
 from config.config_0007 import config
-from util.easydict import EasyDict
-
-warnings.filterwarnings('ignore')
 
 
 @timer
-def main(c_runtime, c_transformer, c_model, c_trainer, c_log):
+def main(c):
 
     with blocktimer('Preprocess'):
-        train, test = Transformer.run(**c_transformer.__dict__)
+        train, test = Transformer.run(**c.transformer.__dict__)
         X_train, y_train, X_test = split_X_y(train, test)
+        test = test.sort_values('TransactionDT')
 
     with blocktimer('Tune & Train'):
         modelfactory = ModelFactory()
 
         # tune the model params
-        model = modelfactory.create(c_model)
-        optimal_c_model = tune_gbdt_params(model, X_train, y_train, c_trainer.n_splits)
+        model = modelfactory.create(c.model)
+        optimal_c_model = tune_gbdt_params(model, X_train, y_train, c.trainer.n_splits)
 
         # train with best params, full data
         model = modelfactory.create(optimal_c_model)
         model = model.train(X_train, y_train)
+
+        # save results
+        model.save(c.model.dir / f'model_{c.runtime.VERSION}_{c.model.TYPE}.pkl')
+
+        importance = pd.DataFrame(model.feature_importance,
+                                  index=X_train.columns,
+                                  columns=['importance'])
+        # importance = pd.DataFrame([X_train.columns, model.feature_importance],
+        #                           columns=['feature', 'importance'])
+        # importance = pd.DataFrame({'feature': X_train.columns,
+        #                            'importance': model.feature_importance},
+        #                           )
+
+        importance_path = c.runtime.ROOTDIR / 'feature/importance' / f'importance_{c.runtime.VERSION}.csv'
+        importance.to_csv(importance_path)
+        logger.info(f'Saved {str(importance_path)}')
 
     with blocktimer('Predict'):
         sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
@@ -45,20 +58,30 @@ def main(c_runtime, c_transformer, c_model, c_trainer, c_log):
         y_test = model.predict(X_test)
 
         sub['isFraud'] = y_test
-        sub.to_csv(c_runtime.out_sub_path, index=False)
-        logger.info(f'Saved {c_runtime.out_sub_path}')
+        sub.to_csv(c.runtime.out_sub_path, index=False)
+        logger.debug(f'Saved {c.runtime.out_sub_path}')
 
 
 def split_X_y(train, test):
-    train.reset_index(inplace=True)
-    train.set_index('TransactionID', drop=False, inplace=True)
-    cols = train.columns.drop(['isFraud', 'TransactionDT', 'TransactionID'])
-    X_train = train[cols]
-    y_train = train['isFraud']
+    '''
+    # train.reset_index(inplace=True)
+    # train.set_index('TransactionID', drop=False, inplace=True)
+    # cols_to_train = train.columns.drop(['isFraud', 'TransactionDT', 'TransactionID'])
+    cols_target = ['train']
+    cols_to_drop = ['TransactionDT', 'TransactionID']
+    cols_to_train = train.columns.drop(cols_target, cols_id)
+    X_train = train[cols_to_train]
+    y_train = train[cols_target]
 
-    test.reset_index(inplace=True)
-    test.set_index('TransactionID', drop=False, inplace=True)
+    # test.reset_index(inplace=True)
+    # test.set_index('TransactionID', drop=False, inplace=True)
+    X_test = test.drop[]
     X_test = test.drop(['TransactionDT', 'TransactionID'], axis=1)
+    '''
+
+    X_train = train.sort_values('TransactionDT').drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
+    y_train = train.sort_values('TransactionDT')['isFraud']
+    X_test = test.sort_values('TransactionDT').drop(['TransactionDT', 'TransactionID'], axis=1)
 
     return X_train, y_train, X_test
 
@@ -66,25 +89,20 @@ def split_X_y(train, test):
 @timer
 def tune_gbdt_params(model, X, y, n_splits) -> dict:
     '''
-    Tune parameters by training
+    Tune parameter num_boost_round
     '''
-
     # start tuning train log
     create_logger('train', **c.log)
     logger_train = getLogger('train')
     logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'val_auc'))
 
     aucs = list()
-    feature_importances = pd.DataFrame()
-    feature_importances['feature'] = X.columns
 
     # split data into train, validation
     folds = TimeSeriesSplit(n_splits=n_splits)
     for i, (idx_train, idx_val) in enumerate(folds.split(X, y)):
         fold = i + 1
-        with blocktimer(f'Fold {fold}'):
-            # prepare
-            logger.info(f'Training on fold {fold}')
+        with blocktimer(f'Training on Fold {fold}'):
             X_train = X.iloc[idx_train]
             y_train = y.iloc[idx_train]
             X_val = X.iloc[idx_val]
@@ -92,21 +110,17 @@ def tune_gbdt_params(model, X, y, n_splits) -> dict:
 
             # train
             model = model.train_and_validate(X_train, y_train, X_val, y_val, logger_train, fold)
+            model.save(c.model.dir / f'model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}.pkl')
 
             # record result
-            feature_importances[f'fold_{fold}'] = model.feature_importance
-            aucs.append(model.validation_auc)
-            # TODO: save models at each steps
-            logger.debug(f'Fold {fold} finished')
+            aucs.append(model.val_auc)
+            logger.info(f'train_auc: {model.train_auc} val_auc: {model.val_auc}')
 
-    logger.info('Training has finished.')
-    logger.debug(f'Mean AUC: {np.mean(aucs)}')
-    # TODO: save feature importance and other
+    logger.info(f'Mean AUC: {np.mean(aucs)}')
 
     # make optimal config from result
     optimal_c_model = model.config
     if model.best_iteration is not None:
-        # new param
         optimal_c_model.params['num_boost_round'] = model.best_iteration
     else:
         logger.warn('Did not meet early stopping. Try larger num_boost_rounds.')
@@ -117,6 +131,7 @@ def tune_gbdt_params(model, X, y, n_splits) -> dict:
 
 if __name__ == "__main__":
     gc.enable()
+    warnings.filterwarnings('ignore')
 
     # read config & apply option
     c = EasyDict(config)
@@ -131,12 +146,7 @@ if __name__ == "__main__":
     logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}')
 
     try:
-        main(c_runtime=c.runtime,
-             c_transformer=c.transformer,
-             c_model=c.model,
-             c_trainer=c.trainer,
-             c_log=c.log
-             )
+        main(c)
         logger.info(f':sunglasses: Finished experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}')
     except Exception:
         logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')

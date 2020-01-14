@@ -1,4 +1,3 @@
-# https://www.kaggle.com/nroman/lgb-single-model-lb-0-9419
 import lightgbm as lgb
 from logging import DEBUG
 
@@ -16,6 +15,7 @@ class LightGBM(BaseModel):
     def __init__(self, config):
         self.config = config
 
+    @timer
     def train(self, X_train, y_train):
         train_set = lgb.Dataset(X_train, y_train)
 
@@ -27,7 +27,6 @@ class LightGBM(BaseModel):
 
     @timer
     def train_and_validate(self, X_train, y_train, X_val, y_val, logger, fold):
-
         train_set = lgb.Dataset(X_train, y_train)
         valid_set = lgb.Dataset(X_val, y_val)
         valid_sets = [train_set, valid_set]
@@ -47,10 +46,14 @@ class LightGBM(BaseModel):
 
     @property
     def feature_importance(self):
-        return self.core.feature_importance
+        return self.core.feature_importance(importance_type='gain')
 
     @property
-    def validation_auc(self):
+    def train_auc(self):
+        return self.core.best_score['training']['auc']
+
+    @property
+    def val_auc(self):
         return self.core.best_score['valid_1']['auc']
 
     @property
