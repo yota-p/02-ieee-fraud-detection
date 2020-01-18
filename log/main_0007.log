@@ -1,78 +1,48 @@
-[0007] 2020-01-14 23:58:09 INFO  > :thinking_face: Starting experiment 0007_lgb-nroman
-[0007] 2020-01-14 23:58:10 INFO  > Start main
-[0007] 2020-01-14 23:58:10 INFO  > Start Preprocess
-[0007] 2020-01-14 23:58:10 INFO  > Start Transformer.run
-[0007] 2020-01-14 23:58:11 INFO  > Start is_latest
-[0007] 2020-01-14 23:58:11 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0007_train.pkl exists
-[0007] 2020-01-14 23:58:11 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0007_test.pkl exists
-[0007] 2020-01-14 23:58:11 DEBUG > All files existed. Skip transforming.
-[0007] 2020-01-14 23:58:11 INFO  > End   is_latest: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:15 DEBUG > Loaded train.shape: (590540, 301)
-[0007] 2020-01-14 23:58:15 DEBUG > Loaded test.shape:  (506691, 300)
-[0007] 2020-01-14 23:58:15 DEBUG > USE_SMALL_DATA is True. Using 0.1 % of data.
-[0007] 2020-01-14 23:58:15 DEBUG > Transformed train: (591, 301)
-[0007] 2020-01-14 23:58:15 DEBUG > Transformed test : (507, 300)
-[0007] 2020-01-14 23:58:15 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
-[0007] 2020-01-14 23:58:15 INFO  > End   Preprocess: [elapsed] >> 00:00:05
-[0007] 2020-01-14 23:58:16 INFO  > Start Tune & Train
-[0007] 2020-01-14 23:58:16 INFO  > Start ModelFactory.create
-[0007] 2020-01-14 23:58:16 INFO  > Creating model lgb
-[0007] 2020-01-14 23:58:16 INFO  > Start LightGBM.__init__
-[0007] 2020-01-14 23:58:17 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:17 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:17 INFO  > Start tune_gbdt_params
-[0007] 2020-01-14 23:58:17 INFO  > Start Training on Fold 1
-[0007] 2020-01-14 23:58:18 INFO  > Start LightGBM.train_and_validate
-[0007] 2020-01-14 23:58:18 INFO  > End   LightGBM.train_and_validate: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:18 INFO  > Start BaseModel.save
-[0007] 2020-01-14 23:58:19 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:19 INFO  > train_auc: 0.5 val_auc: 0.5
-[0007] 2020-01-14 23:58:19 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:19 INFO  > Start Training on Fold 2
-[0007] 2020-01-14 23:58:20 INFO  > Start LightGBM.train_and_validate
-[0007] 2020-01-14 23:58:20 INFO  > End   LightGBM.train_and_validate: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:20 INFO  > Start BaseModel.save
-[0007] 2020-01-14 23:58:21 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:21 INFO  > train_auc: 0.5 val_auc: 0.5
-[0007] 2020-01-14 23:58:21 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:21 INFO  > Start Training on Fold 3
-[0007] 2020-01-14 23:58:22 INFO  > Start LightGBM.train_and_validate
-[0007] 2020-01-14 23:58:22 INFO  > End   LightGBM.train_and_validate: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:22 INFO  > Start BaseModel.save
-[0007] 2020-01-14 23:58:23 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:23 INFO  > train_auc: 0.794945987654321 val_auc: 0.7
-[0007] 2020-01-14 23:58:23 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:23 INFO  > Start Training on Fold 4
-[0007] 2020-01-14 23:58:24 INFO  > Start LightGBM.train_and_validate
-[0007] 2020-01-14 23:58:24 INFO  > End   LightGBM.train_and_validate: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:24 INFO  > Start BaseModel.save
-[0007] 2020-01-14 23:58:25 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:25 INFO  > train_auc: 0.809368191721133 val_auc: 0.7406914893617021
-[0007] 2020-01-14 23:58:25 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:25 INFO  > Start Training on Fold 5
-[0007] 2020-01-14 23:58:26 INFO  > Start LightGBM.train_and_validate
-[0007] 2020-01-14 23:58:26 INFO  > End   LightGBM.train_and_validate: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:26 INFO  > Start BaseModel.save
-[0007] 2020-01-14 23:58:27 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:27 INFO  > train_auc: 0.8736884584342212 val_auc: 0.787719298245614
-[0007] 2020-01-14 23:58:27 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:27 INFO  > Mean AUC: 0.6456821575214632
-[0007] 2020-01-14 23:58:28 INFO  > End   tune_gbdt_params: [elapsed] >> 00:00:10
-[0007] 2020-01-14 23:58:28 INFO  > Start ModelFactory.create
-[0007] 2020-01-14 23:58:28 INFO  > Creating model lgb
-[0007] 2020-01-14 23:58:28 INFO  > Start LightGBM.__init__
-[0007] 2020-01-14 23:58:29 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:29 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
-[0007] 2020-01-14 23:58:29 INFO  > Start LightGBM.train
-[0007] 2020-01-14 23:58:29 INFO  > End   LightGBM.train: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:30 INFO  > Start BaseModel.save
-[0007] 2020-01-14 23:58:30 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:30 INFO  > Saved /home/yh/git/kaggle_ieee-fraud-detection/feature/importance/importance_0007.csv
-[0007] 2020-01-14 23:58:30 INFO  > End   Tune & Train: [elapsed] >> 00:00:14
-[0007] 2020-01-14 23:58:32 INFO  > Start Predict
-[0007] 2020-01-14 23:58:32 INFO  > Start LightGBM.predict
-[0007] 2020-01-14 23:58:32 INFO  > End   LightGBM.predict: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:33 DEBUG > Saved /home/yh/git/kaggle_ieee-fraud-detection/data/submission/submission_0007.csv
-[0007] 2020-01-14 23:58:33 INFO  > End   Predict: [elapsed] >> 00:00:00
-[0007] 2020-01-14 23:58:33 INFO  > End   main: [elapsed] >> 00:00:23
-[0007] 2020-01-14 23:58:33 INFO  > :sunglasses: Finished experiment 0007_lgb-nroman
+[0007] 2020-01-17 12:24:24 INFO  > :thinking_face: Starting experiment 0007_lgb-nroman
+[0007] 2020-01-17 12:24:24 INFO  > Start main
+[0007] 2020-01-17 12:24:24 INFO  > Start Preprocess
+[0007] 2020-01-17 12:24:24 INFO  > Start Transformer.run
+[0007] 2020-01-17 12:24:24 INFO  > Start is_latest
+[0007] 2020-01-17 12:24:24 DEBUG > /home/kaggle/kaggle_ieee-fraud-detection/data/feature/transformed_0007_train.pkl exists
+[0007] 2020-01-17 12:24:24 DEBUG > /home/kaggle/kaggle_ieee-fraud-detection/data/feature/transformed_0007_test.pkl exists
+[0007] 2020-01-17 12:24:24 DEBUG > All files existed. Skip transforming.
+[0007] 2020-01-17 12:24:24 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0007] 2020-01-17 12:24:30 DEBUG > Loaded train.shape: (590540, 301)
+[0007] 2020-01-17 12:24:30 DEBUG > Loaded test.shape:  (506691, 300)
+[0007] 2020-01-17 12:24:30 DEBUG > USE_SMALL_DATA is False. Using all data.
+[0007] 2020-01-17 12:24:30 DEBUG > Transformed train: (590540, 301)
+[0007] 2020-01-17 12:24:30 DEBUG > Transformed test : (506691, 300)
+[0007] 2020-01-17 12:24:30 INFO  > End   Transformer.run: [elapsed] >> 00:00:05
+[0007] 2020-01-17 12:24:32 INFO  > End   Preprocess: [elapsed] >> 00:00:07
+[0007] 2020-01-17 12:24:32 INFO  > Start Tune & Train
+[0007] 2020-01-17 12:24:32 INFO  > Start ModelFactory.create
+[0007] 2020-01-17 12:24:32 INFO  > Creating model lgb
+[0007] 2020-01-17 12:24:32 INFO  > Start LightGBM.__init__
+[0007] 2020-01-17 12:24:32 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0007] 2020-01-17 12:24:32 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0007] 2020-01-17 12:24:32 INFO  > Start tune_gbdt_params
+[0007] 2020-01-17 12:24:32 INFO  > Start Training on Fold 1
+[0007] 2020-01-17 12:24:32 INFO  > Start LightGBM.train_and_validate
+[0007] 2020-01-17 12:24:32 CRITICAL > :smiling_imp: Exception occured 
+ Traceback (most recent call last):
+  File "run_0007-lgb-nroman.py", line 149, in <module>
+    main(c)
+  File "/home/kaggle/kaggle_ieee-fraud-detection/util/mylog.py", line 108, in _wrapper
+    result = f(*args, **kwargs)
+  File "run_0007-lgb-nroman.py", line 32, in main
+    optimal_c_model = tune_gbdt_params(model, X_train, y_train, c.trainer.n_splits)
+  File "/home/kaggle/kaggle_ieee-fraud-detection/util/mylog.py", line 108, in _wrapper
+    result = f(*args, **kwargs)
+  File "run_0007-lgb-nroman.py", line 112, in tune_gbdt_params
+    model = model.train_and_validate(X_train, y_train, X_val, y_val, logger_train, fold)
+  File "/home/kaggle/kaggle_ieee-fraud-detection/util/mylog.py", line 108, in _wrapper
+    result = f(*args, **kwargs)
+  File "/home/kaggle/kaggle_ieee-fraud-detection/model/lightgbm_model.py", line 38, in train_and_validate
+    callbacks=callbacks
+  File "/opt/conda/lib/python3.6/site-packages/lightgbm/engine.py", line 155, in train
+    first_metric_only = params.pop('first_metric_only', False)
+  File "/home/kaggle/kaggle_ieee-fraud-detection/util/easydict.py", line 47, in pop
+    delattr(self, k)
+AttributeError: first_metric_only
+
+[0007] 2020-01-17 12:24:32 CRITICAL > :skull: Stopped experiment 0007_lgb-nroman

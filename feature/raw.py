@@ -21,7 +21,6 @@ class Raw(Feature):
 
     @timer
     def calculate(self):
-
         if not self.is_downloaded():
             logger.debug('Downloading & unarchiving raw data')
             os.system(f'kaggle competitions download -c {PROJECTID} -p {RAW_DIR}')
