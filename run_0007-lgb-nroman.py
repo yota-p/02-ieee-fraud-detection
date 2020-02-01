@@ -13,6 +13,7 @@ from util.mylog import create_logger, timer, blocktimer
 from util.transformer import Transformer
 from model.model_factory import ModelFactory
 
+# config
 from config.config_0007 import config
 
 
@@ -41,11 +42,6 @@ def main(c):
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
-        # importance = pd.DataFrame([X_train.columns, model.feature_importance],
-        #                           columns=['feature', 'importance'])
-        # importance = pd.DataFrame({'feature': X_train.columns,
-        #                            'importance': model.feature_importance},
-        #                           )
 
         importance_path = c.runtime.ROOTDIR / 'feature/importance' / f'importance_{c.runtime.VERSION}.csv'
         importance.to_csv(importance_path)
@@ -63,22 +59,6 @@ def main(c):
 
 
 def split_X_y(train, test):
-    '''
-    # train.reset_index(inplace=True)
-    # train.set_index('TransactionID', drop=False, inplace=True)
-    # cols_to_train = train.columns.drop(['isFraud', 'TransactionDT', 'TransactionID'])
-    cols_target = ['train']
-    cols_to_drop = ['TransactionDT', 'TransactionID']
-    cols_to_train = train.columns.drop(cols_target, cols_id)
-    X_train = train[cols_to_train]
-    y_train = train[cols_target]
-
-    # test.reset_index(inplace=True)
-    # test.set_index('TransactionID', drop=False, inplace=True)
-    X_test = test.drop[]
-    X_test = test.drop(['TransactionDT', 'TransactionID'], axis=1)
-    '''
-
     X_train = train.sort_values('TransactionDT').drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
     y_train = train.sort_values('TransactionDT')['isFraud']
     X_test = test.sort_values('TransactionDT').drop(['TransactionDT', 'TransactionID'], axis=1)
