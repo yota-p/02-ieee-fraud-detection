@@ -29,7 +29,7 @@ class XGBoost(BaseModel):
     def train_and_validate(self, X_train, y_train, X_val, y_val, logger, fold):
         dtrain = xgb.DMatrix(X_train, label=y_train)
         dval = xgb.DMatrix(X_val, label=y_val)
-        evals = [(dtrain, dval)]
+        evals = [(dtrain, 'train'), (dval, 'eval')]
         callbacks = [log_evaluation(logger, period=10, fold=fold)]
 
         self.core = xgb.train(params=self.config.params,
@@ -41,21 +41,23 @@ class XGBoost(BaseModel):
 
     @timer
     def predict(self, X_test):
-        y_test = self.core.predict_proba(X_test)[:, 1]
+        dtest = xgb.DMatrix(X_test)
+        y_test = self.core.predict(dtest)
         return y_test
 
     @property
     def feature_importance(self):
-        return self.core.feature_importances_()
+        return self.core.get_score(importance_type='gain')
 
     @property
     def train_auc(self):
-        print(self.core.best_score)
         return self.core.best_score['training']['auc']
 
     @property
     def val_auc(self):
-        return self.core.best_score_['valid_1']['auc']
+        # return self.core.best_score['valid_1']['auc']
+        evals_result = self.core.evals_result
+        return evals_result['eval']['auc']
 
     @property
     def best_iteration(self):

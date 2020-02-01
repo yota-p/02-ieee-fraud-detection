@@ -14,7 +14,7 @@ from util.transformer import Transformer
 from model.model_factory import ModelFactory
 
 # config
-from config.config_0008 import config
+from config.config_0009 import config
 
 
 @timer

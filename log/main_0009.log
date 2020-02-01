@@ -1,0 +1,15 @@
+[0009] 2020-01-19 04:58:24 INFO  > :thinking_face: Starting experiment 0009_xgb-nroman
+[0009] 2020-01-19 04:58:25 INFO  > Start main
+[0009] 2020-01-19 04:58:25 INFO  > Start Preprocess
+[0009] 2020-01-19 04:58:25 INFO  > Start Transformer.run
+[0009] 2020-01-19 04:58:26 INFO  > Start is_latest
+[0009] 2020-01-19 04:58:26 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0009_train.pkl exists
+[0009] 2020-01-19 04:58:26 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0009_test.pkl exists
+[0009] 2020-01-19 04:58:26 DEBUG > All files existed. Skip transforming.
+[0009] 2020-01-19 04:58:26 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0009] 2020-01-19 04:58:29 DEBUG > Loaded train.shape: (590540, 301)
+[0009] 2020-01-19 04:58:29 DEBUG > Loaded test.shape:  (506691, 300)
+[0009] 2020-01-19 04:58:29 DEBUG > USE_SMALL_DATA is False. Using all data.
+[0009] 2020-01-19 04:58:29 DEBUG > Transformed train: (590540, 301)
+[0009] 2020-01-19 04:58:29 DEBUG > Transformed test : (506691, 300)
+[0009] 2020-01-19 04:58:29 INFO  > End   Transformer.run: [elapsed] >> 00:00:04

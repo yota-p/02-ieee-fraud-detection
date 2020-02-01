@@ -2,7 +2,7 @@ import pathlib
 from logging import DEBUG, INFO
 import numpy as np
 
-VERSION = '0008'
+VERSION = '0009'
 ROOTDIR = pathlib.Path(__file__).parents[1]
 
 config = {
@@ -10,7 +10,7 @@ config = {
         'ROOTDIR': ROOTDIR,
         'VERSION': VERSION,
         'RANDOM_SEED': 42,
-        'DESCRIPTION': 'xgb-magic',
+        'DESCRIPTION': 'xgb-nroman',
         'RUN_TRAIN': True,
         'RUN_PRED': True,
         'out_sub_path': ROOTDIR / 'data/submission' / f'submission_{VERSION}.csv'
@@ -19,7 +19,7 @@ config = {
     'transformer': {
         'ROOTDIR': ROOTDIR,
         'VERSION': VERSION,
-        'features': ['magic'],
+        'features': ['nroman'],
         'USE_SMALL_DATA': True,
         'out_train_path': ROOTDIR / 'data/feature' / f'transformed_{VERSION}_train.pkl',
         'out_test_path': ROOTDIR / 'data/feature' / f'transformed_{VERSION}_test.pkl'
