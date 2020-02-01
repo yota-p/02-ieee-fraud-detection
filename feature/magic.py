@@ -283,7 +283,7 @@ class Magic(Feature):
         # AGGREGATE
         encode_AG(['C'+str(x) for x in range(1, 15) if x != 3], ['uid'], ['mean'],
                   train, test, fillna=True, usena=True)
-        # AGGREGATE # TODO: FIX this! Doesn't work because it's not numeric
+        # AGGREGATE
         encode_AG(['M'+str(x) for x in range(1, 10)], ['uid'], ['mean'],
                   train, test, fillna=True, usena=True)
         # AGGREGATE

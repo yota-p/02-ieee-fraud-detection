@@ -10,7 +10,7 @@ def reduce_mem_usage(df):
         to reduce memory usage.
     """
     start_mem = df.memory_usage().sum() / 1024**2
-    print('Memory usage of dataframe is {:.2f} MB'.format(start_mem))
+    logger.info(f'Memory usage of dataframe is {start_mem:.2f} MB')
 
     for col in df.columns:
         col_type = df[col].dtype
@@ -35,7 +35,8 @@ def reduce_mem_usage(df):
                 else:
                     df[col] = df[col].astype(np.float64)
     end_mem = df.memory_usage().sum() / 1024**2
-    logger.debug('Memory usage after optimization is: {:.2f} MB'.format(end_mem))
-    logger.debug('Decreased by {:.1f}%'.format(100 * (start_mem - end_mem) / start_mem))
+    percentage = 100 * (start_mem - end_mem) / start_mem
+    logger.debug(f'Memory usage after optimization is: {end_mem:.2f} MB')
+    logger.debug(f'Decreased by {percentage:.1f}%')
 
     return df

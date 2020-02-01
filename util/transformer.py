@@ -1,8 +1,10 @@
 import pandas as pd
 from feature.feature_factory import FeatureFactory
-from util.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
+
+from util.mylog import timer
+from util.islatest import is_latest
 
 
 class Transformer:
@@ -13,23 +15,23 @@ class Transformer:
             ROOTDIR,
             VERSION,
             features,
-            USE_SMALL_DATA,  # use 1% of data if True
-            out_train_path,
-            out_test_path,
+            USE_SMALL_DATA,
+            transformed_train_path,
+            transformed_test_path,
             ):
         '''
         Create features and return datas for training
         '''
         # check if output exists
-        if is_latest([out_train_path, out_test_path]):
-            train = pd.read_pickle(str(out_train_path))
-            test = pd.read_pickle(str(out_test_path))
+        if is_latest([transformed_train_path, transformed_test_path]):
+            logger.debug('All files existed. Skip transforming.')
+            train = pd.read_pickle(str(transformed_train_path))
+            test = pd.read_pickle(str(transformed_test_path))
             logger.debug(f'Loaded train.shape: {train.shape}')
             logger.debug(f'Loaded test.shape:  {test.shape}')
 
         else:
             # Get key columns
-            # TODO: refactor this into read_raw
             factory = FeatureFactory()
             raw = factory.create('raw')
             train_raw, test_raw = raw.create_feature()
@@ -54,13 +56,6 @@ class Transformer:
             train = train.sort_values(by=['TransactionDT'])
             test = test.sort_values(by=['TransactionDT'])
 
-            # save processed data
-            train.to_pickle(str(out_train_path))
-            test.to_pickle(str(out_test_path))
-
-            logger.debug(f'Created {out_train_path} shape: {train.shape}')
-            logger.debug(f'Created {out_train_path} shape: {test.shape}')
-
         if USE_SMALL_DATA:
             frac = 0.001
             train = train.sample(frac=frac, random_state=42)
@@ -69,19 +64,11 @@ class Transformer:
         else:
             logger.debug(f'USE_SMALL_DATA is {USE_SMALL_DATA}. Using all data.')
 
-        logger.debug(f'Transformed train: {train.shape}')
-        logger.debug(f'Transformed test : {test.shape}')
+        # save processed data
+        train.to_pickle(str(transformed_train_path))
+        test.to_pickle(str(transformed_test_path))
+
+        logger.debug(f'Created {transformed_train_path} shape: {train.shape}')
+        logger.debug(f'Created {transformed_test_path} shape: {test.shape}')
 
         return train, test
-
-
-@timer
-def is_latest(pathlist):
-    for path in pathlist:
-        if not path.exists():
-            logger.debug(f'{path} does not exist')
-            return False
-        else:
-            logger.debug(f'{path} exists')
-    logger.debug('All files existed. Skip transforming.')
-    return True

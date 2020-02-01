@@ -1,0 +1,5 @@
+[0010] 2020-02-01 21:23:56 INFO  > :thinking_face: Starting experiment 0010_xgb-nroman
+[0010] 2020-02-01 21:23:56 INFO  > Options indicated: Namespace(nomsg=False, small=False)
+[0010] 2020-02-01 21:23:56 INFO  > Start main
+[0010] 2020-02-01 21:23:56 INFO  > Start Preprocess
+[0010] 2020-02-01 21:23:57 INFO  > Start Transformer.run
