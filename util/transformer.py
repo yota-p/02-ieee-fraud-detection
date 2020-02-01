@@ -13,17 +13,17 @@ class Transformer:
             ROOTDIR,
             VERSION,
             features,
-            USE_SMALL_DATA,  # use 1% of data if True
-            out_train_path,
-            out_test_path,
+            USE_SMALL_DATA,
+            transformed_train_path,
+            transformed_test_path,
             ):
         '''
         Create features and return datas for training
         '''
         # check if output exists
-        if is_latest([out_train_path, out_test_path]):
-            train = pd.read_pickle(str(out_train_path))
-            test = pd.read_pickle(str(out_test_path))
+        if is_latest([transformed_train_path, transformed_test_path]):
+            train = pd.read_pickle(str(transformed_train_path))
+            test = pd.read_pickle(str(transformed_test_path))
             logger.debug(f'Loaded train.shape: {train.shape}')
             logger.debug(f'Loaded test.shape:  {test.shape}')
 
@@ -55,11 +55,11 @@ class Transformer:
             test = test.sort_values(by=['TransactionDT'])
 
             # save processed data
-            train.to_pickle(str(out_train_path))
-            test.to_pickle(str(out_test_path))
+            train.to_pickle(str(transformed_train_path))
+            test.to_pickle(str(transformed_test_path))
 
-            logger.debug(f'Created {out_train_path} shape: {train.shape}')
-            logger.debug(f'Created {out_train_path} shape: {test.shape}')
+            logger.debug(f'Created {transformed_train_path} shape: {train.shape}')
+            logger.debug(f'Created {transformed_test_path} shape: {test.shape}')
 
         if USE_SMALL_DATA:
             frac = 0.001
