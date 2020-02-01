@@ -1,45 +1,72 @@
-[0008] 2020-01-11 00:33:03 INFO  > :thinking_face: Starting experiment 0008_magic_xgb
-[0008] 2020-01-11 00:33:04 INFO  > Start main
-[0008] 2020-01-11 00:33:04 INFO  > Start Preprocess
-[0008] 2020-01-11 00:33:04 INFO  > Start Transformer.run
-[0008] 2020-01-11 00:33:05 INFO  > Start isLatest
-[0008] 2020-01-11 00:33:05 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/train_0008.pkl exists
-[0008] 2020-01-11 00:33:05 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/processed/test_0008.pkl exists
-[0008] 2020-01-11 00:33:05 DEBUG > All files existed. Skip transforming.
-[0008] 2020-01-11 00:33:05 INFO  > End   isLatest: [elapsed] >> 00:00:00
-[0008] 2020-01-11 00:33:09 DEBUG > Loaded train.shape: (5905, 266)
-[0008] 2020-01-11 00:33:09 DEBUG > Loaded test.shape:  (5067, 265)
-[0008] 2020-01-11 00:33:09 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
-[0008] 2020-01-11 00:33:09 INFO  > Start split_X_y
-[0008] 2020-01-11 00:33:09 DEBUG > input train.shape: (5905, 266)
-[0008] 2020-01-11 00:33:09 DEBUG > input test.shape : (5067, 265)
-[0008] 2020-01-11 00:33:09 DEBUG > output X_train.shape: (5905, 264)
-[0008] 2020-01-11 00:33:09 DEBUG > output y_train.shape: (5905,)
-[0008] 2020-01-11 00:33:09 DEBUG > output X_test.shape : (5067, 264)
-[0008] 2020-01-11 00:33:09 INFO  > End   split_X_y: [elapsed] >> 00:00:00
-[0008] 2020-01-11 00:33:10 INFO  > End   Preprocess: [elapsed] >> 00:00:05
-[0008] 2020-01-11 00:33:10 INFO  > Start Train
-[0008] 2020-01-11 00:33:10 INFO  > Start BaseTrainer.run
-[0008] 2020-01-11 00:33:11 INFO  > Start BaseTrainer.is_latest
-[0008] 2020-01-11 00:33:11 INFO  > End   BaseTrainer.is_latest: [elapsed] >> 00:00:00
-[0008] 2020-01-11 00:33:11 INFO  > Start XGB_Trainer.train
-[0008] 2020-01-11 00:33:12 INFO  > Start Training on fold 1
-[0008] 2020-01-11 00:34:19 CRITICAL > :smiling_imp: Exception occured 
- Traceback (most recent call last):
-  File "run_0008-magic-xgb.py", line 172, in <module>
-    c_log=c.log
-  File "/home/yh/git/kaggle_ieee-fraud-detection/src/utils/mylog.py", line 112, in _wrapper
-    result = f(*args, **kwargs)
-  File "run_0008-magic-xgb.py", line 32, in main
-    trainer.run(X_train, y_train)
-  File "/home/yh/git/kaggle_ieee-fraud-detection/src/utils/mylog.py", line 112, in _wrapper
-    result = f(*args, **kwargs)
-  File "/home/yh/git/kaggle_ieee-fraud-detection/src/models/base_trainer.py", line 36, in run
-    self.train(X_train, y_train)
-  File "/home/yh/git/kaggle_ieee-fraud-detection/src/utils/mylog.py", line 112, in _wrapper
-    result = f(*args, **kwargs)
-  File "run_0008-magic-xgb.py", line 108, in train
-    aucs.append(clf.best_score_['valid_1']['auc'])
-AttributeError: 'XGBClassifier' object has no attribute 'best_score_'
-
-[0008] 2020-01-11 00:34:19 CRITICAL > :skull: Stopped experiment 0008_magic_xgb
+[0008] 2020-02-01 15:46:54 INFO  > :thinking_face: Starting experiment 0008_xgb-magic
+[0008] 2020-02-01 15:46:55 INFO  > Start main
+[0008] 2020-02-01 15:46:55 INFO  > Start Preprocess
+[0008] 2020-02-01 15:46:55 INFO  > Start Transformer.run
+[0008] 2020-02-01 15:46:55 INFO  > Start is_latest
+[0008] 2020-02-01 15:46:56 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0008_train.pkl exists
+[0008] 2020-02-01 15:46:56 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0008_test.pkl exists
+[0008] 2020-02-01 15:46:56 DEBUG > All files existed. Skip transforming.
+[0008] 2020-02-01 15:46:56 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:46:59 DEBUG > Loaded train.shape: (590540, 266)
+[0008] 2020-02-01 15:46:59 DEBUG > Loaded test.shape:  (506691, 265)
+[0008] 2020-02-01 15:46:59 DEBUG > USE_SMALL_DATA is True. Using 0.1 % of data.
+[0008] 2020-02-01 15:46:59 DEBUG > Transformed train: (591, 266)
+[0008] 2020-02-01 15:46:59 DEBUG > Transformed test : (507, 265)
+[0008] 2020-02-01 15:46:59 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
+[0008] 2020-02-01 15:47:00 INFO  > End   Preprocess: [elapsed] >> 00:00:04
+[0008] 2020-02-01 15:47:00 INFO  > Start Tune & Train
+[0008] 2020-02-01 15:47:00 INFO  > Start ModelFactory.create
+[0008] 2020-02-01 15:47:00 INFO  > Creating model xgb
+[0008] 2020-02-01 15:47:01 INFO  > Start XGBoost.__init__
+[0008] 2020-02-01 15:47:01 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:01 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:01 INFO  > Start tune_gbdt_params
+[0008] 2020-02-01 15:47:02 INFO  > Start Training on Fold 1
+[0008] 2020-02-01 15:47:02 INFO  > Start XGBoost.train_and_validate
+[0008] 2020-02-01 15:47:02 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:02 INFO  > Start BaseModel.save
+[0008] 2020-02-01 15:47:03 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:03 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:01
+[0008] 2020-02-01 15:47:03 INFO  > Start Training on Fold 2
+[0008] 2020-02-01 15:47:03 INFO  > Start XGBoost.train_and_validate
+[0008] 2020-02-01 15:47:04 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:04 INFO  > Start BaseModel.save
+[0008] 2020-02-01 15:47:04 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:04 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:01
+[0008] 2020-02-01 15:47:05 INFO  > Start Training on Fold 3
+[0008] 2020-02-01 15:47:05 INFO  > Start XGBoost.train_and_validate
+[0008] 2020-02-01 15:47:05 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:05 INFO  > Start BaseModel.save
+[0008] 2020-02-01 15:47:05 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:06 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:01
+[0008] 2020-02-01 15:47:06 INFO  > Start Training on Fold 4
+[0008] 2020-02-01 15:47:06 INFO  > Start XGBoost.train_and_validate
+[0008] 2020-02-01 15:47:06 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:07 INFO  > Start BaseModel.save
+[0008] 2020-02-01 15:47:07 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:07 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:01
+[0008] 2020-02-01 15:47:07 INFO  > Start Training on Fold 5
+[0008] 2020-02-01 15:47:08 INFO  > Start XGBoost.train_and_validate
+[0008] 2020-02-01 15:47:08 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:08 INFO  > Start BaseModel.save
+[0008] 2020-02-01 15:47:08 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:09 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:01
+[0008] 2020-02-01 15:47:09 INFO  > End   tune_gbdt_params: [elapsed] >> 00:00:07
+[0008] 2020-02-01 15:47:09 INFO  > Start ModelFactory.create
+[0008] 2020-02-01 15:47:09 INFO  > Creating model xgb
+[0008] 2020-02-01 15:47:10 INFO  > Start XGBoost.__init__
+[0008] 2020-02-01 15:47:10 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:10 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:10 INFO  > Start XGBoost.train
+[0008] 2020-02-01 15:47:11 INFO  > End   XGBoost.train: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:11 INFO  > Start BaseModel.save
+[0008] 2020-02-01 15:47:11 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:11 INFO  > Saved /home/yh/git/kaggle_ieee-fraud-detection/feature/importance/importance_0008.csv
+[0008] 2020-02-01 15:47:11 INFO  > End   Tune & Train: [elapsed] >> 00:00:11
+[0008] 2020-02-01 15:47:12 INFO  > Start Predict
+[0008] 2020-02-01 15:47:12 INFO  > Start XGBoost.predict
+[0008] 2020-02-01 15:47:12 INFO  > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:12 DEBUG > Saved /home/yh/git/kaggle_ieee-fraud-detection/data/submission/submission_0008.csv
+[0008] 2020-02-01 15:47:12 INFO  > End   Predict: [elapsed] >> 00:00:00
+[0008] 2020-02-01 15:47:13 INFO  > End   main: [elapsed] >> 00:00:18
+[0008] 2020-02-01 15:47:13 INFO  > :sunglasses: Finished experiment 0008_xgb-magic

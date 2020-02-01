@@ -1,14 +1,15 @@
-import random
 import os
+import random
 import numpy as np
 
 
-def seed_everything(seed=0):
+def seed_everything(seed):
     '''
-    # Seeder
-    : seed to make all processes deterministic     # type: int
+    Seed to make all processes deterministic
     '''
-
-    random.seed(seed)
+    # python hash
     os.environ['PYTHONHASHSEED'] = str(seed)
+    # random
+    random.seed(seed)
+    # numpy
     np.random.seed(seed)

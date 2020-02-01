@@ -109,7 +109,7 @@ def encode_AG2(main_columns, uids, train_df, test_df, verbose=False):
 class Magic(Feature):
 
     @timer
-    def calcu(self):
+    def calculate(self):
         '''
         Load useful features
         '''

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'Starting Jupyter server'
-nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebooks/jupyter.log 2>&1 &
+nohup jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root >> notebook/jupyter.log 2>&1 &
 
 echo 'Hit below on local to establish port forwarding connection to server:'
 echo '    $ gcloud compute ssh HOST -- -N -L 8888:localhost:8888'
@@ -38,4 +38,4 @@ done
 echo -e "Starting Jupyter server. Wait $WAIT s...  [$BAR] $PERCENTAGE %\r"
 
 echo 'Started. URL for Jupyter is:'
-tail -n 1 notebooks/jupyter.log | awk '{print substr($0, index($0, "http"))}' | xargs -n1 echo '    '
+tail -n 1 notebook/jupyter.log | awk '{print substr($0, index($0, "http"))}' | xargs -n1 echo '    '

@@ -1,7 +1,6 @@
 from functools import wraps
 import time
 from contextlib import contextmanager
-from pathlib import Path
 from logging import getLogger, Formatter, FileHandler, StreamHandler, DEBUG
 from logging.handlers import HTTPHandler
 
@@ -31,7 +30,6 @@ class SlackHandler(HTTPHandler):
 
 def create_logger(type,
                   VERSION,
-                  LOGDIR,
                   main_log_path,
                   train_log_path,
                   FILE_HANDLER_LEVEL,
@@ -57,8 +55,6 @@ def create_logger(type,
         log_file = train_log_path
     else:
         raise Exception
-
-    Path.mkdir(LOGDIR, exist_ok=True, parents=True)
 
     logger_.setLevel(DEBUG)
 

@@ -48,7 +48,7 @@ class Feature(metaclass=ABCMeta):
             return self.train, self.test
 
         # Calculate & save feature
-        self.calcu()
+        self.calculate()
         prefix = self.prefix + '_' if self.prefix else ''
         suffix = '_' + self.suffix if self.suffix else ''
         self.train.columns = prefix + self.train.columns + suffix
