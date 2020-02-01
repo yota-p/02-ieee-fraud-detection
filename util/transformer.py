@@ -1,8 +1,10 @@
 import pandas as pd
 from feature.feature_factory import FeatureFactory
-from util.mylog import timer
 from logging import getLogger
 logger = getLogger('main')
+
+from util.mylog import timer
+from util.islatest import is_latest
 
 
 class Transformer:
@@ -22,6 +24,7 @@ class Transformer:
         '''
         # check if output exists
         if is_latest([transformed_train_path, transformed_test_path]):
+            logger.debug('All files existed. Skip transforming.')
             train = pd.read_pickle(str(transformed_train_path))
             test = pd.read_pickle(str(transformed_test_path))
             logger.debug(f'Loaded train.shape: {train.shape}')
@@ -29,7 +32,6 @@ class Transformer:
 
         else:
             # Get key columns
-            # TODO: refactor this into read_raw
             factory = FeatureFactory()
             raw = factory.create('raw')
             train_raw, test_raw = raw.create_feature()
@@ -70,15 +72,3 @@ class Transformer:
         logger.debug(f'Created {transformed_test_path} shape: {test.shape}')
 
         return train, test
-
-
-@timer
-def is_latest(pathlist):
-    for path in pathlist:
-        if not path.exists():
-            logger.debug(f'{path} does not exist')
-            return False
-        else:
-            logger.debug(f'{path} exists')
-    logger.debug('All files existed. Skip transforming.')
-    return True

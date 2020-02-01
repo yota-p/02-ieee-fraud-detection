@@ -12,6 +12,7 @@ logger = getLogger('main')
 
 sys.path.insert(0, str(ROOTDIR))
 from util.mylog import timer
+from util.islatest import is_latest
 
 
 class Feature(metaclass=ABCMeta):
@@ -40,7 +41,7 @@ class Feature(metaclass=ABCMeta):
         Calculate features from given raw data.
         '''
         # Skip calculate & load if output is 'latest'
-        if not force_calculate and self._is_latest():
+        if not force_calculate and is_latest([self.train_path, self.test_path]):
             logger.debug(f'Skip calculating {self.__class__.__name__}')
             self._load()
             logger.debug(f'{self.name}_train.shape: {self.train.shape}')
@@ -61,16 +62,6 @@ class Feature(metaclass=ABCMeta):
     @abstractmethod
     def calculate(self, train_raw, test_raw):
         raise NotImplementedError
-
-    @timer
-    def _is_latest(self):
-        '''
-        Check if this output is latest
-        TODO: Compare source & input file date
-        '''
-        if self.train_path.exists() and self.test_path.exists():
-            return True
-        return False
 
     @timer
     def _save(self):

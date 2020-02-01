@@ -3,7 +3,6 @@ import warnings
 import traceback
 from logging import getLogger
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import TimeSeriesSplit
 
 from util.easydict import EasyDict
@@ -96,8 +95,6 @@ def tune_gbdt_params(model, X, y, n_splits, dsize) -> dict:
     logger_train = getLogger('train')
     logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'val_auc'))
 
-    # aucs = list()
-
     # split data into train, validation
     folds = TimeSeriesSplit(n_splits=n_splits)
     for i, (idx_train, idx_val) in enumerate(folds.split(X, y)):
@@ -113,12 +110,6 @@ def tune_gbdt_params(model, X, y, n_splits, dsize) -> dict:
             out_model_fold_dir = c.runtime.ROOTDIR / 'data/model' / \
                 f'model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}{dsize}.pkl'
             model.save(out_model_fold_dir)
-
-            # record result
-            # aucs.append(model.val_auc)
-            # logger.info(f'train_auc: {model.train_auc} val_auc: {model.val_auc}')
-
-    # logger.info(f'Mean AUC: {np.mean(aucs)}')
 
     # make optimal config from result
     optimal_c_model = model.config
@@ -155,6 +146,7 @@ if __name__ == "__main__":
                   )
     logger = getLogger('main')
     logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')
+    logger.info(f'Options indicated: {opt}')
 
     try:
         main(c)

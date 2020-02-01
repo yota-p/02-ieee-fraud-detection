@@ -87,7 +87,7 @@ if __name__ == "__main__":
                            help='Force re-calculation')
     argparser.add_argument('-d', '--debug',
                            action='store_true',
-                           help='Force re-calculation')
+                           help='Use small data for debug')
     option = argparser.parse_args()
     DEBUG_MODE = option.debug
 

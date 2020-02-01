@@ -11,8 +11,6 @@ config = {
         'VERSION': VERSION,
         'RANDOM_SEED': 42,
         'DESCRIPTION': 'xgb-nroman',
-        'RUN_TRAIN': True,
-        'RUN_PRED': True,
         'USE_SMALL_DATA': False,
         },
 
