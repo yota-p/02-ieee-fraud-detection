@@ -19,14 +19,16 @@ from config.config_0010 import config
 
 @timer
 def main(c):
-
+    dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
     with blocktimer('Preprocess'):
-        out_transformed_train_path = c.runtime.ROOTDIR / 'data/feature' / f'transformed_{c.runtime.VERSION}_train.pkl'
-        out_transformed_test_path = c.runtime.ROOTDIR / 'data/feature' / f'transformed_{c.runtime.VERSION}_test.pkl'
+        out_transformed_train_path = c.runtime.ROOTDIR / 'data/feature' / \
+            f'transformed_{c.runtime.VERSION}_train{dsize}.pkl'
+        out_transformed_test_path = c.runtime.ROOTDIR / 'data/feature' / \
+            f'transformed_{c.runtime.VERSION}_test{dsize}.pkl'
         train, test = Transformer.run(ROOTDIR=c.transformer.ROOTDIR,
                                       VERSION=c.transformer.VERSION,
                                       features=c.transformer.features,
-                                      USE_SMALL_DATA=c.transformer.USE_SMALL_DATA,
+                                      USE_SMALL_DATA=c.runtime.USE_SMALL_DATA,
                                       transformed_train_path=out_transformed_train_path,
                                       transformed_test_path=out_transformed_test_path,
                                       )
@@ -38,21 +40,21 @@ def main(c):
 
         # tune the model params
         model = modelfactory.create(c.model)
-        optimal_c_model = tune_gbdt_params(model, X_train, y_train, c.trainer.n_splits)
+        optimal_c_model = tune_gbdt_params(model, X_train, y_train, c.trainer.n_splits, dsize)
 
         # train with best params, full data
         model = modelfactory.create(optimal_c_model)
         model = model.train(X_train, y_train)
 
         # save results
-        out_model_dir = c.runtime.ROOTDIR / 'data/model' / f'model_{c.runtime.VERSION}_{c.model.TYPE}.pkl'
+        out_model_dir = c.runtime.ROOTDIR / 'data/model' / f'model_{c.runtime.VERSION}_{c.model.TYPE}{dsize}.pkl'
         model.save(out_model_dir)
 
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
 
-        importance_path = c.runtime.ROOTDIR / 'feature/importance' / f'importance_{c.runtime.VERSION}.csv'
+        importance_path = c.runtime.ROOTDIR / 'feature/importance' / f'importance_{c.runtime.VERSION}{dsize}.csv'
         importance.to_csv(importance_path)
         logger.info(f'Saved {str(importance_path)}')
 
@@ -63,7 +65,7 @@ def main(c):
         y_test = model.predict(X_test)
 
         sub['isFraud'] = y_test
-        out_sub_path = c.runtime.ROOTDIR / 'data/submission' / f'submission_{c.runtime.VERSION}.csv'
+        out_sub_path = c.runtime.ROOTDIR / 'data/submission' / f'submission_{c.runtime.VERSION}{dsize}.csv'
         sub.to_csv(out_sub_path, index=False)
         logger.debug(f'Saved {out_sub_path}')
 
@@ -77,12 +79,12 @@ def split_X_y(train, test):
 
 
 @timer
-def tune_gbdt_params(model, X, y, n_splits) -> dict:
+def tune_gbdt_params(model, X, y, n_splits, dsize) -> dict:
     '''
     Tune parameter num_boost_round
     '''
     # start tuning train log
-    train_log_path = c.runtime.ROOTDIR / 'log' / f'train_{c.runtime.VERSION}.tsv'
+    train_log_path = c.runtime.ROOTDIR / 'log' / f'train_{c.runtime.VERSION}{dsize}.tsv'
     create_logger('train',
                   VERSION=c.runtime.VERSION,
                   log_path=train_log_path,
@@ -109,7 +111,7 @@ def tune_gbdt_params(model, X, y, n_splits) -> dict:
             # train
             model = model.train_and_validate(X_train, y_train, X_val, y_val, logger_train, fold)
             out_model_fold_dir = c.runtime.ROOTDIR / 'data/model' / \
-                f'model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}.pkl'
+                f'model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}{dsize}.pkl'
             model.save(out_model_fold_dir)
 
             # record result
@@ -136,12 +138,13 @@ if __name__ == "__main__":
     # read config & apply option
     c = EasyDict(config)
     opt = parse_option()
-    c.transformer.USE_SMALL_DATA = opt.small
+    c.runtime.USE_SMALL_DATA = opt.small
     c.log.slackauth.NO_SEND_MESSAGE = opt.nomsg
 
     seed_everything(c.runtime.RANDOM_SEED)
 
-    main_log_path = c.runtime.ROOTDIR / 'log' / f'main_{c.runtime.VERSION}.log'
+    dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
+    main_log_path = c.runtime.ROOTDIR / 'log' / f'main_{c.runtime.VERSION}{dsize}.log'
     create_logger('main',
                   VERSION=c.runtime.VERSION,
                   log_path=main_log_path,
@@ -151,11 +154,11 @@ if __name__ == "__main__":
                   slackauth=c.log.slackauth
                   )
     logger = getLogger('main')
-    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}')
+    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')
 
     try:
         main(c)
-        logger.info(f':sunglasses: Finished experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}')
+        logger.info(f':sunglasses: Finished experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')
     except Exception:
         logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')
-        logger.critical(f':skull: Stopped experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}')
+        logger.critical(f':skull: Stopped experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')

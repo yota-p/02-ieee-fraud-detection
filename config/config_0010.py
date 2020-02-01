@@ -12,14 +12,14 @@ config = {
         'RANDOM_SEED': 42,
         'DESCRIPTION': 'xgb-nroman',
         'RUN_TRAIN': True,
-        'RUN_PRED': True
+        'RUN_PRED': True,
+        'USE_SMALL_DATA': False,
         },
 
     'transformer': {
         'ROOTDIR': ROOTDIR,
         'VERSION': VERSION,
-        'features': ['nroman'],
-        'USE_SMALL_DATA': True
+        'features': ['nroman']
         },
 
     'model': {

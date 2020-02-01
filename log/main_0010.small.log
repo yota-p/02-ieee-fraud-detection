@@ -1,0 +1,72 @@
+[0010] 2020-02-01 20:49:19 INFO  > :thinking_face: Starting experiment 0010_xgb-nroman.small
+[0010] 2020-02-01 20:49:19 INFO  > Start main
+[0010] 2020-02-01 20:49:20 INFO  > Start Preprocess
+[0010] 2020-02-01 20:49:20 INFO  > Start Transformer.run
+[0010] 2020-02-01 20:49:20 INFO  > Start is_latest
+[0010] 2020-02-01 20:49:20 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0010_train.small.pkl exists
+[0010] 2020-02-01 20:49:20 DEBUG > /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0010_test.small.pkl exists
+[0010] 2020-02-01 20:49:20 DEBUG > All files existed. Skip transforming.
+[0010] 2020-02-01 20:49:20 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:24 DEBUG > Loaded train.shape: (590540, 301)
+[0010] 2020-02-01 20:49:24 DEBUG > Loaded test.shape:  (506691, 300)
+[0010] 2020-02-01 20:49:24 DEBUG > USE_SMALL_DATA is True. Using 0.1 % of data.
+[0010] 2020-02-01 20:49:25 DEBUG > Created /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0010_train.small.pkl shape: (591, 301)
+[0010] 2020-02-01 20:49:25 DEBUG > Created /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0010_test.small.pkl shape: (507, 300)
+[0010] 2020-02-01 20:49:25 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
+[0010] 2020-02-01 20:49:25 INFO  > End   Preprocess: [elapsed] >> 00:00:05
+[0010] 2020-02-01 20:49:25 INFO  > Start Tune & Train
+[0010] 2020-02-01 20:49:26 INFO  > Start ModelFactory.create
+[0010] 2020-02-01 20:49:26 INFO  > Creating model xgb
+[0010] 2020-02-01 20:49:26 INFO  > Start XGBoost.__init__
+[0010] 2020-02-01 20:49:26 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:26 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:27 INFO  > Start tune_gbdt_params
+[0010] 2020-02-01 20:49:27 INFO  > Start Training on Fold 1
+[0010] 2020-02-01 20:49:27 INFO  > Start XGBoost.train_and_validate
+[0010] 2020-02-01 20:49:27 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:28 INFO  > Start BaseModel.save
+[0010] 2020-02-01 20:49:28 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:28 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:01
+[0010] 2020-02-01 20:49:28 INFO  > Start Training on Fold 2
+[0010] 2020-02-01 20:49:29 INFO  > Start XGBoost.train_and_validate
+[0010] 2020-02-01 20:49:29 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:29 INFO  > Start BaseModel.save
+[0010] 2020-02-01 20:49:29 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:30 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:01
+[0010] 2020-02-01 20:49:30 INFO  > Start Training on Fold 3
+[0010] 2020-02-01 20:49:30 INFO  > Start XGBoost.train_and_validate
+[0010] 2020-02-01 20:49:30 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:31 INFO  > Start BaseModel.save
+[0010] 2020-02-01 20:49:31 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:31 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:01
+[0010] 2020-02-01 20:49:31 INFO  > Start Training on Fold 4
+[0010] 2020-02-01 20:49:31 INFO  > Start XGBoost.train_and_validate
+[0010] 2020-02-01 20:49:32 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:32 INFO  > Start BaseModel.save
+[0010] 2020-02-01 20:49:32 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:32 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:01
+[0010] 2020-02-01 20:49:33 INFO  > Start Training on Fold 5
+[0010] 2020-02-01 20:49:33 INFO  > Start XGBoost.train_and_validate
+[0010] 2020-02-01 20:49:33 INFO  > End   XGBoost.train_and_validate: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:33 INFO  > Start BaseModel.save
+[0010] 2020-02-01 20:49:34 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:34 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:01
+[0010] 2020-02-01 20:49:34 INFO  > End   tune_gbdt_params: [elapsed] >> 00:00:07
+[0010] 2020-02-01 20:49:34 INFO  > Start ModelFactory.create
+[0010] 2020-02-01 20:49:35 INFO  > Creating model xgb
+[0010] 2020-02-01 20:49:35 INFO  > Start XGBoost.__init__
+[0010] 2020-02-01 20:49:35 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:35 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:35 INFO  > Start XGBoost.train
+[0010] 2020-02-01 20:49:36 INFO  > End   XGBoost.train: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:36 INFO  > Start BaseModel.save
+[0010] 2020-02-01 20:49:36 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:36 INFO  > Saved /home/yh/git/kaggle_ieee-fraud-detection/feature/importance/importance_0010.small.csv
+[0010] 2020-02-01 20:49:37 INFO  > End   Tune & Train: [elapsed] >> 00:00:11
+[0010] 2020-02-01 20:49:37 INFO  > Start Predict
+[0010] 2020-02-01 20:49:37 INFO  > Start XGBoost.predict
+[0010] 2020-02-01 20:49:37 INFO  > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:38 DEBUG > Saved /home/yh/git/kaggle_ieee-fraud-detection/data/submission/submission_0010.small.csv
+[0010] 2020-02-01 20:49:38 INFO  > End   Predict: [elapsed] >> 00:00:00
+[0010] 2020-02-01 20:49:38 INFO  > End   main: [elapsed] >> 00:00:18
+[0010] 2020-02-01 20:49:38 INFO  > :sunglasses: Finished experiment 0010_xgb-nroman.small

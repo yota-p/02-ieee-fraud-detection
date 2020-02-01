@@ -54,13 +54,6 @@ class Transformer:
             train = train.sort_values(by=['TransactionDT'])
             test = test.sort_values(by=['TransactionDT'])
 
-            # save processed data
-            train.to_pickle(str(transformed_train_path))
-            test.to_pickle(str(transformed_test_path))
-
-            logger.debug(f'Created {transformed_train_path} shape: {train.shape}')
-            logger.debug(f'Created {transformed_test_path} shape: {test.shape}')
-
         if USE_SMALL_DATA:
             frac = 0.001
             train = train.sample(frac=frac, random_state=42)
@@ -69,8 +62,12 @@ class Transformer:
         else:
             logger.debug(f'USE_SMALL_DATA is {USE_SMALL_DATA}. Using all data.')
 
-        logger.debug(f'Transformed train: {train.shape}')
-        logger.debug(f'Transformed test : {test.shape}')
+        # save processed data
+        train.to_pickle(str(transformed_train_path))
+        test.to_pickle(str(transformed_test_path))
+
+        logger.debug(f'Created {transformed_train_path} shape: {train.shape}')
+        logger.debug(f'Created {transformed_test_path} shape: {test.shape}')
 
         return train, test
 
