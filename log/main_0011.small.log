@@ -1,0 +1,74 @@
+[0011] 2020-02-08 15:41:43 INFO  > :thinking_face: Starting experiment 0011_lgb_['magic'].small
+[0011] 2020-02-08 15:41:43 INFO  > Options indicated: Namespace(nomsg=True, small=True)
+[0011] 2020-02-08 15:41:44 INFO  > Start main
+[0011] 2020-02-08 15:41:44 INFO  > Start Preprocess
+[0011] 2020-02-08 15:41:44 INFO  > Start Transformer.run
+[0011] 2020-02-08 15:41:44 INFO  > Start is_latest
+[0011] 2020-02-08 15:41:45 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:41:45 DEBUG > All files existed. Skip transforming.
+[0011] 2020-02-08 15:41:49 DEBUG > Loaded train.shape: (591, 266)
+[0011] 2020-02-08 15:41:49 DEBUG > Loaded test.shape:  (507, 265)
+[0011] 2020-02-08 15:41:49 INFO  > End   Transformer.run: [elapsed] >> 00:00:05
+[0011] 2020-02-08 15:41:50 INFO  > End   Preprocess: [elapsed] >> 00:00:05
+[0011] 2020-02-08 15:41:50 INFO  > Start Tune & Train
+[0011] 2020-02-08 15:41:50 INFO  > Start ModelFactory.create
+[0011] 2020-02-08 15:41:50 INFO  > Creating model lgb
+[0011] 2020-02-08 15:41:50 INFO  > Start LightGBM.__init__
+[0011] 2020-02-08 15:41:51 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:41:51 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0011] 2020-02-08 15:41:51 INFO  > Start optimize_num_boost_round
+[0011] 2020-02-08 15:41:52 INFO  > Start Training on Fold 1
+[0011] 2020-02-08 15:41:52 INFO  > Start LightGBM.train
+[0011] 2020-02-08 15:41:53 INFO  > End   LightGBM.train: [elapsed] >> 00:00:01
+[0011] 2020-02-08 15:41:54 INFO  > Start BaseModel.save
+[0011] 2020-02-08 15:41:54 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:41:54 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:02
+[0011] 2020-02-08 15:41:54 INFO  > Start Training on Fold 2
+[0011] 2020-02-08 15:41:54 INFO  > Start LightGBM.train
+[0011] 2020-02-08 15:41:55 INFO  > End   LightGBM.train: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:41:56 INFO  > Start BaseModel.save
+[0011] 2020-02-08 15:41:56 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:41:56 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:02
+[0011] 2020-02-08 15:41:57 INFO  > Start Training on Fold 3
+[0011] 2020-02-08 15:41:57 INFO  > Start LightGBM.train
+[0011] 2020-02-08 15:41:58 INFO  > End   LightGBM.train: [elapsed] >> 00:00:01
+[0011] 2020-02-08 15:41:58 INFO  > Start BaseModel.save
+[0011] 2020-02-08 15:41:58 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:41:59 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:02
+[0011] 2020-02-08 15:41:59 INFO  > Start Training on Fold 4
+[0011] 2020-02-08 15:41:59 INFO  > Start LightGBM.train
+[0011] 2020-02-08 15:42:02 INFO  > End   LightGBM.train: [elapsed] >> 00:00:02
+[0011] 2020-02-08 15:42:02 INFO  > Start BaseModel.save
+[0011] 2020-02-08 15:42:02 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:42:03 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:03
+[0011] 2020-02-08 15:42:03 INFO  > Start Training on Fold 5
+[0011] 2020-02-08 15:42:03 INFO  > Start LightGBM.train
+[0011] 2020-02-08 15:42:05 INFO  > End   LightGBM.train: [elapsed] >> 00:00:02
+[0011] 2020-02-08 15:42:06 INFO  > Start BaseModel.save
+[0011] 2020-02-08 15:42:06 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:42:06 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:03
+[0011] 2020-02-08 15:42:07 INFO  > Early stopping. Best iteration is: 625
+[0011] 2020-02-08 15:42:07 INFO  > End   optimize_num_boost_round: [elapsed] >> 00:00:15
+[0011] 2020-02-08 15:42:07 INFO  > Start ModelFactory.create
+[0011] 2020-02-08 15:42:08 INFO  > Creating model lgb
+[0011] 2020-02-08 15:42:08 INFO  > Start LightGBM.__init__
+[0011] 2020-02-08 15:42:08 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:42:09 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0011] 2020-02-08 15:42:09 INFO  > Start LightGBM.train
+[0011] 2020-02-08 15:42:10 INFO  > End   LightGBM.train: [elapsed] >> 00:00:01
+[0011] 2020-02-08 15:42:11 INFO  > Start BaseModel.save
+[0011] 2020-02-08 15:42:11 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0011] 2020-02-08 15:44:05 CRITICAL > :smiling_imp: Exception occured 
+ Traceback (most recent call last):
+  File "/home/yh/git/kaggle_ieee-fraud-detection/run_gbdt.py", line 153, in <module>
+  File "/home/yh/git/kaggle_ieee-fraud-detection/util/mylog.py", line 105, in _wrapper
+    result = f(*args, **kwargs)
+  File "/home/yh/git/kaggle_ieee-fraud-detection/run_gbdt.py", line 57, in main
+  File "/home/yh/git/kaggle_ieee-fraud-detection/run_gbdt.py", line 57, in main
+  File "/opt/conda/lib/python3.6/bdb.py", line 51, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/opt/conda/lib/python3.6/bdb.py", line 70, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+
+[0011] 2020-02-08 15:44:05 CRITICAL > :skull: Stopped experiment 0011.small
