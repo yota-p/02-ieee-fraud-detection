@@ -4,6 +4,7 @@ import traceback
 from logging import getLogger, INFO, DEBUG
 import pandas as pd
 from sklearn.model_selection import TimeSeriesSplit
+from pathlib import Path
 
 from util.easydict import EasyDict
 from util.option import parse_option
@@ -13,17 +14,17 @@ from util.transformer import Transformer
 from model.model_factory import ModelFactory
 
 # config
-from config.config_0010 import config
+from config.config_0012 import config
+# from config.config_0012 import config
+# from config.config_0013 import config
 
 
 @timer
 def main(c):
     dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
     with blocktimer('Preprocess'):
-        out_transformed_train_path = c.runtime.ROOTDIR / 'data/feature' / \
-            f'transformed_{c.runtime.VERSION}_train{dsize}.pkl'
-        out_transformed_test_path = c.runtime.ROOTDIR / 'data/feature' / \
-            f'transformed_{c.runtime.VERSION}_test{dsize}.pkl'
+        out_transformed_train_path = Path(f'data/feature/transformed_{c.runtime.VERSION}_train{dsize}.pkl')
+        out_transformed_test_path = Path(f'data/feature/transformed_{c.runtime.VERSION}_test{dsize}.pkl')
         train, test = Transformer.run(c.features,
                                       USE_SMALL_DATA=c.runtime.USE_SMALL_DATA,
                                       transformed_train_path=out_transformed_train_path,
@@ -44,13 +45,13 @@ def main(c):
         model = model.train(X_train, y_train, num_boost_round=best_iteration)
 
         # save results
-        out_model_dir = c.runtime.ROOTDIR / 'data/model' / f'model_{c.runtime.VERSION}_{c.model.TYPE}{dsize}.pkl'
+        out_model_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.TYPE}{dsize}.pkl')
         model.save(out_model_dir)
 
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
-        importance_path = c.runtime.ROOTDIR / 'feature/importance' / f'importance_{c.runtime.VERSION}{dsize}.csv'
+        importance_path = Path(f'feature/importance/importance_{c.runtime.VERSION}{dsize}.csv')
         importance.to_csv(importance_path)
         logger.info(f'Saved {str(importance_path)}')
 
@@ -61,7 +62,7 @@ def main(c):
         y_test = model.predict(X_test)
 
         sub['isFraud'] = y_test
-        out_sub_path = c.runtime.ROOTDIR / 'data/submission' / f'submission_{c.runtime.VERSION}{dsize}.csv'
+        out_sub_path = Path(f'data/submission/submission_{c.runtime.VERSION}{dsize}.csv')
         sub.to_csv(out_sub_path, index=False)
         logger.debug(f'Saved {out_sub_path}')
 
@@ -98,8 +99,7 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
                                 num_boost_round=c.trainer.num_boost_round,
                                 early_stopping_rounds=c.trainer.early_stopping_rounds,
                                 fold=fold)
-            out_model_fold_dir = c.runtime.ROOTDIR / 'data/model' / \
-                f'model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}{dsize}.pkl'
+            out_model_fold_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}{dsize}.pkl')
             model.save(out_model_fold_dir)
 
     # make optimal config from result
@@ -124,8 +124,8 @@ if __name__ == "__main__":
     seed_everything(c.runtime.RANDOM_SEED)
 
     dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
-    main_log_path = c.runtime.ROOTDIR / 'log' / f'main_{c.runtime.VERSION}{dsize}.log'
-    train_log_path = c.runtime.ROOTDIR / 'log' / f'train_{c.runtime.VERSION}{dsize}.tsv'
+    main_log_path = Path(f'log/main_{c.runtime.VERSION}{dsize}.log')
+    train_log_path = Path(f'log/train_{c.runtime.VERSION}{dsize}.tsv')
     create_logger('main',
                   VERSION=c.runtime.VERSION,
                   log_path=main_log_path,
