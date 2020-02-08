@@ -12,8 +12,6 @@ class Transformer:
     @classmethod
     @timer
     def run(cls,
-            ROOTDIR,
-            VERSION,
             features,
             USE_SMALL_DATA,
             transformed_train_path,
