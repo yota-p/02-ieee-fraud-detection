@@ -1,0 +1,91 @@
+[0011] 2020-02-07 20:41:27 INFO  > :thinking_face: Starting experiment 0011_lgb_['magic']
+[0011] 2020-02-07 20:41:27 INFO  > Options indicated: Namespace(nomsg=False, small=False)
+[0011] 2020-02-07 20:41:28 INFO  > Start main
+[0011] 2020-02-07 20:41:28 INFO  > Start Preprocess
+[0011] 2020-02-07 20:41:28 INFO  > Start Transformer.run
+[0011] 2020-02-07 20:41:28 INFO  > Start is_latest
+[0011] 2020-02-07 20:41:29 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0011] 2020-02-07 20:41:29 INFO  > Start FeatureFactory.create
+[0011] 2020-02-07 20:41:29 INFO  > End   FeatureFactory.create: [elapsed] >> 00:00:00
+[0011] 2020-02-07 20:41:30 INFO  > Start Feature.create_feature
+[0011] 2020-02-07 20:41:30 INFO  > Start is_latest
+[0011] 2020-02-07 20:41:30 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0011] 2020-02-07 20:41:31 DEBUG > Skip calculating Raw
+[0011] 2020-02-07 20:41:31 INFO  > Start Feature._load
+[0011] 2020-02-07 20:41:37 INFO  > End   Feature._load: [elapsed] >> 00:00:06
+[0011] 2020-02-07 20:41:37 DEBUG > raw_train.shape: (590540, 434)
+[0011] 2020-02-07 20:41:37 DEBUG > raw_test.shape : (506691, 433)
+[0011] 2020-02-07 20:41:37 INFO  > End   Feature.create_feature: [elapsed] >> 00:00:07
+[0011] 2020-02-07 20:41:40 INFO  > Start FeatureFactory.create
+[0011] 2020-02-07 20:41:40 INFO  > End   FeatureFactory.create: [elapsed] >> 00:00:00
+[0011] 2020-02-07 20:41:40 INFO  > Start Feature.create_feature
+[0011] 2020-02-07 20:41:41 INFO  > Start is_latest
+[0011] 2020-02-07 20:41:41 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0011] 2020-02-07 20:41:41 DEBUG > Skip calculating Magic
+[0011] 2020-02-07 20:41:41 INFO  > Start Feature._load
+[0011] 2020-02-07 20:41:43 INFO  > End   Feature._load: [elapsed] >> 00:00:01
+[0011] 2020-02-07 20:41:43 DEBUG > magic_train.shape: (590540, 265)
+[0011] 2020-02-07 20:41:43 DEBUG > magic_test.shape : (506691, 264)
+[0011] 2020-02-07 20:41:43 INFO  > End   Feature.create_feature: [elapsed] >> 00:00:02
+[0011] 2020-02-07 20:41:55 DEBUG > USE_SMALL_DATA is False. Using all data.
+[0011] 2020-02-07 20:41:58 DEBUG > Created /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0011_train.pkl shape: (590540, 266)
+[0011] 2020-02-07 20:41:58 DEBUG > Created /home/yh/git/kaggle_ieee-fraud-detection/data/feature/transformed_0011_test.pkl shape: (506691, 265)
+[0011] 2020-02-07 20:41:58 INFO  > End   Transformer.run: [elapsed] >> 00:00:29
+[0011] 2020-02-07 20:42:03 INFO  > End   Preprocess: [elapsed] >> 00:00:34
+[0011] 2020-02-07 20:42:03 INFO  > Start Tune & Train
+[0011] 2020-02-07 20:42:03 INFO  > Start ModelFactory.create
+[0011] 2020-02-07 20:42:03 INFO  > Creating model lgb
+[0011] 2020-02-07 20:42:04 INFO  > Start LightGBM.__init__
+[0011] 2020-02-07 20:42:04 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0011] 2020-02-07 20:42:04 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0011] 2020-02-07 20:42:05 INFO  > Start optimize_num_boost_round
+[0011] 2020-02-07 20:42:05 INFO  > Start Training on Fold 1
+[0011] 2020-02-07 20:42:06 INFO  > Start LightGBM.train
+[0011] 2020-02-07 20:44:05 INFO  > End   LightGBM.train: [elapsed] >> 00:01:59
+[0011] 2020-02-07 20:44:05 INFO  > Start BaseModel.save
+[0011] 2020-02-07 20:44:07 INFO  > End   BaseModel.save: [elapsed] >> 00:00:01
+[0011] 2020-02-07 20:44:07 INFO  > End   Training on Fold 1: [elapsed] >> 00:02:02
+[0011] 2020-02-07 20:44:07 INFO  > Start Training on Fold 2
+[0011] 2020-02-07 20:44:08 INFO  > Start LightGBM.train
+[0011] 2020-02-07 20:48:04 INFO  > End   LightGBM.train: [elapsed] >> 00:03:56
+[0011] 2020-02-07 20:48:05 INFO  > Start BaseModel.save
+[0011] 2020-02-07 20:48:07 INFO  > End   BaseModel.save: [elapsed] >> 00:00:01
+[0011] 2020-02-07 20:48:07 INFO  > End   Training on Fold 2: [elapsed] >> 00:03:59
+[0011] 2020-02-07 20:48:07 INFO  > Start Training on Fold 3
+[0011] 2020-02-07 20:48:08 INFO  > Start LightGBM.train
+[0011] 2020-02-07 20:54:03 INFO  > End   LightGBM.train: [elapsed] >> 00:05:54
+[0011] 2020-02-07 20:54:03 INFO  > Start BaseModel.save
+[0011] 2020-02-07 20:54:05 INFO  > End   BaseModel.save: [elapsed] >> 00:00:01
+[0011] 2020-02-07 20:54:05 INFO  > End   Training on Fold 3: [elapsed] >> 00:05:57
+[0011] 2020-02-07 20:54:05 INFO  > Start Training on Fold 4
+[0011] 2020-02-07 20:54:06 INFO  > Start LightGBM.train
+[0011] 2020-02-07 21:22:00 INFO  > End   LightGBM.train: [elapsed] >> 00:27:53
+[0011] 2020-02-07 21:22:00 INFO  > Start BaseModel.save
+[0011] 2020-02-07 21:22:03 INFO  > End   BaseModel.save: [elapsed] >> 00:00:03
+[0011] 2020-02-07 21:22:04 INFO  > End   Training on Fold 4: [elapsed] >> 00:27:58
+[0011] 2020-02-07 21:22:04 INFO  > Start Training on Fold 5
+[0011] 2020-02-07 21:22:05 INFO  > Start LightGBM.train
+[0011] 2020-02-07 21:36:03 INFO  > End   LightGBM.train: [elapsed] >> 00:13:57
+[0011] 2020-02-07 21:36:03 INFO  > Start BaseModel.save
+[0011] 2020-02-07 21:36:06 INFO  > End   BaseModel.save: [elapsed] >> 00:00:02
+[0011] 2020-02-07 21:36:06 INFO  > End   Training on Fold 5: [elapsed] >> 00:14:01
+[0011] 2020-02-07 21:36:06 INFO  > Early stopping. Best iteration is: 1672
+[0011] 2020-02-07 21:36:07 INFO  > End   optimize_num_boost_round: [elapsed] >> 00:54:02
+[0011] 2020-02-07 21:36:07 INFO  > Start ModelFactory.create
+[0011] 2020-02-07 21:36:07 INFO  > Creating model lgb
+[0011] 2020-02-07 21:36:08 INFO  > Start LightGBM.__init__
+[0011] 2020-02-07 21:36:08 INFO  > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0011] 2020-02-07 21:36:08 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0011] 2020-02-07 21:36:08 INFO  > Start LightGBM.train
+[0011] 2020-02-07 21:51:23 INFO  > End   LightGBM.train: [elapsed] >> 00:15:14
+[0011] 2020-02-07 21:51:23 INFO  > Start BaseModel.save
+[0011] 2020-02-07 21:51:26 INFO  > End   BaseModel.save: [elapsed] >> 00:00:02
+[0011] 2020-02-07 21:51:26 INFO  > Saved /home/yh/git/kaggle_ieee-fraud-detection/feature/importance/importance_0011.csv
+[0011] 2020-02-07 21:51:27 INFO  > End   Tune & Train: [elapsed] >> 01:09:23
+[0011] 2020-02-07 21:51:27 INFO  > Start Predict
+[0011] 2020-02-07 21:51:28 INFO  > Start LightGBM.predict
+[0011] 2020-02-07 21:52:54 INFO  > End   LightGBM.predict: [elapsed] >> 00:01:26
+[0011] 2020-02-07 21:52:58 DEBUG > Saved /home/yh/git/kaggle_ieee-fraud-detection/data/submission/submission_0011.csv
+[0011] 2020-02-07 21:52:58 INFO  > End   Predict: [elapsed] >> 00:01:30
+[0011] 2020-02-07 21:52:58 INFO  > End   main: [elapsed] >> 01:11:30
+[0011] 2020-02-07 21:52:58 INFO  > :sunglasses: Finished experiment 0011

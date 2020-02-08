@@ -1,5 +1,69 @@
-[0010] 2020-02-01 21:23:56 INFO  > :thinking_face: Starting experiment 0010_xgb-nroman
-[0010] 2020-02-01 21:23:56 INFO  > Options indicated: Namespace(nomsg=False, small=False)
-[0010] 2020-02-01 21:23:56 INFO  > Start main
-[0010] 2020-02-01 21:23:56 INFO  > Start Preprocess
-[0010] 2020-02-01 21:23:57 INFO  > Start Transformer.run
+[0010] 2020-02-07 13:09:42 INFO  > :thinking_face: Starting experiment 0010_xgb_['magic']
+[0010] 2020-02-07 13:09:42 INFO  > Options indicated: Namespace(nomsg=True, small=False)
+[0010] 2020-02-07 13:09:42 INFO  > Start main
+[0010] 2020-02-07 13:09:43 INFO  > Start Preprocess
+[0010] 2020-02-07 13:09:43 INFO  > Start Transformer.run
+[0010] 2020-02-07 13:09:43 INFO  > Start is_latest
+[0010] 2020-02-07 13:09:43 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:09:44 DEBUG > All files existed. Skip transforming.
+[0010] 2020-02-07 13:09:47 DEBUG > Loaded train.shape: (590540, 301)
+[0010] 2020-02-07 13:09:47 DEBUG > Loaded test.shape:  (506691, 300)
+[0010] 2020-02-07 13:09:47 INFO  > End   Transformer.run: [elapsed] >> 00:00:04
+[0010] 2020-02-07 13:09:52 INFO  > End   Preprocess: [elapsed] >> 00:00:09
+[0010] 2020-02-07 13:09:52 INFO  > Start Tune & Train
+[0010] 2020-02-07 13:09:53 INFO  > Start ModelFactory.create
+[0010] 2020-02-07 13:09:53 INFO  > Creating model xgb
+[0010] 2020-02-07 13:09:53 INFO  > Start XGBoost.__init__
+[0010] 2020-02-07 13:09:54 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:09:54 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0010] 2020-02-07 13:09:54 INFO  > Start optimize_num_boost_round
+[0010] 2020-02-07 13:09:55 INFO  > Start Training on Fold 1
+[0010] 2020-02-07 13:09:55 INFO  > Start XGBoost.train
+[0010] 2020-02-07 13:12:54 INFO  > End   XGBoost.train: [elapsed] >> 00:02:58
+[0010] 2020-02-07 13:12:54 INFO  > Start BaseModel.save
+[0010] 2020-02-07 13:12:55 INFO  > End   BaseModel.save: [elapsed] >> 00:00:01
+[0010] 2020-02-07 13:12:56 INFO  > End   Training on Fold 1: [elapsed] >> 00:03:01
+[0010] 2020-02-07 13:12:56 INFO  > Start Training on Fold 2
+[0010] 2020-02-07 13:12:57 INFO  > Start XGBoost.train
+[0010] 2020-02-07 13:16:27 INFO  > End   XGBoost.train: [elapsed] >> 00:03:30
+[0010] 2020-02-07 13:16:28 INFO  > Start BaseModel.save
+[0010] 2020-02-07 13:16:28 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:16:28 INFO  > End   Training on Fold 2: [elapsed] >> 00:03:32
+[0010] 2020-02-07 13:16:29 INFO  > Start Training on Fold 3
+[0010] 2020-02-07 13:16:29 INFO  > Start XGBoost.train
+[0010] 2020-02-07 13:22:56 INFO  > End   XGBoost.train: [elapsed] >> 00:06:27
+[0010] 2020-02-07 13:22:57 INFO  > Start BaseModel.save
+[0010] 2020-02-07 13:22:57 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:22:57 INFO  > End   Training on Fold 3: [elapsed] >> 00:06:28
+[0010] 2020-02-07 13:22:58 INFO  > Start Training on Fold 4
+[0010] 2020-02-07 13:22:59 INFO  > Start XGBoost.train
+[0010] 2020-02-07 13:32:40 INFO  > End   XGBoost.train: [elapsed] >> 00:09:40
+[0010] 2020-02-07 13:32:40 INFO  > Start BaseModel.save
+[0010] 2020-02-07 13:32:41 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:32:41 INFO  > End   Training on Fold 4: [elapsed] >> 00:09:43
+[0010] 2020-02-07 13:32:41 INFO  > Start Training on Fold 5
+[0010] 2020-02-07 13:32:43 INFO  > Start XGBoost.train
+[0010] 2020-02-07 13:43:44 INFO  > End   XGBoost.train: [elapsed] >> 00:11:01
+[0010] 2020-02-07 13:43:45 INFO  > Start BaseModel.save
+[0010] 2020-02-07 13:43:45 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:43:46 INFO  > End   Training on Fold 5: [elapsed] >> 00:11:04
+[0010] 2020-02-07 13:43:46 INFO  > Early stopping. Best iteration is: 685
+[0010] 2020-02-07 13:43:46 INFO  > End   optimize_num_boost_round: [elapsed] >> 00:33:51
+[0010] 2020-02-07 13:43:46 INFO  > Start ModelFactory.create
+[0010] 2020-02-07 13:43:47 INFO  > Creating model xgb
+[0010] 2020-02-07 13:43:47 INFO  > Start XGBoost.__init__
+[0010] 2020-02-07 13:43:47 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:43:48 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0010] 2020-02-07 13:43:48 INFO  > Start XGBoost.train
+[0010] 2020-02-07 13:54:14 INFO  > End   XGBoost.train: [elapsed] >> 00:10:25
+[0010] 2020-02-07 13:54:14 INFO  > Start BaseModel.save
+[0010] 2020-02-07 13:54:15 INFO  > End   BaseModel.save: [elapsed] >> 00:00:00
+[0010] 2020-02-07 13:54:21 INFO  > Saved /home/yh/git/kaggle_ieee-fraud-detection/feature/importance/importance_0010.csv
+[0010] 2020-02-07 13:54:21 INFO  > End   Tune & Train: [elapsed] >> 00:44:28
+[0010] 2020-02-07 13:54:21 INFO  > Start Predict
+[0010] 2020-02-07 13:54:22 INFO  > Start XGBoost.predict
+[0010] 2020-02-07 13:55:04 INFO  > End   XGBoost.predict: [elapsed] >> 00:00:42
+[0010] 2020-02-07 13:55:07 DEBUG > Saved /home/yh/git/kaggle_ieee-fraud-detection/data/submission/submission_0010.csv
+[0010] 2020-02-07 13:55:07 INFO  > End   Predict: [elapsed] >> 00:00:45
+[0010] 2020-02-07 13:55:07 INFO  > End   main: [elapsed] >> 00:45:25
+[0010] 2020-02-07 13:55:08 INFO  > :sunglasses: Finished experiment 0010

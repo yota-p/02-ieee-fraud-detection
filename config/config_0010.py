@@ -1,5 +1,4 @@
 import pathlib
-from logging import DEBUG, INFO
 import numpy as np
 
 VERSION = '0010'
@@ -10,47 +9,43 @@ config = {
         'ROOTDIR': ROOTDIR,
         'VERSION': VERSION,
         'RANDOM_SEED': 42,
-        'DESCRIPTION': 'xgb-nroman',
         'USE_SMALL_DATA': False,
         },
 
-    'transformer': {
-        'ROOTDIR': ROOTDIR,
-        'VERSION': VERSION,
-        'features': ['nroman']
-        },
+    'features': ['magic'],
 
     'model': {
+        # https://xgboost.readthedocs.io/en/latest/parameter.html
         'TYPE': 'xgb',
-        'params': {'num_boost_round': 10000,
-                   'max_depth': 5,
-                   'learning_rate': 0.01,
-                   'subsample': 0.9,
-                   'colsample_bytree': 0.9,
-                   'missing': np.nan,
-                   'eval_metric': 'auc',
+        'params': {
+                   # General
+                   'booster': 'gbtree',
                    'nthread': 4,
+                   # Tree booster
+                   'eta': 0.02,  # learning_rate
+                   'gamma': 0,  # min_split_loss
+                   'max_depth': 12,
+                   'min_child_weight': 1,
+                   'subsample': 0.8,
+                   'colsample_bytree': 0.4,
                    'tree_method': 'hist',
-                   # 'tree_method': 'gpu_hist'
-                   'early_stopping_rounds': 10
+                   # Training
+                   'eval_metric': 'auc',
+                   'missing': np.nan
                    }
         },
 
     'trainer': {
         'n_splits': 5,
+        'num_boost_round': 5000,
+        'early_stopping_rounds': 100
         },
 
-    'log': {
-        'VERSION': VERSION,
-        'FILE_HANDLER_LEVEL': DEBUG,
-        'STREAM_HANDLER_LEVEL': DEBUG,
-        'SLACK_HANDLER_LEVEL': INFO,
-        'slackauth': {
-            'HOST': 'slack.com',
-            'URL': '/api/chat.postMessage',
-            'CHANNEL': 'ieee-fraud-detection',
-            'NO_SEND_MESSAGE': False,
-            'TOKEN_PATH': pathlib.Path().home() / '.slack_token'
-            }
+    'slackauth': {
+        'HOST': 'slack.com',
+        'URL': '/api/chat.postMessage',
+        'CHANNEL': 'ieee-fraud-detection',
+        'NO_SEND_MESSAGE': False,
+        'TOKEN_PATH': pathlib.Path().home() / '.slack_token'
         }
 }

@@ -1,5 +1,6 @@
+# https://xgboost.readthedocs.io/en/latest/python/python_api.html#
 import xgboost as xgb
-from logging import DEBUG
+from logging import DEBUG, getLogger
 
 from util.mylog import timer
 from model.base_model import BaseModel
@@ -16,26 +17,33 @@ class XGBoost(BaseModel):
         self.config = config
 
     @timer
-    def train(self, X_train, y_train):
-        dtrain = xgb.DMatrix(X_train, label=y_train)
-
-        self.core = xgb.train(params=self.config.params,
-                              dtrain=dtrain,
-                              verbose_eval=True,
-                              )
-        return self
-
-    @timer
-    def train_and_validate(self, X_train, y_train, X_val, y_val, logger, fold):
+    def train(self,
+              X_train, y_train,
+              X_val=None, y_val=None,
+              num_boost_round=100,
+              early_stopping_rounds=None,
+              fold=0):
         dtrain = xgb.DMatrix(X_train, label=y_train)
         dval = xgb.DMatrix(X_val, label=y_val)
-        evals = [(dtrain, 'train'), (dval, 'eval')]
-        callbacks = [log_evaluation(logger, period=10, fold=fold)]
+        if X_val is not None and y_val is not None:
+            evals = [(dtrain, 'train'), (dval, 'valid')]
+        else:
+            evals = [(dtrain, 'train')]
+        logger = getLogger('train')
+        callbacks = [log_evaluation(logger, period=1, fold=fold, evals=evals)]
 
         self.core = xgb.train(params=self.config.params,
                               dtrain=dtrain,
                               evals=evals,
-                              callbacks=callbacks
+                              num_boost_round=num_boost_round,
+                              early_stopping_rounds=early_stopping_rounds,
+                              obj=None,
+                              feval=None,
+                              maximize=False,
+                              evals_result=None,
+                              verbose_eval=False,
+                              xgb_model=None,
+                              callbacks=callbacks,
                               )
         return self
 
@@ -55,23 +63,22 @@ class XGBoost(BaseModel):
 
     @property
     def val_auc(self):
-        # return self.core.best_score['valid_1']['auc']
-        evals_result = self.core.evals_result
-        return evals_result['eval']['auc']
+        return self.core.evals_result['eval']['auc']
 
     @property
     def best_iteration(self):
         return self.core.best_iteration
 
 
-# for XGBoost.Booster
-def log_evaluation(logger, period=1, show_stdv=True, level=DEBUG, fold=1):
+# for xgboost.Booster
+def log_evaluation(logger, period=1, show_stdv=True, level=DEBUG, fold=0, evals=None):
     def _callback(env):
         if period > 0 and env.evaluation_result_list and (env.iteration + 1) % period == 0:
-            # XGBClassifier.evaluation_result_list contains values as below
-            # env.evaluation_result_list = [('validation_0-auc', 0.882833), ('validation_1-auc', 0.827249)]
-            train_auc = env.evaluation_result_list[0][1]
-            eval_auc = env.evaluation_result_list[1][1]
-            logger.log(level, f'{fold:0>3}\t{env.iteration+1:0>6}\t{train_auc:.6f}\t{eval_auc:.6f}')
+            # XGBClassifier.evaluation_result_list contains values as below:
+            #  env.evaluation_result_list = [('validation_0-auc', 0.882833), ('validation_1-auc', 0.827249)]
+            result = ''
+            for i in range(len(evals)):
+                result = result + f'\t{env.evaluation_result_list[i][1]:6f}'
+            logger.log(level, f'{fold:0>3}\t{env.iteration+1:0>6}{result}')
     _callback.order = 10
     return _callback

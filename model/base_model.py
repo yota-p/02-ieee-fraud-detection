@@ -16,10 +16,6 @@ class BaseModel(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def train_and_validate(self, X_train, y_train, X_val, y_val):
-        raise NotImplementedError
-
-    @abstractmethod
     def predict(self, X_test):
         raise NotImplementedError
 

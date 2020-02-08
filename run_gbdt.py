@@ -1,7 +1,7 @@
 import gc
 import warnings
 import traceback
-from logging import getLogger
+from logging import getLogger, INFO, DEBUG
 import pandas as pd
 from sklearn.model_selection import TimeSeriesSplit
 
@@ -24,12 +24,10 @@ def main(c):
             f'transformed_{c.runtime.VERSION}_train{dsize}.pkl'
         out_transformed_test_path = c.runtime.ROOTDIR / 'data/feature' / \
             f'transformed_{c.runtime.VERSION}_test{dsize}.pkl'
-        train, test = Transformer.run(ROOTDIR=c.transformer.ROOTDIR,
-                                      VERSION=c.transformer.VERSION,
-                                      features=c.transformer.features,
+        train, test = Transformer.run(c.features,
                                       USE_SMALL_DATA=c.runtime.USE_SMALL_DATA,
                                       transformed_train_path=out_transformed_train_path,
-                                      transformed_test_path=out_transformed_test_path,
+                                      transformed_test_path=out_transformed_test_path
                                       )
         X_train, y_train, X_test = split_X_y(train, test)
         test = test.sort_values('TransactionDT')
@@ -39,11 +37,11 @@ def main(c):
 
         # tune the model params
         model = modelfactory.create(c.model)
-        optimal_c_model = tune_gbdt_params(model, X_train, y_train, c.trainer.n_splits, dsize)
+        best_iteration = optimize_num_boost_round(model, X_train, y_train, c.trainer.n_splits, dsize)
 
         # train with best params, full data
-        model = modelfactory.create(optimal_c_model)
-        model = model.train(X_train, y_train)
+        model = modelfactory.create(c.model)
+        model = model.train(X_train, y_train, num_boost_round=best_iteration)
 
         # save results
         out_model_dir = c.runtime.ROOTDIR / 'data/model' / f'model_{c.runtime.VERSION}_{c.model.TYPE}{dsize}.pkl'
@@ -52,7 +50,6 @@ def main(c):
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
-
         importance_path = c.runtime.ROOTDIR / 'feature/importance' / f'importance_{c.runtime.VERSION}{dsize}.csv'
         importance.to_csv(importance_path)
         logger.info(f'Saved {str(importance_path)}')
@@ -78,20 +75,10 @@ def split_X_y(train, test):
 
 
 @timer
-def tune_gbdt_params(model, X, y, n_splits, dsize) -> dict:
+def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
     '''
     Tune parameter num_boost_round
     '''
-    # start tuning train log
-    train_log_path = c.runtime.ROOTDIR / 'log' / f'train_{c.runtime.VERSION}{dsize}.tsv'
-    create_logger('train',
-                  VERSION=c.runtime.VERSION,
-                  log_path=train_log_path,
-                  FILE_HANDLER_LEVEL=c.log.FILE_HANDLER_LEVEL,
-                  STREAM_HANDLER_LEVEL=c.log.STREAM_HANDLER_LEVEL,
-                  SLACK_HANDLER_LEVEL=c.log.SLACK_HANDLER_LEVEL,
-                  slackauth=c.log.slackauth
-                  )
     logger_train = getLogger('train')
     logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'val_auc'))
 
@@ -106,20 +93,22 @@ def tune_gbdt_params(model, X, y, n_splits, dsize) -> dict:
             y_val = y.iloc[idx_val]
 
             # train
-            model = model.train_and_validate(X_train, y_train, X_val, y_val, logger_train, fold)
+            model = model.train(X_train, y_train,
+                                X_val, y_val,
+                                num_boost_round=c.trainer.num_boost_round,
+                                early_stopping_rounds=c.trainer.early_stopping_rounds,
+                                fold=fold)
             out_model_fold_dir = c.runtime.ROOTDIR / 'data/model' / \
                 f'model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}{dsize}.pkl'
             model.save(out_model_fold_dir)
 
     # make optimal config from result
-    optimal_c_model = model.config
     if model.best_iteration is not None:
-        optimal_c_model.params['num_boost_round'] = model.best_iteration
+        logger.info(f'Early stopping. Best iteration is: {model.best_iteration}')
+        return model.best_iteration
     else:
         logger.warn('Did not meet early stopping. Try larger num_boost_rounds.')
-    # no need after optimized num_boost_round
-    del optimal_c_model.params['early_stopping_rounds']
-    return optimal_c_model
+        return c.train.num_boost_round
 
 
 if __name__ == "__main__":
@@ -130,27 +119,36 @@ if __name__ == "__main__":
     c = EasyDict(config)
     opt = parse_option()
     c.runtime.USE_SMALL_DATA = opt.small
-    c.log.slackauth.NO_SEND_MESSAGE = opt.nomsg
+    c.slackauth.NO_SEND_MESSAGE = opt.nomsg
 
     seed_everything(c.runtime.RANDOM_SEED)
 
     dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
     main_log_path = c.runtime.ROOTDIR / 'log' / f'main_{c.runtime.VERSION}{dsize}.log'
+    train_log_path = c.runtime.ROOTDIR / 'log' / f'train_{c.runtime.VERSION}{dsize}.tsv'
     create_logger('main',
                   VERSION=c.runtime.VERSION,
                   log_path=main_log_path,
-                  FILE_HANDLER_LEVEL=c.log.FILE_HANDLER_LEVEL,
-                  STREAM_HANDLER_LEVEL=c.log.STREAM_HANDLER_LEVEL,
-                  SLACK_HANDLER_LEVEL=c.log.SLACK_HANDLER_LEVEL,
-                  slackauth=c.log.slackauth
+                  FILE_HANDLER_LEVEL=DEBUG,
+                  STREAM_HANDLER_LEVEL=DEBUG,
+                  SLACK_HANDLER_LEVEL=INFO,
+                  slackauth=c.slackauth
+                  )
+    create_logger('train',
+                  VERSION=c.runtime.VERSION,
+                  log_path=train_log_path,
+                  FILE_HANDLER_LEVEL=DEBUG,
+                  STREAM_HANDLER_LEVEL=DEBUG,
+                  SLACK_HANDLER_LEVEL=INFO,
+                  slackauth=c.slackauth
                   )
     logger = getLogger('main')
-    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')
+    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.model.TYPE}_{c.features}{dsize}')
     logger.info(f'Options indicated: {opt}')
 
     try:
         main(c)
-        logger.info(f':sunglasses: Finished experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')
+        logger.info(f':sunglasses: Finished experiment {c.runtime.VERSION}{dsize}')
     except Exception:
         logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')
-        logger.critical(f':skull: Stopped experiment {c.runtime.VERSION}_{c.runtime.DESCRIPTION}{dsize}')
+        logger.critical(f':skull: Stopped experiment {c.runtime.VERSION}{dsize}')
