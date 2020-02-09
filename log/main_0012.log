@@ -1,0 +1,43 @@
+[0012] 2020-02-09 16:47:14 INFO  > :thinking_face: Starting experiment 0012_xgb_['magic']
+[0012] 2020-02-09 16:47:15 INFO  > Options indicated: Namespace(nomsg=False, seed=42, small=False, version='0012')
+[0012] 2020-02-09 16:47:15 INFO  > Start main
+[0012] 2020-02-09 16:47:15 INFO  > Start Preprocess
+[0012] 2020-02-09 16:47:15 INFO  > Start Transformer.run
+[0012] 2020-02-09 16:47:16 INFO  > Start is_latest
+[0012] 2020-02-09 16:47:16 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0012] 2020-02-09 16:47:16 INFO  > Start FeatureFactory.create
+[0012] 2020-02-09 16:47:17 INFO  > End   FeatureFactory.create: [elapsed] >> 00:00:00
+[0012] 2020-02-09 16:47:17 INFO  > Start Feature.create_feature
+[0012] 2020-02-09 16:47:17 INFO  > Start is_latest
+[0012] 2020-02-09 16:47:18 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0012] 2020-02-09 16:47:18 DEBUG > Skip calculating Raw
+[0012] 2020-02-09 16:47:18 INFO  > Start Feature._load
+[0012] 2020-02-09 16:47:53 INFO  > End   Feature._load: [elapsed] >> 00:00:35
+[0012] 2020-02-09 16:47:53 DEBUG > raw_train.shape: (590540, 434)
+[0012] 2020-02-09 16:47:53 DEBUG > raw_test.shape : (506691, 433)
+[0012] 2020-02-09 16:47:53 INFO  > End   Feature.create_feature: [elapsed] >> 00:00:36
+[0012] 2020-02-09 16:47:57 INFO  > Start FeatureFactory.create
+[0012] 2020-02-09 16:47:57 INFO  > End   FeatureFactory.create: [elapsed] >> 00:00:00
+[0012] 2020-02-09 16:47:58 INFO  > Start Feature.create_feature
+[0012] 2020-02-09 16:47:58 INFO  > Start is_latest
+[0012] 2020-02-09 16:47:58 INFO  > End   is_latest: [elapsed] >> 00:00:00
+[0012] 2020-02-09 16:47:58 DEBUG > Skip calculating Magic
+[0012] 2020-02-09 16:47:58 INFO  > Start Feature._load
+[0012] 2020-02-09 16:48:09 INFO  > End   Feature._load: [elapsed] >> 00:00:10
+[0012] 2020-02-09 16:48:10 DEBUG > magic_train.shape: (590540, 265)
+[0012] 2020-02-09 16:48:10 DEBUG > magic_test.shape : (506691, 264)
+[0012] 2020-02-09 16:48:10 INFO  > End   Feature.create_feature: [elapsed] >> 00:00:11
+[0012] 2020-02-09 16:48:23 DEBUG > USE_SMALL_DATA is False. Using all data.
+[0012] 2020-02-09 16:48:26 DEBUG > Created data/feature/transformed_0012_train.pkl shape: (590540, 266)
+[0012] 2020-02-09 16:48:26 DEBUG > Created data/feature/transformed_0012_test.pkl shape: (506691, 265)
+[0012] 2020-02-09 16:48:26 INFO  > End   Transformer.run: [elapsed] >> 00:01:10
+[0012] 2020-02-09 16:48:30 INFO  > End   Preprocess: [elapsed] >> 00:01:14
+[0012] 2020-02-09 16:48:30 INFO  > Start Tune & Train
+[0012] 2020-02-09 16:48:30 INFO  > Start ModelFactory.create
+[0012] 2020-02-09 16:48:30 INFO  > Creating model xgb
+[0012] 2020-02-09 16:48:31 INFO  > Start XGBoost.__init__
+[0012] 2020-02-09 16:48:31 INFO  > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0012] 2020-02-09 16:48:31 INFO  > End   ModelFactory.create: [elapsed] >> 00:00:01
+[0012] 2020-02-09 16:48:31 INFO  > Start optimize_num_boost_round
+[0012] 2020-02-09 16:48:32 INFO  > Start Training on Fold 1
+[0012] 2020-02-09 16:48:32 INFO  > Start XGBoost.train

@@ -4,12 +4,6 @@ import numpy as np
 VERSION = '0012'
 
 config = {
-    'runtime': {
-        'VERSION': VERSION,
-        'RANDOM_SEED': 42,
-        'USE_SMALL_DATA': False,
-        },
-
     'features': ['magic'],
 
     'model': {

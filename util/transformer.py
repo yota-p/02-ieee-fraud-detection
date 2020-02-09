@@ -13,7 +13,7 @@ class Transformer:
     @timer
     def run(cls,
             features,
-            USE_SMALL_DATA,
+            use_small_data,
             transformed_train_path,
             transformed_test_path,
             ):
@@ -54,13 +54,13 @@ class Transformer:
         train = train.sort_values(by=['TransactionDT'])
         test = test.sort_values(by=['TransactionDT'])
 
-        if USE_SMALL_DATA:
+        if use_small_data:
             frac = 0.001
             train = train.sample(frac=frac, random_state=42)
             test = test.sample(frac=frac, random_state=42)
-            logger.debug(f'USE_SMALL_DATA is {USE_SMALL_DATA}. Using {frac*100} % of data.')
+            logger.debug(f'use_small_data is {use_small_data}. Using {frac*100} % of data.')
         else:
-            logger.debug(f'USE_SMALL_DATA is {USE_SMALL_DATA}. Using all data.')
+            logger.debug(f'use_small_data is {use_small_data}. Using all data.')
 
         # save processed data
         train.to_pickle(str(transformed_train_path))

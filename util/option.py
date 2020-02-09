@@ -2,14 +2,10 @@ from argparse import ArgumentParser
 
 
 def parse_option():
-    '''
-    Get optional variables from command line arguments
-    --
-    References
-    https://qiita.com/taashi/items/400871fb13df476f42d2
-    https://qiita.com/kzkadc/items/e4fc7bc9c003de1eb6d0
-    '''
     argparser = ArgumentParser()
+
+    argparser.add_argument('version',
+                           help='Version of config')
 
     argparser.add_argument('--nomsg',
                            default=False,
@@ -21,6 +17,11 @@ def parse_option():
                            action='store_true',
                            help='Use small data set for debug')
 
-    option = argparser.parse_args()
+    argparser.add_argument('--seed',
+                           default=42,
+                           type=int,
+                           help='Use small data set for debug')
 
-    return option
+    args = argparser.parse_args()
+
+    return args

@@ -3,12 +3,6 @@ import pathlib
 VERSION = '0013'
 
 config = {
-    'runtime': {
-        'VERSION': VERSION,
-        'RANDOM_SEED': 42,
-        'USE_SMALL_DATA': False,
-        },
-
     'features': ['magic'],
 
     'model': {

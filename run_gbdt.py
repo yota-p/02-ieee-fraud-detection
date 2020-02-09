@@ -21,12 +21,12 @@ from config.config_0012 import config
 
 @timer
 def main(c):
-    dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
+    dsize = '.small' if c.runtime.use_small_data is True else ''
     with blocktimer('Preprocess'):
         out_transformed_train_path = Path(f'data/feature/transformed_{c.runtime.VERSION}_train{dsize}.pkl')
         out_transformed_test_path = Path(f'data/feature/transformed_{c.runtime.VERSION}_test{dsize}.pkl')
         train, test = Transformer.run(c.features,
-                                      USE_SMALL_DATA=c.runtime.USE_SMALL_DATA,
+                                      use_small_data=c.runtime.use_small_data,
                                       transformed_train_path=out_transformed_train_path,
                                       transformed_test_path=out_transformed_test_path
                                       )
@@ -118,12 +118,15 @@ if __name__ == "__main__":
     # read config & apply option
     c = EasyDict(config)
     opt = parse_option()
-    c.runtime.USE_SMALL_DATA = opt.small
-    c.slackauth.NO_SEND_MESSAGE = opt.nomsg
+    c.runtime = {}
+    c.runtime.VERSION = opt.version
+    c.runtime.use_small_data = opt.small
+    c.runtime.no_send_message = opt.nomsg
+    c.runtime.random_seed = opt.seed
 
-    seed_everything(c.runtime.RANDOM_SEED)
+    seed_everything(c.runtime.random_seed)
 
-    dsize = '.small' if c.runtime.USE_SMALL_DATA is True else ''
+    dsize = '.small' if c.runtime.use_small_data is True else ''
     main_log_path = Path(f'log/main_{c.runtime.VERSION}{dsize}.log')
     train_log_path = Path(f'log/train_{c.runtime.VERSION}{dsize}.tsv')
     create_logger('main',
