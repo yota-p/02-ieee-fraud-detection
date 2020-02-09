@@ -45,7 +45,7 @@ def main(c):
         model = model.train(X_train, y_train, num_boost_round=best_iteration)
 
         # save results
-        out_model_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.TYPE}{dsize}.pkl')
+        out_model_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.type}{dsize}.pkl')
         model.save(out_model_dir)
 
         importance = pd.DataFrame(model.feature_importance,
@@ -99,7 +99,7 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
                                 num_boost_round=c.trainer.num_boost_round,
                                 early_stopping_rounds=c.trainer.early_stopping_rounds,
                                 fold=fold)
-            out_model_fold_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.TYPE}_fold{fold}{dsize}.pkl')
+            out_model_fold_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.type}_fold{fold}{dsize}.pkl')
             model.save(out_model_fold_dir)
 
     # make optimal config from result
@@ -146,7 +146,7 @@ if __name__ == "__main__":
                   slackauth=c.slackauth
                   )
     logger = getLogger('main')
-    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.model.TYPE}_{c.features}{dsize}')
+    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.model.type}_{c.features}{dsize}')
     logger.info(f'Options indicated: {opt}')
 
     try:

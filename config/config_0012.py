@@ -8,7 +8,7 @@ config = {
 
     'model': {
         # https://xgboost.readthedocs.io/en/latest/parameter.html
-        'TYPE': 'xgb',
+        'type': 'xgb',
         'params': {
                    # General
                    'booster': 'gbtree',
