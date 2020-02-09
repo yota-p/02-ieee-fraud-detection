@@ -1,7 +1,5 @@
 import pathlib
 
-VERSION = '0013'
-
 config = {
     'features': ['magic'],
 

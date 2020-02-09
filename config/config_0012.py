@@ -1,7 +1,6 @@
 import pathlib
 import numpy as np
 
-VERSION = '0012'
 
 config = {
     'features': ['magic'],

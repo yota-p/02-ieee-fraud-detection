@@ -11,9 +11,9 @@ class ModelFactory:
     @timer
     def create(self, config: dict):
         logger.info(f'Creating model {config.type}')
-        if config.TYPE == 'lgb':
+        if config.type == 'lgb':
             return LightGBM(config)
-        elif config.TYPE == 'xgb':
+        elif config.type == 'xgb':
             return XGBoost(config)
         else:
             raise ValueError(f'Model {config.type} is not in factory menu')

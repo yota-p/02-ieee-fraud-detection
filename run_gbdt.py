@@ -23,8 +23,8 @@ from config.config_0012 import config
 def main(c):
     dsize = '.small' if c.runtime.use_small_data is True else ''
     with blocktimer('Preprocess'):
-        out_transformed_train_path = Path(f'data/feature/transformed_{c.runtime.VERSION}_train{dsize}.pkl')
-        out_transformed_test_path = Path(f'data/feature/transformed_{c.runtime.VERSION}_test{dsize}.pkl')
+        out_transformed_train_path = Path(f'data/feature/transformed_{c.runtime.version}_train{dsize}.pkl')
+        out_transformed_test_path = Path(f'data/feature/transformed_{c.runtime.version}_test{dsize}.pkl')
         train, test = Transformer.run(c.features,
                                       use_small_data=c.runtime.use_small_data,
                                       transformed_train_path=out_transformed_train_path,
@@ -45,13 +45,13 @@ def main(c):
         model = model.train(X_train, y_train, num_boost_round=best_iteration)
 
         # save results
-        out_model_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.type}{dsize}.pkl')
+        out_model_dir = Path(f'data/model/model_{c.runtime.version}_{c.model.type}{dsize}.pkl')
         model.save(out_model_dir)
 
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
-        importance_path = Path(f'feature/importance/importance_{c.runtime.VERSION}{dsize}.csv')
+        importance_path = Path(f'feature/importance/importance_{c.runtime.version}{dsize}.csv')
         importance.to_csv(importance_path)
         logger.info(f'Saved {str(importance_path)}')
 
@@ -62,7 +62,7 @@ def main(c):
         y_test = model.predict(X_test)
 
         sub['isFraud'] = y_test
-        out_sub_path = Path(f'data/submission/submission_{c.runtime.VERSION}{dsize}.csv')
+        out_sub_path = Path(f'data/submission/submission_{c.runtime.version}{dsize}.csv')
         sub.to_csv(out_sub_path, index=False)
         logger.debug(f'Saved {out_sub_path}')
 
@@ -99,7 +99,7 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
                                 num_boost_round=c.trainer.num_boost_round,
                                 early_stopping_rounds=c.trainer.early_stopping_rounds,
                                 fold=fold)
-            out_model_fold_dir = Path(f'data/model/model_{c.runtime.VERSION}_{c.model.type}_fold{fold}{dsize}.pkl')
+            out_model_fold_dir = Path(f'data/model/model_{c.runtime.version}_{c.model.type}_fold{fold}{dsize}.pkl')
             model.save(out_model_fold_dir)
 
     # make optimal config from result
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     c = EasyDict(config)
     opt = parse_option()
     c.runtime = {}
-    c.runtime.VERSION = opt.version
+    c.runtime.version = opt.version
     c.runtime.use_small_data = opt.small
     c.runtime.no_send_message = opt.nomsg
     c.runtime.random_seed = opt.seed
@@ -127,10 +127,10 @@ if __name__ == "__main__":
     seed_everything(c.runtime.random_seed)
 
     dsize = '.small' if c.runtime.use_small_data is True else ''
-    main_log_path = Path(f'log/main_{c.runtime.VERSION}{dsize}.log')
-    train_log_path = Path(f'log/train_{c.runtime.VERSION}{dsize}.tsv')
+    main_log_path = Path(f'log/main_{c.runtime.version}{dsize}.log')
+    train_log_path = Path(f'log/train_{c.runtime.version}{dsize}.tsv')
     create_logger('main',
-                  VERSION=c.runtime.VERSION,
+                  version=c.runtime.version,
                   log_path=main_log_path,
                   FILE_HANDLER_LEVEL=DEBUG,
                   STREAM_HANDLER_LEVEL=DEBUG,
@@ -138,7 +138,7 @@ if __name__ == "__main__":
                   slackauth=c.slackauth
                   )
     create_logger('train',
-                  VERSION=c.runtime.VERSION,
+                  version=c.runtime.version,
                   log_path=train_log_path,
                   FILE_HANDLER_LEVEL=DEBUG,
                   STREAM_HANDLER_LEVEL=DEBUG,
@@ -146,12 +146,12 @@ if __name__ == "__main__":
                   slackauth=c.slackauth
                   )
     logger = getLogger('main')
-    logger.info(f':thinking_face: Starting experiment {c.runtime.VERSION}_{c.model.type}_{c.features}{dsize}')
+    logger.info(f':thinking_face: Starting experiment {c.runtime.version}_{c.model.type}_{c.features}{dsize}')
     logger.info(f'Options indicated: {opt}')
 
     try:
         main(c)
-        logger.info(f':sunglasses: Finished experiment {c.runtime.VERSION}{dsize}')
+        logger.info(f':sunglasses: Finished experiment {c.runtime.version}{dsize}')
     except Exception:
         logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')
-        logger.critical(f':skull: Stopped experiment {c.runtime.VERSION}{dsize}')
+        logger.critical(f':skull: Stopped experiment {c.runtime.version}{dsize}')
