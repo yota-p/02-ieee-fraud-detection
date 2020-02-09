@@ -5,6 +5,7 @@ from logging import getLogger, INFO, DEBUG
 import pandas as pd
 from sklearn.model_selection import TimeSeriesSplit
 from pathlib import Path
+import importlib
 
 from util.easydict import EasyDict
 from util.option import parse_option
@@ -12,11 +13,6 @@ from util.seeder import seed_everything
 from util.mylog import create_logger, timer, blocktimer
 from util.transformer import Transformer
 from model.model_factory import ModelFactory
-
-# config
-from config.config_0012 import config
-# from config.config_0012 import config
-# from config.config_0013 import config
 
 
 @timer
@@ -116,8 +112,9 @@ if __name__ == "__main__":
     warnings.filterwarnings('ignore')
 
     # read config & apply option
-    c = EasyDict(config)
     opt = parse_option()
+    configmod = importlib.import_module(f'config.config_{opt.version}')
+    c = EasyDict(configmod.config)
     c.runtime = {}
     c.runtime.version = opt.version
     c.runtime.use_small_data = opt.small
