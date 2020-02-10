@@ -13,6 +13,7 @@ from util.seeder import seed_everything
 from util.mylog import create_logger, timer, blocktimer
 from util.transformer import Transformer
 from model.model_factory import ModelFactory
+import slackauth
 
 
 @timer
@@ -112,6 +113,7 @@ if __name__ == "__main__":
     warnings.filterwarnings('ignore')
 
     # read config & apply option
+    slackauth = EasyDict(slackauth.config)
     opt = parse_option()
     configmod = importlib.import_module(f'config.config_{opt.version}')
     c = EasyDict(configmod.config)
@@ -132,7 +134,8 @@ if __name__ == "__main__":
                   FILE_HANDLER_LEVEL=DEBUG,
                   STREAM_HANDLER_LEVEL=DEBUG,
                   SLACK_HANDLER_LEVEL=INFO,
-                  slackauth=c.slackauth
+                  NO_SEND_MESSAGE=c.runtime.no_send_message,
+                  slackauth=slackauth
                   )
     create_logger('train',
                   version=c.runtime.version,
@@ -140,7 +143,8 @@ if __name__ == "__main__":
                   FILE_HANDLER_LEVEL=DEBUG,
                   STREAM_HANDLER_LEVEL=DEBUG,
                   SLACK_HANDLER_LEVEL=INFO,
-                  slackauth=c.slackauth
+                  NO_SEND_MESSAGE=c.runtime.no_send_message,
+                  slackauth=slackauth
                   )
     logger = getLogger('main')
     logger.info(f':thinking_face: Starting experiment {c.runtime.version}_{c.model.type}_{c.features}{dsize}')

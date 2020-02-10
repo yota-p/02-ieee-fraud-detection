@@ -1,6 +1,4 @@
-import pathlib
 import numpy as np
-
 
 config = {
     'features': ['magic'],
@@ -30,13 +28,5 @@ config = {
         'n_splits': 5,
         'num_boost_round': 5000,
         'early_stopping_rounds': 100
-        },
-
-    'slackauth': {
-        'HOST': 'slack.com',
-        'URL': '/api/chat.postMessage',
-        'CHANNEL': 'ieee-fraud-detection',
-        'NO_SEND_MESSAGE': False,
-        'TOKEN_PATH': pathlib.Path().home() / '.slack_token'
         }
 }

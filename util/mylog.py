@@ -34,6 +34,7 @@ def create_logger(type,
                   FILE_HANDLER_LEVEL,
                   STREAM_HANDLER_LEVEL,
                   SLACK_HANDLER_LEVEL,
+                  NO_SEND_MESSAGE,
                   slackauth
                   ):
     '''
@@ -63,7 +64,7 @@ def create_logger(type,
     stream_handler.setLevel(STREAM_HANDLER_LEVEL)
     stream_handler.setFormatter(formatter)
 
-    if slackauth.NO_SEND_MESSAGE:
+    if NO_SEND_MESSAGE:
         token = None
     else:
         token = __read_token(slackauth.TOKEN_PATH)
