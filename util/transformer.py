@@ -2,6 +2,7 @@ import pandas as pd
 from feature.feature_factory import FeatureFactory
 from logging import getLogger
 logger = getLogger('main')
+from pathlib import Path
 
 from util.mylog import timer
 from util.islatest import is_latest
@@ -14,17 +15,17 @@ class Transformer:
     def run(cls,
             features,
             use_small_data,
-            transformed_train_path,
-            transformed_test_path,
+            out_train_path,
+            out_test_path,
             ):
         '''
         Create features and return datas for training
         '''
         # check if output exists, read from file
-        if is_latest([transformed_train_path, transformed_test_path]):
+        if is_latest([Path(out_train_path), Path(out_test_path)]):
             logger.debug('All files existed. Skip transforming.')
-            train = pd.read_pickle(str(transformed_train_path))
-            test = pd.read_pickle(str(transformed_test_path))
+            train = pd.read_pickle(str(out_train_path))
+            test = pd.read_pickle(str(out_test_path))
             logger.debug(f'Loaded train.shape: {train.shape}')
             logger.debug(f'Loaded test.shape:  {test.shape}')
             return train, test
@@ -63,10 +64,10 @@ class Transformer:
             logger.debug(f'use_small_data is {use_small_data}. Using all data.')
 
         # save processed data
-        train.to_pickle(str(transformed_train_path))
-        test.to_pickle(str(transformed_test_path))
+        train.to_pickle(out_train_path)
+        test.to_pickle(out_test_path)
 
-        logger.debug(f'Created {transformed_train_path} shape: {train.shape}')
-        logger.debug(f'Created {transformed_test_path} shape: {test.shape}')
+        logger.debug(f'Created {out_train_path} shape: {train.shape}')
+        logger.debug(f'Created {out_test_path} shape: {test.shape}')
 
         return train, test

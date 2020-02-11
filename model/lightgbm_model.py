@@ -1,4 +1,5 @@
 # https://lightgbm.readthedocs.io/en/latest/Python-API.html
+# https://lightgbm.readthedocs.io/en/latest/Parameters.html
 import lightgbm as lgb
 from logging import DEBUG, getLogger
 

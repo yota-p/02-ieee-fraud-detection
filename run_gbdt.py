@@ -1,11 +1,11 @@
 import gc
 import warnings
 import traceback
-from logging import getLogger, INFO, DEBUG
+import json
+from logging import getLogger, INFO
 import pandas as pd
 from sklearn.model_selection import TimeSeriesSplit
 from pathlib import Path
-import importlib
 
 from util.easydict import EasyDict
 from util.option import parse_option
@@ -13,19 +13,22 @@ from util.seeder import seed_everything
 from util.mylog import create_logger, timer, blocktimer
 from util.transformer import Transformer
 from model.model_factory import ModelFactory
-import slackauth
 
 
 @timer(INFO)
 def main(c):
     dsize = '.small' if c.runtime.use_small_data is True else ''
+    paths = EasyDict()
+    scores = EasyDict()
+
     with blocktimer('Preprocess', level=INFO):
-        out_transformed_train_path = Path(f'data/feature/transformed_{c.runtime.version}_train{dsize}.pkl')
-        out_transformed_test_path = Path(f'data/feature/transformed_{c.runtime.version}_test{dsize}.pkl')
+        paths.out_train_path = f'data/feature/transformed_{c.runtime.version}_train{dsize}.pkl'
+        paths.out_test_path = f'data/feature/transformed_{c.runtime.version}_test{dsize}.pkl'
+
         train, test = Transformer.run(c.features,
-                                      use_small_data=c.runtime.use_small_data,
-                                      transformed_train_path=out_transformed_train_path,
-                                      transformed_test_path=out_transformed_test_path
+                                      c.runtime.use_small_data,
+                                      paths.out_train_path,
+                                      paths.out_test_path
                                       )
         X_train, y_train, X_test = split_X_y(train, test)
         test = test.sort_values('TransactionDT')
@@ -35,34 +38,46 @@ def main(c):
 
         # tune the model params
         model = modelfactory.create(c.model)
-        best_iteration = optimize_num_boost_round(model, X_train, y_train, c.train.n_splits, dsize)
+        best_iteration = optimize_num_boost_round(
+            model,
+            X_train,
+            y_train,
+            c.train.n_splits,
+            dsize,
+            paths,
+            scores)
 
     with blocktimer('Train', level=INFO):
         # train with best params, full data
         model = modelfactory.create(c.model)
         model = model.train(X_train, y_train, num_boost_round=best_iteration)
-
-        # save results
-        out_model_dir = Path(f'data/model/model_{c.runtime.version}_{c.model.type}{dsize}.pkl')
-        model.save(out_model_dir)
-
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
-        importance_path = Path(f'feature/importance/importance_{c.runtime.version}{dsize}.csv')
+
+        # save results
+        out_model_dir = f'data/model/model_{c.runtime.version}_{c.model.type}{dsize}.pkl'
+        model.save(out_model_dir)
+        paths.update({'out_model_dir': out_model_dir})
+
+        importance_path = f'feature/importance/importance_{c.runtime.version}{dsize}.csv'
         importance.to_csv(importance_path)
-        logger.debug(f'Saved {str(importance_path)}')
 
     with blocktimer('Predict', level=INFO):
         sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
         sub['TransactionID'] = test['TransactionID']
-
         y_test = model.predict(X_test)
-
         sub['isFraud'] = y_test
-        out_sub_path = Path(f'data/submission/submission_{c.runtime.version}{dsize}.csv')
+
+        out_sub_path = f'data/submission/submission_{c.runtime.version}{dsize}.csv'
         sub.to_csv(out_sub_path, index=False)
-        logger.debug(f'Saved {out_sub_path}')
+        paths.update({'out_sub_path': out_sub_path})
+
+    result = EasyDict()
+    result.update(c)
+    result.scores = scores
+    result.paths = paths
+    return result
 
 
 def split_X_y(train, test):
@@ -74,7 +89,7 @@ def split_X_y(train, test):
 
 
 @timer
-def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
+def optimize_num_boost_round(model, X, y, n_splits, dsize, paths, scores) -> dict:
     '''
     Tune parameter num_boost_round
     '''
@@ -97,15 +112,18 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
                                 num_boost_round=c.train.num_boost_round,
                                 early_stopping_rounds=c.train.early_stopping_rounds,
                                 fold=fold)
-            out_model_fold_dir = Path(f'data/model/model_{c.runtime.version}_{c.model.type}_fold{fold}{dsize}.pkl')
-            model.save(out_model_fold_dir)
+            model_fold_path = f'data/model/model_{c.runtime.version}_{c.model.type}_fold{fold}{dsize}.pkl'
+            paths.update({f'model_fold_{fold}_path': model_fold_path})
+            model.save(paths[f'model_fold_{fold}_path'])
 
     # make optimal config from result
     if model.best_iteration > 0:
         logger.info(f'Early stopping. Best iteration is: {model.best_iteration}')
+        scores.best_iteration = model.best_iteration
         return model.best_iteration
     else:
         logger.warn('Did not meet early stopping. Try larger num_boost_rounds.')
+        scores.best_iteration = None
         return c.train.num_boost_round
 
 
@@ -113,12 +131,14 @@ if __name__ == "__main__":
     gc.enable()
     warnings.filterwarnings('ignore')
 
-    # read config & apply option
-    slackauth = EasyDict(slackauth.config)
+    # slack config
+    slackauth = EasyDict(json.load(open('./slackauth.json', 'r')))
     slackauth.token_path = Path().home() / slackauth.token_file
+
+    # get option
     opt = parse_option()
-    configmod = importlib.import_module(f'config.config_{opt.version}')
-    c = EasyDict(configmod.config)
+    c = json.load(open(f'config/config_{opt.version}.json'))
+    c = EasyDict(c)
     c.runtime = {}
     c.runtime.version = opt.version
     c.runtime.use_small_data = opt.small
@@ -128,8 +148,8 @@ if __name__ == "__main__":
     seed_everything(c.runtime.random_seed)
 
     dsize = '.small' if c.runtime.use_small_data is True else ''
-    main_log_path = Path(f'log/main_{c.runtime.version}{dsize}.log')
-    train_log_path = Path(f'log/train_{c.runtime.version}{dsize}.tsv')
+    main_log_path = f'log/main_{c.runtime.version}{dsize}.log'
+    train_log_path = f'log/train_{c.runtime.version}{dsize}.tsv'
     create_logger('main',
                   version=c.runtime.version,
                   log_path=main_log_path,
@@ -147,8 +167,15 @@ if __name__ == "__main__":
     logger.info(f'Options indicated: {opt}')
 
     try:
-        main(c)
+        result = main(c)
+        result.paths.main_log_path = main_log_path
+        result.paths.train_log_path = train_log_path
+        result.paths.result = f'config/result_{c.runtime.version}{dsize}.json'
+        result.executed = True
         logger.info(f':sunglasses: Finished experiment {c.runtime.version}{dsize}')
     except Exception:
+        result.executed = False
         logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')
         logger.critical(f':skull: Stopped experiment {c.runtime.version}{dsize}')
+    finally:
+        json.dump(result, open(result.paths.result, 'w'), indent=4)

@@ -85,8 +85,7 @@ def create_logger(name,
 
 def __read_token(token_path):
     token = None
-    token_path = Path(token_path)
-    if not token_path.exists():
+    if not Path(token_path).exists():
         return None
     with open(token_path, 'r') as f:
         token = f.read()
