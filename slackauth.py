@@ -1,6 +1,6 @@
 config = {
-    'HOST': 'slack.com',
-    'URL': '/api/chat.postMessage',
-    'CHANNEL': 'ieee-fraud-detection',
-    'TOKEN_FILE': '.slack_token'
+    'host': 'slack.com',
+    'url': '/api/chat.postMessage',
+    'channel': 'ieee-fraud-detection',
+    'token_file': '.slack_token'
     }

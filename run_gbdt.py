@@ -115,7 +115,7 @@ if __name__ == "__main__":
 
     # read config & apply option
     slackauth = EasyDict(slackauth.config)
-    slackauth.TOKEN_PATH = Path().home() / slackauth.TOKEN_FILE
+    slackauth.token_path = Path().home() / slackauth.token_file
     opt = parse_option()
     configmod = importlib.import_module(f'config.config_{opt.version}')
     c = EasyDict(configmod.config)
@@ -133,23 +133,17 @@ if __name__ == "__main__":
     create_logger('main',
                   version=c.runtime.version,
                   log_path=main_log_path,
-                  FILE_HANDLER_LEVEL=DEBUG,
-                  STREAM_HANDLER_LEVEL=DEBUG,
-                  SLACK_HANDLER_LEVEL=INFO,
-                  NO_SEND_MESSAGE=c.runtime.no_send_message,
-                  slackauth=slackauth
+                  slackauth=slackauth,
+                  no_send_message=c.runtime.no_send_message
                   )
     create_logger('train',
                   version=c.runtime.version,
                   log_path=train_log_path,
-                  FILE_HANDLER_LEVEL=DEBUG,
-                  STREAM_HANDLER_LEVEL=DEBUG,
-                  SLACK_HANDLER_LEVEL=INFO,
-                  NO_SEND_MESSAGE=c.runtime.no_send_message,
-                  slackauth=slackauth
+                  slackauth=slackauth,
+                  no_send_message=c.runtime.no_send_message
                   )
     logger = getLogger('main')
-    logger.info(f':thinking_face: Starting experiment {c.runtime.version}_{c.model.type}_{c.features}{dsize}')
+    logger.info(f':thinking_face: Starting experiment {c.runtime.version}_{c.model.type}{dsize}')
     logger.info(f'Options indicated: {opt}')
 
     try:
