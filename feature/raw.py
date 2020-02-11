@@ -49,7 +49,7 @@ class Raw(Feature):
 
         # FOR DEBUG: less data
         if DEBUG_MODE:
-            logger.info('Debug mode. Using 1% of raw data')
+            logger.debug('Debug mode. Using 1% of raw data')
             self.train = self.train.sample(frac=0.01, random_state=42)
             self.test = self.test.sample(frac=0.01, random_state=42)
 

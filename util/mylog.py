@@ -1,8 +1,9 @@
 from functools import wraps
 import time
 from contextlib import contextmanager
-from logging import getLogger, Formatter, FileHandler, StreamHandler, DEBUG
+from logging import getLogger, Formatter, FileHandler, StreamHandler, DEBUG, INFO
 from logging.handlers import HTTPHandler
+from pathlib import Path
 
 
 class SlackHandler(HTTPHandler):
@@ -28,63 +29,63 @@ class SlackHandler(HTTPHandler):
         self.level = level
 
 
-def create_logger(type,
-                  VERSION,
+def create_logger(name,
+                  version,
                   log_path,
-                  FILE_HANDLER_LEVEL,
-                  STREAM_HANDLER_LEVEL,
-                  SLACK_HANDLER_LEVEL,
-                  slackauth
+                  slackauth,
+                  no_send_message=False,
+                  stream_handler_level=DEBUG,
+                  file_handler_level=DEBUG,
+                  slack_handler_level=INFO
                   ):
     '''
-    This is a method to initialize logger for specified type and config.
+    This is a method to initialize logger for specified name.
     To initialize logger:
-        create_logger('fizz', **kwargs)
+        create_logger('fizz', ...)
     To get logger:
         from logging import getLogger
-        logger_fizz = getLogger('fizz')
+        logger = getLogger('fizz')
     '''
-    if type == 'main':
-        formatter = Formatter(f'[{VERSION}] %(asctime)s %(levelname)-5s > %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-        logger_ = getLogger(type)
-    elif type == 'train':
+    if name == 'main':
+        formatter = Formatter(f'[{version}] %(asctime)s %(levelname)-5s > %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        logger_ = getLogger(name)
+    elif name == 'train':
         formatter = Formatter()
-        logger_ = getLogger(type)
+        logger_ = getLogger(name)
     else:
-        raise Exception
+        raise ValueError(f'Logger name {name} is not in menu.')
 
     logger_.setLevel(DEBUG)
 
+    # for file
     file_handler = FileHandler(log_path, '+w')
-    file_handler.setLevel(FILE_HANDLER_LEVEL)
+    file_handler.setLevel(file_handler_level)
     file_handler.setFormatter(formatter)
-
-    stream_handler = StreamHandler()
-    stream_handler.setLevel(STREAM_HANDLER_LEVEL)
-    stream_handler.setFormatter(formatter)
-
-    if slackauth.NO_SEND_MESSAGE:
-        token = None
-    else:
-        token = __read_token(slackauth.TOKEN_PATH)
-
-    slack_handler = SlackHandler(
-        host=slackauth.HOST,
-        url=slackauth.URL,
-        channel=slackauth.CHANNEL,
-        token=token,
-        username='LogBot')
-    slack_handler.setLevel(SLACK_HANDLER_LEVEL)
-    slack_handler.setFormatter(formatter)
-
     logger_.addHandler(file_handler)
+
+    # for stream
+    stream_handler = StreamHandler()
+    stream_handler.setLevel(stream_handler_level)
+    stream_handler.setFormatter(formatter)
     logger_.addHandler(stream_handler)
-    logger_.addHandler(slack_handler)
+
+    # for slack
+    if not no_send_message:
+        token = __read_token(slackauth.token_path)
+        slack_handler = SlackHandler(
+            host=slackauth.host,
+            url=slackauth.url,
+            channel=slackauth.channel,
+            token=token,
+            username='LogBot')
+        slack_handler.setLevel(slack_handler_level)
+        slack_handler.setFormatter(formatter)
+        logger_.addHandler(slack_handler)
 
 
 def __read_token(token_path):
     token = None
-    if not token_path.exists():
+    if not Path(token_path).exists():
         return None
     with open(token_path, 'r') as f:
         token = f.read()
@@ -92,15 +93,31 @@ def __read_token(token_path):
     return token
 
 
-def timer(f):
-    @wraps(f)
+def dynamic_args(func0):
+    '''
+    Decorator to allow defining decorators with & without arguments
+    https://qiita.com/koyopro/items/8ce097b07605ee487ab2
+    '''
+    def wrapper(*args, **kwargs):
+        if len(args) != 0 and callable(args[0]):
+            # if func passed as first arg: treat as decorator without args
+            func = args[0]
+            return wraps(func)(func0(func))
+        else:
+            # treat as decorator with args
+            def _wrapper(func):
+                return wraps(func)(func0(func, *args, **kwargs))
+            return _wrapper
+    return wrapper
+
+
+@dynamic_args
+def timer(f, level=DEBUG):
     def _wrapper(*args, **kwargs):
         logger = getLogger('main')
         start = time.time()
         func_name = f.__qualname__
-
-        text = f'Start {func_name}'
-        logger.info(text)
+        logger.log(level, f'Start {func_name}')
 
         result = f(*args, **kwargs)
 
@@ -108,32 +125,20 @@ def timer(f):
         minutes, sec = divmod(elapsed_time, 60)
         hour, minutes = divmod(minutes, 60)
 
-        text = f'End   {func_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
-        logger.info(text)
-
+        logger.log(level, f'End   {func_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}')
         return result
     return _wrapper
 
 
 @contextmanager
-def blocktimer(method_name):
+def blocktimer(block_name, level=DEBUG):
     logger = getLogger('main')
     start = time.time()
-    text = f'Start {method_name}'
-    logger.info(text)
-
-    '''
-    text = f'{method_name} args: \n {args[:]}'
-    logger.debug(text)
-
-    text = f'{method_name} kwargs: \n kwargs: \n {kwargs.items()}'
-    logger.debug(text)
-    '''
+    logger.log(level, f'Start {block_name}')
 
     yield
 
     elapsed_time = int(time.time() - start)
     minutes, sec = divmod(elapsed_time, 60)
     hour, minutes = divmod(minutes, 60)
-    text = f'End   {method_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
-    logger.info(text)
+    logger.log(level, f'End   {block_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}')

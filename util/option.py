@@ -11,6 +11,9 @@ def parse_option():
     '''
     argparser = ArgumentParser()
 
+    argparser.add_argument('version',
+                           help='Version of config')
+
     argparser.add_argument('--nomsg',
                            default=False,
                            action='store_true',
@@ -21,6 +24,11 @@ def parse_option():
                            action='store_true',
                            help='Use small data set for debug')
 
-    option = argparser.parse_args()
+    argparser.add_argument('--seed',
+                           default=42,
+                           type=int,
+                           help='Use small data set for debug')
 
-    return option
+    args = argparser.parse_args()
+
+    return args

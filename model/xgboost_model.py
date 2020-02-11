@@ -1,4 +1,5 @@
 # https://xgboost.readthedocs.io/en/latest/python/python_api.html#
+# https://xgboost.readthedocs.io/en/latest/parameter.html
 import xgboost as xgb
 from logging import DEBUG, getLogger
 
@@ -23,6 +24,7 @@ class XGBoost(BaseModel):
               num_boost_round=100,
               early_stopping_rounds=None,
               fold=0):
+        # np.nan are treated as missing value by default
         dtrain = xgb.DMatrix(X_train, label=y_train)
         dval = xgb.DMatrix(X_val, label=y_val)
         if X_val is not None and y_val is not None:

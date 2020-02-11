@@ -10,7 +10,7 @@ def reduce_mem_usage(df):
         to reduce memory usage.
     """
     start_mem = df.memory_usage().sum() / 1024**2
-    logger.info(f'Memory usage of dataframe is {start_mem:.2f} MB')
+    logger.debug(f'Memory usage of dataframe is {start_mem:.2f} MB')
 
     for col in df.columns:
         col_type = df[col].dtype

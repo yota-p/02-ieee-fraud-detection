@@ -3,7 +3,7 @@ import random
 import numpy as np
 
 
-def seed_everything(seed):
+def seed_everything(seed=42):
     '''
     Seed to make all processes deterministic
     '''
