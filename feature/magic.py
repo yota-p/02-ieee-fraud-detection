@@ -184,7 +184,7 @@ class Magic(Feature):
 
         # FOR DEBUG: less data
         if DEBUG_MODE:
-            logger.info('Debug mode. Using 1% of raw data')
+            logger.debug('Debug mode. Using 1% of raw data')
             train = train.sample(frac=0.01, random_state=42)
             test = test.sample(frac=0.01, random_state=42)
 
@@ -326,7 +326,7 @@ class Magic(Feature):
         test = test.drop(cols_to_drop, axis=1)
 
         logger.debug(f'Now using the following {len(train.columns)} feature')
-        logger.info(str(np.array(train.columns)))
+        logger.debug(str(np.array(train.columns)))
 
         self.train = train
         self.test = test

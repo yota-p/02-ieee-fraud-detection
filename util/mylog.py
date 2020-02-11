@@ -3,6 +3,7 @@ import time
 from contextlib import contextmanager
 from logging import getLogger, Formatter, FileHandler, StreamHandler, DEBUG
 from logging.handlers import HTTPHandler
+from pathlib import Path
 
 
 class SlackHandler(HTTPHandler):
@@ -67,7 +68,7 @@ def create_logger(type,
     if NO_SEND_MESSAGE:
         token = None
     else:
-        token = __read_token(slackauth.TOKEN_PATH)
+        token = __read_token(Path(slackauth.TOKEN_PATH))
 
     slack_handler = SlackHandler(
         host=slackauth.HOST,
@@ -85,6 +86,7 @@ def create_logger(type,
 
 def __read_token(token_path):
     token = None
+    token_path = Path(token_path)
     if not token_path.exists():
         return None
     with open(token_path, 'r') as f:
@@ -93,6 +95,7 @@ def __read_token(token_path):
     return token
 
 
+'''
 def timer(f):
     @wraps(f)
     def _wrapper(*args, **kwargs):
@@ -100,8 +103,7 @@ def timer(f):
         start = time.time()
         func_name = f.__qualname__
 
-        text = f'Start {func_name}'
-        logger.info(text)
+        logger.log(level, f'Start {func_name}')
 
         result = f(*args, **kwargs)
 
@@ -109,32 +111,56 @@ def timer(f):
         minutes, sec = divmod(elapsed_time, 60)
         hour, minutes = divmod(minutes, 60)
 
-        text = f'End   {func_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
-        logger.info(text)
+        logger.log(level, f'End   {func_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}')
 
+        return result
+    return _wrapper
+'''
+
+
+# https://qiita.com/koyopro/items/8ce097b07605ee487ab2
+def dynamic_args(func0):
+    def wrapper(*args, **kwargs):
+        if len(args) != 0 and callable(args[0]):
+            # if func passed as first arg: treat as decorator without args
+            func = args[0]
+            return wraps(func)(func0(func))
+        else:
+            # treat as decorator with args
+            def _wrapper(func):
+                return wraps(func)(func0(func, *args, **kwargs))
+            return _wrapper
+    return wrapper
+
+
+@dynamic_args
+def timer(f, level=DEBUG):
+    def _wrapper(*args, **kwargs):
+        logger = getLogger('main')
+        start = time.time()
+        func_name = f.__qualname__
+        logger.log(level, f'Start {func_name}')
+
+        result = f(*args, **kwargs)
+
+        elapsed_time = int(time.time() - start)
+        minutes, sec = divmod(elapsed_time, 60)
+        hour, minutes = divmod(minutes, 60)
+
+        logger.log(level, f'End   {func_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}')
         return result
     return _wrapper
 
 
 @contextmanager
-def blocktimer(method_name):
+def blocktimer(block_name, level=DEBUG):
     logger = getLogger('main')
     start = time.time()
-    text = f'Start {method_name}'
-    logger.info(text)
-
-    '''
-    text = f'{method_name} args: \n {args[:]}'
-    logger.debug(text)
-
-    text = f'{method_name} kwargs: \n kwargs: \n {kwargs.items()}'
-    logger.debug(text)
-    '''
+    logger.log(level, f'Start {block_name}')
 
     yield
 
     elapsed_time = int(time.time() - start)
     minutes, sec = divmod(elapsed_time, 60)
     hour, minutes = divmod(minutes, 60)
-    text = f'End   {method_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}'
-    logger.info(text)
+    logger.log(level, f'End   {block_name}: [elapsed] >> {hour:0>2}:{minutes:0>2}:{sec:0>2}')

@@ -10,7 +10,7 @@ class ModelFactory:
 
     @timer
     def create(self, config: dict):
-        logger.info(f'Creating model {config.type}')
+        logger.debug(f'Creating model {config.type}')
         if config.type == 'lgb':
             return LightGBM(config)
         elif config.type == 'xgb':

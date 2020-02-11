@@ -23,7 +23,7 @@ config = {
                    }
         },
 
-    'trainer': {
+    'train': {
         'n_splits': 5,
         'num_boost_round': 5000,
         'early_stopping_rounds': 100

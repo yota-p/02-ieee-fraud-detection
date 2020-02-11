@@ -16,10 +16,10 @@ from model.model_factory import ModelFactory
 import slackauth
 
 
-@timer
+@timer(INFO)
 def main(c):
     dsize = '.small' if c.runtime.use_small_data is True else ''
-    with blocktimer('Preprocess'):
+    with blocktimer('Preprocess', level=INFO):
         out_transformed_train_path = Path(f'data/feature/transformed_{c.runtime.version}_train{dsize}.pkl')
         out_transformed_test_path = Path(f'data/feature/transformed_{c.runtime.version}_test{dsize}.pkl')
         train, test = Transformer.run(c.features,
@@ -30,13 +30,14 @@ def main(c):
         X_train, y_train, X_test = split_X_y(train, test)
         test = test.sort_values('TransactionDT')
 
-    with blocktimer('Tune & Train'):
+    with blocktimer('Optimize', level=INFO):
         modelfactory = ModelFactory()
 
         # tune the model params
         model = modelfactory.create(c.model)
-        best_iteration = optimize_num_boost_round(model, X_train, y_train, c.trainer.n_splits, dsize)
+        best_iteration = optimize_num_boost_round(model, X_train, y_train, c.train.n_splits, dsize)
 
+    with blocktimer('Train', level=INFO):
         # train with best params, full data
         model = modelfactory.create(c.model)
         model = model.train(X_train, y_train, num_boost_round=best_iteration)
@@ -50,9 +51,9 @@ def main(c):
                                   columns=['importance'])
         importance_path = Path(f'feature/importance/importance_{c.runtime.version}{dsize}.csv')
         importance.to_csv(importance_path)
-        logger.info(f'Saved {str(importance_path)}')
+        logger.debug(f'Saved {str(importance_path)}')
 
-    with blocktimer('Predict'):
+    with blocktimer('Predict', level=INFO):
         sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
         sub['TransactionID'] = test['TransactionID']
 
@@ -84,7 +85,7 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
     folds = TimeSeriesSplit(n_splits=n_splits)
     for i, (idx_train, idx_val) in enumerate(folds.split(X, y)):
         fold = i + 1
-        with blocktimer(f'Training on Fold {fold}'):
+        with blocktimer(f'Training on Fold {fold}', level=INFO):
             X_train = X.iloc[idx_train]
             y_train = y.iloc[idx_train]
             X_val = X.iloc[idx_val]
@@ -93,14 +94,14 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize) -> dict:
             # train
             model = model.train(X_train, y_train,
                                 X_val, y_val,
-                                num_boost_round=c.trainer.num_boost_round,
-                                early_stopping_rounds=c.trainer.early_stopping_rounds,
+                                num_boost_round=c.train.num_boost_round,
+                                early_stopping_rounds=c.train.early_stopping_rounds,
                                 fold=fold)
             out_model_fold_dir = Path(f'data/model/model_{c.runtime.version}_{c.model.type}_fold{fold}{dsize}.pkl')
             model.save(out_model_fold_dir)
 
     # make optimal config from result
-    if model.best_iteration is not None:
+    if model.best_iteration > 0:
         logger.info(f'Early stopping. Best iteration is: {model.best_iteration}')
         return model.best_iteration
     else:
@@ -114,6 +115,7 @@ if __name__ == "__main__":
 
     # read config & apply option
     slackauth = EasyDict(slackauth.config)
+    slackauth.TOKEN_PATH = Path().home() / slackauth.TOKEN_FILE
     opt = parse_option()
     configmod = importlib.import_module(f'config.config_{opt.version}')
     c = EasyDict(configmod.config)
