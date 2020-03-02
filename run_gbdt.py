@@ -20,58 +20,85 @@ def main(c):
     dsize = '.small' if c.runtime.use_small_data is True else ''
     paths = EasyDict()
     scores = EasyDict()
+    modelfactory = ModelFactory()
 
     with blocktimer('Preprocess', level=INFO):
         paths.out_train_path = f'data/feature/transformed_{c.runtime.version}_train{dsize}.pkl'
         paths.out_test_path = f'data/feature/transformed_{c.runtime.version}_test{dsize}.pkl'
 
+        '''
         train, test = Transformer.run(c.features,
                                       c.runtime.use_small_data,
                                       paths.out_train_path,
                                       paths.out_test_path
                                       )
-        X_train, y_train, X_test = split_X_y(train, test)
-        test = test.sort_values('TransactionDT')
+        '''
+        # train = pd.read_pickle(f'data/feature/{c.features[0]}_train.pkl').set_index('TransactionID')
+        # test = pd.read_pickle(f'data/feature/{c.features[0]}_test.pkl').set_index('TransactionID')
+        train = pd.read_pickle(f'data/feature/{c.features[0]}_train.pkl')
+        test = pd.read_pickle(f'data/feature/{c.features[0]}_test.pkl')
 
-    with blocktimer('Optimize', level=INFO):
-        modelfactory = ModelFactory()
+        if c.runtime.use_small_data:
+            frac = 0.001
+            train = train.sample(frac=frac, random_state=42)
+            test = test.sample(frac=frac, random_state=42)
+        logger.debug(f'Loaded feature {c.features[0]}')
+        logger.debug(f'train.shape: {train.shape}, test.shape: {test.shape}')
 
-        # tune the model params
-        model = modelfactory.create(c.model)
-        best_iteration = optimize_num_boost_round(
-            model,
-            X_train,
-            y_train,
-            c.train.n_splits,
-            dsize,
-            paths,
-            scores)
+        # X_train, y_train, X_test = split_X_y(train, test)
+        # test = test.sort_values('TransactionDT')
+        # tmp_X_train = pd.read_csv('data/raw/train_transaction.csv')
+        # tmp_train_id = pd.read_csv('data/raw/train_identity.csv')
+        # tmp_X_train = tmp_X_train.merge(tmp_train_id, how='left', on='TransactionID').set_index('TransactionID')
+        X_train = train.drop('isFraud', axis=1)
+        y_train = train['isFraud'].copy()
+        X_test = test
+        del train, test
+
+    if c.train.optimize_num_boost_round is True:
+        with blocktimer('Optimize', level=INFO):
+            # tune the model params
+            model = modelfactory.create(c.model)
+            best_iteration = optimize_num_boost_round(
+                model,
+                X_train,
+                y_train,
+                c.train.n_splits,
+                dsize,
+                paths,
+                scores)
+    else:
+        best_iteration = c.train.num_boost_round
 
     with blocktimer('Train', level=INFO):
-        # train with best params, full data
+        # CHRIS - TRAIN 75% PREDICT 25%
+        idxT = X_train.index[:3*len(X_train)//4]
+        idxV = X_train.index[3*len(X_train)//4:]
+
         model = modelfactory.create(c.model)
-        model = model.train(X_train, y_train, num_boost_round=best_iteration)
+        model = model.train(X_train.loc[idxT, :], y_train[idxT],
+                            X_train.loc[idxV, :], y_train[idxV],
+                            num_boost_round=best_iteration)
         importance = pd.DataFrame(model.feature_importance,
                                   index=X_train.columns,
                                   columns=['importance'])
 
         # save results
-        out_model_dir = f'data/model/model_{c.runtime.version}_{c.model.type}{dsize}.pkl'
-        model.save(out_model_dir)
-        paths.update({'out_model_dir': out_model_dir})
-
-        importance_path = f'feature/importance/importance_{c.runtime.version}{dsize}.csv'
-        importance.to_csv(importance_path)
+        paths.out_model_dir = f'data/model/model_{c.runtime.version}_{c.model.type}{dsize}.pkl'
+        paths.importance_path = f'feature/importance/importance_{c.runtime.version}{dsize}.csv'
+        model.save(paths.out_model_dir)
+        importance.to_csv(paths.importance_path)
 
     with blocktimer('Predict', level=INFO):
         sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
-        sub['TransactionID'] = test['TransactionID']
+        # sub['TransactionID'] = test['TransactionID']
+        # sub['TransactionID'] = test.reset_index()['TransactionID']
         y_test = model.predict(X_test)
         sub['isFraud'] = y_test
+        sub['TransactionID'] = X_test.reset_index()['TransactionID']
 
-        out_sub_path = f'data/submission/submission_{c.runtime.version}{dsize}.csv'
-        sub.to_csv(out_sub_path, index=False)
-        paths.update({'out_sub_path': out_sub_path})
+        paths.out_sub_path = f'data/submission/submission_{c.runtime.version}{dsize}.csv'
+        sub.to_csv(paths.out_sub_path, index=False)
 
     result = EasyDict()
     result.update(c)
@@ -81,9 +108,14 @@ def main(c):
 
 
 def split_X_y(train, test):
+    '''
     X_train = train.sort_values('TransactionDT').drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
     y_train = train.sort_values('TransactionDT')['isFraud']
     X_test = test.sort_values('TransactionDT').drop(['TransactionDT', 'TransactionID'], axis=1)
+    '''
+    X_train = train.drop('isFraud', axis=1)
+    y_train = train['isFraud']
+    X_test = test
 
     return X_train, y_train, X_test
 
@@ -93,9 +125,6 @@ def optimize_num_boost_round(model, X, y, n_splits, dsize, paths, scores) -> dic
     '''
     Tune parameter num_boost_round
     '''
-    logger_train = getLogger('train')
-    logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'val_auc'))
-
     # split data into train, validation
     folds = TimeSeriesSplit(n_splits=n_splits)
     for i, (idx_train, idx_val) in enumerate(folds.split(X, y)):
@@ -165,17 +194,16 @@ if __name__ == "__main__":
     logger = getLogger('main')
     logger.info(f':thinking_face: Starting experiment {c.runtime.version}_{c.model.type}{dsize}')
     logger.info(f'Options indicated: {opt}')
+    logger_train = getLogger('train')
+    logger_train.debug('{}\t{}\t{}\t{}'.format('fold', 'iteration', 'train_auc', 'val_auc'))
 
     try:
         result = main(c)
         result.paths.main_log_path = main_log_path
         result.paths.train_log_path = train_log_path
         result.paths.result = f'config/result_{c.runtime.version}{dsize}.json'
-        result.executed = True
+        json.dump(result, open(result.paths.result, 'w'), indent=4)
         logger.info(f':sunglasses: Finished experiment {c.runtime.version}{dsize}')
     except Exception:
-        result.executed = False
         logger.critical(f':smiling_imp: Exception occured \n {traceback.format_exc()}')
         logger.critical(f':skull: Stopped experiment {c.runtime.version}{dsize}')
-    finally:
-        json.dump(result, open(result.paths.result, 'w'), indent=4)

@@ -1,0 +1,25 @@
+[0014] 2020-03-02 08:19:19 INFO  > :thinking_face: Starting experiment 0014_xgb
+[0014] 2020-03-02 08:19:19 INFO  > Options indicated: Namespace(nomsg=False, seed=42, small=False, version='0014')
+[0014] 2020-03-02 08:19:20 INFO  > Start main
+[0014] 2020-03-02 08:19:20 INFO  > Start Preprocess
+[0014] 2020-03-02 08:19:24 DEBUG > Loaded feature cdeotte
+[0014] 2020-03-02 08:19:24 DEBUG > train.shape: (590540, 293), test.shape: (506691, 291)
+[0014] 2020-03-02 08:19:25 INFO  > End   Preprocess: [elapsed] >> 00:00:04
+[0014] 2020-03-02 08:19:26 INFO  > Start Train
+[0014] 2020-03-02 08:19:26 INFO  > Fold 0 withholding month 12
+[0014] 2020-03-02 08:19:27 INFO  > rows of train =453219, rows of holdout =137321
+[0014] 2020-03-02 10:16:08 INFO  > Fold 1 withholding month 15
+[0014] 2020-03-02 10:16:09 INFO  > rows of train =488908, rows of holdout =101632
+[0014] 2020-03-02 10:51:32 INFO  > Fold 2 withholding month 13
+[0014] 2020-03-02 10:51:32 INFO  > rows of train =497955, rows of holdout =92585
+[0014] 2020-03-02 11:33:30 INFO  > Fold 3 withholding month 17
+[0014] 2020-03-02 11:33:30 INFO  > rows of train =501214, rows of holdout =89326
+[0014] 2020-03-02 12:03:17 INFO  > Fold 4 withholding month 14
+[0014] 2020-03-02 12:03:17 INFO  > rows of train =504519, rows of holdout =86021
+[0014] 2020-03-02 12:32:52 INFO  > Fold 5 withholding month 16
+[0014] 2020-03-02 12:32:53 INFO  > rows of train =506885, rows of holdout =83655
+[0014] 2020-03-02 13:08:57 INFO  > ####################
+[0014] 2020-03-02 13:08:58 INFO  > XGB96 OOF CV= 0.9463658374998561
+[0014] 2020-03-02 13:09:03 INFO  > End   Train: [elapsed] >> 04:49:37
+[0014] 2020-03-02 13:09:04 INFO  > End   main: [elapsed] >> 04:49:43
+[0014] 2020-03-02 13:09:04 INFO  > :sunglasses: Finished experiment 0014

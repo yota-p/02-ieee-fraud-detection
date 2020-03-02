@@ -1,0 +1,39 @@
+[0014] 2020-03-02 08:16:49 INFO  > :thinking_face: Starting experiment 0014_xgb.small
+[0014] 2020-03-02 08:16:49 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0014')
+[0014] 2020-03-02 08:16:49 INFO  > Start main
+[0014] 2020-03-02 08:16:49 INFO  > Start Preprocess
+[0014] 2020-03-02 08:16:56 DEBUG > Loaded feature cdeotte
+[0014] 2020-03-02 08:16:56 DEBUG > train.shape: (591, 293), test.shape: (507, 291)
+[0014] 2020-03-02 08:16:56 INFO  > End   Preprocess: [elapsed] >> 00:00:06
+[0014] 2020-03-02 08:16:56 INFO  > Start Train
+[0014] 2020-03-02 08:16:56 INFO  > Fold 0 withholding month 12
+[0014] 2020-03-02 08:16:56 INFO  > rows of train =463, rows of holdout =128
+[0014] 2020-03-02 08:16:57 INFO  > Fold 1 withholding month 15
+[0014] 2020-03-02 08:16:57 INFO  > rows of train =482, rows of holdout =109
+[0014] 2020-03-02 08:16:58 INFO  > Fold 2 withholding month 13
+[0014] 2020-03-02 08:16:58 INFO  > rows of train =499, rows of holdout =92
+[0014] 2020-03-02 08:17:00 INFO  > Fold 3 withholding month 17
+[0014] 2020-03-02 08:17:00 INFO  > rows of train =501, rows of holdout =90
+[0014] 2020-03-02 08:17:01 INFO  > Fold 4 withholding month 14
+[0014] 2020-03-02 08:17:01 INFO  > rows of train =503, rows of holdout =88
+[0014] 2020-03-02 08:17:03 INFO  > Fold 5 withholding month 16
+[0014] 2020-03-02 08:17:03 INFO  > rows of train =507, rows of holdout =84
+[0014] 2020-03-02 08:17:04 INFO  > ####################
+[0014] 2020-03-02 08:17:04 INFO  > XGB96 OOF CV= 0.6823192239858906
+[0014] 2020-03-02 08:18:55 CRITICAL > :smiling_imp: Exception occured 
+ Traceback (most recent call last):
+  File "/home/yh/git/kaggle_ieee-fraud-detection/run_gbdt_cdeotte.py", line 280, in <module>
+    result = main(c)
+  File "/home/yh/git/kaggle_ieee-fraud-detection/util/mylog.py", line 122, in _wrapper
+    result = f(*args, **kwargs)
+  File "/home/yh/git/kaggle_ieee-fraud-detection/run_gbdt_cdeotte.py", line 150, in main
+    paths.out_sub_path = f'data/submission/submission_{c.runtime.version}{dsize}.csv'
+  File "/home/yh/git/kaggle_ieee-fraud-detection/run_gbdt_cdeotte.py", line 150, in main
+    paths.out_sub_path = f'data/submission/submission_{c.runtime.version}{dsize}.csv'
+  File "/opt/conda/lib/python3.6/bdb.py", line 51, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/opt/conda/lib/python3.6/bdb.py", line 70, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+
+[0014] 2020-03-02 08:18:55 CRITICAL > :skull: Stopped experiment 0014.small

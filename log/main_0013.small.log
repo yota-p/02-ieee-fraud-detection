@@ -1,69 +1,29 @@
-[0013] 2020-02-11 19:22:24 INFO  > :thinking_face: Starting experiment 0013_lgb.small
-[0013] 2020-02-11 19:22:24 INFO  > Options indicated: Namespace(nomsg=False, seed=42, small=True, version='0013')
-[0013] 2020-02-11 19:22:24 INFO  > Start main
-[0013] 2020-02-11 19:22:25 INFO  > Start Preprocess
-[0013] 2020-02-11 19:22:25 DEBUG > Start Transformer.run
-[0013] 2020-02-11 19:22:25 DEBUG > Start is_latest
-[0013] 2020-02-11 19:22:25 DEBUG > End   is_latest: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:25 DEBUG > All files existed. Skip transforming.
-[0013] 2020-02-11 19:22:27 DEBUG > Loaded train.shape: (591, 266)
-[0013] 2020-02-11 19:22:27 DEBUG > Loaded test.shape:  (507, 265)
-[0013] 2020-02-11 19:22:27 DEBUG > End   Transformer.run: [elapsed] >> 00:00:01
-[0013] 2020-02-11 19:22:27 INFO  > End   Preprocess: [elapsed] >> 00:00:02
-[0013] 2020-02-11 19:22:27 INFO  > Start Optimize
-[0013] 2020-02-11 19:22:27 DEBUG > Start ModelFactory.create
-[0013] 2020-02-11 19:22:27 DEBUG > Creating model lgb
-[0013] 2020-02-11 19:22:27 DEBUG > Start LightGBM.__init__
-[0013] 2020-02-11 19:22:27 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:27 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:27 DEBUG > Start optimize_num_boost_round
-[0013] 2020-02-11 19:22:27 INFO  > Start Training on Fold 1
-[0013] 2020-02-11 19:22:28 DEBUG > Start LightGBM.train
-[0013] 2020-02-11 19:22:28 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:28 DEBUG > Start BaseModel.save
-[0013] 2020-02-11 19:22:28 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:28 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:28 INFO  > Start Training on Fold 2
-[0013] 2020-02-11 19:22:29 DEBUG > Start LightGBM.train
-[0013] 2020-02-11 19:22:29 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:29 DEBUG > Start BaseModel.save
-[0013] 2020-02-11 19:22:29 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:29 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:29 INFO  > Start Training on Fold 3
-[0013] 2020-02-11 19:22:29 DEBUG > Start LightGBM.train
-[0013] 2020-02-11 19:22:30 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:30 DEBUG > Start BaseModel.save
-[0013] 2020-02-11 19:22:30 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:30 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:30 INFO  > Start Training on Fold 4
-[0013] 2020-02-11 19:22:30 DEBUG > Start LightGBM.train
-[0013] 2020-02-11 19:22:31 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:31 DEBUG > Start BaseModel.save
-[0013] 2020-02-11 19:22:31 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:31 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:01
-[0013] 2020-02-11 19:22:31 INFO  > Start Training on Fold 5
-[0013] 2020-02-11 19:22:31 DEBUG > Start LightGBM.train
-[0013] 2020-02-11 19:22:33 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:01
-[0013] 2020-02-11 19:22:33 DEBUG > Start BaseModel.save
-[0013] 2020-02-11 19:22:33 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:33 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:01
-[0013] 2020-02-11 19:22:33 INFO  > Early stopping. Best iteration is: 625
-[0013] 2020-02-11 19:22:33 DEBUG > End   optimize_num_boost_round: [elapsed] >> 00:00:05
-[0013] 2020-02-11 19:22:33 INFO  > End   Optimize: [elapsed] >> 00:00:06
-[0013] 2020-02-11 19:22:33 INFO  > Start Train
-[0013] 2020-02-11 19:22:34 DEBUG > Start ModelFactory.create
-[0013] 2020-02-11 19:22:34 DEBUG > Creating model lgb
-[0013] 2020-02-11 19:22:34 DEBUG > Start LightGBM.__init__
-[0013] 2020-02-11 19:22:34 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:34 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:34 DEBUG > Start LightGBM.train
-[0013] 2020-02-11 19:22:34 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:34 DEBUG > Start BaseModel.save
-[0013] 2020-02-11 19:22:35 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:35 INFO  > End   Train: [elapsed] >> 00:00:01
-[0013] 2020-02-11 19:22:35 INFO  > Start Predict
-[0013] 2020-02-11 19:22:35 DEBUG > Start LightGBM.predict
-[0013] 2020-02-11 19:22:35 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:35 INFO  > End   Predict: [elapsed] >> 00:00:00
-[0013] 2020-02-11 19:22:36 INFO  > End   main: [elapsed] >> 00:00:11
-[0013] 2020-02-11 19:22:36 INFO  > :sunglasses: Finished experiment 0013.small
+[0013] 2020-02-12 21:57:40 INFO  > :thinking_face: Starting experiment 0013_lgb.small
+[0013] 2020-02-12 21:57:40 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0013')
+[0013] 2020-02-12 21:57:40 INFO  > Start main
+[0013] 2020-02-12 21:57:40 INFO  > Start Preprocess
+[0013] 2020-02-12 21:57:40 DEBUG > Start Transformer.run
+[0013] 2020-02-12 21:57:40 DEBUG > Start is_latest
+[0013] 2020-02-12 21:57:40 DEBUG > End   is_latest: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:57:40 DEBUG > All files existed. Skip transforming.
+[0013] 2020-02-12 21:57:42 DEBUG > Loaded train.shape: (591, 266)
+[0013] 2020-02-12 21:57:42 DEBUG > Loaded test.shape:  (507, 265)
+[0013] 2020-02-12 21:57:42 DEBUG > End   Transformer.run: [elapsed] >> 00:00:01
+[0013] 2020-02-12 21:57:42 INFO  > End   Preprocess: [elapsed] >> 00:00:01
+[0013] 2020-02-12 21:57:42 INFO  > Start Train
+[0013] 2020-02-12 21:57:42 DEBUG > Start ModelFactory.create
+[0013] 2020-02-12 21:57:42 DEBUG > Creating model lgb
+[0013] 2020-02-12 21:57:42 DEBUG > Start LightGBM.__init__
+[0013] 2020-02-12 21:57:42 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:57:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:57:42 DEBUG > Start LightGBM.train
+[0013] 2020-02-12 22:00:03 DEBUG > End   LightGBM.train: [elapsed] >> 00:02:20
+[0013] 2020-02-12 22:00:03 DEBUG > Start BaseModel.save
+[0013] 2020-02-12 22:00:03 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0013] 2020-02-12 22:00:03 INFO  > End   Train: [elapsed] >> 00:02:20
+[0013] 2020-02-12 22:00:03 INFO  > Start Predict
+[0013] 2020-02-12 22:00:03 DEBUG > Start LightGBM.predict
+[0013] 2020-02-12 22:00:03 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-02-12 22:00:03 INFO  > End   Predict: [elapsed] >> 00:00:00
+[0013] 2020-02-12 22:00:03 INFO  > End   main: [elapsed] >> 00:02:23
+[0013] 2020-02-12 22:00:03 INFO  > :sunglasses: Finished experiment 0013.small

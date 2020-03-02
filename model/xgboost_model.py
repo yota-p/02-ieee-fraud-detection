@@ -25,8 +25,8 @@ class XGBoost(BaseModel):
               early_stopping_rounds=None,
               fold=0):
         # np.nan are treated as missing value by default
-        dtrain = xgb.DMatrix(X_train, label=y_train)
-        dval = xgb.DMatrix(X_val, label=y_val)
+        dtrain = xgb.DMatrix(X_train, label=y_train, missing=-1)
+        dval = xgb.DMatrix(X_val, label=y_val, missing=-1)
         if X_val is not None and y_val is not None:
             evals = [(dtrain, 'train'), (dval, 'valid')]
         else:
@@ -51,7 +51,7 @@ class XGBoost(BaseModel):
 
     @timer
     def predict(self, X_test):
-        dtest = xgb.DMatrix(X_test)
+        dtest = xgb.DMatrix(X_test, missing=-1)
         y_test = self.core.predict(dtest)
         return y_test
 

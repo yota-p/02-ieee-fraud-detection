@@ -1,55 +1,50 @@
 {
-  "features": [
-    "magic"
-  ],
-  "model": {
-    "type": "lgb",
-    "params": {
-      "boosting_type": "gbdt",
-      "num_leaves": 491,
-      "max_depth": -1,
-      "learning_rate": 0.006883242363721497,
-      "objective": "binary",
-      "min_child_weight": 0.03454472573214212,
-      "reg_alpha": 0.3899927210061127,
-      "reg_lambda": 0.6485237330340494,
-      "random_state": 47,
-      "feature_fraction": 0.3797454081646243,
-      "bagging_fraction": 0.4181193142567742,
-      "min_data_in_leaf": 106,
-      "bagging_seed": 11,
-      "metric": "auc",
-      "verbosity": -1,
-      "max_bin": 255
-    }
-  },
-  "train": {
-    "n_splits": 5,
-    "num_boost_round": 5000,
-    "early_stopping_rounds": 100
-  },
-  "runtime": {
-    "version": "0013",
-    "use_small_data": true,
-    "no_send_message": false,
-    "random_seed": 42
-  },
-  "scores": {
-    "best_iteration": 625
-  },
-  "paths": {
-    "out_train_path": "data/feature/transformed_0013_train.small.pkl",
-    "out_test_path": "data/feature/transformed_0013_test.small.pkl",
-    "model_fold_1_path": "data/model/model_0013_lgb_fold1.small.pkl",
-    "model_fold_2_path": "data/model/model_0013_lgb_fold2.small.pkl",
-    "model_fold_3_path": "data/model/model_0013_lgb_fold3.small.pkl",
-    "model_fold_4_path": "data/model/model_0013_lgb_fold4.small.pkl",
-    "model_fold_5_path": "data/model/model_0013_lgb_fold5.small.pkl",
-    "out_model_dir": "data/model/model_0013_lgb.small.pkl",
-    "out_sub_path": "data/submission/submission_0013.small.csv",
-    "main_log_path": "log/main_0013.small.log",
-    "train_log_path": "log/train_0013.small.tsv",
-    "result": "config/result_0013.small.json"
-  },
-  "executed": true
+    "features": [
+        "magic"
+    ],
+    "model": {
+        "type": "lgb",
+        "params": {
+            "boosting_type": "gbdt",
+            "num_leaves": 491,
+            "max_depth": -1,
+            "learning_rate": 0.006883242363721497,
+            "objective": "binary",
+            "min_child_weight": 0.03454472573214212,
+            "reg_alpha": 0.3899927210061127,
+            "reg_lambda": 0.6485237330340494,
+            "random_state": 47,
+            "feature_fraction": 0.3797454081646243,
+            "bagging_fraction": 0.4181193142567742,
+            "min_data_in_leaf": 106,
+            "bagging_seed": 11,
+            "metric": "auc",
+            "verbosity": -1,
+            "max_bin": 255
+        }
+    },
+    "train": {
+        "n_splits": 5,
+        "num_boost_round": 5000,
+        "early_stopping_rounds": 100,
+        "optimize_num_boost_round": false
+    },
+    "runtime": {
+        "version": "0013",
+        "use_small_data": true,
+        "no_send_message": true,
+        "random_seed": 42
+    },
+    "scores": {},
+    "paths": {
+        "out_train_path": "data/feature/transformed_0013_train.small.pkl",
+        "out_test_path": "data/feature/transformed_0013_test.small.pkl",
+        "out_model_dir": "data/model/model_0013_lgb.small.pkl",
+        "importance_path": "feature/importance/importance_0013.small.csv",
+        "out_sub_path": "data/submission/submission_0013.small.csv",
+        "main_log_path": "log/main_0013.small.log",
+        "train_log_path": "log/train_0013.small.tsv",
+        "result": "config/result_0013.small.json"
+    },
+    "executed": true
 }

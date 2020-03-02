@@ -1,0 +1,34 @@
+[0013] 2020-02-12 21:36:44 INFO  > :thinking_face: Starting experiment 0013_lgb
+[0013] 2020-02-12 21:36:45 INFO  > Options indicated: Namespace(nomsg=False, seed=42, small=False, version='0013')
+[0013] 2020-02-12 21:36:45 INFO  > Start main
+[0013] 2020-02-12 21:36:45 INFO  > Start Preprocess
+[0013] 2020-02-12 21:36:45 DEBUG > Start Transformer.run
+[0013] 2020-02-12 21:36:45 DEBUG > Start is_latest
+[0013] 2020-02-12 21:36:45 DEBUG > End   is_latest: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:36:45 DEBUG > Start FeatureFactory.create
+[0013] 2020-02-12 21:36:45 DEBUG > End   FeatureFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:36:45 DEBUG > Start Feature.create_feature
+[0013] 2020-02-12 21:36:45 DEBUG > Start is_latest
+[0013] 2020-02-12 21:36:45 DEBUG > End   is_latest: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:36:45 DEBUG > Skip calculating Raw
+[0013] 2020-02-12 21:36:45 DEBUG > Start Feature._load
+[0013] 2020-02-12 21:37:03 DEBUG > End   Feature._load: [elapsed] >> 00:00:18
+[0013] 2020-02-12 21:37:03 DEBUG > raw_train.shape: (590540, 434)
+[0013] 2020-02-12 21:37:03 DEBUG > raw_test.shape : (506691, 433)
+[0013] 2020-02-12 21:37:03 DEBUG > End   Feature.create_feature: [elapsed] >> 00:00:18
+[0013] 2020-02-12 21:37:08 DEBUG > Start FeatureFactory.create
+[0013] 2020-02-12 21:37:08 DEBUG > End   FeatureFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:37:08 DEBUG > Start Feature.create_feature
+[0013] 2020-02-12 21:37:08 DEBUG > Start is_latest
+[0013] 2020-02-12 21:37:08 DEBUG > End   is_latest: [elapsed] >> 00:00:00
+[0013] 2020-02-12 21:37:08 DEBUG > Skip calculating Magic
+[0013] 2020-02-12 21:37:08 DEBUG > Start Feature._load
+[0013] 2020-02-12 21:37:21 DEBUG > End   Feature._load: [elapsed] >> 00:00:12
+[0013] 2020-02-12 21:37:21 DEBUG > magic_train.shape: (590540, 265)
+[0013] 2020-02-12 21:37:21 DEBUG > magic_test.shape : (506691, 264)
+[0013] 2020-02-12 21:37:21 DEBUG > End   Feature.create_feature: [elapsed] >> 00:00:12
+[0013] 2020-02-12 21:37:36 DEBUG > use_small_data is False. Using all data.
+[0013] 2020-02-12 21:37:39 DEBUG > Created data/feature/transformed_0013_train.pkl shape: (590540, 266)
+[0013] 2020-02-12 21:37:39 DEBUG > Created data/feature/transformed_0013_test.pkl shape: (506691, 265)
+[0013] 2020-02-12 21:37:39 DEBUG > End   Transformer.run: [elapsed] >> 00:00:53
+[0013] 2020-02-12 21:37:42 INFO  > End   Preprocess: [elapsed] >> 00:00:57
