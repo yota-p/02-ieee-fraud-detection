@@ -4,6 +4,7 @@ import traceback
 import json
 from logging import getLogger, INFO
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import TimeSeriesSplit
 from pathlib import Path
 
@@ -11,7 +12,7 @@ from util.easydict import EasyDict
 from util.option import parse_option
 from util.seeder import seed_everything
 from util.mylog import create_logger, timer, blocktimer
-from util.transformer import Transformer
+# from util.transformer import Transformer
 from model.model_factory import ModelFactory
 
 
@@ -23,58 +24,49 @@ def main(c):
     modelfactory = ModelFactory()
 
     with blocktimer('Preprocess', level=INFO):
-        paths.out_train_path = f'data/feature/transformed_{c.runtime.version}_train{dsize}.pkl'
-        paths.out_test_path = f'data/feature/transformed_{c.runtime.version}_test{dsize}.pkl'
-
-        '''
-        train, test = Transformer.run(c.features,
-                                      c.runtime.use_small_data,
-                                      paths.out_train_path,
-                                      paths.out_test_path
-                                      )
-        '''
-        # train = pd.read_pickle(f'data/feature/{c.features[0]}_train.pkl').set_index('TransactionID')
-        # test = pd.read_pickle(f'data/feature/{c.features[0]}_test.pkl').set_index('TransactionID')
-        train = pd.read_pickle(f'data/feature/{c.features[0]}_train.pkl')
-        test = pd.read_pickle(f'data/feature/{c.features[0]}_test.pkl')
+        paths.in_train_path = f'data/feature/{c.features[0]}_train.pkl'
+        paths.in_test_path = f'data/feature/{c.features[0]}_test.pkl'
+        train = pd.read_pickle(paths.in_train_path)
+        test = pd.read_pickle(paths.in_test_path)
+        logger.debug(f'Loaded feature {c.features[0]}')
 
         if c.runtime.use_small_data:
             frac = 0.001
             train = train.sample(frac=frac, random_state=42)
             test = test.sample(frac=frac, random_state=42)
-        logger.debug(f'Loaded feature {c.features[0]}')
         logger.debug(f'train.shape: {train.shape}, test.shape: {test.shape}')
 
-        # X_train, y_train, X_test = split_X_y(train, test)
-        # test = test.sort_values('TransactionDT')
-        # tmp_X_train = pd.read_csv('data/raw/train_transaction.csv')
-        # tmp_train_id = pd.read_csv('data/raw/train_identity.csv')
-        # tmp_X_train = tmp_X_train.merge(tmp_train_id, how='left', on='TransactionID').set_index('TransactionID')
+        # Split into X, y
         X_train = train.drop('isFraud', axis=1)
-        y_train = train['isFraud'].copy()
         X_test = test
+        y_train = train['isFraud'].copy(deep=True)
         del train, test
 
-    if c.train.optimize_num_boost_round is True:
-        with blocktimer('Optimize', level=INFO):
+    with blocktimer('Optimize', level=INFO):
+        if c.train.optimize_num_boost_round is True:
             # tune the model params
             model = modelfactory.create(c.model)
             best_iteration = optimize_num_boost_round(
                 model,
-                X_train,
+                X_train[c.cols],
                 y_train,
                 c.train.n_splits,
                 dsize,
                 paths,
                 scores)
-    else:
-        best_iteration = c.train.num_boost_round
+        else:
+            logger.debug('Skip optimization')
+            best_iteration = c.train.num_boost_round
 
     with blocktimer('Train', level=INFO):
+        logger.debug(f'Now using the following {len(c.cols)} features.')
+        logger.debug(f'{np.array(c.cols)}')
+
         # CHRIS - TRAIN 75% PREDICT 25%
         idxT = X_train.index[:3*len(X_train)//4]
         idxV = X_train.index[3*len(X_train)//4:]
 
+        '''
         model = modelfactory.create(c.model)
         model = model.train(X_train.loc[idxT, :], y_train[idxT],
                             X_train.loc[idxV, :], y_train[idxV],
@@ -88,14 +80,45 @@ def main(c):
         paths.importance_path = f'feature/importance/importance_{c.runtime.version}{dsize}.csv'
         model.save(paths.out_model_dir)
         importance.to_csv(paths.importance_path)
+        '''
+
+        from sklearn.model_selection import GroupKFold
+        from sklearn.metrics import roc_auc_score
+        oof = np.zeros(len(X_train))
+        preds = np.zeros(len(X_test))
+
+        skf = GroupKFold(n_splits=6)
+        for i, (idxT, idxV) in enumerate(skf.split(X_train, y_train, groups=X_train['DT_M'])):
+            month = X_train.iloc[idxV]['DT_M'].iloc[0]
+            logger.info(f'Fold {i+1} withholding month {month}')
+            logger.info(f'rows of train ={len(idxT)}, rows of holdout ={len(idxV)}')
+
+            model = modelfactory.create(c.model)
+            model = model.train(X_train[c.cols].iloc[idxT], y_train.iloc[idxT],
+                                X_train[c.cols].iloc[idxV], y_train.iloc[idxV],
+                                num_boost_round=best_iteration,
+                                early_stopping_rounds=c.train.early_stopping_rounds,
+                                fold=i+1)
+
+            oof[idxV] += model.predict(X_train[c.cols].iloc[idxV])
+            preds += model.predict(X_test[c.cols])/skf.n_splits
+            del model
+        logger.info(f'OOF cv= {roc_auc_score(y_train, oof)}')
+        paths.importance_path = f'feature/importance/importance_{c.runtime.version}{dsize}.csv'
+        # model.save(paths.out_model_dir)
+        '''
+        importance = pd.DataFrame(model.feature_importance,
+                                  index=X_train.columns,
+                                  columns=['importance'])
+        importance.to_csv(paths.importance_path)
+        '''
 
     with blocktimer('Predict', level=INFO):
+        # y_test = model.predict(X_test)
         sub = pd.DataFrame(columns=['TransactionID', 'isFraud'])
-        # sub['TransactionID'] = test['TransactionID']
-        # sub['TransactionID'] = test.reset_index()['TransactionID']
-        y_test = model.predict(X_test)
-        sub['isFraud'] = y_test
         sub['TransactionID'] = X_test.reset_index()['TransactionID']
+        # sub['isFraud'] = y_test
+        sub['isFraud'] = preds
 
         paths.out_sub_path = f'data/submission/submission_{c.runtime.version}{dsize}.csv'
         sub.to_csv(paths.out_sub_path, index=False)
@@ -107,23 +130,10 @@ def main(c):
     return result
 
 
-def split_X_y(train, test):
-    '''
-    X_train = train.sort_values('TransactionDT').drop(['isFraud', 'TransactionDT', 'TransactionID'], axis=1)
-    y_train = train.sort_values('TransactionDT')['isFraud']
-    X_test = test.sort_values('TransactionDT').drop(['TransactionDT', 'TransactionID'], axis=1)
-    '''
-    X_train = train.drop('isFraud', axis=1)
-    y_train = train['isFraud']
-    X_test = test
-
-    return X_train, y_train, X_test
-
-
 @timer
 def optimize_num_boost_round(model, X, y, n_splits, dsize, paths, scores) -> dict:
     '''
-    Tune parameter num_boost_round
+    Estimate best num_boost_round by early stopping
     '''
     # split data into train, validation
     folds = TimeSeriesSplit(n_splits=n_splits)

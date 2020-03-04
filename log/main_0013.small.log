@@ -1,29 +1,179 @@
-[0013] 2020-02-12 21:57:40 INFO  > :thinking_face: Starting experiment 0013_lgb.small
-[0013] 2020-02-12 21:57:40 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0013')
-[0013] 2020-02-12 21:57:40 INFO  > Start main
-[0013] 2020-02-12 21:57:40 INFO  > Start Preprocess
-[0013] 2020-02-12 21:57:40 DEBUG > Start Transformer.run
-[0013] 2020-02-12 21:57:40 DEBUG > Start is_latest
-[0013] 2020-02-12 21:57:40 DEBUG > End   is_latest: [elapsed] >> 00:00:00
-[0013] 2020-02-12 21:57:40 DEBUG > All files existed. Skip transforming.
-[0013] 2020-02-12 21:57:42 DEBUG > Loaded train.shape: (591, 266)
-[0013] 2020-02-12 21:57:42 DEBUG > Loaded test.shape:  (507, 265)
-[0013] 2020-02-12 21:57:42 DEBUG > End   Transformer.run: [elapsed] >> 00:00:01
-[0013] 2020-02-12 21:57:42 INFO  > End   Preprocess: [elapsed] >> 00:00:01
-[0013] 2020-02-12 21:57:42 INFO  > Start Train
-[0013] 2020-02-12 21:57:42 DEBUG > Start ModelFactory.create
-[0013] 2020-02-12 21:57:42 DEBUG > Creating model lgb
-[0013] 2020-02-12 21:57:42 DEBUG > Start LightGBM.__init__
-[0013] 2020-02-12 21:57:42 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
-[0013] 2020-02-12 21:57:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
-[0013] 2020-02-12 21:57:42 DEBUG > Start LightGBM.train
-[0013] 2020-02-12 22:00:03 DEBUG > End   LightGBM.train: [elapsed] >> 00:02:20
-[0013] 2020-02-12 22:00:03 DEBUG > Start BaseModel.save
-[0013] 2020-02-12 22:00:03 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0013] 2020-02-12 22:00:03 INFO  > End   Train: [elapsed] >> 00:02:20
-[0013] 2020-02-12 22:00:03 INFO  > Start Predict
-[0013] 2020-02-12 22:00:03 DEBUG > Start LightGBM.predict
-[0013] 2020-02-12 22:00:03 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
-[0013] 2020-02-12 22:00:03 INFO  > End   Predict: [elapsed] >> 00:00:00
-[0013] 2020-02-12 22:00:03 INFO  > End   main: [elapsed] >> 00:02:23
-[0013] 2020-02-12 22:00:03 INFO  > :sunglasses: Finished experiment 0013.small
+[0013] 2020-03-04 17:19:02 INFO  > :thinking_face: Starting experiment 0013_lightgbm.small
+[0013] 2020-03-04 17:19:02 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0013')
+[0013] 2020-03-04 17:19:02 INFO  > Start main
+[0013] 2020-03-04 17:19:02 INFO  > Start Preprocess
+[0013] 2020-03-04 17:19:08 DEBUG > Loaded feature cdeotte
+[0013] 2020-03-04 17:19:09 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
+[0013] 2020-03-04 17:19:09 INFO  > End   Preprocess: [elapsed] >> 00:00:06
+[0013] 2020-03-04 17:19:09 INFO  > Start Optimize
+[0013] 2020-03-04 17:19:09 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:19:09 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:19:09 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:19:09 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:19:09 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:19:09 DEBUG > Start optimize_num_boost_round
+[0013] 2020-03-04 17:19:09 INFO  > Start Training on Fold 1
+[0013] 2020-03-04 17:19:09 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:19:14 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:04
+[0013] 2020-03-04 17:19:14 DEBUG > Start BaseModel.save
+[0013] 2020-03-04 17:19:14 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:19:14 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:04
+[0013] 2020-03-04 17:19:14 INFO  > Start Training on Fold 2
+[0013] 2020-03-04 17:19:14 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:19:18 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:03
+[0013] 2020-03-04 17:19:18 DEBUG > Start BaseModel.save
+[0013] 2020-03-04 17:19:18 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:19:18 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:03
+[0013] 2020-03-04 17:19:18 INFO  > Start Training on Fold 3
+[0013] 2020-03-04 17:19:18 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:19:38 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:20
+[0013] 2020-03-04 17:19:38 DEBUG > Start BaseModel.save
+[0013] 2020-03-04 17:19:38 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:19:38 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:20
+[0013] 2020-03-04 17:19:38 INFO  > Start Training on Fold 4
+[0013] 2020-03-04 17:19:38 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:19:48 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:10
+[0013] 2020-03-04 17:19:48 DEBUG > Start BaseModel.save
+[0013] 2020-03-04 17:19:49 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:19:49 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:10
+[0013] 2020-03-04 17:19:49 INFO  > Start Training on Fold 5
+[0013] 2020-03-04 17:19:49 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:20:36 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:47
+[0013] 2020-03-04 17:20:36 DEBUG > Start BaseModel.save
+[0013] 2020-03-04 17:20:36 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:20:36 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:47
+[0013] 2020-03-04 17:20:36 INFO  > Early stopping. Best iteration is: 71
+[0013] 2020-03-04 17:20:36 DEBUG > End   optimize_num_boost_round: [elapsed] >> 00:01:27
+[0013] 2020-03-04 17:20:36 INFO  > End   Optimize: [elapsed] >> 00:01:27
+[0013] 2020-03-04 17:20:36 INFO  > Start Train
+[0013] 2020-03-04 17:20:36 DEBUG > Now using the following 263 features.
+[0013] 2020-03-04 17:20:36 DEBUG > ['TransactionAmt' 'ProductCD' 'card1' 'card2' 'card3' 'card5' 'card6'
+ 'addr1' 'addr2' 'dist1' 'dist2' 'P_emaildomain' 'R_emaildomain' 'C1' 'C2'
+ 'C4' 'C5' 'C6' 'C7' 'C8' 'C9' 'C10' 'C11' 'C12' 'C13' 'C14' 'D1' 'D2'
+ 'D3' 'D4' 'D5' 'D10' 'D11' 'D15' 'M1' 'M2' 'M3' 'M4' 'M6' 'M7' 'M8' 'M9'
+ 'V1' 'V3' 'V4' 'V6' 'V8' 'V11' 'V13' 'V14' 'V17' 'V20' 'V23' 'V26' 'V27'
+ 'V30' 'V36' 'V37' 'V40' 'V41' 'V44' 'V47' 'V48' 'V54' 'V56' 'V59' 'V62'
+ 'V65' 'V67' 'V68' 'V70' 'V76' 'V78' 'V80' 'V82' 'V86' 'V88' 'V89' 'V91'
+ 'V107' 'V108' 'V111' 'V115' 'V117' 'V120' 'V121' 'V123' 'V124' 'V127'
+ 'V129' 'V130' 'V136' 'V138' 'V139' 'V142' 'V147' 'V156' 'V160' 'V162'
+ 'V165' 'V166' 'V169' 'V171' 'V173' 'V175' 'V176' 'V178' 'V180' 'V182'
+ 'V185' 'V187' 'V188' 'V198' 'V203' 'V205' 'V207' 'V209' 'V210' 'V215'
+ 'V218' 'V220' 'V221' 'V223' 'V224' 'V226' 'V228' 'V229' 'V234' 'V235'
+ 'V238' 'V240' 'V250' 'V252' 'V253' 'V257' 'V258' 'V260' 'V261' 'V264'
+ 'V266' 'V267' 'V271' 'V274' 'V277' 'V281' 'V283' 'V284' 'V285' 'V286'
+ 'V289' 'V291' 'V294' 'V296' 'V297' 'V301' 'V303' 'V305' 'V307' 'V309'
+ 'V310' 'V314' 'V320' 'id_01' 'id_02' 'id_03' 'id_04' 'id_05' 'id_06'
+ 'id_09' 'id_10' 'id_11' 'id_12' 'id_13' 'id_15' 'id_16' 'id_17' 'id_18'
+ 'id_19' 'id_20' 'id_28' 'id_29' 'id_31' 'id_35' 'id_36' 'id_37' 'id_38'
+ 'DeviceType' 'DeviceInfo' 'cents' 'addr1_FE' 'card1_FE' 'card2_FE'
+ 'card3_FE' 'P_emaildomain_FE' 'card1_addr1' 'card1_addr1_P_emaildomain'
+ 'card1_addr1_FE' 'card1_addr1_P_emaildomain_FE'
+ 'TransactionAmt_card1_mean' 'TransactionAmt_card1_std'
+ 'TransactionAmt_card1_addr1_mean' 'TransactionAmt_card1_addr1_std'
+ 'TransactionAmt_card1_addr1_P_emaildomain_mean'
+ 'TransactionAmt_card1_addr1_P_emaildomain_std' 'D9_card1_mean'
+ 'D9_card1_std' 'D9_card1_addr1_mean' 'D9_card1_addr1_std'
+ 'D9_card1_addr1_P_emaildomain_mean' 'D9_card1_addr1_P_emaildomain_std'
+ 'D11_card1_mean' 'D11_card1_std' 'D11_card1_addr1_mean'
+ 'D11_card1_addr1_std' 'D11_card1_addr1_P_emaildomain_mean'
+ 'D11_card1_addr1_P_emaildomain_std' 'uid_FE' 'TransactionAmt_uid_mean'
+ 'TransactionAmt_uid_std' 'D4_uid_mean' 'D4_uid_std' 'D9_uid_mean'
+ 'D9_uid_std' 'D10_uid_mean' 'D10_uid_std' 'D15_uid_mean' 'D15_uid_std'
+ 'C1_uid_mean' 'C2_uid_mean' 'C4_uid_mean' 'C5_uid_mean' 'C6_uid_mean'
+ 'C7_uid_mean' 'C8_uid_mean' 'C9_uid_mean' 'C10_uid_mean' 'C11_uid_mean'
+ 'C12_uid_mean' 'C13_uid_mean' 'C14_uid_mean' 'M1_uid_mean' 'M2_uid_mean'
+ 'M3_uid_mean' 'M4_uid_mean' 'M5_uid_mean' 'M6_uid_mean' 'M7_uid_mean'
+ 'M8_uid_mean' 'M9_uid_mean' 'uid_P_emaildomain_ct' 'uid_dist1_ct'
+ 'uid_DT_M_ct' 'uid_id_02_ct' 'uid_cents_ct' 'C14_uid_std' 'uid_C13_ct'
+ 'uid_V314_ct' 'uid_V127_ct' 'uid_V136_ct' 'uid_V309_ct' 'uid_V307_ct'
+ 'uid_V320_ct' 'outsider15']
+[0013] 2020-03-04 17:20:36 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:20:36 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:20:36 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:20:36 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:20:36 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:20:36 INFO  > Fold 0 withholding month 12
+[0013] 2020-03-04 17:20:36 INFO  > rows of train =463, rows of holdout =128
+[0013] 2020-03-04 17:20:36 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:20:36 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:20:36 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:20:36 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:20:36 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:20:36 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:21:10 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:33
+[0013] 2020-03-04 17:21:10 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:21:10 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:10 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:21:10 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:10 INFO  > Fold 1 withholding month 15
+[0013] 2020-03-04 17:21:10 INFO  > rows of train =482, rows of holdout =109
+[0013] 2020-03-04 17:21:10 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:21:10 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:21:10 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:21:10 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:10 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:10 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:21:39 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:29
+[0013] 2020-03-04 17:21:39 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:21:40 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:40 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:21:40 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:40 INFO  > Fold 2 withholding month 13
+[0013] 2020-03-04 17:21:40 INFO  > rows of train =499, rows of holdout =92
+[0013] 2020-03-04 17:21:40 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:21:40 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:21:40 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:21:40 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:40 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:21:40 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:22:14 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:34
+[0013] 2020-03-04 17:22:14 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:22:14 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:14 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:22:14 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:14 INFO  > Fold 3 withholding month 17
+[0013] 2020-03-04 17:22:14 INFO  > rows of train =501, rows of holdout =90
+[0013] 2020-03-04 17:22:14 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:22:14 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:22:14 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:22:14 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:14 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:14 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:22:47 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:32
+[0013] 2020-03-04 17:22:47 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:22:47 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:47 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:22:47 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:47 INFO  > Fold 4 withholding month 14
+[0013] 2020-03-04 17:22:47 INFO  > rows of train =503, rows of holdout =88
+[0013] 2020-03-04 17:22:47 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:22:47 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:22:47 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:22:47 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:47 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:22:47 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:23:20 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:33
+[0013] 2020-03-04 17:23:20 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:23:21 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:21 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:23:21 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:21 INFO  > Fold 5 withholding month 16
+[0013] 2020-03-04 17:23:21 INFO  > rows of train =507, rows of holdout =84
+[0013] 2020-03-04 17:23:21 DEBUG > Start ModelFactory.create
+[0013] 2020-03-04 17:23:21 DEBUG > Creating model lightgbm
+[0013] 2020-03-04 17:23:21 DEBUG > Start LightGBM.__init__
+[0013] 2020-03-04 17:23:21 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:21 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:21 DEBUG > Start LightGBM.train
+[0013] 2020-03-04 17:23:56 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:34
+[0013] 2020-03-04 17:23:56 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:23:56 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:56 DEBUG > Start LightGBM.predict
+[0013] 2020-03-04 17:23:56 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:56 INFO  > ####################
+[0013] 2020-03-04 17:23:56 INFO  > XGB96 OOF CV= 0.6905496766607878
+[0013] 2020-03-04 17:23:56 INFO  > End   Train: [elapsed] >> 00:03:19
+[0013] 2020-03-04 17:23:56 INFO  > Start Predict
+[0013] 2020-03-04 17:23:56 INFO  > End   Predict: [elapsed] >> 00:00:00
+[0013] 2020-03-04 17:23:56 INFO  > End   main: [elapsed] >> 00:04:53
+[0013] 2020-03-04 17:23:56 INFO  > :sunglasses: Finished experiment 0013.small

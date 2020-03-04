@@ -27,7 +27,7 @@
         "n_splits": 5,
         "num_boost_round": 5000,
         "early_stopping_rounds": 50,
-        "optimize_num_boost_round": true
+        "optimize_num_boost_round": false
     },
     "cols": [
         "TransactionAmt",
@@ -296,25 +296,18 @@
     ],
     "runtime": {
         "version": "0013",
-        "use_small_data": true,
-        "no_send_message": true,
+        "use_small_data": false,
+        "no_send_message": false,
         "random_seed": 42
     },
-    "scores": {
-        "best_iteration": 71
-    },
+    "scores": {},
     "paths": {
         "in_train_path": "data/feature/cdeotte_train.pkl",
         "in_test_path": "data/feature/cdeotte_test.pkl",
-        "model_fold_1_path": "data/model/model_0013_lightgbm_fold1.small.pkl",
-        "model_fold_2_path": "data/model/model_0013_lightgbm_fold2.small.pkl",
-        "model_fold_3_path": "data/model/model_0013_lightgbm_fold3.small.pkl",
-        "model_fold_4_path": "data/model/model_0013_lightgbm_fold4.small.pkl",
-        "model_fold_5_path": "data/model/model_0013_lightgbm_fold5.small.pkl",
-        "importance_path": "feature/importance/importance_0013.small.csv",
-        "out_sub_path": "data/submission/submission_0013.small.csv",
-        "main_log_path": "log/main_0013.small.log",
-        "train_log_path": "log/train_0013.small.tsv",
-        "result": "config/result_0013.small.json"
+        "importance_path": "feature/importance/importance_0013.csv",
+        "out_sub_path": "data/submission/submission_0013.csv",
+        "main_log_path": "log/main_0013.log",
+        "train_log_path": "log/train_0013.tsv",
+        "result": "config/result_0013.json"
     }
 }
