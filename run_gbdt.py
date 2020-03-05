@@ -104,7 +104,7 @@ def main(c):
                                 X_train[c.cols].iloc[idxV], y_train.iloc[idxV],
                                 num_boost_round=best_iteration,
                                 early_stopping_rounds=c.train.early_stopping_rounds,
-                                categorical_features=categorical_features,
+                                # categorical_features=categorical_features,
                                 fold=i+1)
 
             oof[idxV] += model.predict(X_train[c.cols].iloc[idxV])

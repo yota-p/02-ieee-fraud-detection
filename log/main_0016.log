@@ -1,16 +1,16 @@
-[0014] 2020-03-05 15:28:39 INFO  > :thinking_face: Starting experiment 0014_xgboost.small
-[0014] 2020-03-05 15:28:39 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0014')
-[0014] 2020-03-05 15:28:39 INFO  > Start main
-[0014] 2020-03-05 15:28:39 INFO  > Start Preprocess
-[0014] 2020-03-05 15:28:55 DEBUG > Loaded feature cdeotte
-[0014] 2020-03-05 15:28:56 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
-[0014] 2020-03-05 15:28:57 INFO  > End   Preprocess: [elapsed] >> 00:00:18
-[0014] 2020-03-05 15:28:57 INFO  > Start Optimize
-[0014] 2020-03-05 15:28:57 DEBUG > Skip optimization
-[0014] 2020-03-05 15:28:57 INFO  > End   Optimize: [elapsed] >> 00:00:00
-[0014] 2020-03-05 15:28:57 INFO  > Start Train
-[0014] 2020-03-05 15:28:57 DEBUG > Now using the following 263 features.
-[0014] 2020-03-05 15:28:57 DEBUG > ['TransactionAmt' 'ProductCD' 'card1' 'card2' 'card3' 'card5' 'card6'
+[0016] 2020-03-05 16:00:06 INFO  > :thinking_face: Starting experiment 0016_lightgbm
+[0016] 2020-03-05 16:00:07 INFO  > Options indicated: Namespace(nomsg=False, seed=42, small=False, version='0016')
+[0016] 2020-03-05 16:00:08 INFO  > Start main
+[0016] 2020-03-05 16:00:08 INFO  > Start Preprocess
+[0016] 2020-03-05 16:00:13 DEBUG > Loaded feature cdeotte
+[0016] 2020-03-05 16:00:13 DEBUG > train.shape: (590540, 292), test.shape: (506691, 291)
+[0016] 2020-03-05 16:00:14 INFO  > End   Preprocess: [elapsed] >> 00:00:05
+[0016] 2020-03-05 16:00:15 INFO  > Start Optimize
+[0016] 2020-03-05 16:00:15 DEBUG > Skip optimization
+[0016] 2020-03-05 16:00:15 INFO  > End   Optimize: [elapsed] >> 00:00:00
+[0016] 2020-03-05 16:00:16 INFO  > Start Train
+[0016] 2020-03-05 16:00:17 DEBUG > Now using the following 263 features.
+[0016] 2020-03-05 16:00:17 DEBUG > ['TransactionAmt' 'ProductCD' 'card1' 'card2' 'card3' 'card5' 'card6'
  'addr1' 'addr2' 'dist1' 'dist2' 'P_emaildomain' 'R_emaildomain' 'C1' 'C2'
  'C4' 'C5' 'C6' 'C7' 'C8' 'C9' 'C10' 'C11' 'C12' 'C13' 'C14' 'D1' 'D2'
  'D3' 'D4' 'D5' 'D10' 'D11' 'D15' 'M1' 'M2' 'M3' 'M4' 'M6' 'M7' 'M8' 'M9'
@@ -50,24 +50,11 @@
  'uid_DT_M_ct' 'uid_id_02_ct' 'uid_cents_ct' 'C14_uid_std' 'uid_C13_ct'
  'uid_V314_ct' 'uid_V127_ct' 'uid_V136_ct' 'uid_V309_ct' 'uid_V307_ct'
  'uid_V320_ct' 'outsider15']
-[0014] 2020-03-05 15:28:57 INFO  > Fold 1 withholding month 12
-[0014] 2020-03-05 15:28:57 INFO  > rows of train =463, rows of holdout =128
-[0014] 2020-03-05 15:28:57 DEBUG > Start ModelFactory.create
-[0014] 2020-03-05 15:28:57 DEBUG > Creating model xgboost
-[0014] 2020-03-05 15:28:57 DEBUG > Start XGBoost.__init__
-[0014] 2020-03-05 15:28:57 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
-[0014] 2020-03-05 15:28:57 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
-[0014] 2020-03-05 15:28:57 DEBUG > Start XGBoost.train
-[0014] 2020-03-05 15:28:57 CRITICAL > :smiling_imp: Exception occured 
- Traceback (most recent call last):
-  File "run_gbdt.py", line 218, in <module>
-    result = main(c)
-  File "/home/yh/git/kaggle_ieee-fraud-detection/util/mylog.py", line 122, in _wrapper
-    result = f(*args, **kwargs)
-  File "run_gbdt.py", line 108, in main
-    fold=i+1)
-  File "/home/yh/git/kaggle_ieee-fraud-detection/util/mylog.py", line 122, in _wrapper
-    result = f(*args, **kwargs)
-TypeError: train() got an unexpected keyword argument 'categorical_features'
-
-[0014] 2020-03-05 15:28:57 CRITICAL > :skull: Stopped experiment 0014.small
+[0016] 2020-03-05 16:00:17 INFO  > Fold 1 withholding month 12
+[0016] 2020-03-05 16:00:17 INFO  > rows of train =453219, rows of holdout =137321
+[0016] 2020-03-05 16:00:18 DEBUG > Start ModelFactory.create
+[0016] 2020-03-05 16:00:18 DEBUG > Creating model lightgbm
+[0016] 2020-03-05 16:00:18 DEBUG > Start LightGBM.__init__
+[0016] 2020-03-05 16:00:18 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0016] 2020-03-05 16:00:18 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0016] 2020-03-05 16:00:20 DEBUG > Start LightGBM.train
