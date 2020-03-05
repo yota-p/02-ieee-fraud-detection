@@ -93,11 +93,18 @@ def main(c):
             logger.info(f'Fold {i+1} withholding month {month}')
             logger.info(f'rows of train ={len(idxT)}, rows of holdout ={len(idxV)}')
 
+            categorical_features = ['ProductCD', 'M4',
+                                    'card1', 'card2', 'card3', 'card5', 'card6',
+                                    'addr1', 'addr2', 'dist1', 'dist2',
+                                    'P_emaildomain', 'R_emaildomain',
+                                    ]
+
             model = modelfactory.create(c.model)
             model = model.train(X_train[c.cols].iloc[idxT], y_train.iloc[idxT],
                                 X_train[c.cols].iloc[idxV], y_train.iloc[idxV],
                                 num_boost_round=best_iteration,
                                 early_stopping_rounds=c.train.early_stopping_rounds,
+                                categorical_features=categorical_features,
                                 fold=i+1)
 
             oof[idxV] += model.predict(X_train[c.cols].iloc[idxV])
