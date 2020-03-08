@@ -34,6 +34,7 @@ class LightGBM(BaseModel):
             valid_names = ['train']
         logger = getLogger('train')
         callbacks = [log_evaluation(logger, period=1, fold=fold, valid_sets=valid_sets)]
+        evals_result = {}
 
         self.core = lgb.train(params=self.config.params,
                               train_set=train_set,
@@ -41,15 +42,8 @@ class LightGBM(BaseModel):
                               valid_names=valid_names,
                               num_boost_round=num_boost_round,
                               early_stopping_rounds=early_stopping_rounds,
-                              fobj=None,
-                              feval=None,
-                              init_model=None,
-                              feature_name='auto',
-                              categorical_feature='auto',
-                              evals_result=None,
-                              verbose_eval=False,
-                              learning_rates=None,
-                              keep_training_booster=False,
+                              evals_result=evals_result,
+                              verbose_eval=10,
                               callbacks=callbacks
                               )
         return self
@@ -84,5 +78,5 @@ def log_evaluation(logger, period=1, show_stdv=True, level=DEBUG, fold=1, valid_
             for i in range(len(valid_sets)):
                 result = result + f'\t{env.evaluation_result_list[i][2]:6f}'
             logger.log(level, f'{fold:0>3}\t{env.iteration+1:0>6}{result}')
-    _callback.order = 10
+    _callback.order = 100
     return _callback

@@ -21,6 +21,7 @@ class XGBoost(BaseModel):
     def train(self,
               X_train, y_train,
               X_val=None, y_val=None,
+              params=None,
               num_boost_round=100,
               early_stopping_rounds=None,
               fold=0):
@@ -34,7 +35,7 @@ class XGBoost(BaseModel):
         logger = getLogger('train')
         callbacks = [log_evaluation(logger, period=1, fold=fold, evals=evals)]
 
-        self.core = xgb.train(params=self.config.params,
+        self.core = xgb.train(params=params,
                               dtrain=dtrain,
                               evals=evals,
                               num_boost_round=num_boost_round,
