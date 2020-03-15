@@ -2,7 +2,7 @@ artifact_uri: file:///home/yh/git/kaggle_ieee-fraud-detection/mlruns/2/e42ff98cc
 end_time: null
 entry_point_name: ''
 experiment_id: '2'
-lifecycle_stage: active
+lifecycle_stage: deleted
 name: ''
 run_id: e42ff98ccc064513aa3f7ed6a14fd24d
 run_uuid: e42ff98ccc064513aa3f7ed6a14fd24d

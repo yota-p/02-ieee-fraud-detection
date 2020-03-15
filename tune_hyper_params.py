@@ -38,7 +38,9 @@ def objective(trial, X_train, y_train, X_test, cols, c):
             'min_child_weight': trial.suggest_loguniform('min_child_weight', 1e-3, 1e0),
             'reg_alpha': trial.suggest_loguniform('reg_alpha', 1e-2, 1e0),
             'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-2, 1e0),
-            'min_data_in_leaf': trial.suggest_int('min_data_in_leaf', 50, 200)
+            'min_data_in_leaf': trial.suggest_int('min_data_in_leaf', 50, 200),
+            'feature_fraction': trial.suggest_uniform('feature_fraction', 0, 1),
+            'bagging_fraction': trial.suggest_uniform('bagging_fraction', 0, 1)
             }
     elif c.model.type == 'xgboost':
         params_to_tune = {
@@ -58,6 +60,8 @@ def objective(trial, X_train, y_train, X_test, cols, c):
             'max_depth': max_depth,
             'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-2, 1e0)
             }
+
+    # apply suggested params
     params = c.model.params.copy()
     params.update(params_to_tune)
 

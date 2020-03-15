@@ -21,6 +21,7 @@ class LightGBM(BaseModel):
     def train(self,
               X_train, y_train,
               X_val=None, y_val=None,
+              params=None,
               num_boost_round=100,
               early_stopping_rounds=None,
               fold=0):
@@ -36,7 +37,7 @@ class LightGBM(BaseModel):
         callbacks = [log_evaluation(logger, period=1, fold=fold, valid_sets=valid_sets)]
         evals_result = {}
 
-        self.core = lgb.train(params=self.config.params,
+        self.core = lgb.train(params=params,
                               train_set=train_set,
                               valid_sets=valid_sets,
                               valid_names=valid_names,
