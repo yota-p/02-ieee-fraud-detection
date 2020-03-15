@@ -29,28 +29,34 @@ def objective(trial, X_train, y_train, X_test, cols, c):
     Define objectives for optuna
     '''
     modelfactory = ModelFactory()
-    max_depth = trial.suggest_int('max_depth', 3, 12)
     if c.model.type == 'lightgbm':
+        max_depth = trial.suggest_int('max_depth', 3, 12)
         params_to_tune = {
             # num_leaves should be smaller than approximately 2^max_depth*0.75
             'num_leaves': 2 ** max_depth * 3 // 4,
             'max_depth': max_depth,
-            'min_child_weight': trial.suggest_loguniform('min_child_weight', 1e-3, 1e0),  # 0.03454472573214212,
-            'reg_alpha': trial.suggest_loguniform('reg_alpha', 1e-2, 1e0),  # 0.3899927210061127,
-            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-2, 1e0),  # 0.6485237330340494,
-            'min_data_in_leaf': trial.suggest_int('min_data_in_leaf', 50, 200),  # 106,
+            'min_child_weight': trial.suggest_loguniform('min_child_weight', 1e-3, 1e0),
+            'reg_alpha': trial.suggest_loguniform('reg_alpha', 1e-2, 1e0),
+            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-2, 1e0),
+            'min_data_in_leaf': trial.suggest_int('min_data_in_leaf', 50, 200)
             }
     elif c.model.type == 'xgboost':
         params_to_tune = {
-            # num_leaves should be smaller than approximately 2^max_depth*0.75
-            # 'num_leaves': 2 ** max_depth * 3 // 4,
             'min_split_loss': trial.suggest_loguniform('min_split_loss', 1e-3, 1e0),
-            'max_depth': max_depth,
+            'max_depth': trial.suggest_int('max_depth', 3, 12),
             'min_child_weight': trial.suggest_loguniform('min_child_weight', 1e-3, 1e0),
             'subsample': trial.suggest_uniform('subsample', 0, 1),
             'colsample_bytree': trial.suggest_uniform('colsample_bytree', 0.0, 1.0),
             'reg_alpha': trial.suggest_loguniform('reg_alpha', 1e-3, 1e0),
-            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-3, 1e0),
+            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-3, 1e0)
+            }
+    elif c.model.type == 'catboost':
+        max_depth = trial.suggest_int('max_depth', 3, 12)
+        params_to_tune = {
+            # num_leaves should be smaller than approximately 2^max_depth*0.75
+            # 'num_leaves': 2 ** max_depth * 3 // 4,
+            'max_depth': max_depth,
+            'reg_lambda': trial.suggest_loguniform('reg_lambda', 1e-2, 1e0)
             }
     params = c.model.params.copy()
     params.update(params_to_tune)
@@ -72,7 +78,6 @@ def objective(trial, X_train, y_train, X_test, cols, c):
                             params=params,
                             num_boost_round=c.train.num_boost_round,
                             early_stopping_rounds=c.train.early_stopping_rounds,
-                            # categorical_features=categorical_features,
                             fold=i+1)
 
         oof[idxV] = model.predict(X_train[cols].iloc[idxV])

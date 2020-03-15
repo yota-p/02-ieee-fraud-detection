@@ -24,21 +24,21 @@ class CatBoost(BaseModel):
     def train(self,
               X_train, y_train,
               X_val=None, y_val=None,
-              categorical_features=None,
+              params=None,
               num_boost_round=100,
               early_stopping_rounds=None,
               fold=0):
 
         self.core = CatBoostClassifier(
-            **self.config.params,
+            # **self.config.params,
+            **params,
             num_boost_round=num_boost_round
         )
         self.core.fit(X=X_train,
                       y=y_train,
-                      cat_features=categorical_features,
                       eval_set=(X_val, y_val),
-                      verbose=True,
-                      early_stopping_rounds=early_stopping_rounds,
+                      # verbose=True,
+                      early_stopping_rounds=early_stopping_rounds
                       )
         return self
 

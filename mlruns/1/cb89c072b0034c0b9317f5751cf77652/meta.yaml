@@ -1,0 +1,15 @@
+artifact_uri: file:///home/yh/git/kaggle_ieee-fraud-detection/mlruns/1/cb89c072b0034c0b9317f5751cf77652/artifacts
+end_time: 1583660519885
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: deleted
+name: ''
+run_id: cb89c072b0034c0b9317f5751cf77652
+run_uuid: cb89c072b0034c0b9317f5751cf77652
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1583660508318
+status: 3
+tags: []
+user_id: root

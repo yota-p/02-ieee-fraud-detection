@@ -1,0 +1,469 @@
+[0018] 2020-03-11 01:02:08 INFO  > :thinking_face: Starting experiment 0018_catboost.small
+[0018] 2020-03-11 01:02:08 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0018')
+[0018] 2020-03-11 01:02:08 INFO  > Start main
+[0018] 2020-03-11 01:02:08 INFO  > Start Preprocess
+[0018] 2020-03-11 01:02:12 DEBUG > Loaded feature cdeotte
+[0018] 2020-03-11 01:02:13 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
+[0018] 2020-03-11 01:02:13 INFO  > End   Preprocess: [elapsed] >> 00:00:04
+[0018] 2020-03-11 01:02:13 INFO  > Start Tune hyper params
+[0018] 2020-03-11 01:02:13 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:02:13 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:02:13 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:02:13 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:02:13 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:02:13 INFO  > Fold 1 withholding month 12
+[0018] 2020-03-11 01:02:13 INFO  > rows of train= 463, rows of holdout= 128
+[0018] 2020-03-11 01:02:13 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:04:50 DEBUG > End   CatBoost.train: [elapsed] >> 00:02:37
+[0018] 2020-03-11 01:04:50 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:04:50 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:04:50 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:04:50 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:04:50 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:04:50 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:04:50 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:04:50 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:04:50 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:04:50 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:04:50 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:04:50 INFO  > Fold 2 withholding month 15
+[0018] 2020-03-11 01:04:50 INFO  > rows of train= 482, rows of holdout= 109
+[0018] 2020-03-11 01:04:50 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:06:18 DEBUG > End   CatBoost.train: [elapsed] >> 00:01:27
+[0018] 2020-03-11 01:06:18 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:06:18 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:06:18 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:06:18 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:06:18 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:06:18 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:06:18 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:06:18 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:06:18 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:06:18 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:06:18 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:06:18 INFO  > Fold 3 withholding month 13
+[0018] 2020-03-11 01:06:18 INFO  > rows of train= 499, rows of holdout= 92
+[0018] 2020-03-11 01:06:18 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:07:32 DEBUG > End   CatBoost.train: [elapsed] >> 00:01:14
+[0018] 2020-03-11 01:07:32 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:07:32 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:07:32 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:07:32 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:07:32 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:07:32 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:07:32 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:07:32 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:07:32 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:07:32 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:07:32 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:07:32 INFO  > Fold 4 withholding month 17
+[0018] 2020-03-11 01:07:32 INFO  > rows of train= 501, rows of holdout= 90
+[0018] 2020-03-11 01:07:32 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:08:41 DEBUG > End   CatBoost.train: [elapsed] >> 00:01:09
+[0018] 2020-03-11 01:08:41 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:08:41 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:08:41 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:08:41 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:08:41 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:08:41 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:08:41 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:08:41 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:08:41 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:08:41 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:08:41 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:08:41 INFO  > Fold 5 withholding month 14
+[0018] 2020-03-11 01:08:41 INFO  > rows of train= 503, rows of holdout= 88
+[0018] 2020-03-11 01:08:41 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:10:15 DEBUG > End   CatBoost.train: [elapsed] >> 00:01:33
+[0018] 2020-03-11 01:10:15 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:10:15 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:10:15 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:10:15 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:10:15 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:10:15 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:10:15 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:10:15 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:10:15 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:10:15 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:10:15 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:10:15 INFO  > Fold 6 withholding month 16
+[0018] 2020-03-11 01:10:15 INFO  > rows of train= 507, rows of holdout= 84
+[0018] 2020-03-11 01:10:15 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:11:19 DEBUG > End   CatBoost.train: [elapsed] >> 00:01:03
+[0018] 2020-03-11 01:11:19 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:11:19 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:19 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:11:19 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:19 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:11:19 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:19 INFO  > Fold 6 OOF cv= 0.652336860670194
+[0018] 2020-03-11 01:11:20 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:11:20 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:11:20 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:11:20 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:20 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:20 INFO  > Fold 1 withholding month 12
+[0018] 2020-03-11 01:11:20 INFO  > rows of train= 463, rows of holdout= 128
+[0018] 2020-03-11 01:11:20 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:11:47 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:27
+[0018] 2020-03-11 01:11:47 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:11:47 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:47 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:11:47 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:47 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:11:47 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:47 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:11:47 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:11:47 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:11:47 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:47 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:11:47 INFO  > Fold 2 withholding month 15
+[0018] 2020-03-11 01:11:47 INFO  > rows of train= 482, rows of holdout= 109
+[0018] 2020-03-11 01:11:48 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:12:24 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:36
+[0018] 2020-03-11 01:12:24 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:12:24 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:12:24 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:12:24 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:12:24 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:12:24 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:12:24 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:12:24 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:12:24 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:12:24 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:12:24 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:12:24 INFO  > Fold 3 withholding month 13
+[0018] 2020-03-11 01:12:24 INFO  > rows of train= 499, rows of holdout= 92
+[0018] 2020-03-11 01:12:24 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:13:21 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:56
+[0018] 2020-03-11 01:13:21 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:13:21 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:21 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:13:21 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:21 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:13:21 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:21 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:13:21 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:13:21 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:13:21 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:21 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:21 INFO  > Fold 4 withholding month 17
+[0018] 2020-03-11 01:13:21 INFO  > rows of train= 501, rows of holdout= 90
+[0018] 2020-03-11 01:13:21 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:13:42 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:21
+[0018] 2020-03-11 01:13:42 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:13:42 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:42 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:13:42 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:42 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:13:42 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:42 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:13:42 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:13:42 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:13:42 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:13:42 INFO  > Fold 5 withholding month 14
+[0018] 2020-03-11 01:13:42 INFO  > rows of train= 503, rows of holdout= 88
+[0018] 2020-03-11 01:13:42 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:14:05 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:23
+[0018] 2020-03-11 01:14:05 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:14:05 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:14:05 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:14:06 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:14:06 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:14:06 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:14:06 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:14:06 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:14:06 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:14:06 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:14:06 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:14:06 INFO  > Fold 6 withholding month 16
+[0018] 2020-03-11 01:14:06 INFO  > rows of train= 507, rows of holdout= 84
+[0018] 2020-03-11 01:14:06 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:23 DEBUG > End   CatBoost.train: [elapsed] >> 00:01:17
+[0018] 2020-03-11 01:15:23 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:23 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:23 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:23 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:23 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:23 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:23 INFO  > Fold 6 OOF cv= 0.7408877131099353
+[0018] 2020-03-11 01:15:24 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:24 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:24 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:24 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:24 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:24 INFO  > Fold 1 withholding month 12
+[0018] 2020-03-11 01:15:24 INFO  > rows of train= 463, rows of holdout= 128
+[0018] 2020-03-11 01:15:24 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:27 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:02
+[0018] 2020-03-11 01:15:27 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:27 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:27 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:27 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:27 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:27 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:27 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:27 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:27 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:27 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:27 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:27 INFO  > Fold 2 withholding month 15
+[0018] 2020-03-11 01:15:27 INFO  > rows of train= 482, rows of holdout= 109
+[0018] 2020-03-11 01:15:27 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:30 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:03
+[0018] 2020-03-11 01:15:30 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:30 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:30 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:30 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:30 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:30 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:30 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:30 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:30 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:30 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:30 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:30 INFO  > Fold 3 withholding month 13
+[0018] 2020-03-11 01:15:30 INFO  > rows of train= 499, rows of holdout= 92
+[0018] 2020-03-11 01:15:30 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:33 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:03
+[0018] 2020-03-11 01:15:33 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:33 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:33 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:33 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:33 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:33 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:33 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:33 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:33 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:33 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:33 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:33 INFO  > Fold 4 withholding month 17
+[0018] 2020-03-11 01:15:33 INFO  > rows of train= 501, rows of holdout= 90
+[0018] 2020-03-11 01:15:33 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:35 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:02
+[0018] 2020-03-11 01:15:35 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:35 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:36 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:36 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:36 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:36 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:36 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:36 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:36 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:36 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:36 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:36 INFO  > Fold 5 withholding month 14
+[0018] 2020-03-11 01:15:36 INFO  > rows of train= 503, rows of holdout= 88
+[0018] 2020-03-11 01:15:36 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:39 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:03
+[0018] 2020-03-11 01:15:39 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:39 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:39 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:39 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:39 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:39 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:39 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:39 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:39 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:39 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:39 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:39 INFO  > Fold 6 withholding month 16
+[0018] 2020-03-11 01:15:39 INFO  > rows of train= 507, rows of holdout= 84
+[0018] 2020-03-11 01:15:39 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:42 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:02
+[0018] 2020-03-11 01:15:42 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:42 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:42 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:42 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:42 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:42 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:42 INFO  > Fold 6 OOF cv= 0.629592886537331
+[0018] 2020-03-11 01:15:42 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:42 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:42 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:42 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:42 INFO  > Fold 1 withholding month 12
+[0018] 2020-03-11 01:15:42 INFO  > rows of train= 463, rows of holdout= 128
+[0018] 2020-03-11 01:15:42 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:44 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:01
+[0018] 2020-03-11 01:15:44 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:44 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:44 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:44 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:44 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:44 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:44 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:44 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:44 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:44 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:44 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:44 INFO  > Fold 2 withholding month 15
+[0018] 2020-03-11 01:15:44 INFO  > rows of train= 482, rows of holdout= 109
+[0018] 2020-03-11 01:15:44 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:46 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:01
+[0018] 2020-03-11 01:15:46 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:46 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:46 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:46 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:46 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:46 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:46 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:46 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:46 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:46 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:46 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:46 INFO  > Fold 3 withholding month 13
+[0018] 2020-03-11 01:15:46 INFO  > rows of train= 499, rows of holdout= 92
+[0018] 2020-03-11 01:15:46 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:48 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:01
+[0018] 2020-03-11 01:15:48 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:48 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:48 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:48 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:48 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:48 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:48 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:48 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:48 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:48 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:48 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:48 INFO  > Fold 4 withholding month 17
+[0018] 2020-03-11 01:15:48 INFO  > rows of train= 501, rows of holdout= 90
+[0018] 2020-03-11 01:15:48 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:50 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:01
+[0018] 2020-03-11 01:15:50 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:50 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:50 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:50 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:50 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:50 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:50 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:50 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:50 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:50 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:50 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:50 INFO  > Fold 5 withholding month 14
+[0018] 2020-03-11 01:15:50 INFO  > rows of train= 503, rows of holdout= 88
+[0018] 2020-03-11 01:15:50 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:52 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:01
+[0018] 2020-03-11 01:15:52 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:52 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:52 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:52 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:52 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:52 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:52 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:52 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:52 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:52 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:52 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:52 INFO  > Fold 6 withholding month 16
+[0018] 2020-03-11 01:15:52 INFO  > rows of train= 507, rows of holdout= 84
+[0018] 2020-03-11 01:15:52 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:15:54 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:01
+[0018] 2020-03-11 01:15:54 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:54 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:54 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:15:54 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:54 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:15:54 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:54 INFO  > Fold 6 OOF cv= 0.621876837154615
+[0018] 2020-03-11 01:15:54 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:15:54 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:15:54 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:15:54 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:54 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:15:54 INFO  > Fold 1 withholding month 12
+[0018] 2020-03-11 01:15:54 INFO  > rows of train= 463, rows of holdout= 128
+[0018] 2020-03-11 01:15:54 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:16:01 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:07
+[0018] 2020-03-11 01:16:01 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:01 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:01 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:01 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:01 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:16:01 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:01 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:16:01 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:16:01 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:16:01 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:01 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:01 INFO  > Fold 2 withholding month 15
+[0018] 2020-03-11 01:16:01 INFO  > rows of train= 482, rows of holdout= 109
+[0018] 2020-03-11 01:16:01 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:16:09 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:07
+[0018] 2020-03-11 01:16:09 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:09 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:09 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:09 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:09 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:16:09 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:09 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:16:09 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:16:09 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:16:09 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:09 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:09 INFO  > Fold 3 withholding month 13
+[0018] 2020-03-11 01:16:09 INFO  > rows of train= 499, rows of holdout= 92
+[0018] 2020-03-11 01:16:09 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:16:16 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:07
+[0018] 2020-03-11 01:16:16 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:16 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:16 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:16 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:16 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:16:16 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:16 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:16:16 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:16:16 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:16:16 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:16 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:16 INFO  > Fold 4 withholding month 17
+[0018] 2020-03-11 01:16:16 INFO  > rows of train= 501, rows of holdout= 90
+[0018] 2020-03-11 01:16:16 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:16:21 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:04
+[0018] 2020-03-11 01:16:21 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:21 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:21 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:21 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:21 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:16:21 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:21 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:16:21 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:16:21 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:16:21 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:21 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:21 INFO  > Fold 5 withholding month 14
+[0018] 2020-03-11 01:16:21 INFO  > rows of train= 503, rows of holdout= 88
+[0018] 2020-03-11 01:16:21 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:16:36 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:15
+[0018] 2020-03-11 01:16:36 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:36 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:36 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:36 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:36 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:16:36 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:36 DEBUG > Start ModelFactory.create
+[0018] 2020-03-11 01:16:36 DEBUG > Creating model catboost
+[0018] 2020-03-11 01:16:36 DEBUG > Start CatBoost.__init__
+[0018] 2020-03-11 01:16:36 DEBUG > End   CatBoost.__init__: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:36 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:36 INFO  > Fold 6 withholding month 16
+[0018] 2020-03-11 01:16:36 INFO  > rows of train= 507, rows of holdout= 84
+[0018] 2020-03-11 01:16:36 DEBUG > Start CatBoost.train
+[0018] 2020-03-11 01:16:42 DEBUG > End   CatBoost.train: [elapsed] >> 00:00:05
+[0018] 2020-03-11 01:16:42 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:42 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:42 DEBUG > Start CatBoost.predict
+[0018] 2020-03-11 01:16:42 DEBUG > End   CatBoost.predict: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:42 DEBUG > Start BaseModel.save
+[0018] 2020-03-11 01:16:42 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0018] 2020-03-11 01:16:42 INFO  > Fold 6 OOF cv= 0.5794753086419754
+[0018] 2020-03-11 01:16:42 DEBUG > Best trial: 56
+[0018] 2020-03-11 01:16:42 DEBUG > Best score: 0.7408877131099353
+[0018] 2020-03-11 01:16:42 DEBUG > Best params: {'max_depth': 9, 'reg_lambda': 0.43032175562990965}
+[0018] 2020-03-11 01:16:42 INFO  > End   Tune hyper params: [elapsed] >> 00:14:29
+[0018] 2020-03-11 01:16:42 INFO  > End   main: [elapsed] >> 00:14:33
+[0018] 2020-03-11 01:16:42 INFO  > :sunglasses: Finished experiment 0018.small

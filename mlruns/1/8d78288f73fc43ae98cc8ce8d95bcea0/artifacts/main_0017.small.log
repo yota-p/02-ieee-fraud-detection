@@ -1,0 +1,14 @@
+[0017] 2020-03-09 00:59:48 INFO  > :thinking_face: Starting experiment 0017_lightgbm.small
+[0017] 2020-03-09 00:59:48 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0017')
+[0017] 2020-03-09 00:59:48 INFO  > Start main
+[0017] 2020-03-09 00:59:48 INFO  > Start Preprocess
+[0017] 2020-03-09 01:00:18 DEBUG > Loaded feature cdeotte
+[0017] 2020-03-09 01:00:19 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
+[0017] 2020-03-09 01:00:19 INFO  > End   Preprocess: [elapsed] >> 00:00:30
+[0017] 2020-03-09 01:00:19 INFO  > Start Tune hyper params
+[0017] 2020-03-09 01:00:20 DEBUG > Best trial: 10
+[0017] 2020-03-09 01:00:20 DEBUG > Best score: 0.7627498530276308
+[0017] 2020-03-09 01:00:20 DEBUG > Best params: {'max_depth': 7, 'min_child_weight': 0.005377953170214886, 'min_data_in_leaf': 159, 'reg_alpha': 0.06699540120140125, 'reg_lambda': 0.4514916662266483}
+[0017] 2020-03-09 01:00:20 INFO  > End   Tune hyper params: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:00:20 INFO  > End   main: [elapsed] >> 00:00:31
+[0017] 2020-03-09 01:00:20 INFO  > :sunglasses: Finished experiment 0017.small
