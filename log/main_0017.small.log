@@ -1,0 +1,469 @@
+[0017] 2020-03-11 00:57:23 INFO  > :thinking_face: Starting experiment 0017_xgboost.small
+[0017] 2020-03-11 00:57:23 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0017')
+[0017] 2020-03-11 00:57:24 INFO  > Start main
+[0017] 2020-03-11 00:57:24 INFO  > Start Preprocess
+[0017] 2020-03-11 00:57:54 DEBUG > Loaded feature cdeotte
+[0017] 2020-03-11 00:57:55 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
+[0017] 2020-03-11 00:57:55 INFO  > End   Preprocess: [elapsed] >> 00:00:31
+[0017] 2020-03-11 00:57:55 INFO  > Start Tune hyper params
+[0017] 2020-03-11 00:57:56 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:56 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:56 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:56 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:56 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:56 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-11 00:57:56 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-11 00:57:56 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:56 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:57 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:57 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-11 00:57:57 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:57 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:57 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-11 00:57:57 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:57 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:57 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:57 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:57 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-11 00:57:57 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-11 00:57:57 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:58 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:58 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-11 00:57:58 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:58 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:58 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-11 00:57:58 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:58 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:58 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:58 INFO  > Fold 6 OOF cv= 0.7158289241622575
+[0017] 2020-03-11 00:57:59 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:59 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-11 00:57:59 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:59 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:59 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-11 00:57:59 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:57:59 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:57:59 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:57:59 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:57:59 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-11 00:57:59 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-11 00:57:59 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:00 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:00 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-11 00:58:00 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:00 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:00 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-11 00:58:00 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:00 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:00 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:00 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:00 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-11 00:58:00 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-11 00:58:00 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:01 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 INFO  > Fold 6 OOF cv= 0.7270723104056438
+[0017] 2020-03-11 00:58:01 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:01 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-11 00:58:01 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:01 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:01 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:01 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:01 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-11 00:58:01 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-11 00:58:01 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:02 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:02 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-11 00:58:02 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:02 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:02 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-11 00:58:02 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:02 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:02 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-11 00:58:02 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:02 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:02 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:02 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:02 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-11 00:58:02 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-11 00:58:02 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:03 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 INFO  > Fold 6 OOF cv= 0.759075543797766
+[0017] 2020-03-11 00:58:03 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:03 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:03 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-11 00:58:03 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-11 00:58:03 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:03 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:03 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:03 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:04 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-11 00:58:04 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:04 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:04 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-11 00:58:04 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:04 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:04 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-11 00:58:04 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:04 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:04 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-11 00:58:04 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:04 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:04 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:04 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:04 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-11 00:58:04 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-11 00:58:04 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:05 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:05 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:05 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:05 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:05 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:05 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:05 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:05 INFO  > Fold 6 OOF cv= 0.7172251616696061
+[0017] 2020-03-11 00:58:06 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:06 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-11 00:58:06 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:06 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:06 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-11 00:58:06 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:06 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:06 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:06 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:06 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-11 00:58:06 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-11 00:58:06 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:07 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:07 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:07 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:07 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:07 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:07 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:07 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:07 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:07 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:07 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:07 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:07 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:07 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-11 00:58:07 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-11 00:58:07 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:08 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:01
+[0017] 2020-03-11 00:58:08 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:08 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:08 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:08 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:08 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:08 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:08 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:08 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:08 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:08 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:08 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:08 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-11 00:58:08 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-11 00:58:08 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:09 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start ModelFactory.create
+[0017] 2020-03-11 00:58:09 DEBUG > Creating model xgboost
+[0017] 2020-03-11 00:58:09 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-11 00:58:09 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-11 00:58:09 DEBUG > Start XGBoost.train
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start XGBoost.predict
+[0017] 2020-03-11 00:58:09 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 DEBUG > Start BaseModel.save
+[0017] 2020-03-11 00:58:09 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-11 00:58:09 INFO  > Fold 6 OOF cv= 0.7802395649617873
+[0017] 2020-03-11 00:58:10 DEBUG > Best trial: 65
+[0017] 2020-03-11 00:58:10 DEBUG > Best score: 0.7802395649617873
+[0017] 2020-03-11 00:58:10 DEBUG > Best params: {'colsample_bytree': 0.7448901428634171, 'max_depth': 4, 'min_child_weight': 0.02133971653844562, 'min_split_loss': 0.03512637409806572, 'reg_alpha': 0.0011543393149685973, 'reg_lambda': 0.0010898362030718454, 'subsample': 0.8169021187987878}
+[0017] 2020-03-11 00:58:10 INFO  > End   Tune hyper params: [elapsed] >> 00:00:14
+[0017] 2020-03-11 00:58:10 INFO  > End   main: [elapsed] >> 00:00:45
+[0017] 2020-03-11 00:58:10 INFO  > :sunglasses: Finished experiment 0017.small

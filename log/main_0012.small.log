@@ -1,69 +1,29 @@
-[0012] 2020-02-11 19:36:01 INFO  > :thinking_face: Starting experiment 0012_xgb.small
-[0012] 2020-02-11 19:36:01 INFO  > Options indicated: Namespace(nomsg=False, seed=42, small=True, version='0012')
-[0012] 2020-02-11 19:36:01 INFO  > Start main
-[0012] 2020-02-11 19:36:02 INFO  > Start Preprocess
-[0012] 2020-02-11 19:36:02 DEBUG > Start Transformer.run
-[0012] 2020-02-11 19:36:02 DEBUG > Start is_latest
-[0012] 2020-02-11 19:36:02 DEBUG > End   is_latest: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:02 DEBUG > All files existed. Skip transforming.
-[0012] 2020-02-11 19:36:04 DEBUG > Loaded train.shape: (591, 266)
-[0012] 2020-02-11 19:36:04 DEBUG > Loaded test.shape:  (507, 265)
-[0012] 2020-02-11 19:36:04 DEBUG > End   Transformer.run: [elapsed] >> 00:00:01
-[0012] 2020-02-11 19:36:04 INFO  > End   Preprocess: [elapsed] >> 00:00:02
-[0012] 2020-02-11 19:36:04 INFO  > Start Optimize
-[0012] 2020-02-11 19:36:04 DEBUG > Start ModelFactory.create
-[0012] 2020-02-11 19:36:04 DEBUG > Creating model xgb
-[0012] 2020-02-11 19:36:04 DEBUG > Start XGBoost.__init__
-[0012] 2020-02-11 19:36:04 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:04 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:04 DEBUG > Start optimize_num_boost_round
-[0012] 2020-02-11 19:36:04 INFO  > Start Training on Fold 1
-[0012] 2020-02-11 19:36:05 DEBUG > Start XGBoost.train
-[0012] 2020-02-11 19:36:05 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:05 DEBUG > Start BaseModel.save
-[0012] 2020-02-11 19:36:05 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:05 INFO  > End   Training on Fold 1: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:05 INFO  > Start Training on Fold 2
-[0012] 2020-02-11 19:36:06 DEBUG > Start XGBoost.train
-[0012] 2020-02-11 19:36:06 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:06 DEBUG > Start BaseModel.save
-[0012] 2020-02-11 19:36:06 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:06 INFO  > End   Training on Fold 2: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:06 INFO  > Start Training on Fold 3
-[0012] 2020-02-11 19:36:07 DEBUG > Start XGBoost.train
-[0012] 2020-02-11 19:36:08 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:01
-[0012] 2020-02-11 19:36:08 DEBUG > Start BaseModel.save
-[0012] 2020-02-11 19:36:08 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:08 INFO  > End   Training on Fold 3: [elapsed] >> 00:00:02
-[0012] 2020-02-11 19:36:09 INFO  > Start Training on Fold 4
-[0012] 2020-02-11 19:36:09 DEBUG > Start XGBoost.train
-[0012] 2020-02-11 19:36:10 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:10 DEBUG > Start BaseModel.save
-[0012] 2020-02-11 19:36:10 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:10 INFO  > End   Training on Fold 4: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:10 INFO  > Start Training on Fold 5
-[0012] 2020-02-11 19:36:10 DEBUG > Start XGBoost.train
-[0012] 2020-02-11 19:36:11 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:11 DEBUG > Start BaseModel.save
-[0012] 2020-02-11 19:36:11 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:11 INFO  > End   Training on Fold 5: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:11 WARNING > Did not meet early stopping. Try larger num_boost_rounds.
-[0012] 2020-02-11 19:36:11 DEBUG > End   optimize_num_boost_round: [elapsed] >> 00:00:06
-[0012] 2020-02-11 19:36:11 INFO  > End   Optimize: [elapsed] >> 00:00:07
-[0012] 2020-02-11 19:36:12 INFO  > Start Train
-[0012] 2020-02-11 19:36:12 DEBUG > Start ModelFactory.create
-[0012] 2020-02-11 19:36:12 DEBUG > Creating model xgb
-[0012] 2020-02-11 19:36:12 DEBUG > Start XGBoost.__init__
-[0012] 2020-02-11 19:36:12 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:12 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:12 DEBUG > Start XGBoost.train
-[0012] 2020-02-11 19:36:33 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:20
-[0012] 2020-02-11 19:36:33 DEBUG > Start BaseModel.save
-[0012] 2020-02-11 19:36:33 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:33 INFO  > End   Train: [elapsed] >> 00:00:21
-[0012] 2020-02-11 19:36:33 INFO  > Start Predict
-[0012] 2020-02-11 19:36:34 DEBUG > Start XGBoost.predict
-[0012] 2020-02-11 19:36:34 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:34 INFO  > End   Predict: [elapsed] >> 00:00:00
-[0012] 2020-02-11 19:36:34 INFO  > End   main: [elapsed] >> 00:00:32
-[0012] 2020-02-11 19:36:34 INFO  > :sunglasses: Finished experiment 0012.small
+[0012] 2020-02-12 13:49:29 INFO  > :thinking_face: Starting experiment 0012_xgb.small
+[0012] 2020-02-12 13:49:29 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0012')
+[0012] 2020-02-12 13:49:29 INFO  > Start main
+[0012] 2020-02-12 13:49:29 INFO  > Start Preprocess
+[0012] 2020-02-12 13:49:29 DEBUG > Start Transformer.run
+[0012] 2020-02-12 13:49:29 DEBUG > Start is_latest
+[0012] 2020-02-12 13:49:29 DEBUG > End   is_latest: [elapsed] >> 00:00:00
+[0012] 2020-02-12 13:49:29 DEBUG > All files existed. Skip transforming.
+[0012] 2020-02-12 13:49:51 DEBUG > Loaded train.shape: (591, 266)
+[0012] 2020-02-12 13:49:51 DEBUG > Loaded test.shape:  (507, 265)
+[0012] 2020-02-12 13:49:51 DEBUG > End   Transformer.run: [elapsed] >> 00:00:22
+[0012] 2020-02-12 13:49:51 INFO  > End   Preprocess: [elapsed] >> 00:00:22
+[0012] 2020-02-12 13:49:51 INFO  > Start Train
+[0012] 2020-02-12 13:49:51 DEBUG > Start ModelFactory.create
+[0012] 2020-02-12 13:49:51 DEBUG > Creating model xgb
+[0012] 2020-02-12 13:49:51 DEBUG > Start XGBoost.__init__
+[0012] 2020-02-12 13:49:51 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0012] 2020-02-12 13:49:51 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0012] 2020-02-12 13:49:51 DEBUG > Start XGBoost.train
+[0012] 2020-02-12 13:50:03 DEBUG > End   XGBoost.train: [elapsed] >> 00:00:11
+[0012] 2020-02-12 13:50:03 DEBUG > Start BaseModel.save
+[0012] 2020-02-12 13:50:03 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0012] 2020-02-12 13:50:03 INFO  > End   Train: [elapsed] >> 00:00:12
+[0012] 2020-02-12 13:50:03 INFO  > Start Predict
+[0012] 2020-02-12 13:50:03 DEBUG > Start XGBoost.predict
+[0012] 2020-02-12 13:50:03 DEBUG > End   XGBoost.predict: [elapsed] >> 00:00:00
+[0012] 2020-02-12 13:50:03 INFO  > End   Predict: [elapsed] >> 00:00:00
+[0012] 2020-02-12 13:50:03 INFO  > End   main: [elapsed] >> 00:00:34
+[0012] 2020-02-12 13:50:03 INFO  > :sunglasses: Finished experiment 0012.small

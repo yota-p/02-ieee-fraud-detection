@@ -1,0 +1,196 @@
+[0017] 2020-03-09 01:20:37 INFO  > :thinking_face: Starting experiment 0017_lightgbm.small
+[0017] 2020-03-09 01:20:37 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0017')
+[0017] 2020-03-09 01:20:37 INFO  > Start main
+[0017] 2020-03-09 01:20:37 INFO  > Start Preprocess
+[0017] 2020-03-09 01:20:40 DEBUG > Loaded feature cdeotte
+[0017] 2020-03-09 01:20:41 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
+[0017] 2020-03-09 01:20:41 INFO  > End   Preprocess: [elapsed] >> 00:00:04
+[0017] 2020-03-09 01:20:41 INFO  > Start Tune hyper params
+[0017] 2020-03-09 01:20:41 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:41 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:41 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:41 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:41 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:41 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:20:41 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:20:41 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:42 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:42 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-09 01:20:42 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:42 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:42 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-09 01:20:42 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:42 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:42 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-09 01:20:42 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:42 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:42 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:43 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:43 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-09 01:20:43 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:43 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:43 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-09 01:20:43 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:43 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:43 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:43 INFO  > Fold 6 OOF cv= 0.6877572016460906
+[0017] 2020-03-09 01:20:44 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:44 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:20:44 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:44 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:44 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 INFO  > Fold 2 withholding month 15
+[0017] 2020-03-09 01:20:44 INFO  > rows of train= 482, rows of holdout= 109
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:44 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:44 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 INFO  > Fold 3 withholding month 13
+[0017] 2020-03-09 01:20:44 INFO  > rows of train= 499, rows of holdout= 92
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:44 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:44 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:44 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:44 INFO  > Fold 4 withholding month 17
+[0017] 2020-03-09 01:20:44 INFO  > rows of train= 501, rows of holdout= 90
+[0017] 2020-03-09 01:20:44 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:45 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:45 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 INFO  > Fold 5 withholding month 14
+[0017] 2020-03-09 01:20:45 INFO  > rows of train= 503, rows of holdout= 88
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:45 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:20:45 DEBUG > Creating model lightgbm
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.__init__
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 INFO  > Fold 6 withholding month 16
+[0017] 2020-03-09 01:20:45 INFO  > rows of train= 507, rows of holdout= 84
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.train
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.train: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start LightGBM.predict
+[0017] 2020-03-09 01:20:45 DEBUG > End   LightGBM.predict: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 DEBUG > Start BaseModel.save
+[0017] 2020-03-09 01:20:45 DEBUG > End   BaseModel.save: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:20:45 INFO  > Fold 6 OOF cv= 0.6877572016460906
+[0017] 2020-03-09 01:20:46 DEBUG > Best trial: 10
+[0017] 2020-03-09 01:20:46 DEBUG > Best score: 0.7627498530276308
+[0017] 2020-03-09 01:20:46 DEBUG > Best params: {'max_depth': 7, 'min_child_weight': 0.005377953170214886, 'min_data_in_leaf': 159, 'reg_alpha': 0.06699540120140125, 'reg_lambda': 0.4514916662266483}
+[0017] 2020-03-09 01:20:46 INFO  > End   Tune hyper params: [elapsed] >> 00:00:04
+[0017] 2020-03-09 01:20:46 INFO  > End   main: [elapsed] >> 00:00:08
+[0017] 2020-03-09 01:20:46 INFO  > :sunglasses: Finished experiment 0017.small

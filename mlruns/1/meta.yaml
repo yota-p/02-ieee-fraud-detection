@@ -1,0 +1,4 @@
+artifact_location: file:///home/yh/git/kaggle_ieee-fraud-detection/mlruns/1
+experiment_id: '1'
+lifecycle_stage: active
+name: tune_hyper_params.small

@@ -6,8 +6,9 @@ logger = getLogger('main')
 
 @timer
 def reduce_mem_usage(df):
-    """ iterate through all the columns of a dataframe and modify the data type
-        to reduce memory usage.
+    """
+    iterate through all the columns of a dataframe and modify the data type
+    to reduce memory usage.
     """
     start_mem = df.memory_usage().sum() / 1024**2
     logger.debug(f'Memory usage of dataframe is {start_mem:.2f} MB')

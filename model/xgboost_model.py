@@ -21,12 +21,13 @@ class XGBoost(BaseModel):
     def train(self,
               X_train, y_train,
               X_val=None, y_val=None,
+              params=None,
               num_boost_round=100,
               early_stopping_rounds=None,
               fold=0):
         # np.nan are treated as missing value by default
-        dtrain = xgb.DMatrix(X_train, label=y_train)
-        dval = xgb.DMatrix(X_val, label=y_val)
+        dtrain = xgb.DMatrix(X_train, label=y_train, missing=-1)
+        dval = xgb.DMatrix(X_val, label=y_val, missing=-1)
         if X_val is not None and y_val is not None:
             evals = [(dtrain, 'train'), (dval, 'valid')]
         else:
@@ -34,7 +35,7 @@ class XGBoost(BaseModel):
         logger = getLogger('train')
         callbacks = [log_evaluation(logger, period=1, fold=fold, evals=evals)]
 
-        self.core = xgb.train(params=self.config.params,
+        self.core = xgb.train(params=params,
                               dtrain=dtrain,
                               evals=evals,
                               num_boost_round=num_boost_round,
@@ -51,7 +52,7 @@ class XGBoost(BaseModel):
 
     @timer
     def predict(self, X_test):
-        dtest = xgb.DMatrix(X_test)
+        dtest = xgb.DMatrix(X_test, missing=-1)
         y_test = self.core.predict(dtest)
         return y_test
 

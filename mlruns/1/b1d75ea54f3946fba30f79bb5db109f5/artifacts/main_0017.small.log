@@ -1,0 +1,54 @@
+[0017] 2020-03-09 01:39:17 INFO  > :thinking_face: Starting experiment 0017_xgboost.small
+[0017] 2020-03-09 01:39:17 INFO  > Options indicated: Namespace(nomsg=True, seed=42, small=True, version='0017')
+[0017] 2020-03-09 01:39:17 INFO  > Start main
+[0017] 2020-03-09 01:39:17 INFO  > Start Preprocess
+[0017] 2020-03-09 01:39:21 DEBUG > Loaded feature cdeotte
+[0017] 2020-03-09 01:39:22 DEBUG > train.shape: (591, 292), test.shape: (507, 291)
+[0017] 2020-03-09 01:39:22 INFO  > End   Preprocess: [elapsed] >> 00:00:04
+[0017] 2020-03-09 01:39:22 INFO  > Start Tune hyper params
+[0017] 2020-03-09 01:39:22 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:39:22 DEBUG > Creating model xgboost
+[0017] 2020-03-09 01:39:22 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-09 01:39:22 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:22 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:22 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:39:22 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:39:22 DEBUG > Start XGBoost.train
+[0017] 2020-03-09 01:39:23 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:39:23 DEBUG > Creating model xgboost
+[0017] 2020-03-09 01:39:23 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-09 01:39:23 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:23 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:23 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:39:23 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:39:23 DEBUG > Start XGBoost.train
+[0017] 2020-03-09 01:39:23 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:39:23 DEBUG > Creating model xgboost
+[0017] 2020-03-09 01:39:23 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-09 01:39:23 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:23 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:23 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:39:23 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:39:23 DEBUG > Start XGBoost.train
+[0017] 2020-03-09 01:39:24 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:39:24 DEBUG > Creating model xgboost
+[0017] 2020-03-09 01:39:24 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-09 01:39:24 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:24 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:24 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:39:24 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:39:24 DEBUG > Start XGBoost.train
+[0017] 2020-03-09 01:39:24 DEBUG > Start ModelFactory.create
+[0017] 2020-03-09 01:39:24 DEBUG > Creating model xgboost
+[0017] 2020-03-09 01:39:24 DEBUG > Start XGBoost.__init__
+[0017] 2020-03-09 01:39:24 DEBUG > End   XGBoost.__init__: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:24 DEBUG > End   ModelFactory.create: [elapsed] >> 00:00:00
+[0017] 2020-03-09 01:39:24 INFO  > Fold 1 withholding month 12
+[0017] 2020-03-09 01:39:24 INFO  > rows of train= 463, rows of holdout= 128
+[0017] 2020-03-09 01:39:24 DEBUG > Start XGBoost.train
+[0017] 2020-03-09 01:39:24 DEBUG > Best trial: 10
+[0017] 2020-03-09 01:39:24 DEBUG > Best score: 0.7627498530276308
+[0017] 2020-03-09 01:39:24 DEBUG > Best params: {'max_depth': 7, 'min_child_weight': 0.005377953170214886, 'min_data_in_leaf': 159, 'reg_alpha': 0.06699540120140125, 'reg_lambda': 0.4514916662266483}
+[0017] 2020-03-09 01:39:24 INFO  > End   Tune hyper params: [elapsed] >> 00:00:02
+[0017] 2020-03-09 01:39:24 INFO  > End   main: [elapsed] >> 00:00:07
+[0017] 2020-03-09 01:39:24 INFO  > :sunglasses: Finished experiment 0017.small

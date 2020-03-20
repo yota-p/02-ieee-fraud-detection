@@ -138,3 +138,6 @@ jupyter.log
 # exclude data from source control by default
 *.pkl
 data/*/*
+
+# mlruns trash
+mlruns/.trash

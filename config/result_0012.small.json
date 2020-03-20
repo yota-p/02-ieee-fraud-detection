@@ -19,26 +19,20 @@
     },
     "train": {
         "n_splits": 5,
-        "num_boost_round": 5000,
-        "early_stopping_rounds": 100
+        "num_boost_round": 2000,
+        "early_stopping_rounds": 100,
+        "optimize_num_boost_round": false
     },
     "runtime": {
         "version": "0012",
         "use_small_data": true,
-        "no_send_message": false,
+        "no_send_message": true,
         "random_seed": 42
     },
-    "scores": {
-        "best_iteration": null
-    },
+    "scores": {},
     "paths": {
         "out_train_path": "data/feature/transformed_0012_train.small.pkl",
         "out_test_path": "data/feature/transformed_0012_test.small.pkl",
-        "model_fold_1_path": "data/model/model_0012_xgb_fold1.small.pkl",
-        "model_fold_2_path": "data/model/model_0012_xgb_fold2.small.pkl",
-        "model_fold_3_path": "data/model/model_0012_xgb_fold3.small.pkl",
-        "model_fold_4_path": "data/model/model_0012_xgb_fold4.small.pkl",
-        "model_fold_5_path": "data/model/model_0012_xgb_fold5.small.pkl",
         "out_model_dir": "data/model/model_0012_xgb.small.pkl",
         "out_sub_path": "data/submission/submission_0012.small.csv",
         "main_log_path": "log/main_0012.small.log",
